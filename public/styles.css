@@ -25,6 +25,9 @@
   --hero-control-bg: rgba(255, 255, 255, 0.12);
   --hero-control-border: rgba(255, 255, 255, 0.28);
   --hero-control-hover: rgba(255, 255, 255, 0.2);
+  --button-bg: #091123;
+  --button-bg-hover: rgba(9, 17, 35, 0.9);
+  --button-text: #ffffff;
   --input-bg: #ffffff;
   --input-text: #091123;
   --stat-bg: rgba(235, 243, 252, 0.5);
@@ -63,6 +66,9 @@ body.dark-mode {
   --hero-control-bg: rgba(5, 14, 28, 0.34);
   --hero-control-border: rgba(255, 255, 255, 0.22);
   --hero-control-hover: rgba(255, 255, 255, 0.16);
+  --button-bg: #07111f;
+  --button-bg-hover: #0e1b2d;
+  --button-text: #ffffff;
   --input-bg: #ffffff;
   --input-text: #091123;
   --stat-bg: rgba(90, 163, 255, 0.1);
@@ -370,8 +376,8 @@ button {
   border: 0;
   border-radius: 8px;
   padding: 0 32px;
-  color: #ffffff;
-  background: var(--foreground);
+  color: var(--button-text);
+  background: var(--button-bg);
   font: inherit;
   font-size: 1rem;
   font-weight: 700;
@@ -382,7 +388,7 @@ button {
 }
 
 button:hover {
-  background: rgba(9, 17, 35, 0.9);
+  background: var(--button-bg-hover);
 }
 
 button:active {
