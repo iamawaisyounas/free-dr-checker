@@ -2,6 +2,12 @@
 
 A small free Domain Rating checker powered by the Ahrefs free Domain Rating API.
 
+Live URL:
+
+```text
+https://ahrefs-dr-checker-dusky.vercel.app
+```
+
 Official Ahrefs reference:
 
 ```text
