@@ -62,7 +62,7 @@ npx vercel --prod
 Or import this GitHub repository from the Vercel dashboard:
 
 ```text
-https://github.com/heyumarkhan/free-dr-checker
+https://github.com/iamawaisyounas/free-dr-checker
 ```
 
 Use these Vercel settings:
