@@ -330,6 +330,7 @@ button svg {
   padding: clamp(24px, 4vw, 40px);
   background: var(--card);
   box-shadow: var(--shadow-elegant);
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   animation: fade-up 420ms ease both;
 }
 
@@ -382,6 +383,7 @@ button svg {
 
 .score-graph text {
   fill: var(--muted-foreground);
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   font-size: 11px;
   font-weight: 600;
   text-anchor: middle;
@@ -444,6 +446,7 @@ button svg {
   margin-top: 6px;
   overflow-wrap: anywhere;
   font-size: clamp(1.5rem, 4vw, 1.9rem);
+  font-weight: 700;
   line-height: 1.15;
 }
 
@@ -524,6 +527,7 @@ button svg {
   display: block;
   margin-top: 6px;
   font-size: 1.3rem;
+  font-weight: 700;
 }
 
 .score-ranges {
@@ -569,6 +573,7 @@ button svg {
 .score-ranges strong {
   color: var(--foreground);
   font-size: 0.9rem;
+  font-weight: 700;
 }
 
 .score-ranges [data-range="poor"] {
