@@ -1,0 +1,15 @@
+{
+  "name": "free-dr-checker",
+  "version": "1.0.0",
+  "description": "Free Domain Rating checker powered by Ahrefs free Domain Rating API.",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "deploy": "vercel --prod"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

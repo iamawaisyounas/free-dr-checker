@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "buildCommand": null,
+  "outputDirectory": "public",
+  "functions": {
+    "api/dr-checker.js": {
+      "runtime": "nodejs22.x"
+    }
+  }
+}
