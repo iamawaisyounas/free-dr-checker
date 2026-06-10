@@ -49,7 +49,7 @@
                 <path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z"></path>
                 <path d="M3.6 9h16.8M3.6 15h16.8M12 3c2.25 2.45 3.38 5.45 3.38 9S14.25 18.55 12 21M12 3C9.75 5.45 8.62 8.45 8.62 12S9.75 18.55 12 21"></path>
               </svg>
-              <input id="domainInput" name="domain" type="text" inputmode="url" autocomplete="url" placeholder="Enter domain (e.g. example.com)" aria-describedby="errorText">
+              <input id="domainInput" name="domain" type="text" inputmode="url" autocomplete="url" placeholder="Enter domain (e.g. example.com)" aria-describedby="helperText errorText">
             </div>
             <button type="submit" id="submitButton">
               <svg aria-hidden="true" viewBox="0 0 24 24">
@@ -60,6 +60,7 @@
             </button>
           </div>
         </form>
+        <p class="form-helper" id="helperText">100% Free · No Sign-up Required</p>
         <p class="error" id="errorText" role="alert" aria-live="polite"></p>
 
         <div class="loading" id="loadingState" aria-live="polite" hidden>
