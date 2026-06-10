@@ -4,119 +4,178 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Free Domain Rating (DR) Checker</title>
-    <meta name="description" content="Free DR checker powered by Ahrefs free Domain Rating API. Check domain rating, website authority, and backlink strength for any domain.">
+    <meta name="description" content="Check Ahrefs Domain Rating for any website with a clean free DR checker. Get a DR score, authority status, and practical interpretation.">
     <link rel="stylesheet" href="/styles.css">
   </head>
   <body>
     <main>
-      <section class="hero" aria-labelledby="page-title">
-        <div class="hero-content">
-          <div class="eyebrow">Free DR Checker</div>
-          <h1 id="page-title">Free Domain Rating (DR) Checker</h1>
-          <p class="subtitle">Check any website's Ahrefs Domain Rating for free.</p>
-
-          <form class="checker-form" id="checkerForm" novalidate>
-            <label for="domainInput">Enter domain or URL</label>
-            <div class="input-row">
-              <input id="domainInput" name="domain" type="text" inputmode="url" autocomplete="url" placeholder="example.com" aria-describedby="helperText errorText">
-              <button type="submit" id="submitButton">Check Domain Rating</button>
-            </div>
-            <p class="helper" id="helperText">Powered by Ahrefs free Domain Rating API.</p>
-            <p class="error" id="errorText" role="alert" aria-live="polite"></p>
-          </form>
-
-          <div class="loading" id="loadingState" aria-live="polite" hidden>
-            <span class="spinner" aria-hidden="true"></span>
-            <span>Checking Domain Rating...</span>
-          </div>
+      <section class="checker-shell" aria-labelledby="page-title">
+        <div class="checker-intro">
+          <p class="eyebrow">Free Ahrefs DR Checker</p>
+          <h1 id="page-title">Free Domain Rating Checker</h1>
+          <p class="subtitle">Enter a website and get its Ahrefs Domain Rating with a clear authority breakdown.</p>
         </div>
 
-        <aside class="hero-panel" aria-label="Domain Rating preview">
-          <div class="mini-chart">
-            <div class="bar tall"></div>
-            <div class="bar mid"></div>
-            <div class="bar high"></div>
-            <div class="bar low"></div>
+        <form class="checker-form" id="checkerForm" novalidate>
+          <label for="domainInput">Website URL or domain</label>
+          <div class="input-row">
+            <input id="domainInput" name="domain" type="text" inputmode="url" autocomplete="url" placeholder="example.com" aria-describedby="helperText errorText">
+            <button type="submit" id="submitButton">Check DR</button>
           </div>
-          <p>Backlink strength score from 0 to 100</p>
-        </aside>
-      </section>
+          <p class="helper" id="helperText">Paste a domain or full URL. Example: socialbu.com</p>
+          <p class="error" id="errorText" role="alert" aria-live="polite"></p>
+        </form>
 
-      <section class="results-section" id="resultsSection" hidden>
-        <div class="dr-score-card">
-          <div class="progress-wrap">
-            <div class="progress-circle" id="progressCircle" style="--score: 0">
-              <div class="progress-center">
-                <span class="progress-label">Domain Rating</span>
-                <strong id="drScore">0</strong>
-              </div>
-            </div>
-          </div>
-
-          <div class="domain-info">
-            <h2>Domain Information</h2>
-            <dl>
-              <div>
-                <dt>Domain</dt>
-                <dd id="resultDomain">example.com</dd>
-              </div>
-              <div>
-                <dt>Domain Rating</dt>
-                <dd id="resultDr">0</dd>
-              </div>
-              <div>
-                <dt>Status</dt>
-                <dd><span class="status-pill" id="resultStatus">Very Low</span></dd>
-              </div>
-            </dl>
-            <div class="interpretation">
-              <h3>DR Interpretation</h3>
-              <p id="interpretationText">Enter a domain to see how strong its backlink profile is.</p>
-              <ul class="scale-list" aria-label="Domain Rating scale">
-                <li><span>0-10</span>Very Low</li>
-                <li><span>11-30</span>Low</li>
-                <li><span>31-50</span>Average</li>
-                <li><span>51-70</span>Strong</li>
-                <li><span>71-90</span>Very Strong</li>
-                <li><span>91-100</span>Elite</li>
-              </ul>
-            </div>
-          </div>
+        <div class="loading" id="loadingState" aria-live="polite" hidden>
+          <span class="spinner" aria-hidden="true"></span>
+          <span>Checking backlink authority...</span>
         </div>
+
+        <section class="results-section" id="resultsSection" aria-label="Domain Rating result" hidden>
+          <div class="result-card">
+            <div class="score-panel">
+              <span class="score-kicker">Domain Rating</span>
+              <div class="score-value"><strong id="drScore">0</strong><span>/100</span></div>
+              <span class="status-pill" id="resultStatus">Very Low</span>
+            </div>
+
+            <div class="result-details">
+              <div class="domain-line">
+                <span>Checked domain</span>
+                <strong id="resultDomain">example.com</strong>
+              </div>
+
+              <div class="authority-meter" aria-label="Domain Rating scale">
+                <div class="meter-track">
+                  <span class="meter-fill" id="meterFill" style="width: 0%"></span>
+                </div>
+                <div class="meter-labels" aria-hidden="true">
+                  <span>Low</span>
+                  <span>Average</span>
+                  <span>Strong</span>
+                  <span>Elite</span>
+                </div>
+              </div>
+
+              <div class="insight-box">
+                <h2 id="insightTitle">Authority insight</h2>
+                <p id="interpretationText">Enter a website to see what its DR score means.</p>
+              </div>
+
+              <div class="quick-stats" aria-label="Result summary">
+                <div>
+                  <span>Score</span>
+                  <strong id="resultDr">0</strong>
+                </div>
+                <div>
+                  <span>Scale</span>
+                  <strong>0-100</strong>
+                </div>
+                <div>
+                  <span>Metric</span>
+                  <strong>Ahrefs DR</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
       </section>
 
-      <section class="explain-section" aria-labelledby="what-is-dr">
-        <div class="content-grid">
-          <article>
-            <h2 id="what-is-dr">What Is Domain Rating?</h2>
-            <p>Domain Rating (DR) is Ahrefs' score that measures the strength of a website's backlink profile on a scale from 0 to 100.</p>
-            <p>A domain rating checker is useful when you want a fast overview of how authoritative a website may be from a link building and SEO perspective. This free DR checker lets you enter a domain or full URL, cleans it into a valid domain, sends it to a secure backend endpoint, and returns the Ahrefs Domain Rating score in a simple results card. Because the tool uses the Ahrefs free Domain Rating API, it is built for quick checks without requiring a paid Ahrefs login inside the browser.</p>
-            <p>Marketers, founders, SEO teams, and content teams often use an Ahrefs DR checker before they evaluate guest post opportunities, compare competitors, review backlink quality, or prioritize outreach. A higher DR usually means that a website has a stronger backlink profile, but it should not be treated as the only measure of SEO value. You should also look at organic traffic, topical relevance, link quality, referring domains, content quality, spam signals, and whether the site attracts real visitors.</p>
-            <p>This website authority checker is designed for practical everyday use. If you paste a URL such as <strong>https://socialbu.com/</strong>, the tool removes the protocol, removes the trailing slash, converts the domain to lowercase, validates the domain format, and checks <strong>socialbu.com</strong>. The result shows the DR score, the checked domain, a status label, and an interpretation so the number is easier to understand. Scores from 0 to 10 are very low, 11 to 30 are low, 31 to 50 are average, 51 to 70 are strong, 71 to 90 are very strong, and 91 to 100 are elite.</p>
-            <p>When you check domain rating, remember that DR is not a Google ranking factor. Google does not use Ahrefs Domain Rating in its ranking systems. DR is an independent Ahrefs metric based on backlink profile strength. That makes it helpful for SEO research, but it is best used as a comparison metric rather than a direct prediction of rankings. A lower DR site can outrank a higher DR site when its content is better, search intent match is stronger, page-level links are better, or the topic is more relevant.</p>
-            <p>A free DR checker is especially helpful when you need quick checks at the start of a workflow. You can use it while building a prospect list, reviewing partnership requests, auditing your own domain, checking competitors, or estimating the authority of websites that mention your brand. It gives you a fast signal before you spend more time on deeper SEO research. For a complete analysis, combine the DR score with backlink audits, anchor text review, content gap research, keyword rankings, and manual quality checks.</p>
-            <p>If you are using this Ahrefs DR checker for outreach, avoid judging websites by Domain Rating alone. Relevance matters more than raw authority. A niche website with a moderate DR and a real audience can be more valuable than a very high DR website that is unrelated to your market. The best SEO decisions come from combining metrics with context, not chasing one number. Use this free tool as a clean first step, then inspect the sites that matter most in more detail.</p>
-          </article>
+      <section class="content-section" aria-label="Domain Rating guide">
+        <div class="content-wrap">
+          <section class="copy-block">
+            <p class="section-label">Use cases</p>
+            <h2>When to use this DR checker</h2>
+            <div class="feature-grid">
+              <article>
+                <h3>Competitor research</h3>
+                <p>Compare domains before you study their backlink profile, content strategy, or search visibility.</p>
+              </article>
+              <article>
+                <h3>Guest post checks</h3>
+                <p>Quickly screen websites before spending time on outreach, pricing, or partnership conversations.</p>
+              </article>
+              <article>
+                <h3>Website audits</h3>
+                <p>Use DR as a first signal when reviewing your own domain authority and link growth over time.</p>
+              </article>
+            </div>
+          </section>
 
-          <aside class="faq" aria-labelledby="faq-title">
-            <h2 id="faq-title">FAQ</h2>
+          <section class="copy-block split-block">
+            <div>
+              <p class="section-label">Benefits</p>
+              <h2>A cleaner way to read backlink strength</h2>
+            </div>
+            <ul class="check-list">
+              <li>One simple input for any domain or URL.</li>
+              <li>Instant DR score with an easy authority label.</li>
+              <li>Plain-English explanation so the number is useful.</li>
+              <li>Powered by Ahrefs' free Domain Rating API.</li>
+            </ul>
+          </section>
+
+          <section class="copy-block">
+            <p class="section-label">How it works</p>
+            <h2>From website URL to DR score</h2>
+            <div class="steps">
+              <article>
+                <span>1</span>
+                <h3>Enter a site</h3>
+                <p>Paste a domain like example.com or a full URL.</p>
+              </article>
+              <article>
+                <span>2</span>
+                <h3>Clean and validate</h3>
+                <p>The tool removes extra URL parts and checks the domain format.</p>
+              </article>
+              <article>
+                <span>3</span>
+                <h3>Get the result</h3>
+                <p>The backend calls Ahrefs and returns a DR score with context.</p>
+              </article>
+            </div>
+          </section>
+
+          <section class="copy-block split-block">
+            <div>
+              <p class="section-label">Tips</p>
+              <h2>Tips for improving domain authority</h2>
+            </div>
+            <div class="tip-list">
+              <p>Earn links from relevant websites in your niche instead of chasing random high-DR links.</p>
+              <p>Create link-worthy assets such as original research, statistics pages, tools, and practical guides.</p>
+              <p>Fix weak technical SEO so valuable pages can be crawled, indexed, and shared more easily.</p>
+              <p>Review toxic or irrelevant link patterns and focus on steady, natural link growth.</p>
+            </div>
+          </section>
+
+          <section class="copy-block">
+            <p class="section-label">Understanding domain authority</p>
+            <h2>What Domain Rating really means</h2>
+            <p class="wide-copy">Domain Rating is an Ahrefs metric that estimates the strength of a website's backlink profile on a 0-100 scale. A higher DR usually means the domain has stronger link authority, but it is not a Google ranking factor. Use it as a comparison metric together with relevance, organic traffic, content quality, and real audience signals.</p>
+          </section>
+
+          <section class="copy-block faq-block" aria-labelledby="faq-title">
+            <p class="section-label">FAQ</p>
+            <h2 id="faq-title">Common questions</h2>
             <details open>
-              <summary>What is DR?</summary>
-              <p>Domain Rating is Ahrefs' measure of backlink strength.</p>
-            </details>
-            <details>
-              <summary>Is DR a Google ranking factor?</summary>
-              <p>No. DR is an Ahrefs metric.</p>
-            </details>
-            <details>
               <summary>What is a good DR score?</summary>
-              <p>Generally 50+ is strong.</p>
+              <p>A DR above 50 is usually strong, but the right benchmark depends on your niche and competitors.</p>
             </details>
             <details>
-              <summary>How often is DR updated?</summary>
-              <p>Depends on Ahrefs index updates.</p>
+              <summary>Is DR the same as Google authority?</summary>
+              <p>No. DR is an Ahrefs metric. Google does not use Ahrefs DR directly in rankings.</p>
             </details>
-          </aside>
+            <details>
+              <summary>Can a low DR website rank well?</summary>
+              <p>Yes. Strong content, search intent match, topical relevance, and page-level links can help lower-DR sites rank.</p>
+            </details>
+            <details>
+              <summary>Does this tool require an Ahrefs account?</summary>
+              <p>No. It uses Ahrefs' free public Domain Rating endpoint through a backend proxy.</p>
+            </details>
+          </section>
         </div>
       </section>
     </main>

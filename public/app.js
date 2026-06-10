@@ -4,11 +4,12 @@ const errorText = document.querySelector("#errorText");
 const loadingState = document.querySelector("#loadingState");
 const submitButton = document.querySelector("#submitButton");
 const resultsSection = document.querySelector("#resultsSection");
-const progressCircle = document.querySelector("#progressCircle");
+const meterFill = document.querySelector("#meterFill");
 const drScore = document.querySelector("#drScore");
 const resultDomain = document.querySelector("#resultDomain");
 const resultDr = document.querySelector("#resultDr");
 const resultStatus = document.querySelector("#resultStatus");
+const insightTitle = document.querySelector("#insightTitle");
 const interpretationText = document.querySelector("#interpretationText");
 
 function cleanDomain(value) {
@@ -45,17 +46,38 @@ function getStatus(score) {
   return "Elite";
 }
 
-function getInterpretation(domain, score, status) {
-  const descriptions = {
-    "Very Low": `${domain} has a very low Domain Rating. This usually means the site has a limited backlink profile or is still new.`,
-    Low: `${domain} has a low Domain Rating. It may have some backlinks, but there is room to build more authority.`,
-    Average: `${domain} has an average Domain Rating. The backlink profile has some strength, but stronger competitors may still have an advantage.`,
-    Strong: `${domain} has a strong Domain Rating. This usually points to a solid backlink profile and good authority signals.`,
-    "Very Strong": `${domain} has a very strong Domain Rating. Sites in this range often have many quality referring domains.`,
-    Elite: `${domain} has an elite Domain Rating. This is usually reserved for domains with exceptionally strong backlink profiles.`
+function getInsight(domain, score, status) {
+  const insights = {
+    "Very Low": {
+      title: "Early-stage authority",
+      body: `${domain} has a DR of ${score}, which suggests a very limited backlink profile. This is common for new sites or domains that have not earned many referring domains yet.`
+    },
+    Low: {
+      title: "Room to build authority",
+      body: `${domain} has a DR of ${score}. The site has some backlink signals, but it likely needs more relevant, quality links to compete in tougher search results.`
+    },
+    Average: {
+      title: "Developing backlink strength",
+      body: `${domain} has a DR of ${score}. This is a workable authority level for many niches, especially when the site has strong content and topic relevance.`
+    },
+    Strong: {
+      title: "Strong authority signal",
+      body: `${domain} has a DR of ${score}. That usually means the domain has a solid backlink profile and enough authority to compete in many search markets.`
+    },
+    "Very Strong": {
+      title: "Very strong link profile",
+      body: `${domain} has a DR of ${score}. Domains in this range often have many quality referring domains and stronger brand/link signals.`
+    },
+    Elite: {
+      title: "Elite domain authority",
+      body: `${domain} has a DR of ${score}. This is typically reserved for domains with exceptional backlink strength and broad authority across the web.`
+    }
   };
 
-  return descriptions[status] || `${domain} has a Domain Rating of ${score}.`;
+  return insights[status] || {
+    title: "Authority insight",
+    body: `${domain} has a Domain Rating of ${score}. Use it as a comparison metric alongside traffic, relevance, and content quality.`
+  };
 }
 
 function setLoading(isLoading) {
@@ -71,15 +93,17 @@ function showError(message) {
 function renderResult(domain, dr) {
   const score = Math.max(0, Math.min(100, Number(dr) || 0));
   const status = getStatus(score);
+  const insight = getInsight(domain, score, status);
 
   resultsSection.hidden = false;
-  progressCircle.style.setProperty("--score", score);
+  meterFill.style.width = `${score}%`;
   drScore.textContent = score;
   resultDomain.textContent = domain;
   resultDr.textContent = score;
   resultStatus.textContent = status;
-  interpretationText.textContent = getInterpretation(domain, score, status);
-  resultsSection.scrollIntoView({ behavior: "smooth", block: "start" });
+  insightTitle.textContent = insight.title;
+  interpretationText.textContent = insight.body;
+  resultsSection.scrollIntoView({ behavior: "smooth", block: "nearest" });
 }
 
 form.addEventListener("submit", async (event) => {
@@ -89,7 +113,7 @@ form.addEventListener("submit", async (event) => {
   const domain = cleanDomain(input.value);
 
   if (!domain) {
-    showError("Please enter a domain.");
+    showError("Please enter a website.");
     return;
   }
 
