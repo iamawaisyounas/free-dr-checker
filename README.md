@@ -59,6 +59,21 @@ Deploy with:
 npx vercel --prod
 ```
 
+Or import this GitHub repository from the Vercel dashboard:
+
+```text
+https://github.com/heyumarkhan/free-dr-checker
+```
+
+Use these Vercel settings:
+
+```text
+Framework Preset: Other
+Build Command: empty
+Output Directory: public
+Install Command: npm install
+```
+
 The public frontend will be served from `public/`, and the frontend will call the production API at:
 
 ```text
