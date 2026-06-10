@@ -728,14 +728,26 @@ button svg {
   text-align: center;
 }
 
-.faq-block details {
-  max-width: 760px;
+.faq-list {
+  max-width: 768px;
   margin: 0 auto;
+}
+
+.faq-block details {
+  margin: 0;
+  padding: 0;
   text-align: left;
   box-shadow: none;
   border-radius: 0;
   border-width: 0 0 1px;
+  border-color: var(--border);
   background: transparent;
+  transition: none;
+}
+
+.faq-block details:hover {
+  transform: none;
+  box-shadow: none;
 }
 
 summary {
@@ -748,8 +760,10 @@ summary {
   cursor: pointer;
   color: var(--foreground);
   font-size: 0.875rem;
-  font-weight: 600;
-  transition: color 150ms ease;
+  font-weight: 500;
+  line-height: 1.25;
+  text-align: left;
+  transition: color 150ms ease, text-decoration-color 150ms ease;
 }
 
 summary:hover {
