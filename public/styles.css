@@ -258,7 +258,7 @@ button svg {
 
 .error {
   color: #ffffff;
-  font-weight: 800;
+  font-weight: 700;
 }
 
 .loading {
@@ -410,7 +410,7 @@ button svg {
 
 .score-value strong {
   font-size: clamp(3rem, 8vw, 5rem);
-  font-weight: 800;
+  font-weight: 700;
   line-height: 1;
   color: var(--primary);
 }
@@ -619,7 +619,7 @@ button svg {
   margin-bottom: 32px;
   font-size: clamp(1.9rem, 4vw, 2.45rem);
   line-height: 1.18;
-  font-weight: 800;
+  font-weight: 700;
 }
 
 .copy-block h3 {
@@ -665,7 +665,7 @@ button svg {
   margin-bottom: 8px;
   color: var(--primary);
   font-size: 0.9rem;
-  font-weight: 800;
+  font-weight: 700;
 }
 
 .split-block {
