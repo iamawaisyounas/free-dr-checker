@@ -13,6 +13,36 @@ const resultDr = document.querySelector("#resultDr");
 const resultStatus = document.querySelector("#resultStatus");
 const interpretationText = document.querySelector("#interpretationText");
 const scoreRanges = document.querySelectorAll(".score-ranges [data-range]");
+const themeToggle = document.querySelector("#themeToggle");
+const themeStorageKey = "dr-checker-theme";
+
+function applyTheme(theme) {
+  const isDark = theme === "dark";
+  document.body.classList.toggle("dark-mode", isDark);
+
+  if (themeToggle) {
+    themeToggle.setAttribute("aria-pressed", String(isDark));
+    themeToggle.setAttribute("aria-label", isDark ? "Switch to light mode" : "Switch to dark mode");
+  }
+}
+
+function getInitialTheme() {
+  const savedTheme = localStorage.getItem(themeStorageKey);
+
+  if (savedTheme === "dark" || savedTheme === "light") {
+    return savedTheme;
+  }
+
+  return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+}
+
+applyTheme(getInitialTheme());
+
+themeToggle?.addEventListener("click", () => {
+  const nextTheme = document.body.classList.contains("dark-mode") ? "light" : "dark";
+  localStorage.setItem(themeStorageKey, nextTheme);
+  applyTheme(nextTheme);
+});
 
 function cleanDomain(value) {
   return value
