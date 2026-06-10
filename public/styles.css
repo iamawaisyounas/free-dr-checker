@@ -334,6 +334,11 @@ button svg {
   animation: fade-up 420ms ease both;
 }
 
+.result-card strong,
+.result-card b {
+  font-weight: 700;
+}
+
 .score-panel {
   min-width: 0;
 }
