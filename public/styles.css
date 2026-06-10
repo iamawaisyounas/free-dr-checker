@@ -306,7 +306,11 @@ button svg {
   padding: 40px;
   color: var(--muted-foreground);
   text-align: center;
+  border-color: rgba(223, 229, 236, 0.58);
   border-style: dashed;
+  background: rgba(255, 255, 255, 0.64);
+  box-shadow: 0 16px 44px -30px rgba(9, 17, 35, 0.24);
+  backdrop-filter: blur(14px);
 }
 
 .result-placeholder svg {
