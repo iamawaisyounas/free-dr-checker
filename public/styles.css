@@ -244,21 +244,19 @@ button svg {
   stroke-width: 2;
 }
 
-.helper,
 .error {
-  min-height: 20px;
   margin: 12px 0 0;
   font-size: 0.9rem;
   line-height: 1.4;
 }
 
-.helper {
-  color: rgba(255, 255, 255, 0.72);
-}
-
 .error {
   color: #ffffff;
   font-weight: 700;
+}
+
+.error:empty {
+  display: none;
 }
 
 .loading {
