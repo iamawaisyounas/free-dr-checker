@@ -121,7 +121,7 @@ p {
 .checker-shell {
   position: relative;
   overflow: hidden;
-  padding: 64px 24px 96px;
+  padding: 24px 24px 104px;
   color: #ffffff;
   text-align: center;
   background: var(--gradient-hero);
@@ -151,9 +151,11 @@ body.dark-mode .checker-shell::before {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 18px;
-  width: min(100%, 1120px);
-  margin: 0 auto 64px;
+  gap: 24px;
+  width: min(100%, 1180px);
+  min-height: 64px;
+  margin: 0 auto 88px;
+  padding: 10px 2px;
 }
 
 .brand {
@@ -166,10 +168,10 @@ body.dark-mode .checker-shell::before {
 
 .site-logo {
   display: block;
-  width: 206px;
+  width: 188px;
   height: auto;
-  border-radius: 8px;
-  box-shadow: 0 14px 34px -24px rgba(9, 17, 35, 0.65);
+  border-radius: 0;
+  box-shadow: none;
 }
 
 .site-logo-dark {
@@ -1043,18 +1045,20 @@ details p {
   }
 
   .site-header {
-    margin-bottom: 44px;
+    margin-bottom: 68px;
   }
 }
 
 @media (max-width: 620px) {
   .checker-shell {
-    padding: 48px 16px 92px;
+    padding: 20px 16px 92px;
   }
 
   .site-header {
-    align-items: flex-start;
-    margin-bottom: 44px;
+    align-items: center;
+    min-height: 58px;
+    margin-bottom: 58px;
+    padding: 8px 0;
   }
 
   .brand {
@@ -1067,7 +1071,7 @@ details p {
   }
 
   .site-logo {
-    width: 168px;
+    width: 160px;
   }
 
   .header-actions {
