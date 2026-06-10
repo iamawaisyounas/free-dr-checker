@@ -11,7 +11,7 @@
     <main>
       <section class="checker-shell" aria-labelledby="page-title">
         <div class="checker-intro">
-          <p class="eyebrow">100% Free - No Sign-up</p>
+          <p class="eyebrow">100% Free · No Sign-up</p>
           <h1 id="page-title">Domain Authority Checker</h1>
           <p class="subtitle">Check the Domain Rating (DR) of any website instantly. See a clear visual score and find out where your domain stands.</p>
         </div>
@@ -24,7 +24,7 @@
                 <path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z"></path>
                 <path d="M3.6 9h16.8M3.6 15h16.8M12 3c2.25 2.45 3.38 5.45 3.38 9S14.25 18.55 12 21M12 3C9.75 5.45 8.62 8.45 8.62 12S9.75 18.55 12 21"></path>
               </svg>
-              <input id="domainInput" name="domain" type="text" inputmode="url" autocomplete="url" placeholder="socialbu.com" aria-describedby="helperText errorText">
+              <input id="domainInput" name="domain" type="text" inputmode="url" autocomplete="url" placeholder="Enter domain (e.g. example.com)" aria-describedby="helperText errorText">
             </div>
             <button type="submit" id="submitButton">
               <svg aria-hidden="true" viewBox="0 0 24 24">
@@ -34,7 +34,7 @@
               <span>Check DR</span>
             </button>
           </div>
-          <p class="helper" id="helperText">Try: ahrefs.com - wikipedia.org - yourwebsite.com</p>
+          <p class="helper" id="helperText">Try: ahrefs.com · wikipedia.org · yourwebsite.com</p>
           <p class="error" id="errorText" role="alert" aria-live="polite"></p>
         </form>
 
@@ -42,70 +42,77 @@
           <span class="spinner" aria-hidden="true"></span>
           <span>Checking backlink authority...</span>
         </div>
+      </section>
 
-        <section class="results-section" id="resultsSection" aria-label="Domain Rating result" hidden>
-          <div class="result-card">
+        <section class="results-section" id="resultsSection" aria-label="Domain Rating result">
+          <div class="result-placeholder" id="emptyState">
+            <svg aria-hidden="true" viewBox="0 0 24 24">
+              <path d="m12 14 4-4"></path>
+              <path d="M3.34 19a10 10 0 1 1 17.32 0"></path>
+            </svg>
+            <span>Enter a domain above to see its Domain Rating visualized here.</span>
+          </div>
+
+          <div class="result-card" id="resultCard" hidden>
             <div class="score-panel">
-              <span class="score-kicker">Domain Rating</span>
               <div class="score-graph" aria-label="Domain Rating score graph">
-                <svg viewBox="0 0 240 150" aria-hidden="true">
-                  <path class="gauge-base" d="M35 125a85 85 0 0 1 170 0"></path>
-                  <path class="gauge-band gauge-poor" d="M35 125a85 85 0 0 1 42.5-73.6"></path>
-                  <path class="gauge-band gauge-fair" d="M77.5 51.4A85 85 0 0 1 120 40"></path>
-                  <path class="gauge-band gauge-good" d="M120 40a85 85 0 0 1 42.5 11.4"></path>
-                  <path class="gauge-band gauge-excellent" d="M162.5 51.4A85 85 0 0 1 205 125"></path>
-                  <g class="gauge-needle" id="scoreNeedle">
-                    <line x1="120" y1="124" x2="120" y2="61"></line>
-                    <circle cx="120" cy="124" r="8"></circle>
-                  </g>
+                <svg viewBox="0 0 320 200" role="img" aria-labelledby="scoreGraphTitle">
+                  <title id="scoreGraphTitle">Domain Rating score graph</title>
+                  <path class="gauge-base" d="M30 170 A130 130 0 0 1 290 170"></path>
+                  <path class="gauge-band gauge-poor" d="M30 170 A130 130 0 0 1 83.6 64.8"></path>
+                  <path class="gauge-band gauge-fair" d="M83.6 64.8 A130 130 0 0 1 160 40"></path>
+                  <path class="gauge-band gauge-good" d="M160 40 A130 130 0 0 1 236.4 64.8"></path>
+                  <path class="gauge-band gauge-excellent" d="M236.4 64.8 A130 130 0 0 1 290 170"></path>
+                  <text x="8" y="174">0</text>
+                  <text x="77" y="50">30</text>
+                  <text x="160" y="24">50</text>
+                  <text x="243" y="50">70</text>
+                  <text x="312" y="174">100</text>
+                  <line id="scoreNeedle" class="gauge-needle" x1="160" y1="170" x2="30" y2="170"></line>
+                  <circle class="needle-hub" cx="160" cy="170" r="8"></circle>
+                  <circle class="needle-dot" cx="160" cy="170" r="3"></circle>
                 </svg>
-                <div class="score-value"><strong id="drScore">0</strong><span>/100</span></div>
+                <div class="score-value">
+                  <strong id="drScore">0</strong>
+                  <span>DR Score · <b id="scoreSummary">Poor</b></span>
+                </div>
               </div>
-              <span class="status-pill" id="resultStatus">Bad</span>
-              <p class="score-summary" id="scoreSummary">Backlink authority category</p>
             </div>
 
             <div class="result-details">
               <div class="domain-line">
-                <span>Checked domain</span>
+                <span>Result for</span>
                 <strong id="resultDomain">example.com</strong>
               </div>
 
-              <div class="authority-meter" aria-label="Domain Rating scale">
-                <div class="meter-track">
-                  <span class="meter-fill" id="meterFill" style="width: 0%"></span>
-                </div>
-                <div class="meter-labels" aria-hidden="true">
-                  <span>Bad</span>
-                  <span>Fair</span>
-                  <span>Good</span>
-                  <span>Excellent</span>
-                </div>
-              </div>
-
-              <div class="insight-box">
-                <h2 id="insightTitle">Authority insight</h2>
+              <div class="result-summary-line">
+                <span class="status-pill" id="resultStatus">Poor</span>
                 <p id="interpretationText">Enter a website to see what its DR score means.</p>
               </div>
 
               <div class="quick-stats" aria-label="Result summary">
                 <div>
-                  <span>Score</span>
+                  <span>DR Score</span>
                   <strong id="resultDr">0</strong>
                 </div>
                 <div>
-                  <span>Scale</span>
+                  <span>Rating Scale</span>
                   <strong>0-100</strong>
                 </div>
+              </div>
+
+              <div class="score-ranges" aria-label="Score range">
+                <p>Score range</p>
                 <div>
-                  <span>Metric</span>
-                  <strong>Ahrefs DR</strong>
+                  <span data-range="poor"><b></b>0-29<br><strong>Poor</strong></span>
+                  <span data-range="fair"><b></b>30-49<br><strong>Fair</strong></span>
+                  <span data-range="good"><b></b>50-69<br><strong>Good</strong></span>
+                  <span data-range="excellent"><b></b>70-100<br><strong>Excellent</strong></span>
                 </div>
               </div>
             </div>
           </div>
         </section>
-      </section>
 
       <section class="content-section" aria-label="Domain Rating guide">
         <div class="content-wrap">

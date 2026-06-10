@@ -3,16 +3,16 @@ const input = document.querySelector("#domainInput");
 const errorText = document.querySelector("#errorText");
 const loadingState = document.querySelector("#loadingState");
 const submitButton = document.querySelector("#submitButton");
-const resultsSection = document.querySelector("#resultsSection");
-const meterFill = document.querySelector("#meterFill");
+const emptyState = document.querySelector("#emptyState");
+const resultCard = document.querySelector("#resultCard");
 const drScore = document.querySelector("#drScore");
 const scoreNeedle = document.querySelector("#scoreNeedle");
 const scoreSummary = document.querySelector("#scoreSummary");
 const resultDomain = document.querySelector("#resultDomain");
 const resultDr = document.querySelector("#resultDr");
 const resultStatus = document.querySelector("#resultStatus");
-const insightTitle = document.querySelector("#insightTitle");
 const interpretationText = document.querySelector("#interpretationText");
+const scoreRanges = document.querySelectorAll(".score-ranges [data-range]");
 
 function cleanDomain(value) {
   return value
@@ -40,42 +40,44 @@ function isValidDomain(domain) {
 }
 
 function getStatus(score) {
-  if (score < 30) return "Bad";
+  if (score < 30) return "Poor";
   if (score < 50) return "Fair";
-  if (score < 75) return "Good";
+  if (score < 70) return "Good";
   return "Excellent";
 }
 
 function getInsight(domain, score, status) {
   const insights = {
-    Bad: {
-      title: "Bad backlink authority",
-      body: `${domain} has a DR of ${score}. This usually means the site has a limited backlink profile and needs more quality referring domains before it can compete in tougher search results.`
-    },
-    Fair: {
-      title: "Fair authority, still growing",
-      body: `${domain} has a DR of ${score}. The domain has some backlink strength, but it still has room to grow with more relevant and trusted links.`
-    },
-    Good: {
-      title: "Good domain authority",
-      body: `${domain} has a DR of ${score}. This is a solid authority signal and usually means the domain has a meaningful backlink profile.`
-    },
-    Excellent: {
-      title: "Excellent backlink authority",
-      body: `${domain} has a DR of ${score}. Domains in this range often have strong brand signals, many quality referring domains, and serious link authority.`
-    }
+    Poor: `${domain} has a DR of ${score}. Low authority - focus on earning relevant, high-quality backlinks.`,
+    Fair: `${domain} has a DR of ${score}. Moderate authority - the domain has some backlink strength but still has room to grow.`,
+    Good: `${domain} has a DR of ${score}. Strong authority - this domain can be competitive in many niches.`,
+    Excellent: `${domain} has a DR of ${score}. Top-tier authority - this suggests an outstanding backlink profile.`
   };
 
-  return insights[status] || {
-    title: "Authority insight",
-    body: `${domain} has a Domain Rating of ${score}. Use it as a comparison metric alongside traffic, relevance, and content quality.`
+  return insights[status] || `${domain} has a Domain Rating of ${score}. Use it as a comparison metric alongside traffic, relevance, and content quality.`;
+}
+
+function pointOnGauge(score) {
+  const safeScore = Math.max(0, Math.min(100, score));
+  const angle = Math.PI * (1 - safeScore / 100);
+
+  return {
+    x: 160 + 124 * Math.cos(angle),
+    y: 170 - 124 * Math.sin(angle)
   };
+}
+
+function setActiveRange(status) {
+  scoreRanges.forEach((range) => {
+    range.classList.toggle("is-active", range.dataset.range === status.toLowerCase());
+  });
 }
 
 function setLoading(isLoading) {
   loadingState.hidden = !isLoading;
   submitButton.disabled = isLoading;
   input.disabled = isLoading;
+  submitButton.querySelector("span").textContent = isLoading ? "Checking..." : "Check DR";
 }
 
 function showError(message) {
@@ -85,21 +87,21 @@ function showError(message) {
 function renderResult(domain, dr) {
   const score = Math.max(0, Math.min(100, Number(dr) || 0));
   const status = getStatus(score);
-  const insight = getInsight(domain, score, status);
-  const needleAngle = -90 + (score / 100) * 180;
+  const needlePoint = pointOnGauge(score);
 
-  resultsSection.hidden = false;
-  meterFill.style.width = `${score}%`;
+  emptyState.hidden = true;
+  resultCard.hidden = false;
   drScore.textContent = score;
-  scoreNeedle.style.transform = `rotate(${needleAngle}deg)`;
-  scoreSummary.textContent = `${status} authority category`;
+  scoreNeedle.setAttribute("x2", needlePoint.x.toFixed(1));
+  scoreNeedle.setAttribute("y2", needlePoint.y.toFixed(1));
+  scoreSummary.textContent = status;
   resultDomain.textContent = domain;
   resultDr.textContent = score;
   resultStatus.textContent = status;
   resultStatus.className = `status-pill status-${status.toLowerCase()}`;
-  insightTitle.textContent = insight.title;
-  interpretationText.textContent = insight.body;
-  resultsSection.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  interpretationText.textContent = getInsight(domain, score, status);
+  setActiveRange(status);
+  resultCard.scrollIntoView({ behavior: "smooth", block: "nearest" });
 }
 
 form.addEventListener("submit", async (event) => {
