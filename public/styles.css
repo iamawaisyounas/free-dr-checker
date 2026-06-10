@@ -153,7 +153,7 @@ body.dark-mode .checker-shell::before {
   justify-content: space-between;
   gap: 18px;
   width: min(100%, 1120px);
-  margin: 0 auto 54px;
+  margin: 0 auto 64px;
 }
 
 .brand {
@@ -170,6 +170,19 @@ body.dark-mode .checker-shell::before {
   height: auto;
   border-radius: 8px;
   box-shadow: 0 14px 34px -24px rgba(9, 17, 35, 0.65);
+}
+
+.site-logo-dark {
+  display: none;
+}
+
+body.dark-mode .site-logo-light {
+  display: none;
+}
+
+body.dark-mode .site-logo-dark {
+  display: block;
+  box-shadow: none;
 }
 
 .brand-mark {
@@ -1041,7 +1054,7 @@ details p {
 
   .site-header {
     align-items: flex-start;
-    margin-bottom: 36px;
+    margin-bottom: 44px;
   }
 
   .brand {
