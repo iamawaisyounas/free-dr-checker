@@ -610,9 +610,15 @@ button svg {
 .section-label {
   margin-bottom: 14px;
   border-color: var(--border);
-  color: var(--primary);
+  color: #1368e9;
   background: var(--card);
   border-radius: 999px;
+}
+
+.results-section .section-label svg,
+.content-section .section-label svg {
+  color: #1368e9;
+  stroke: #1368e9;
 }
 
 .copy-block h2 {
