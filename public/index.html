@@ -11,18 +11,30 @@
     <main>
       <section class="checker-shell" aria-labelledby="page-title">
         <div class="checker-intro">
-          <p class="eyebrow">Free Ahrefs DR Checker</p>
-          <h1 id="page-title">Free Domain Rating Checker</h1>
-          <p class="subtitle">Enter a website and get its Ahrefs Domain Rating with a clear authority breakdown.</p>
+          <p class="eyebrow">100% Free - No Sign-up</p>
+          <h1 id="page-title">Domain Authority Checker</h1>
+          <p class="subtitle">Check the Domain Rating (DR) of any website instantly. See a clear visual score and find out where your domain stands.</p>
         </div>
 
         <form class="checker-form" id="checkerForm" novalidate>
-          <label for="domainInput">Website URL or domain</label>
+          <label class="sr-only" for="domainInput">Website URL or domain</label>
           <div class="input-row">
-            <input id="domainInput" name="domain" type="text" inputmode="url" autocomplete="url" placeholder="example.com" aria-describedby="helperText errorText">
-            <button type="submit" id="submitButton">Check DR</button>
+            <div class="input-shell">
+              <svg aria-hidden="true" viewBox="0 0 24 24">
+                <path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z"></path>
+                <path d="M3.6 9h16.8M3.6 15h16.8M12 3c2.25 2.45 3.38 5.45 3.38 9S14.25 18.55 12 21M12 3C9.75 5.45 8.62 8.45 8.62 12S9.75 18.55 12 21"></path>
+              </svg>
+              <input id="domainInput" name="domain" type="text" inputmode="url" autocomplete="url" placeholder="socialbu.com" aria-describedby="helperText errorText">
+            </div>
+            <button type="submit" id="submitButton">
+              <svg aria-hidden="true" viewBox="0 0 24 24">
+                <path d="m21 21-4.35-4.35"></path>
+                <circle cx="11" cy="11" r="7"></circle>
+              </svg>
+              <span>Check DR</span>
+            </button>
           </div>
-          <p class="helper" id="helperText">Paste a domain or full URL. Example: socialbu.com</p>
+          <p class="helper" id="helperText">Try: ahrefs.com - wikipedia.org - yourwebsite.com</p>
           <p class="error" id="errorText" role="alert" aria-live="polite"></p>
         </form>
 
