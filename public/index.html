@@ -47,8 +47,22 @@
           <div class="result-card">
             <div class="score-panel">
               <span class="score-kicker">Domain Rating</span>
-              <div class="score-value"><strong id="drScore">0</strong><span>/100</span></div>
-              <span class="status-pill" id="resultStatus">Very Low</span>
+              <div class="score-graph" aria-label="Domain Rating score graph">
+                <svg viewBox="0 0 240 150" aria-hidden="true">
+                  <path class="gauge-base" d="M35 125a85 85 0 0 1 170 0"></path>
+                  <path class="gauge-band gauge-poor" d="M35 125a85 85 0 0 1 42.5-73.6"></path>
+                  <path class="gauge-band gauge-fair" d="M77.5 51.4A85 85 0 0 1 120 40"></path>
+                  <path class="gauge-band gauge-good" d="M120 40a85 85 0 0 1 42.5 11.4"></path>
+                  <path class="gauge-band gauge-excellent" d="M162.5 51.4A85 85 0 0 1 205 125"></path>
+                  <g class="gauge-needle" id="scoreNeedle">
+                    <line x1="120" y1="124" x2="120" y2="61"></line>
+                    <circle cx="120" cy="124" r="8"></circle>
+                  </g>
+                </svg>
+                <div class="score-value"><strong id="drScore">0</strong><span>/100</span></div>
+              </div>
+              <span class="status-pill" id="resultStatus">Bad</span>
+              <p class="score-summary" id="scoreSummary">Backlink authority category</p>
             </div>
 
             <div class="result-details">
@@ -62,10 +76,10 @@
                   <span class="meter-fill" id="meterFill" style="width: 0%"></span>
                 </div>
                 <div class="meter-labels" aria-hidden="true">
-                  <span>Low</span>
-                  <span>Average</span>
-                  <span>Strong</span>
-                  <span>Elite</span>
+                  <span>Bad</span>
+                  <span>Fair</span>
+                  <span>Good</span>
+                  <span>Excellent</span>
                 </div>
               </div>
 

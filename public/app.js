@@ -6,6 +6,8 @@ const submitButton = document.querySelector("#submitButton");
 const resultsSection = document.querySelector("#resultsSection");
 const meterFill = document.querySelector("#meterFill");
 const drScore = document.querySelector("#drScore");
+const scoreNeedle = document.querySelector("#scoreNeedle");
+const scoreSummary = document.querySelector("#scoreSummary");
 const resultDomain = document.querySelector("#resultDomain");
 const resultDr = document.querySelector("#resultDr");
 const resultStatus = document.querySelector("#resultStatus");
@@ -38,39 +40,29 @@ function isValidDomain(domain) {
 }
 
 function getStatus(score) {
-  if (score <= 10) return "Very Low";
-  if (score <= 30) return "Low";
-  if (score <= 50) return "Average";
-  if (score <= 70) return "Strong";
-  if (score <= 90) return "Very Strong";
-  return "Elite";
+  if (score < 30) return "Bad";
+  if (score < 50) return "Fair";
+  if (score < 75) return "Good";
+  return "Excellent";
 }
 
 function getInsight(domain, score, status) {
   const insights = {
-    "Very Low": {
-      title: "Early-stage authority",
-      body: `${domain} has a DR of ${score}, which suggests a very limited backlink profile. This is common for new sites or domains that have not earned many referring domains yet.`
+    Bad: {
+      title: "Bad backlink authority",
+      body: `${domain} has a DR of ${score}. This usually means the site has a limited backlink profile and needs more quality referring domains before it can compete in tougher search results.`
     },
-    Low: {
-      title: "Room to build authority",
-      body: `${domain} has a DR of ${score}. The site has some backlink signals, but it likely needs more relevant, quality links to compete in tougher search results.`
+    Fair: {
+      title: "Fair authority, still growing",
+      body: `${domain} has a DR of ${score}. The domain has some backlink strength, but it still has room to grow with more relevant and trusted links.`
     },
-    Average: {
-      title: "Developing backlink strength",
-      body: `${domain} has a DR of ${score}. This is a workable authority level for many niches, especially when the site has strong content and topic relevance.`
+    Good: {
+      title: "Good domain authority",
+      body: `${domain} has a DR of ${score}. This is a solid authority signal and usually means the domain has a meaningful backlink profile.`
     },
-    Strong: {
-      title: "Strong authority signal",
-      body: `${domain} has a DR of ${score}. That usually means the domain has a solid backlink profile and enough authority to compete in many search markets.`
-    },
-    "Very Strong": {
-      title: "Very strong link profile",
-      body: `${domain} has a DR of ${score}. Domains in this range often have many quality referring domains and stronger brand/link signals.`
-    },
-    Elite: {
-      title: "Elite domain authority",
-      body: `${domain} has a DR of ${score}. This is typically reserved for domains with exceptional backlink strength and broad authority across the web.`
+    Excellent: {
+      title: "Excellent backlink authority",
+      body: `${domain} has a DR of ${score}. Domains in this range often have strong brand signals, many quality referring domains, and serious link authority.`
     }
   };
 
@@ -94,13 +86,17 @@ function renderResult(domain, dr) {
   const score = Math.max(0, Math.min(100, Number(dr) || 0));
   const status = getStatus(score);
   const insight = getInsight(domain, score, status);
+  const needleAngle = -90 + (score / 100) * 180;
 
   resultsSection.hidden = false;
   meterFill.style.width = `${score}%`;
   drScore.textContent = score;
+  scoreNeedle.style.transform = `rotate(${needleAngle}deg)`;
+  scoreSummary.textContent = `${status} authority category`;
   resultDomain.textContent = domain;
   resultDr.textContent = score;
   resultStatus.textContent = status;
+  resultStatus.className = `status-pill status-${status.toLowerCase()}`;
   insightTitle.textContent = insight.title;
   interpretationText.textContent = insight.body;
   resultsSection.scrollIntoView({ behavior: "smooth", block: "nearest" });
