@@ -78,10 +78,10 @@ function getStatus(score) {
 
 function getInsight(domain, score, status) {
   const insights = {
-    Poor: `${domain} has a DR of ${score}. Low authority - focus on earning relevant, high-quality backlinks.`,
-    Fair: `${domain} has a DR of ${score}. Moderate authority - the domain has some backlink strength but still has room to grow.`,
-    Good: `${domain} has a DR of ${score}. Strong authority - this domain can be competitive in many niches.`,
-    Excellent: `${domain} has a DR of ${score}. Top-tier authority - this suggests an outstanding backlink profile.`
+    Poor: `${domain} has a DR of ${score}. Low rating - focus on earning relevant, high-quality backlinks.`,
+    Fair: `${domain} has a DR of ${score}. Moderate rating - the domain has some backlink strength but still has room to grow.`,
+    Good: `${domain} has a DR of ${score}. Strong rating - this domain can be competitive in many niches.`,
+    Excellent: `${domain} has a DR of ${score}. Top-tier rating - this suggests an outstanding backlink profile.`
   };
 
   return insights[status] || `${domain} has a Domain Rating of ${score}. Use it as a comparison metric alongside traffic, relevance, and content quality.`;
