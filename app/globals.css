@@ -223,6 +223,26 @@ body.dark-mode .checker-shell::before {
   text-decoration: none;
 }
 
+.brand-lockup {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.brand-byline {
+  color: rgba(255, 255, 255, 0.76);
+  font-size: 0.78rem;
+  font-weight: 700;
+  line-height: 1;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.brand-byline:hover {
+  color: #ffffff;
+}
+
 .site-logo {
   display: block;
   width: 188px;
@@ -1145,6 +1165,14 @@ details p {
 
   .brand {
     font-size: 0.95rem;
+  }
+
+  .brand-lockup {
+    gap: 8px;
+  }
+
+  .brand-byline {
+    font-size: 0.72rem;
   }
 
   .brand-mark {

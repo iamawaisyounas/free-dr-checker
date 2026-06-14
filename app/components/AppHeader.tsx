@@ -13,9 +13,12 @@ export default function AppHeader() {
   return (
     <div className="standard-header-shell">
       <header className="site-header standard-site-header" aria-label="Site header">
-        <Link className="brand" href="/" aria-label="Domain Rating Checker home">
-          <img className="site-logo site-logo-light" src="/assets/da-checker-logo-light.svg" alt="DR checker light logo" width="320" height="60" />
-        </Link>
+        <div className="brand-lockup">
+          <Link className="brand" href="/" aria-label="Domain Rating Checker home">
+            <img className="site-logo site-logo-light" src="/assets/da-checker-logo-light.svg" alt="DR checker light logo" width="320" height="60" />
+          </Link>
+          <a className="brand-byline" href="https://socialbu.com" rel="noreferrer">by SocialBu</a>
+        </div>
         <nav className="site-nav" aria-label="Primary navigation">
           <Link href="/">Home</Link>
           <Link href="/about">About</Link>
