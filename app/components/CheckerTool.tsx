@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, useEffect, useRef, useState } from "react";
+import Link from "next/link";
 
 type Result = {
   domain: string;
@@ -127,27 +128,42 @@ export default function CheckerTool() {
   return (
     <>
       <section className="checker-shell" aria-labelledby="page-title">
-        <button
-          className="theme-toggle checker-theme-toggle"
-          type="button"
-          aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
-          aria-pressed={theme === "dark"}
-          onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-        >
-          <svg className="sun-icon" aria-hidden="true" viewBox="0 0 24 24">
-            <circle cx="12" cy="12" r="4"></circle>
-            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path>
-          </svg>
-          <svg className="moon-icon" aria-hidden="true" viewBox="0 0 24 24">
-            <path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a7 7 0 1 0 11 11Z"></path>
-          </svg>
-        </button>
+        <header className="site-header" aria-label="Site header">
+          <Link className="brand" href="/" aria-label="Domain Rating Checker home">
+            <img className="site-logo site-logo-light" src="/assets/da-checker-logo-light.svg" alt="DR checker light logo" width="320" height="60" />
+            <img className="site-logo site-logo-dark" src="/assets/da-checker-logo-dark.svg" alt="DR checker dark logo" width="320" height="60" />
+          </Link>
+
+          <div className="header-actions">
+            <nav className="site-nav" aria-label="Primary navigation">
+              <Link href="/">Home</Link>
+              <Link href="/about">About</Link>
+              <Link href="/faq">FAQ</Link>
+              <Link href="/contact">Contact</Link>
+              <Link href="/privacy-policy">Privacy</Link>
+              <Link href="/terms">Terms</Link>
+            </nav>
+            <button
+              className="theme-toggle"
+              type="button"
+              aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+              aria-pressed={theme === "dark"}
+              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+            >
+              <svg className="sun-icon" aria-hidden="true" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="4"></circle>
+                <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path>
+              </svg>
+              <svg className="moon-icon" aria-hidden="true" viewBox="0 0 24 24">
+                <path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a7 7 0 1 0 11 11Z"></path>
+              </svg>
+            </button>
+          </div>
+        </header>
 
         <div className="checker-intro">
-          <h1 id="page-title">Check Any Website&apos;s Domain Rating in Seconds</h1>
-          <p className="subtitle">
-            Curious how strong a domain really is? Drop in a URL and get an instant Domain Rating (DR) score - perfect for SEO research, link building, and sizing up the competition.
-          </p>
+          <h1 id="page-title">Domain Rating Checker</h1>
+          <p className="subtitle">Check the Domain Rating (DR) of any website instantly. See a clear visual score and find out where your domain stands.</p>
         </div>
 
         <form className="checker-form" onSubmit={handleSubmit} noValidate>
@@ -180,7 +196,7 @@ export default function CheckerTool() {
             </button>
           </div>
         </form>
-        <p className="form-helper" id="helperText">Free to use. No signup needed. Results in seconds.</p>
+        <p className="form-helper" id="helperText">100% Free · No Sign-up Required</p>
         <p className="error" id="errorText" role="alert" aria-live="polite">{error}</p>
 
         {loading ? (
