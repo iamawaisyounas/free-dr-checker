@@ -296,7 +296,8 @@ body.dark-mode .brand-mark {
 }
 
 .brand-mark svg,
-.theme-toggle svg {
+.theme-toggle svg,
+.menu-toggle svg {
   width: 20px;
   height: 20px;
   fill: none;
@@ -316,6 +317,7 @@ body.dark-mode .brand-mark {
 }
 
 .site-nav {
+  order: 1;
   display: inline-flex;
   align-items: center;
   flex-wrap: wrap;
@@ -335,7 +337,9 @@ body.dark-mode .brand-mark {
   color: #ffffff;
 }
 
-.theme-toggle {
+.theme-toggle,
+.menu-toggle {
+  order: 2;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -349,20 +353,39 @@ body.dark-mode .brand-mark {
   transition: background-color 150ms ease, border-color 150ms ease, transform 150ms ease, box-shadow 150ms ease;
 }
 
-.theme-toggle {
+.theme-toggle,
+.menu-toggle {
   position: relative;
   width: 42px;
   padding: 0;
 }
 
-.theme-toggle:hover {
+.theme-toggle:hover,
+.menu-toggle:hover {
   background: var(--hero-control-hover);
   box-shadow: 0 16px 34px -22px rgba(9, 17, 35, 0.7);
   transform: translateY(-1px);
 }
 
+.menu-toggle {
+  order: 3;
+  display: none;
+}
+
 .theme-toggle .moon-icon {
   display: none;
+}
+
+.menu-toggle .close-icon {
+  display: none;
+}
+
+.menu-toggle[aria-expanded="true"] .menu-icon {
+  display: none;
+}
+
+.menu-toggle[aria-expanded="true"] .close-icon {
+  display: block;
 }
 
 body.dark-mode .theme-toggle .sun-icon {
@@ -1162,8 +1185,12 @@ details p {
 }
 
 @media (max-width: 620px) {
+  .standard-header-shell {
+    padding: 10px 14px;
+  }
+
   .checker-shell {
-    padding: 178px 16px 92px;
+    padding: 116px 16px 92px;
   }
 
   h1 {
@@ -1180,19 +1207,24 @@ details p {
 
   .site-header {
     position: relative;
-    align-items: flex-start;
-    flex-direction: column;
-    min-height: 58px;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    min-height: 50px;
     margin-bottom: 58px;
-    padding: 8px 48px 8px 0;
+    padding: 0;
+    gap: 10px;
   }
 
   .brand {
     font-size: 0.95rem;
+    max-width: calc(100vw - 128px);
   }
 
   .brand-lockup {
+    flex: 1 1 auto;
     gap: 0;
+    min-width: 0;
   }
 
   .brand-mark {
@@ -1201,42 +1233,65 @@ details p {
   }
 
   .site-logo {
-    width: 176px;
+    width: 152px;
+    max-width: 100%;
   }
 
   .header-actions {
-    width: 100%;
-    justify-content: flex-start;
-    gap: 10px;
+    width: auto;
+    flex: 0 0 auto;
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+    gap: 8px;
   }
 
   .site-nav {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    left: 0;
+    display: none;
     width: 100%;
+    border: 1px solid var(--hero-control-border);
+    border-radius: 12px;
+    padding: 10px;
+    background: var(--hero-control-bg);
+    box-shadow: 0 18px 38px -28px rgba(9, 17, 35, 0.75);
+    backdrop-filter: blur(14px);
     justify-content: flex-start;
     gap: 10px;
-    font-size: 0.74rem;
+    font-size: 0.82rem;
     line-height: 1.4;
   }
 
-  .theme-toggle {
+  .site-nav.is-open {
+    display: flex;
+  }
+
+  .site-nav a {
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 8px;
+    padding: 8px 10px;
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  .theme-toggle,
+  .menu-toggle {
     width: 38px;
     height: 38px;
     flex: 0 0 38px;
+  }
+
+  .menu-toggle {
+    display: inline-flex;
   }
 
   .checker-form {
     width: 100%;
   }
 
-  button {
+  .checker-form button {
     width: 100%;
-  }
-
-  .theme-toggle {
-    position: absolute;
-    top: 8px;
-    right: 0;
-    width: 38px;
   }
 
   .results-section {
@@ -1487,6 +1542,6 @@ details p {
   }
 
   .standard-page__inner {
-    padding: 178px 16px 68px;
+    padding: 116px 16px 68px;
   }
 }

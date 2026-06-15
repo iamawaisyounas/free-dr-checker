@@ -5,6 +5,7 @@ import Link from "next/link";
 
 export default function AppHeader() {
   const [theme, setTheme] = useState("light");
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const savedTheme = window.localStorage.getItem("dr-checker-theme");
@@ -29,12 +30,6 @@ export default function AppHeader() {
           </Link>
         </div>
         <div className="header-actions">
-          <nav className="site-nav" aria-label="Primary navigation">
-            <Link href="/about">About</Link>
-            <Link href="/blog">Blog</Link>
-            <Link href="/faq">FAQs</Link>
-            <Link href="/contact">Contact us</Link>
-          </nav>
           <button
             className="theme-toggle"
             type="button"
@@ -50,6 +45,31 @@ export default function AppHeader() {
               <path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a7 7 0 1 0 11 11Z"></path>
             </svg>
           </button>
+          <button
+            className="menu-toggle"
+            type="button"
+            aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
+            aria-expanded={menuOpen}
+            aria-controls="primary-navigation"
+            onClick={() => setMenuOpen((isOpen) => !isOpen)}
+          >
+            <svg className="menu-icon" aria-hidden="true" viewBox="0 0 24 24">
+              <path d="M4 7h16M4 12h16M4 17h16"></path>
+            </svg>
+            <svg className="close-icon" aria-hidden="true" viewBox="0 0 24 24">
+              <path d="m6 6 12 12M18 6 6 18"></path>
+            </svg>
+          </button>
+          <nav
+            id="primary-navigation"
+            className={`site-nav${menuOpen ? " is-open" : ""}`}
+            aria-label="Primary navigation"
+          >
+            <Link href="/about" onClick={() => setMenuOpen(false)}>About</Link>
+            <Link href="/blog" onClick={() => setMenuOpen(false)}>Blog</Link>
+            <Link href="/faq" onClick={() => setMenuOpen(false)}>FAQs</Link>
+            <Link href="/contact" onClick={() => setMenuOpen(false)}>Contact us</Link>
+          </nav>
         </div>
       </header>
     </div>
