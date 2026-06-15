@@ -134,12 +134,10 @@ export default function CheckerTool() {
               <img className="site-logo site-logo-light" src="/assets/da-checker-logo-light.svg" alt="DR checker light logo" width="320" height="60" />
               <img className="site-logo site-logo-dark" src="/assets/da-checker-logo-dark.svg" alt="DR checker dark logo" width="320" height="60" />
             </Link>
-            <a className="brand-byline" href="https://socialbu.com" rel="noreferrer">by SocialBu</a>
           </div>
 
           <div className="header-actions">
             <nav className="site-nav" aria-label="Primary navigation">
-              <Link href="/">Home</Link>
               <Link href="/about">About</Link>
               <Link href="/faq">FAQ</Link>
               <Link href="/contact">Contact</Link>
