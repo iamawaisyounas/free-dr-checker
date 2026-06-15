@@ -1258,8 +1258,10 @@ details p {
     background: var(--hero-control-bg);
     box-shadow: 0 18px 38px -28px rgba(9, 17, 35, 0.75);
     backdrop-filter: blur(14px);
+    flex-direction: column;
+    align-items: stretch;
     justify-content: flex-start;
-    gap: 10px;
+    gap: 8px;
     font-size: 0.82rem;
     line-height: 1.4;
   }
@@ -1273,6 +1275,7 @@ details p {
     border-radius: 8px;
     padding: 8px 10px;
     background: rgba(255, 255, 255, 0.08);
+    text-align: left;
   }
 
   .theme-toggle,
