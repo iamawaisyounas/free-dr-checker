@@ -130,18 +130,36 @@ a {
 }
 
 .global-footer__row {
-  display: flex;
+  display: grid;
   align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
+  grid-template-columns: minmax(160px, 1fr) auto minmax(240px, 1fr);
   gap: 16px 24px;
   width: min(100%, 1180px);
   margin: 0 auto;
   padding: 28px 24px;
 }
 
+.footer-brand {
+  display: inline-flex;
+  align-items: center;
+  justify-self: start;
+  min-width: 0;
+  border-radius: 8px;
+  padding: 5px 10px;
+  background: var(--gradient-hero);
+}
+
+.footer-brand img {
+  display: block;
+  width: 158px;
+  height: auto;
+  border: 0;
+  box-shadow: none;
+}
+
 .global-footer p {
   margin: 0;
+  justify-self: end;
   color: var(--muted-foreground);
   font-size: 0.92rem;
   line-height: 1.5;
@@ -152,6 +170,8 @@ a {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
+  justify-content: center;
+  justify-self: center;
   gap: 10px;
   color: var(--muted-foreground);
   font-size: 0.92rem;
@@ -1440,11 +1460,17 @@ details p {
 @media (max-width: 760px) {
   .global-footer__row {
     align-items: flex-start;
-    flex-direction: column;
+    grid-template-columns: 1fr;
     padding: 24px 16px;
   }
 
+  .global-footer nav {
+    justify-content: flex-start;
+    justify-self: start;
+  }
+
   .global-footer p {
+    justify-self: start;
     text-align: left;
   }
 
