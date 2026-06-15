@@ -2,5 +2,5 @@
   <text x="0" y="46" font-family="system-ui, -apple-system, sans-serif" font-size="48" font-weight="700" fill="#ffffff" letter-spacing="-1.5">DR</text>
   <circle cx="68" cy="12" r="7" fill="#1a3a8f"/>
   <text x="74" y="46" font-family="system-ui, -apple-system, sans-serif" font-size="48" font-weight="700" fill="#1a3a8f" letter-spacing="-1">checker</text>
-  <text x="144" y="68" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="800" fill="#ffffff">by SocialBu</text>
+  <text x="248" y="68" text-anchor="end" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="800" fill="#ffffff">by SocialBu</text>
 </svg>
