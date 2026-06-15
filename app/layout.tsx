@@ -19,6 +19,7 @@ function Footer() {
       <div className="global-footer__row">
         <nav aria-label="Footer navigation">
           <Link href="/">Home</Link>
+          <Link href="/blog">Blog</Link>
           <Link href="/about">About</Link>
           <Link href="/faq">FAQ</Link>
           <Link href="/contact">Contact</Link>

@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { blogPosts } from "./blog/posts";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date();
@@ -7,6 +8,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: "https://dr-checker.com", lastModified, priority: 1 },
     { url: "https://dr-checker.com/about", lastModified, priority: 0.8 },
     { url: "https://dr-checker.com/blog", lastModified, priority: 0.7 },
+    ...blogPosts.map((post) => ({
+      url: `https://dr-checker.com/blog/${post.slug}`,
+      lastModified,
+      priority: 0.6
+    })),
     { url: "https://dr-checker.com/faq", lastModified, priority: 0.8 },
     { url: "https://dr-checker.com/contact", lastModified, priority: 0.6 },
     { url: "https://dr-checker.com/privacy-policy", lastModified, priority: 0.3 },

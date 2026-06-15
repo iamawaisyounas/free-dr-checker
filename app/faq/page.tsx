@@ -27,10 +27,27 @@ const faqs = [
   { id: "report-a-bug", question: "I found a bug - where do I report it?", answer: "Head to our Contact page and let us know what happened. We appreciate the heads-up!" }
 ];
 
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((faq) => ({
+    "@type": "Question",
+    name: faq.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: faq.answer
+    }
+  }))
+};
+
 export default function FaqPage() {
   return (
     <main className="standard-page">
-      <div className="standard-page__inner">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <div className="standard-page__inner faq-page__inner">
         <p className="page-kicker">FAQ</p>
         <h1>Frequently Asked Questions</h1>
         <nav className="anchor-links" aria-label="FAQ topics">

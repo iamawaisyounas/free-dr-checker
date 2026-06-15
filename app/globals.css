@@ -132,7 +132,7 @@ a {
 .global-footer__row {
   display: grid;
   align-items: center;
-  grid-template-columns: minmax(220px, 1fr) auto minmax(240px, 1fr);
+  grid-template-columns: minmax(0, 1fr) minmax(260px, auto);
   gap: 16px 24px;
   width: min(100%, 1180px);
   margin: 0 auto;
@@ -140,7 +140,7 @@ a {
 }
 
 .global-footer p {
-  grid-column: 3;
+  grid-column: 2;
   margin: 0;
   justify-self: end;
   color: var(--muted-foreground);
@@ -150,12 +150,12 @@ a {
 }
 
 .global-footer nav {
-  grid-column: 2;
+  grid-column: 1;
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  justify-content: center;
-  justify-self: center;
+  justify-content: flex-start;
+  justify-self: start;
   gap: 10px;
   color: var(--muted-foreground);
   font-size: 0.92rem;
@@ -1461,31 +1461,173 @@ details p {
 }
 
 .page-faq-list {
+  display: grid;
+  gap: 12px;
   margin-top: 32px;
 }
 
 .page-faq-list details {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px 18px;
   background: var(--card);
+  box-shadow: 0 14px 40px -32px rgba(9, 17, 35, 0.45);
 }
 
-.blog-list {
+.page-faq-list summary {
+  cursor: pointer;
+  color: var(--foreground);
+  font-weight: 800;
+}
+
+.page-faq-list p {
+  margin: 12px 0 0;
+}
+
+.faq-page__inner {
+  padding-left: 48px;
+}
+
+.blog-page,
+.blog-post-page {
+  background: #f8fbff;
+}
+
+.blog-page a,
+.blog-post-page a {
+  text-decoration: none;
+}
+
+.blog-page__inner,
+.blog-post {
+  width: min(100%, 1120px);
+  margin: 0 auto;
+  padding: 156px 24px 88px;
+}
+
+.blog-hero {
   display: grid;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.blog-hero h1,
+.blog-post h1 {
+  max-width: 760px;
+  margin: 0;
+  color: var(--foreground);
+  font-size: clamp(2.2rem, 6vw, 4.8rem);
+  line-height: 1;
+  text-align: left;
+}
+
+.blog-topic-row,
+.blog-post__cta,
+.related-posts div {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.blog-topic-row a,
+.blog-post__cta a,
+.blog-read-link,
+.blog-back-link,
+.related-posts a {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 9px 12px;
+  color: var(--primary);
+  background: #ffffff;
+  font-size: 0.9rem;
+  font-weight: 800;
+  line-height: 1.2;
+  text-decoration: none;
+}
+
+.blog-back-link {
+  display: inline-flex;
+  margin-bottom: 14px;
+}
+
+.featured-post {
+  display: grid;
+  margin-bottom: 24px;
+  border: 1px solid rgba(24, 76, 169, 0.14);
+  border-radius: 8px;
+  padding: clamp(22px, 4vw, 34px);
+  background: #ffffff;
+  box-shadow: 0 20px 60px -44px rgba(9, 17, 35, 0.55);
+}
+
+.featured-post h2,
+.blog-card h2,
+.blog-post h2 {
+  margin: 0 0 10px;
+  color: var(--foreground);
+  line-height: 1.15;
+}
+
+.featured-post p,
+.blog-card p,
+.blog-post p {
+  color: var(--muted-foreground);
+  line-height: 1.75;
+}
+
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 18px;
-  margin-top: 34px;
 }
 
-.blog-list article {
-  border-bottom: 1px solid var(--border);
-  padding-bottom: 18px;
+.blog-card {
+  display: grid;
+  align-content: start;
+  gap: 12px;
+  border: 1px solid rgba(24, 76, 169, 0.12);
+  border-radius: 8px;
+  padding: 20px;
+  background: #ffffff;
 }
 
-.blog-list article:last-child {
-  border-bottom: 0;
+.blog-card__meta {
+  margin: 0;
+  color: var(--primary) !important;
+  font-size: 0.78rem !important;
+  font-weight: 900;
+  line-height: 1.2 !important;
+  text-transform: uppercase;
 }
 
-.blog-list h2 {
-  margin-bottom: 8px;
-  font-size: 1.25rem;
+.blog-card h2 {
+  font-size: 1.22rem;
+}
+
+.blog-faq-strip,
+.blog-post__faqs,
+.related-posts {
+  margin-top: 42px;
+  border-top: 1px solid var(--border);
+  padding-top: 28px;
+}
+
+.blog-post {
+  max-width: 860px;
+}
+
+.blog-post__cta {
+  margin: 24px 0 34px;
+}
+
+.blog-post__body {
+  display: grid;
+  gap: 28px;
+}
+
+.blog-post__body section {
+  margin: 0;
 }
 
 .contact-form {
@@ -1540,11 +1682,29 @@ details p {
 
   .global-footer p {
     grid-column: auto;
-    justify-self: start;
-    text-align: left;
+    justify-self: end;
+    text-align: right;
   }
 
   .standard-page__inner {
     padding: 116px 16px 68px;
+  }
+
+  .faq-page__inner {
+    padding-left: 24px;
+  }
+
+  .blog-page__inner,
+  .blog-post {
+    padding: 116px 16px 68px;
+  }
+
+  .blog-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .blog-hero h1,
+  .blog-post h1 {
+    font-size: 2.25rem;
   }
 }
