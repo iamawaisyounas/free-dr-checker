@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import RelatedLinks from "../components/RelatedLinks";
 
 export const metadata: Metadata = {
   title: "Contact Us - Dr Checker",
@@ -29,12 +30,12 @@ export default function ContactPage() {
 
         <section>
           <h2>Feedback & Suggestions</h2>
-          <p>Dr Checker is a work in progress, and we&apos;re always looking to make it better. If there&apos;s a feature you&apos;d love to see, or something that&apos;s not working quite right, let us know. Your input genuinely shapes what we build next.</p>
+          <p>Dr Checker is a work in progress, and we&apos;re always looking to make it better. If there&apos;s a feature you&apos;d love to see, or something that&apos;s not working quite right, let us know. You can also check the <a href="/faq#report-a-bug">bug reporting FAQ</a> before sending details.</p>
         </section>
 
         <section>
           <h2>About SocialBu</h2>
-          <p>Dr Checker is a free tool brought to you by <a href="https://socialbu.com">SocialBu</a>. If you&apos;re looking for a full social media management platform with scheduling, automation, analytics, and more, check them out too.</p>
+          <p>Dr Checker is a free tool brought to you by <a href="https://socialbu.com">SocialBu</a>. If you&apos;re looking for a full social media management platform with scheduling, automation, analytics, and more, check them out too. You can read more about the tool on the <a href="/about#socialbu">About page</a>.</p>
         </section>
 
         <form className="contact-form" action="mailto:support@dr-checker.com" method="post" encType="text/plain">
@@ -43,6 +44,14 @@ export default function ContactPage() {
           <label>Message<textarea name="message" rows={6}></textarea></label>
           <button type="submit">Submit</button>
         </form>
+
+        <RelatedLinks
+          links={[
+            { href: "/", label: "Check a Domain" },
+            { href: "/faq#report-a-bug", label: "Bug Report FAQ" },
+            { href: "/about", label: "About Dr Checker" }
+          ]}
+        />
       </div>
     </main>
   );

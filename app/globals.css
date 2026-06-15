@@ -87,6 +87,10 @@ body.dark-mode {
   display: none !important;
 }
 
+[id] {
+  scroll-margin-top: 96px;
+}
+
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;
@@ -141,16 +145,25 @@ a {
   color: var(--muted-foreground);
   font-size: 0.92rem;
   line-height: 1.5;
+  text-align: right;
 }
 
 .global-footer nav {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 14px;
+  gap: 10px;
   color: var(--muted-foreground);
   font-size: 0.92rem;
   font-weight: 700;
+}
+
+.global-footer nav a {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 11px;
+  background: var(--background);
+  line-height: 1;
 }
 
 h1,
@@ -1319,6 +1332,41 @@ details p {
   padding-left: 22px;
 }
 
+.anchor-links,
+.related-links div {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.anchor-links {
+  margin: 22px 0 32px;
+}
+
+.anchor-links a,
+.related-links a {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 12px;
+  color: var(--primary);
+  background: var(--card);
+  font-size: 0.9rem;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.related-links {
+  margin-top: 42px;
+  border-top: 1px solid var(--border);
+  padding-top: 28px;
+}
+
+.related-links h2 {
+  margin-bottom: 14px;
+  font-size: 1.2rem;
+}
+
 .standard-page a {
   color: var(--primary);
   font-weight: 700;
@@ -1391,9 +1439,13 @@ details p {
 
 @media (max-width: 760px) {
   .global-footer__row {
-    align-items: center;
-    flex-direction: row;
+    align-items: flex-start;
+    flex-direction: column;
     padding: 24px 16px;
+  }
+
+  .global-footer p {
+    text-align: left;
   }
 
   .standard-page__inner {

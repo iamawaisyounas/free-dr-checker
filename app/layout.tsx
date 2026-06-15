@@ -17,14 +17,15 @@ function Footer() {
   return (
     <footer className="global-footer">
       <div className="global-footer__row">
-        <p>© {new Date().getFullYear()} Domain Rating Checker - Free SEO tool by <a href="https://socialbu.com">SocialBu</a></p>
         <nav aria-label="Footer navigation">
+          <Link href="/">Home</Link>
           <Link href="/about">About</Link>
           <Link href="/faq">FAQ</Link>
           <Link href="/contact">Contact</Link>
           <Link href="/privacy-policy">Privacy Policy</Link>
           <Link href="/terms">Terms</Link>
         </nav>
+        <p>© {new Date().getFullYear()} Domain Rating Checker - Free SEO tool by <a href="https://socialbu.com">SocialBu</a></p>
       </div>
     </footer>
   );
