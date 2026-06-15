@@ -132,32 +132,15 @@ a {
 .global-footer__row {
   display: grid;
   align-items: center;
-  grid-template-columns: minmax(160px, 1fr) auto minmax(240px, 1fr);
+  grid-template-columns: minmax(220px, 1fr) auto minmax(240px, 1fr);
   gap: 16px 24px;
   width: min(100%, 1180px);
   margin: 0 auto;
   padding: 28px 24px;
 }
 
-.footer-brand {
-  display: inline-flex;
-  align-items: center;
-  justify-self: start;
-  min-width: 0;
-  border-radius: 8px;
-  padding: 5px 10px;
-  background: var(--gradient-hero);
-}
-
-.footer-brand img {
-  display: block;
-  width: 158px;
-  height: auto;
-  border: 0;
-  box-shadow: none;
-}
-
 .global-footer p {
+  grid-column: 3;
   margin: 0;
   justify-self: end;
   color: var(--muted-foreground);
@@ -167,6 +150,7 @@ a {
 }
 
 .global-footer nav {
+  grid-column: 2;
   display: flex;
   align-items: center;
   flex-wrap: wrap;
@@ -203,7 +187,7 @@ p {
 .checker-shell {
   position: relative;
   overflow: hidden;
-  padding: 24px 24px 104px;
+  padding: 176px 24px 104px;
   color: #ffffff;
   text-align: center;
   background: var(--gradient-hero);
@@ -230,9 +214,15 @@ body.dark-mode .checker-shell::before {
 }
 
 .standard-header-shell {
-  padding: 24px 24px 0;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 50;
+  padding: 14px 24px;
   color: #ffffff;
   background: var(--gradient-hero);
+  box-shadow: 0 18px 42px -32px rgba(9, 17, 35, 0.8);
 }
 
 .site-header.standard-site-header {
@@ -1173,7 +1163,7 @@ details p {
 
 @media (max-width: 620px) {
   .checker-shell {
-    padding: 20px 16px 92px;
+    padding: 178px 16px 92px;
   }
 
   h1 {
@@ -1321,7 +1311,7 @@ details p {
 .standard-page__inner {
   width: min(100%, 920px);
   margin: 0 auto;
-  padding: 76px 24px 88px;
+  padding: 166px 24px 88px;
 }
 
 .standard-page h1 {
@@ -1485,16 +1475,18 @@ details p {
   }
 
   .global-footer nav {
+    grid-column: auto;
     justify-content: flex-start;
     justify-self: start;
   }
 
   .global-footer p {
+    grid-column: auto;
     justify-self: start;
     text-align: left;
   }
 
   .standard-page__inner {
-    padding: 54px 16px 68px;
+    padding: 178px 16px 68px;
   }
 }

@@ -17,9 +17,6 @@ function Footer() {
   return (
     <footer className="global-footer">
       <div className="global-footer__row">
-        <Link className="footer-brand" href="/" aria-label="Domain Rating Checker home">
-          <img src="/assets/da-checker-logo-light.svg" alt="DR checker logo" width="320" height="82" />
-        </Link>
         <nav aria-label="Footer navigation">
           <Link href="/">Home</Link>
           <Link href="/about">About</Link>
