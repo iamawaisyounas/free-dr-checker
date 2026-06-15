@@ -1420,6 +1420,26 @@ details p {
   background: var(--card);
 }
 
+.blog-list {
+  display: grid;
+  gap: 18px;
+  margin-top: 34px;
+}
+
+.blog-list article {
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 18px;
+}
+
+.blog-list article:last-child {
+  border-bottom: 0;
+}
+
+.blog-list h2 {
+  margin-bottom: 8px;
+  font-size: 1.25rem;
+}
+
 .contact-form {
   display: grid;
   gap: 16px;

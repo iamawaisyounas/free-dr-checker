@@ -143,10 +143,9 @@ export default function CheckerTool() {
           <div className="header-actions">
             <nav className="site-nav" aria-label="Primary navigation">
               <Link href="/about">About</Link>
-              <Link href="/faq">FAQ</Link>
-              <Link href="/contact">Contact</Link>
-              <Link href="/privacy-policy">Privacy</Link>
-              <Link href="/terms">Terms</Link>
+              <Link href="/blog">Blog</Link>
+              <Link href="/faq">FAQs</Link>
+              <Link href="/contact">Contact us</Link>
             </nav>
             <button
               className="theme-toggle"
