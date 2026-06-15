@@ -17,7 +17,7 @@ function Footer() {
   return (
     <footer className="global-footer">
       <div className="global-footer__row">
-        <p>© {new Date().getFullYear()} Domain Rating Checker - Free SEO tool by <a href="https://socialbu.com">SocialBu</a>.</p>
+        <p>© {new Date().getFullYear()} Domain Rating Checker - Free SEO tool by <a href="https://socialbu.com">SocialBu</a></p>
         <nav aria-label="Footer navigation">
           <Link href="/about">About</Link>
           <Link href="/faq">FAQ</Link>

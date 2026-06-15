@@ -80,6 +80,10 @@ export default function CheckerTool() {
   useEffect(() => {
     document.body.classList.toggle("dark-mode", theme === "dark");
     window.localStorage.setItem("dr-checker-theme", theme);
+
+    return () => {
+      document.body.classList.remove("dark-mode");
+    };
   }, [theme]);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
