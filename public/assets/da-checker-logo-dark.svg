@@ -1,6 +1,5 @@
 <svg width="320" height="82" viewBox="0 0 320 82" xmlns="http://www.w3.org/2000/svg">
-  <text x="0" y="46" font-family="system-ui, -apple-system, sans-serif" font-size="48" font-weight="700" fill="#ffffff" letter-spacing="-1.5">DR</text>
+  <text x="248" y="46" text-anchor="end" font-family="system-ui, -apple-system, sans-serif" font-size="48" font-weight="700"><tspan fill="#ffffff" letter-spacing="-1.5">DR</tspan><tspan fill="#0ea5e9" letter-spacing="-1">checker</tspan></text>
   <circle cx="68" cy="12" r="7" fill="#0ea5e9"/>
-  <text x="74" y="46" font-family="system-ui, -apple-system, sans-serif" font-size="48" font-weight="700" fill="#0ea5e9" letter-spacing="-1">checker</text>
   <text x="248" y="68" text-anchor="end" font-family="system-ui, -apple-system, sans-serif" font-size="18" font-weight="600" fill="#ffffff">by SocialBu</text>
 </svg>
