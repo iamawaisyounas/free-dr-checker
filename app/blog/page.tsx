@@ -100,7 +100,7 @@ export default function BlogPage() {
 
         <section className="blog-grid" aria-label="Latest blog posts">
           {blogPosts.map((post) => (
-            <article className="blog-card" id={post.category.toLowerCase().replaceAll(" ", "-")} key={post.slug}>
+            <article className="blog-card" key={post.slug}>
               <Link className="blog-card__image" href={`/blog/${post.slug}`} aria-label={post.title}>
                 <img src={post.featuredImage} alt={post.featuredImageAlt} loading="lazy" />
               </Link>
