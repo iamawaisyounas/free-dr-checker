@@ -6,11 +6,21 @@ import "./globals.css";
 export const metadata: Metadata = {
   metadataBase: new URL("https://dr-checker.com"),
   title: {
-    default: "Dr Checker - Free Domain Rating (DR) Checker Tool",
+    default: "Free Domain Rating Checker — Powered by Ahrefs | No Login",
     template: "%s"
   },
   description:
-    "Check the Domain Rating (DR) of any website for free. Fast, accurate, and easy-to-use DR checker for SEO research, link building, and competitor analysis.",
+    "Check any website's Domain Rating (DR) for free using real Ahrefs data. No login required. Enter a domain and get your DR score instantly.",
+  alternates: {
+    canonical: "https://dr-checker.com"
+  },
+  openGraph: {
+    title: "Free Domain Rating Checker — Powered by Ahrefs | No Login",
+    description: "Check any website's Domain Rating instantly. Free, no login required.",
+    url: "https://dr-checker.com",
+    siteName: "DR Checker",
+    type: "website"
+  },
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "48x48", type: "image/x-icon" },

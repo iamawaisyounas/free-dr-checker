@@ -2,15 +2,15 @@ import type { Metadata } from "next";
 import CheckerTool from "./components/CheckerTool";
 
 export const metadata: Metadata = {
-  title: "Dr Checker - Free Domain Rating (DR) Checker Tool",
+  title: "Free Domain Rating Checker — Powered by Ahrefs | No Login",
   description:
-    "Check the Domain Rating (DR) of any website for free. Fast, accurate, and easy-to-use DR checker for SEO research, link building, and competitor analysis.",
+    "Check any website's Domain Rating (DR) for free using real Ahrefs data. No login required. Enter a domain and get your DR score instantly.",
   alternates: { canonical: "https://dr-checker.com" },
   openGraph: {
-    title: "Dr Checker - Free Domain Rating Checker",
-    description: "Instantly check any website's Domain Rating (DR) score. Free, fast, no signup required.",
+    title: "Free Domain Rating Checker — Powered by Ahrefs | No Login",
+    description: "Check any website's Domain Rating instantly. Free, no login required.",
     url: "https://dr-checker.com",
-    siteName: "Dr Checker",
+    siteName: "DR Checker",
     type: "website"
   }
 };
