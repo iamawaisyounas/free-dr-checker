@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: "Free Domain Rating Checker — Powered by Ahrefs | No Login",
   description:
     "Check any website's Domain Rating (DR) for free using real Ahrefs data. No login required. Enter a domain and get your DR score instantly.",
-  alternates: { canonical: "https://dr-checker.com" },
+  alternates: { canonical: "https://dr-checker.com/" },
   openGraph: {
     title: "Free Domain Rating Checker — Powered by Ahrefs | No Login",
     description: "Check any website's Domain Rating instantly. Free, no login required.",
