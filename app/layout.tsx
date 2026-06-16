@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Script from "next/script";
 import AppHeader from "./components/AppHeader";
 import "./globals.css";
 
@@ -34,17 +35,19 @@ export const metadata: Metadata = {
   manifest: "/site.webmanifest"
 };
 
-const websiteSchema = {
+const webApplicationSchema = {
   "@context": "https://schema.org",
-  "@type": "WebSite",
-  name: "Dr Checker",
+  "@type": "WebApplication",
+  name: "DR Checker",
   url: "https://dr-checker.com",
-  logo: "https://dr-checker.com/icon-512.png",
-  publisher: {
-    "@type": "Organization",
-    name: "SocialBu",
-    url: "https://socialbu.com",
-    logo: "https://dr-checker.com/icon-512.png"
+  description:
+    "Check any website's Domain Rating (DR) for free using real Ahrefs data. No login required. Enter a domain and get your DR score instantly.",
+  applicationCategory: "SEOApplication",
+  operatingSystem: "Web",
+  offers: {
+    "@type": "Offer",
+    price: "0",
+    priceCurrency: "USD"
   }
 };
 
@@ -71,9 +74,11 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en">
       <body>
-        <script
+        <Script
+          id="schema-markup"
+          strategy="beforeInteractive"
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(webApplicationSchema) }}
         />
         <AppHeader />
         {children}
