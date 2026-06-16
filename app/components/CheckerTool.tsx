@@ -81,7 +81,7 @@ export default function CheckerTool() {
       document.head.appendChild(canonical);
     }
 
-    canonical.href = canonicalHref;
+    canonical.setAttribute("href", canonicalHref);
   }, [result]);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
