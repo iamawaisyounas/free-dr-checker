@@ -35,6 +35,8 @@ export const metadata: Metadata = {
   manifest: "/site.webmanifest"
 };
 
+const googleTagId = "G-FKY1D8N8WY";
+
 const webApplicationSchema = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
@@ -74,6 +76,23 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en">
       <body>
+        <Script
+          id="google-tag"
+          src={`https://www.googletagmanager.com/gtag/js?id=${googleTagId}`}
+          strategy="afterInteractive"
+        />
+        <Script
+          id="google-tag-init"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', '${googleTagId}');
+            `
+          }}
+        />
         <Script
           id="schema-markup"
           strategy="beforeInteractive"
