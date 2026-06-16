@@ -28,7 +28,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       description: post.excerpt,
       url: `https://dr-checker.com/blog/${post.slug}`,
       siteName: "Dr Checker",
-      type: "article"
+      type: "article",
+      images: [
+        {
+          url: `https://dr-checker.com${post.featuredImage}`,
+          alt: post.featuredImageAlt
+        }
+      ]
     }
   };
 }
@@ -47,11 +53,13 @@ export default async function BlogPostPage({ params }: PageProps) {
     "@type": "BlogPosting",
     headline: post.title,
     description: post.excerpt,
+    image: `https://dr-checker.com${post.featuredImage}`,
     datePublished: post.date,
     dateModified: post.date,
     author: {
       "@type": "Organization",
-      name: "Dr Checker"
+      name: post.author.name,
+      description: post.author.bio
     },
     publisher: {
       "@type": "Organization",
@@ -89,19 +97,43 @@ export default async function BlogPostPage({ params }: PageProps) {
         <h1>{post.title}</h1>
         <p className="lead">{post.intro}</p>
 
+        <figure className="blog-post__featured-image">
+          <img src={post.featuredImage} alt={post.featuredImageAlt} />
+        </figure>
+
+        <section className="blog-author" aria-label="Article author">
+          <div className="blog-author__avatar" aria-hidden="true">DR</div>
+          <div>
+            <p className="blog-author__name">By {post.author.name}</p>
+            <p>{post.author.bio}</p>
+          </div>
+        </section>
+
         <div className="blog-post__cta">
           <Link href="/">Check a domain rating</Link>
           <Link href="/faq#what-is-domain-rating">Read DR FAQs</Link>
+          <Link href="/blog">Browse SEO guides</Link>
         </div>
 
         <div className="blog-post__body">
           {post.sections.map((section) => (
             <section key={section.heading}>
               <h2>{section.heading}</h2>
-              <p>{section.body}</p>
+              {section.body.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
             </section>
           ))}
         </div>
+
+        <section className="blog-post__internal-links" aria-labelledby="internal-links-title">
+          <h2 id="internal-links-title">Keep going</h2>
+          <p>
+            Ready to apply this? Start with the free <Link href="/">Domain Rating checker</Link>,
+            review the <Link href="/faq#what-is-domain-rating">Domain Rating FAQ</Link>, or compare this guide
+            with the related articles below.
+          </p>
+        </section>
 
         <section className="blog-post__faqs" aria-labelledby="post-faq-title">
           <h2 id="post-faq-title">FAQs</h2>

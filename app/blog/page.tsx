@@ -16,9 +16,6 @@ export const metadata: Metadata = {
   }
 };
 
-const featuredPost = blogPosts[0];
-const secondaryPosts = blogPosts.slice(1);
-const categories = Array.from(new Set(blogPosts.map((post) => post.category)));
 const blogFaqs = [
   {
     question: "What topics does the Dr Checker blog cover?",
@@ -43,7 +40,12 @@ const blogSchema = {
     "@type": "BlogPosting",
     headline: post.title,
     description: post.excerpt,
+    image: `https://dr-checker.com${post.featuredImage}`,
     datePublished: post.date,
+    author: {
+      "@type": "Organization",
+      name: post.author.name
+    },
     url: `https://dr-checker.com/blog/${post.slug}`
   }))
 };
@@ -79,28 +81,33 @@ export default function BlogPage() {
           <p className="lead">
             Clean, practical articles for checking websites, comparing competitors, and making better link-building decisions.
           </p>
-          <div className="blog-topic-row" aria-label="Blog categories">
-            {categories.map((category) => (
-              <a href={`#${category.toLowerCase().replaceAll(" ", "-")}`} key={category}>{category}</a>
-            ))}
-          </div>
         </section>
 
-        <section className="featured-post" aria-label="Featured post">
+        <section className="blog-lead-magnet" aria-labelledby="lead-magnet-title">
           <div>
-            <p className="blog-card__meta">{featuredPost.category} · {featuredPost.readTime}</p>
-            <h2><Link href={`/blog/${featuredPost.slug}`}>{featuredPost.title}</Link></h2>
-            <p>{featuredPost.excerpt}</p>
-            <Link className="blog-read-link" href={`/blog/${featuredPost.slug}`}>Read article</Link>
+            <p className="blog-card__meta">Free checklist</p>
+            <h2 id="lead-magnet-title">Domain Rating research checklist</h2>
+            <p>
+              Use this quick checklist before guest posting, outreach, competitor research, or SEO reporting.
+              Check DR, compare competitors, review relevance, inspect page quality, and choose the next action.
+            </p>
+          </div>
+          <div className="blog-lead-magnet__actions">
+            <Link className="blog-read-link" href="/">Check a domain</Link>
+            <Link className="blog-read-link" href="/blog/what-is-domain-rating">Read the DR guide</Link>
           </div>
         </section>
 
         <section className="blog-grid" aria-label="Latest blog posts">
-          {secondaryPosts.map((post) => (
+          {blogPosts.map((post) => (
             <article className="blog-card" id={post.category.toLowerCase().replaceAll(" ", "-")} key={post.slug}>
+              <Link className="blog-card__image" href={`/blog/${post.slug}`} aria-label={post.title}>
+                <img src={post.featuredImage} alt={post.featuredImageAlt} loading="lazy" />
+              </Link>
               <p className="blog-card__meta">{post.category} · {post.readTime}</p>
               <h2><Link href={`/blog/${post.slug}`}>{post.title}</Link></h2>
               <p>{post.excerpt}</p>
+              <p className="blog-card__author">By {post.author.name}</p>
               <Link className="blog-read-link" href={`/blog/${post.slug}`}>Read more</Link>
             </article>
           ))}
