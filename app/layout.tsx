@@ -36,6 +36,7 @@ export const metadata: Metadata = {
 };
 
 const googleTagManagerId = "GTM-PN765D4C";
+const googleAnalyticsId = "G-FKY1D8N8WY";
 
 const webApplicationSchema = {
   "@context": "https://schema.org",
@@ -76,15 +77,26 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en">
       <head>
-        <Script
+        <script
           id="gtm-script"
-          strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','${googleTagManagerId}');`
+          }}
+        />
+        <script async src={`https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsId}`} />
+        <script
+          id="google-tag-init"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', '${googleAnalyticsId}');
+            `
           }}
         />
       </head>
