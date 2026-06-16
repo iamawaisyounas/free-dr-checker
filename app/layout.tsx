@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Script from "next/script";
+import { Analytics } from "@vercel/analytics/next";
 import AppHeader from "./components/AppHeader";
 import "./globals.css";
 
@@ -119,6 +120,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <AppHeader />
         {children}
         <Footer />
+        <Analytics />
       </body>
     </html>
   );
