@@ -4,7 +4,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "How We Calculate Domain Authority Score | DR Checker",
   description: "How DR Checker calculates its 0-100 Domain Authority Score from OpenPageRank data.",
-  alternates: { canonical: "https://dr-checker.com/authority-score/how-we-calculate" }
+  alternates: { canonical: "https://dr-checker.com/domain-authority-checker/how-we-calculate" }
 };
 
 export default function AuthorityScoreMethodPage() {
@@ -25,7 +25,7 @@ export default function AuthorityScoreMethodPage() {
         </section>
         <section>
           <h2>Related Tools</h2>
-          <p><Link href="/authority-score">Check Authority Score</Link> or compare it with <Link href="/">Ahrefs Domain Rating</Link> and <Link href="/domain-age">Domain Age</Link>.</p>
+          <p><Link href="/domain-authority-checker">Check Authority Score</Link> or compare it with <Link href="/">Ahrefs Domain Rating</Link> and <Link href="/domain-age-checker">Domain Age</Link>.</p>
         </section>
       </div>
     </main>

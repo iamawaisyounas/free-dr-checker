@@ -46,8 +46,8 @@ export default function AppHeader() {
             className={`site-nav${menuOpen ? " is-open" : ""}`}
             aria-label="Primary navigation"
           >
-            <Link href="/authority-score" onClick={() => setMenuOpen(false)}>Domain Authority Checker</Link>
-            <Link href="/domain-age" onClick={() => setMenuOpen(false)}>Domain Age Checker</Link>
+            <Link href="/domain-authority-checker" onClick={() => setMenuOpen(false)}>Domain Authority Checker</Link>
+            <Link href="/domain-age-checker" onClick={() => setMenuOpen(false)}>Domain Age Checker</Link>
           </nav>
           <button
             className="theme-toggle"

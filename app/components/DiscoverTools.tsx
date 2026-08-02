@@ -22,7 +22,7 @@ const tools: ToolCard[] = [
   },
   {
     key: "authority",
-    href: "/authority-score",
+    href: "/domain-authority-checker",
     title: "Domain Authority Checker",
     description: "Get a free 0-100 authority score for any domain, with referring domains and global rank.",
     cta: "Try Domain Authority Checker Now",
@@ -30,7 +30,7 @@ const tools: ToolCard[] = [
   },
   {
     key: "age",
-    href: "/domain-age",
+    href: "/domain-age-checker",
     title: "Domain Age Checker",
     description: "See how old any domain is, pulled live from WHOIS and RDAP registry data.",
     cta: "Try Domain Age Checker Now",

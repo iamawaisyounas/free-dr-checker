@@ -251,7 +251,7 @@ export default function SeoBulkTool({ tool }: Props) {
               <>
                 <p className="score-disclaimer">
                   Domain Authority Score is our own 0-100 authority rating, calculated from open link-graph data. It is not affiliated with or equivalent to Moz&apos;s Domain Authority metric.
-                  {" "}<Link href="/authority-score/how-we-calculate">How we calculate this score</Link>
+                  {" "}<Link href="/domain-authority-checker/how-we-calculate">How we calculate this score</Link>
                 </p>
                 <div className="responsive-table">
                   <table>
@@ -275,7 +275,7 @@ export default function SeoBulkTool({ tool }: Props) {
                           <td>{formatNumber(result.global_rank)}</td>
                           <td>{formatDate(result.checked_at)}</td>
                           <td>{authorityStatusLabel(result)}</td>
-                          <td><Link href={`/domain-age?domain=${encodeURIComponent(result.domain)}`}>Age</Link></td>
+                          <td><Link href={`/domain-age-checker?domain=${encodeURIComponent(result.domain)}`}>Age</Link></td>
                         </tr>
                       ))}
                     </tbody>
@@ -305,7 +305,7 @@ export default function SeoBulkTool({ tool }: Props) {
                         <td>{formatDate(result.expiry_date)}</td>
                         <td>{result.registrar || "Not available"}</td>
                         <td>{ageStatusLabel(result)}</td>
-                        <td><Link href={`/authority-score?domain=${encodeURIComponent(result.domain)}`}>Score</Link></td>
+                        <td><Link href={`/domain-authority-checker?domain=${encodeURIComponent(result.domain)}`}>Score</Link></td>
                       </tr>
                     ))}
                   </tbody>

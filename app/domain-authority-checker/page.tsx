@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: "Free Domain Authority Checker — Check DA Score Instantly | DR Checker",
   description:
     "Check any website's Domain Authority score for free. Bulk check domains, no signup required. Get referring domains and global rank instantly.",
-  alternates: { canonical: "https://dr-checker.com/authority-score" }
+  alternates: { canonical: "https://dr-checker.com/domain-authority-checker" }
 };
 
 export default function AuthorityScorePage() {
@@ -36,13 +36,27 @@ export default function AuthorityScorePage() {
       <section className="content-section" aria-label="Domain Authority guide">
         <div className="content-wrap">
           <section className="copy-block">
-            <p className="section-label">Domain Authority</p>
+            <p className="section-label">
+              <svg aria-hidden="true" viewBox="0 0 24 24">
+                <path d="M3.34 19a10 10 0 1 1 17.32 0"></path>
+                <path d="m12 14 4-4"></path>
+                <path d="M12 19h.01"></path>
+              </svg>
+              Domain Authority
+            </p>
             <h2>What is Domain Authority</h2>
             <p className="wide-copy">Domain Authority is a score that predicts how well a website is likely to rank in search results, based on the strength of its backlink profile. It runs on a 0 to 100 scale. The higher the number, the stronger the link profile behind that domain. This tool calculates an authority-style score using OpenPageRank&apos;s open link graph data rather than Moz&apos;s proprietary algorithm. Treat it as a comparable, independent measure, not an official Moz DA lookup.</p>
           </section>
 
           <section className="copy-block">
-            <p className="section-label">Score Guide</p>
+            <p className="section-label">
+              <svg aria-hidden="true" viewBox="0 0 24 24">
+                <path d="M12 20V10"></path>
+                <path d="M18 20V4"></path>
+                <path d="M6 20v-4"></path>
+              </svg>
+              Score Guide
+            </p>
             <h2>How to read your score</h2>
             <ul className="check-list">
               <li><strong>0 to 20:</strong> New or very low authority. Common for brand new sites or ones with very few backlinks.</li>
@@ -54,14 +68,27 @@ export default function AuthorityScorePage() {
           </section>
 
           <section className="copy-block">
-            <p className="section-label">Compare Metrics</p>
+            <p className="section-label">
+              <svg aria-hidden="true" viewBox="0 0 24 24">
+                <path d="M7 7h10v10"></path>
+                <path d="M7 17 17 7"></path>
+                <path d="M17 17H7V7"></path>
+              </svg>
+              Compare Metrics
+            </p>
             <h2>Domain Authority vs Domain Rating</h2>
             <p className="wide-copy">These two get confused a lot. Domain Rating (DR) is Ahrefs&apos; 0 to 100 backlink strength metric, calculated from Ahrefs&apos; own crawl and link index. Authority scores like the one on this page estimate a similar idea using a different link graph. Neither number is used by Google directly, and since the two draw from different data sources, a domain can score differently on each one. Check a domain on both tools to get a fuller picture of how different link data providers see it.</p>
           </section>
 
           <section className="copy-block split-block">
             <div>
-              <p className="section-label">Ranking Signals</p>
+              <p className="section-label">
+                <svg aria-hidden="true" viewBox="0 0 24 24">
+                  <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67 0C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path>
+                  <path d="m9 12 2 2 4-4"></path>
+                </svg>
+                Ranking Signals
+              </p>
               <h2>What affects this score</h2>
             </div>
             <ul className="check-list">
@@ -73,7 +100,14 @@ export default function AuthorityScorePage() {
           </section>
 
           <section className="copy-block">
-            <p className="section-label">Use cases</p>
+            <p className="section-label">
+              <svg aria-hidden="true" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10"></circle>
+                <circle cx="12" cy="12" r="6"></circle>
+                <circle cx="12" cy="12" r="2"></circle>
+              </svg>
+              Use cases
+            </p>
             <h2>When to use this DA checker</h2>
             <div className="feature-grid">
               <article>
@@ -93,7 +127,14 @@ export default function AuthorityScorePage() {
 
           <section className="copy-block split-block">
             <div>
-              <p className="section-label">Common Mistakes</p>
+              <p className="section-label">
+                <svg aria-hidden="true" viewBox="0 0 24 24">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <path d="m15 9-6 6"></path>
+                  <path d="m9 9 6 6"></path>
+                </svg>
+                Common Mistakes
+              </p>
               <h2>Common mistakes people make with DA</h2>
             </div>
             <ul className="check-list">
@@ -105,7 +146,14 @@ export default function AuthorityScorePage() {
           </section>
 
           <section className="copy-block faq-block" aria-labelledby="authority-faq-title">
-            <p className="section-label">FAQs</p>
+            <p className="section-label">
+              <svg aria-hidden="true" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                <path d="M12 17h.01"></path>
+              </svg>
+              FAQs
+            </p>
             <h2 id="authority-faq-title">Frequently asked questions</h2>
             <div className="faq-list">
               <details>
