@@ -5,9 +5,9 @@
 <circle cx="1030" cy="92" r="190" fill="#bbf7d0" opacity=".18"/>
 <circle cx="190" cy="575" r="260" fill="#ffffff" opacity=".09"/>
 <rect x="88" y="86" width="1024" height="503" rx="34" fill="#ffffff" opacity=".10" stroke="#ffffff" stroke-opacity=".24"/>
-<text x="118" y="158" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="800" letter-spacing="3">RESEARCH</text>
+<text x="118" y="158" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="600" letter-spacing="3">RESEARCH</text>
 <text x="118" y="326" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="76" font-weight="900">Competitor DR Analysis</text>
 <text x="118" y="414" fill="#dbeafe" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="700">Practical SEO guide by DR Checker</text>
 <text x="118" y="522" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="86" font-weight="900">DR</text>
-<text x="246" y="522" fill="#dbeafe" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="800">dr-checker.com</text>
+<text x="246" y="522" fill="#dbeafe" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="600">dr-checker.com</text>
 </svg>

@@ -623,7 +623,7 @@ h1 {
 .bulk-tool-form > label {
   color: rgba(255, 255, 255, 0.9);
   font-size: 0.9rem;
-  font-weight: 800;
+  font-weight: 600;
 }
 
 .bulk-tool-form button {
@@ -907,7 +907,7 @@ button svg {
   color: var(--button-text);
   background: var(--button-bg);
   font-size: 0.92rem;
-  font-weight: 800;
+  font-weight: 600;
   line-height: 1.2;
   text-decoration: none;
 }
@@ -955,7 +955,7 @@ button svg {
 .score-disclaimer a,
 .responsive-table a {
   color: var(--primary);
-  font-weight: 800;
+  font-weight: 600;
   text-decoration: none;
 }
 
@@ -982,13 +982,13 @@ th {
   color: var(--muted-foreground);
   background: var(--stat-bg);
   font-size: 0.78rem;
-  font-weight: 800;
+  font-weight: 600;
   text-transform: uppercase;
 }
 
 td:first-child {
   overflow-wrap: anywhere;
-  font-weight: 800;
+  font-weight: 600;
 }
 
 tbody tr:hover {
@@ -1940,7 +1940,7 @@ details p {
   color: var(--primary);
   background: var(--card);
   font-size: 0.9rem;
-  font-weight: 800;
+  font-weight: 600;
   line-height: 1.2;
 }
 
@@ -1969,7 +1969,7 @@ details p {
   color: var(--primary) !important;
   background: var(--card);
   font-size: 0.78rem !important;
-  font-weight: 800;
+  font-weight: 600;
   line-height: 1;
   text-transform: uppercase;
 }
@@ -1997,7 +1997,7 @@ details p {
 .page-faq-list summary {
   cursor: pointer;
   color: var(--foreground);
-  font-weight: 800;
+  font-weight: 600;
 }
 
 .page-faq-list p {
@@ -2059,7 +2059,7 @@ details p {
   color: var(--primary);
   background: #ffffff;
   font-size: 0.9rem;
-  font-weight: 800;
+  font-weight: 600;
   line-height: 1.2;
   text-decoration: none;
 }
@@ -2163,7 +2163,7 @@ details p {
 .blog-author__name {
   color: var(--foreground) !important;
   font-size: 0.9rem !important;
-  font-weight: 800;
+  font-weight: 600;
   line-height: 1.4 !important;
 }
 
