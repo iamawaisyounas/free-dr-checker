@@ -75,7 +75,7 @@ export default function SeoBulkTool({ tool }: Props) {
   const title = isAuthority ? "Domain Authority Checker" : "Domain Age Checker";
   const subtitle = isAuthority
     ? "Check the Domain Authority score of any website from 0 to 100 along with referring domains and global rank. You can check a single domain or run a bulk list."
-    : "Check how old any domain is for free. Enter a domain to see its registration date, exact age, and expiry date, pulled from live WHOIS and RDAP records. No signup required.";
+    : "Check any domain's age for free. Enter a domain to see its registration date, exact age, and expiry date, pulled from live WHOIS and RDAP records.";
   const inputLabel = isAuthority ? "Domains or URLs" : "Website URL or domain";
   const buttonLabel = isAuthority ? "Check DA" : "Check Age";
   const trustLine = isAuthority
