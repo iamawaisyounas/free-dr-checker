@@ -353,7 +353,7 @@ body.dark-mode .tool-shell::before {
   right: 0;
   left: 0;
   z-index: 50;
-  padding: 13px var(--site-gutter);
+  padding: 10px var(--site-gutter);
   color: #ffffff;
   border-bottom: 1px solid transparent;
   background: transparent;
