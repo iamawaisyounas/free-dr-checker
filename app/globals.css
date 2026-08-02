@@ -1444,6 +1444,15 @@ body.dark-mode .tip-list p:hover {
   transition: box-shadow 150ms ease, transform 150ms ease;
 }
 
+.score-guide-list {
+  width: min(100%, 920px);
+  margin-inline: auto;
+}
+
+.score-guide-list li {
+  text-align: left;
+}
+
 .tip-list p {
   display: flex;
   align-items: flex-start;

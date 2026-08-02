@@ -58,7 +58,7 @@ export default function AuthorityScorePage() {
               Score Guide
             </p>
             <h2>How to read your score</h2>
-            <ul className="check-list">
+            <ul className="check-list score-guide-list">
               <li><strong>0 to 20:</strong> New or very low authority. Common for brand new sites or ones with very few backlinks.</li>
               <li><strong>21 to 40:</strong> Developing. The domain has started attracting links but isn&apos;t established yet.</li>
               <li><strong>41 to 60:</strong> Established. A reasonably solid link profile, typical of active niche sites.</li>
