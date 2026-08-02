@@ -1445,7 +1445,7 @@ body.dark-mode .tip-list p:hover {
 }
 
 .score-guide-list {
-  width: min(100%, 920px);
+  width: min(100%, 720px);
   margin-inline: auto;
 }
 
