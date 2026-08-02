@@ -76,12 +76,8 @@ export default function AppHeader() {
             className={`site-nav${menuOpen ? " is-open" : ""}`}
             aria-label="Primary navigation"
           >
-            <Link href="/about" onClick={() => setMenuOpen(false)}>About</Link>
-            <Link href="/authority-score" onClick={() => setMenuOpen(false)}>Authority Score</Link>
-            <Link href="/domain-age" onClick={() => setMenuOpen(false)}>Domain Age</Link>
-            <Link href="/blog" onClick={() => setMenuOpen(false)}>Blog</Link>
-            <Link href="/faq" onClick={() => setMenuOpen(false)}>FAQs</Link>
-            <Link href="/contact" onClick={() => setMenuOpen(false)}>Contact us</Link>
+            <Link href="/authority-score" onClick={() => setMenuOpen(false)}>Domain Authority Checker</Link>
+            <Link href="/domain-age" onClick={() => setMenuOpen(false)}>Domain Age Checker</Link>
           </nav>
         </div>
       </header>

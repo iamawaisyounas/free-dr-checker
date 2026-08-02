@@ -121,11 +121,6 @@ a {
   text-decoration: none;
 }
 
-.global-footer a:hover,
-.standard-page a:hover {
-  color: var(--primary);
-}
-
 .global-footer {
   border-top: 1px solid var(--hero-control-border);
   color: #ffffff;
@@ -193,16 +188,24 @@ body.dark-mode .footer-logo-dark {
 .footer-column h2 {
   margin: 0 0 4px;
   color: #ffffff;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   font-size: 0.95rem;
   font-weight: 800;
+  letter-spacing: 0;
 }
 
 .footer-column a,
 .footer-column span {
   color: rgba(255, 255, 255, 0.82);
+  border-radius: 8px;
+  margin-left: -10px;
+  padding: 7px 10px;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   font-size: 0.92rem;
-  font-weight: 700;
+  font-weight: 800;
+  letter-spacing: 0;
   line-height: 1.45;
+  transition: background-color 150ms ease, color 150ms ease, transform 150ms ease;
 }
 
 .footer-column span {
@@ -216,8 +219,16 @@ body.dark-mode .footer-logo-dark {
   padding: 18px 24px 24px;
 }
 
-.global-footer a:hover {
-  color: #ffffff;
+.footer-column a:hover,
+.footer-built-by a:hover,
+.global-footer__bottom a:hover {
+  color: var(--hero-bg);
+  background: #ffffff;
+  transform: translateX(2px);
+}
+
+.standard-page a:hover {
+  color: var(--primary);
 }
 
 h1,
@@ -402,19 +413,31 @@ body.dark-mode .brand-mark {
   align-items: center;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 16px;
+  gap: 10px;
   color: rgba(255, 255, 255, 0.88);
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   font-size: 0.9rem;
-  font-weight: 700;
+  font-weight: 800;
+  letter-spacing: 0;
 }
 
 .site-nav a {
   color: inherit;
+  border: 1px solid var(--hero-control-border);
+  border-radius: 999px;
+  padding: 10px 16px;
+  background: var(--hero-control-bg);
   text-decoration: none;
+  backdrop-filter: blur(14px);
+  transition: background-color 150ms ease, border-color 150ms ease, color 150ms ease, transform 150ms ease, box-shadow 150ms ease;
 }
 
 .site-nav a:hover {
-  color: #ffffff;
+  color: var(--hero-bg);
+  border-color: #ffffff;
+  background: #ffffff;
+  box-shadow: 0 16px 34px -24px rgba(9, 17, 35, 0.7);
+  transform: translateY(-1px);
 }
 
 .theme-toggle,
