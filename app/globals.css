@@ -699,7 +699,7 @@ input {
 
 textarea {
   width: 100%;
-  min-height: 172px;
+  min-height: 110px;
   resize: vertical;
   border: 1px solid transparent;
   border-radius: 8px;
@@ -1717,7 +1717,7 @@ details p {
   }
 
   textarea {
-    min-height: 150px;
+    min-height: 110px;
   }
 
   .results-section,
