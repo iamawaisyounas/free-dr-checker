@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import CheckerTool from "./components/CheckerTool";
+import DiscoverTools from "./components/DiscoverTools";
 
 export const metadata: Metadata = {
   title: "Free Domain Rating Checker — Powered by Ahrefs | No Login",
@@ -16,9 +17,29 @@ export const metadata: Metadata = {
 };
 
 export default function HomePage() {
+  const softwareApplicationSchema = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: "Domain Rating Checker",
+    description:
+      "Check the Domain Rating of any website instantly using real Ahrefs data.",
+    applicationCategory: "SEO Tool",
+    operatingSystem: "Web",
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "USD"
+    }
+  };
+
   return (
     <main>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareApplicationSchema) }}
+      />
       <CheckerTool />
+      <DiscoverTools activeTool="dr" />
 
       <section className="content-section" aria-label="Domain Rating guide">
         <div className="content-wrap">

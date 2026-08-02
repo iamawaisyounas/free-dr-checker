@@ -46,7 +46,7 @@ const webApplicationSchema = {
   url: "https://dr-checker.com",
   description:
     "Check any website's Domain Rating (DR) for free using real Ahrefs data. No login required. Enter a domain and get your DR score instantly.",
-  applicationCategory: "SEOApplication",
+  applicationCategory: "SEO Tool",
   operatingSystem: "Web",
   offers: {
     "@type": "Offer",
@@ -58,19 +58,44 @@ const webApplicationSchema = {
 function Footer() {
   return (
     <footer className="global-footer">
-      <div className="global-footer__row">
-        <nav aria-label="Footer navigation">
-          <Link href="/">Home</Link>
-          <Link href="/authority-score">Authority Score</Link>
-          <Link href="/domain-age">Domain Age</Link>
+      <div className="global-footer__inner">
+        <div className="footer-brand-block">
+          <Link className="footer-logo-link" href="/" aria-label="Domain Rating Checker home">
+            <img src="/assets/da-checker-logo-dark.svg" alt="Domain Rating Checker" width="320" height="82" />
+          </Link>
+          <p className="footer-tagline">Make Better SEO Decisions</p>
+          <p className="footer-built-by">Built by <a href="https://socialbu.com">SocialBu</a></p>
+        </div>
+
+        <nav className="footer-column" aria-label="DR Checker footer links">
+          <h2>DR Checker</h2>
+          <Link href="/about">About Us</Link>
           <Link href="/blog">Blog</Link>
-          <Link href="/about">About</Link>
-          <Link href="/faq">FAQ</Link>
           <Link href="/contact">Contact</Link>
           <Link href="/privacy-policy">Privacy Policy</Link>
           <Link href="/terms">Terms</Link>
         </nav>
-        <p>© {new Date().getFullYear()} Domain Rating Checker - Free SEO tool by <a href="https://socialbu.com">SocialBu</a></p>
+
+        <nav className="footer-column" aria-label="Free SEO tools">
+          <h2>Free SEO Tools</h2>
+          <Link href="/">DR Checker</Link>
+          <Link href="/authority-score">Domain Authority Checker</Link>
+          <Link href="/domain-age">Domain Age Checker</Link>
+          <span>Domain Backlinks Checker (Coming Soon)</span>
+          <span>Broken Links Checker (Coming Soon)</span>
+        </nav>
+
+        <nav className="footer-column" aria-label="Social links">
+          <h2>Find Us On</h2>
+          <a href="https://www.linkedin.com/company/socialbu" rel="me noopener noreferrer" target="_blank">LinkedIn</a>
+          <a href="https://twitter.com/socialbu" rel="me noopener noreferrer" target="_blank">Twitter</a>
+          <a href="https://www.instagram.com/socialbu/" rel="me noopener noreferrer" target="_blank">Instagram</a>
+          <a href="https://www.tiktok.com/@socialbu" rel="me noopener noreferrer" target="_blank">TikTok</a>
+          <a href="https://www.facebook.com/socialbu" rel="me noopener noreferrer" target="_blank">Facebook</a>
+        </nav>
+      </div>
+      <div className="global-footer__bottom">
+        <p>© 2026 Domain Rating Checker. Made with ❤️ by <a href="https://socialbu.com">SocialBu</a></p>
       </div>
     </footer>
   );

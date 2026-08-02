@@ -1,33 +1,138 @@
 import type { Metadata } from "next";
+import DiscoverTools from "../components/DiscoverTools";
 import SeoBulkTool from "../components/SeoBulkTool";
 
 export const metadata: Metadata = {
-  title: "Domain Authority Score Checker | DR Checker",
+  title: "Free Domain Authority Checker — Check DA Score Instantly | DR Checker",
   description:
-    "Check a domain authority-style 0-100 authority score from open link-graph data. Bulk check domains with referring domains, global rank, and cached results.",
+    "Check any website's Domain Authority score for free. Bulk check domains, no signup required. Get referring domains and global rank instantly.",
   alternates: { canonical: "https://dr-checker.com/authority-score" }
 };
 
 export default function AuthorityScorePage() {
+  const softwareApplicationSchema = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: "Domain Authority Checker",
+    description:
+      "Check any website's Domain Authority score for free. Bulk check domains, no signup required. Get referring domains and global rank instantly.",
+    applicationCategory: "SEO Tool",
+    operatingSystem: "Web",
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "USD"
+    }
+  };
+
   return (
     <main>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareApplicationSchema) }}
+      />
       <SeoBulkTool tool="authority" />
-      <section className="content-section" aria-label="Authority Score guide">
+      <DiscoverTools activeTool="authority" />
+      <section className="content-section" aria-label="Domain Authority guide">
         <div className="content-wrap">
           <section className="copy-block">
-            <p className="section-label">Score Method</p>
-            <h2>How this authority score works</h2>
-            <p className="wide-copy">The score converts OpenPageRank&apos;s 0-10 link-graph score into a 0-100 rating by multiplying by 10 and rounding. Use it as a directional comparison metric alongside traffic, relevance, content quality, and manual backlink review.</p>
+            <p className="section-label">Domain Authority</p>
+            <h2>What is Domain Authority</h2>
+            <p className="wide-copy">Domain Authority is a score that predicts how well a website is likely to rank in search results, based on the strength of its backlink profile. It runs on a 0 to 100 scale. The higher the number, the stronger the link profile behind that domain. This tool calculates an authority-style score using OpenPageRank&apos;s open link graph data rather than Moz&apos;s proprietary algorithm. Treat it as a comparable, independent measure, not an official Moz DA lookup.</p>
           </section>
+
+          <section className="copy-block">
+            <p className="section-label">Score Guide</p>
+            <h2>How to read your score</h2>
+            <ul className="check-list">
+              <li><strong>0 to 20:</strong> New or very low authority. Common for brand new sites or ones with very few backlinks.</li>
+              <li><strong>21 to 40:</strong> Developing. The domain has started attracting links but isn&apos;t established yet.</li>
+              <li><strong>41 to 60:</strong> Established. A reasonably solid link profile, typical of active niche sites.</li>
+              <li><strong>61 to 80:</strong> Strong. Sites that compete well for backlinks in their space.</li>
+              <li><strong>81 to 100:</strong> Very strong. Usually large, well known sites with a long link history.</li>
+            </ul>
+          </section>
+
+          <section className="copy-block">
+            <p className="section-label">Compare Metrics</p>
+            <h2>Domain Authority vs Domain Rating</h2>
+            <p className="wide-copy">These two get confused a lot. Domain Rating (DR) is Ahrefs&apos; 0 to 100 backlink strength metric, calculated from Ahrefs&apos; own crawl and link index. Authority scores like the one on this page estimate a similar idea using a different link graph. Neither number is used by Google directly, and since the two draw from different data sources, a domain can score differently on each one. Check a domain on both tools to get a fuller picture of how different link data providers see it.</p>
+          </section>
+
           <section className="copy-block split-block">
             <div>
-              <p className="section-label">Related Tools</p>
-              <h2>Check the same domain from more than one angle</h2>
+              <p className="section-label">Ranking Signals</p>
+              <h2>What affects this score</h2>
             </div>
             <ul className="check-list">
-              <li><a href="/">Domain Rating Checker</a> for the Ahrefs DR score.</li>
-              <li><a href="/domain-age">Domain Age Checker</a> for registration age and expiry data.</li>
+              <li>The number and quality of referring domains linking to the site.</li>
+              <li>How relevant those linking sites are to the topic.</li>
+              <li>Spam or low quality links dragging the profile down.</li>
+              <li>How long the site has been accumulating natural link growth.</li>
             </ul>
+          </section>
+
+          <section className="copy-block">
+            <p className="section-label">Use cases</p>
+            <h2>When to use this DA checker</h2>
+            <div className="feature-grid">
+              <article>
+                <h3>Competitor research</h3>
+                <p>See how a competitor&apos;s authority stacks up before you study their content or backlink strategy.</p>
+              </article>
+              <article>
+                <h3>Link building and guest posts</h3>
+                <p>Screen a site&apos;s authority before spending time on outreach or paying for a placement.</p>
+              </article>
+              <article>
+                <h3>Buying or auditing domains</h3>
+                <p>Get a quick read on a domain&apos;s link strength before you buy it, or track your own progress over time.</p>
+              </article>
+            </div>
+          </section>
+
+          <section className="copy-block split-block">
+            <div>
+              <p className="section-label">Common Mistakes</p>
+              <h2>Common mistakes people make with DA</h2>
+            </div>
+            <ul className="check-list">
+              <li>Treating it as a Google ranking factor. It isn&apos;t used directly.</li>
+              <li>Comparing scores across completely different niches, where average authority varies a lot.</li>
+              <li>Chasing a higher number instead of relevant, quality links.</li>
+              <li>Assuming scores will match across tools. Different providers calculate authority differently, so numbers won&apos;t always agree.</li>
+            </ul>
+          </section>
+
+          <section className="copy-block faq-block" aria-labelledby="authority-faq-title">
+            <p className="section-label">FAQs</p>
+            <h2 id="authority-faq-title">Frequently asked questions</h2>
+            <div className="faq-list">
+              <details>
+                <summary>What is a good DA score?<svg aria-hidden="true" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"></path></svg></summary>
+                <p>Anything above 50 is generally considered strong, but the right benchmark depends on your niche and who you&apos;re competing against.</p>
+              </details>
+              <details>
+                <summary>Is this the same as Moz&apos;s official Domain Authority?<svg aria-hidden="true" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"></path></svg></summary>
+                <p>No. This is an independent 0 to 100 score built on open link graph data, not Moz&apos;s algorithm. Use it as a comparison metric, not an official DA lookup.</p>
+              </details>
+              <details>
+                <summary>Is DA a Google ranking factor?<svg aria-hidden="true" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"></path></svg></summary>
+                <p>No. Authority scores are third party metrics. Google doesn&apos;t use them directly in rankings.</p>
+              </details>
+              <details>
+                <summary>Can a low DA site still rank well?<svg aria-hidden="true" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"></path></svg></summary>
+                <p>Yes. Strong content, search intent match, and page level relevance can help lower authority sites rank.</p>
+              </details>
+              <details>
+                <summary>Do I need an account to check DA?<svg aria-hidden="true" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"></path></svg></summary>
+                <p>No signup or login is required.</p>
+              </details>
+              <details>
+                <summary>How often is the score updated?<svg aria-hidden="true" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"></path></svg></summary>
+                <p>Results are cached for 30 days per domain, so checking the same domain again soon after may return a cached score.</p>
+              </details>
+            </div>
           </section>
         </div>
       </section>

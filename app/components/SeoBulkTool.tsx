@@ -72,10 +72,18 @@ export default function SeoBulkTool({ tool }: Props) {
 
   const isAuthority = tool === "authority";
   const maxDomains = isAuthority ? 1000 : 50;
-  const title = isAuthority ? "Domain Authority Score Checker" : "Domain Age Checker";
+  const title = isAuthority ? "Domain Authority Checker" : "Domain Age Checker";
   const subtitle = isAuthority
-    ? "Check our 0-100 authority rating for one domain or a bulk list, with referring domains, global rank, and cached history where available."
-    : "Check when domains were registered, when they expire, and which registrar appears in public RDAP data.";
+    ? "Check the Domain Authority score of any website for free. Get a 0 to 100 authority rating along with referring domains and global rank. No signup required, and you can check a single domain or run a bulk list."
+    : "Check how old any domain is for free. Enter a domain to see its registration date, exact age, and expiry date, pulled from live WHOIS and RDAP records. No signup required.";
+  const inputLabel = isAuthority ? "Domains or URLs" : "Website URL or domain";
+  const buttonLabel = isAuthority ? "Check DA" : "Check Age";
+  const trustLine = isAuthority
+    ? "100% Free. No Sign-up Required. Bulk check up to 1000 domains."
+    : "100% Free. No Sign-up Required.";
+  const emptyState = isAuthority
+    ? "Paste a domain above to see its Domain Authority score here."
+    : "Enter a domain above to see its age and registration details here.";
   const endpoint = isAuthority ? "/api/tools/authority-score" : "/api/tools/domain-age";
   const placeholder = "example.com\ngithub.com\nhttps://www.google.com/search";
   const resultCount = isAuthority ? authorityResults.length : ageResults.length;
@@ -183,13 +191,12 @@ export default function SeoBulkTool({ tool }: Props) {
     <>
       <section className="tool-shell" aria-labelledby="tool-title">
         <div className="checker-intro">
-          <p className="eyebrow">{isAuthority ? "Open link graph" : "RDAP lookup"}</p>
           <h1 id="tool-title">{title}</h1>
           <p className="subtitle">{subtitle}</p>
         </div>
 
         <form className="bulk-tool-form" onSubmit={handleSubmit} noValidate>
-          <label htmlFor="bulkDomains">Domains or URLs</label>
+          <label htmlFor="bulkDomains">{inputLabel}</label>
           <textarea
             id="bulkDomains"
             value={input}
@@ -214,11 +221,11 @@ export default function SeoBulkTool({ tool }: Props) {
               <path d="m21 21-4.35-4.35"></path>
               <circle cx="11" cy="11" r="7"></circle>
             </svg>
-            <span>{loading ? "Checking..." : isAuthority ? "Check Scores" : "Check Ages"}</span>
+            <span>{loading ? "Checking..." : buttonLabel}</span>
           </button>
         </form>
         <p className="error" role="alert" aria-live="polite">{error}</p>
-        <p className="form-helper">{isAuthority ? "Cached for 30 days to conserve API quota." : "Cached for 90 days because registration dates rarely change."}</p>
+        <p className="form-helper">{trustLine}</p>
       </section>
 
       <section className="tool-results-section" ref={resultRef} aria-label={`${title} results`}>
@@ -228,7 +235,7 @@ export default function SeoBulkTool({ tool }: Props) {
               <path d="M3 3v18h18"></path>
               <path d="m19 9-5 5-4-4-3 3"></path>
             </svg>
-            <span>Paste domains above to see bulk results here.</span>
+            <span>{emptyState}</span>
           </div>
         ) : (
           <div className="tool-results-card">

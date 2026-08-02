@@ -6,6 +6,7 @@ import Link from "next/link";
 export default function AppHeader() {
   const [theme, setTheme] = useState("light");
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
     const savedTheme = window.localStorage.getItem("dr-checker-theme");
@@ -20,8 +21,18 @@ export default function AppHeader() {
     window.localStorage.setItem("dr-checker-theme", theme);
   }, [theme]);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 8);
+    };
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <div className="standard-header-shell">
+    <div className={`standard-header-shell${isScrolled ? " is-scrolled" : ""}`}>
       <header className="site-header standard-site-header" aria-label="Site header">
         <div className="brand-lockup">
           <Link className="brand" href="/" aria-label="Domain Rating Checker home">
