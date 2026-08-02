@@ -37,6 +37,9 @@
   --placeholder-bg: rgba(255, 255, 255, 0.64);
   --placeholder-border: rgba(223, 229, 236, 0.58);
   --placeholder-shadow: 0 16px 44px -30px rgba(9, 17, 35, 0.24);
+  --site-container: 1180px;
+  --site-gutter: 24px;
+  --site-inner-pad: 2px;
   --radius: 14px;
 }
 
@@ -125,17 +128,17 @@ a {
   border-top: 1px solid var(--hero-control-border);
   color: #ffffff;
   background: var(--hero-bg);
-  padding: 0 24px;
+  padding: 0 var(--site-gutter);
 }
 
 .global-footer__inner {
   display: grid;
-  grid-template-columns: minmax(240px, 1.18fr) repeat(3, minmax(146px, 0.82fr));
-  column-gap: 18px;
+  grid-template-columns: minmax(250px, 1.28fr) repeat(3, minmax(140px, 0.8fr));
+  column-gap: clamp(18px, 1.8vw, 28px);
   row-gap: 28px;
-  width: min(100%, 1180px);
+  width: min(100%, var(--site-container));
   margin: 0 auto;
-  padding: 42px 2px 30px;
+  padding: 42px var(--site-inner-pad) 30px;
 }
 
 .footer-brand-block,
@@ -147,7 +150,7 @@ a {
 }
 
 .footer-brand-block {
-  margin-right: 18px;
+  margin-right: clamp(24px, 3vw, 44px);
 }
 
 .footer-logo-link {
@@ -256,9 +259,9 @@ body.dark-mode .footer-logo-dark {
   align-items: center;
   justify-content: space-between;
   gap: 24px;
-  width: min(100%, 1180px);
+  width: min(100%, var(--site-container));
   margin: 0 auto;
-  padding: 18px 2px 24px;
+  padding: 18px var(--site-inner-pad) 24px;
 }
 
 .footer-column a:hover,
@@ -349,7 +352,7 @@ body.dark-mode .tool-shell::before {
   right: 0;
   left: 0;
   z-index: 50;
-  padding: 13px 24px;
+  padding: 13px var(--site-gutter);
   color: #ffffff;
   border-bottom: 1px solid transparent;
   background: transparent;
@@ -372,10 +375,10 @@ body.dark-mode .tool-shell::before {
   align-items: center;
   grid-template-columns: minmax(180px, 240px) minmax(0, 1fr) minmax(42px, 240px);
   gap: 24px;
-  width: min(100%, 1180px);
+  width: min(100%, var(--site-container));
   min-height: 62px;
   margin: 0 auto 88px;
-  padding: 9px 2px;
+  padding: 9px var(--site-inner-pad);
 }
 
 .brand {
@@ -1580,13 +1583,18 @@ details p {
   }
 
   .footer-brand-block {
-    margin-right: 10px;
+    margin-right: 22px;
   }
 }
 
 @media (max-width: 620px) {
+  :root {
+    --site-gutter: 14px;
+    --site-inner-pad: 0px;
+  }
+
   .standard-header-shell {
-    padding: 9px 14px;
+    padding: 9px var(--site-gutter);
   }
 
   .checker-shell,
@@ -2261,14 +2269,19 @@ details p {
 }
 
 @media (max-width: 760px) {
+  :root {
+    --site-gutter: 14px;
+    --site-inner-pad: 0px;
+  }
+
   .global-footer {
-    padding: 0 14px;
+    padding: 0 var(--site-gutter);
   }
 
   .global-footer__inner {
     grid-template-columns: 1fr;
     gap: 24px;
-    width: min(100%, 1180px);
+    width: min(100%, var(--site-container));
     padding: 32px 0 24px;
   }
 
@@ -2276,7 +2289,7 @@ details p {
     align-items: flex-start;
     flex-direction: column;
     gap: 8px;
-    width: min(100%, 1180px);
+    width: min(100%, var(--site-container));
     padding: 16px 0;
   }
 

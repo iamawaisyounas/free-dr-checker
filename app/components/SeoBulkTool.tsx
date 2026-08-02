@@ -85,7 +85,7 @@ export default function SeoBulkTool({ tool }: Props) {
     ? "Paste a domain above to see its Domain Authority score here."
     : "Enter a domain above to see its age and registration details here.";
   const endpoint = isAuthority ? "/api/tools/authority-score" : "/api/tools/domain-age";
-  const placeholder = "example.com\ngithub.com\nhttps://www.google.com/search";
+  const placeholder = "example.com\nsocialbu.com\n";
   const resultCount = isAuthority ? authorityResults.length : ageResults.length;
 
   useEffect(() => {
