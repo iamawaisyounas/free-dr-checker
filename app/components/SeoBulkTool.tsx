@@ -240,7 +240,7 @@ export default function SeoBulkTool({ tool }: Props) {
             onError={handleTurnstileError}
             onTokenChange={setTurnstileToken}
           />
-          <button type="submit" disabled={loading || Boolean(turnstileSiteKey && !turnstileToken)}>
+          <button type="submit" disabled={loading}>
             <svg aria-hidden="true" viewBox="0 0 24 24">
               <path d="m21 21-4.35-4.35"></path>
               <circle cx="11" cy="11" r="7"></circle>

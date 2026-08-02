@@ -48,6 +48,7 @@ export default function TurnstileWidget({ disabled, resetKey, siteKey, onError, 
   const containerRef = useRef<HTMLDivElement>(null);
   const widgetIdRef = useRef<string | null>(null);
   const [ready, setReady] = useState(false);
+  const [failed, setFailed] = useState(false);
 
   useEffect(() => {
     loadTurnstileScript();
@@ -68,6 +69,8 @@ export default function TurnstileWidget({ disabled, resetKey, siteKey, onError, 
       return;
     }
 
+    setFailed(false);
+
     if (widgetIdRef.current) {
       window.turnstile?.remove(widgetIdRef.current);
       widgetIdRef.current = null;
@@ -76,12 +79,19 @@ export default function TurnstileWidget({ disabled, resetKey, siteKey, onError, 
     widgetIdRef.current = window.turnstile?.render(container, {
       sitekey: siteKey,
       theme: "auto",
-      callback: (token) => onTokenChange(token),
+      callback: (token) => {
+        setFailed(false);
+        onTokenChange(token);
+      },
       "error-callback": () => {
+        setFailed(true);
         onTokenChange("");
         onError();
       },
-      "expired-callback": () => onTokenChange("")
+      "expired-callback": () => {
+        setFailed(false);
+        onTokenChange("");
+      }
     }) ?? null;
 
     return () => {
@@ -99,6 +109,8 @@ export default function TurnstileWidget({ disabled, resetKey, siteKey, onError, 
   return (
     <div className="turnstile-wrap" aria-label="Bot protection">
       <div ref={containerRef} />
+      {!ready ? <span className="turnstile-status">Loading bot protection...</span> : null}
+      {failed ? <span className="turnstile-status">Bot protection failed to load. Refresh the page and try again.</span> : null}
     </div>
   );
 }
