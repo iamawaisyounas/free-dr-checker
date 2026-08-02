@@ -82,8 +82,14 @@ function Footer() {
           <Link href="/">DR Checker</Link>
           <Link href="/authority-score">Domain Authority Checker</Link>
           <Link href="/domain-age">Domain Age Checker</Link>
-          <span>Domain Backlinks Checker (Coming Soon)</span>
-          <span>Broken Links Checker (Coming Soon)</span>
+          <span className="footer-coming-soon">
+            <span>Domain Backlinks Checker</span>
+            <small>Coming Soon</small>
+          </span>
+          <span className="footer-coming-soon">
+            <span>Broken Links Checker</span>
+            <small>Coming Soon</small>
+          </span>
         </nav>
 
         <nav className="footer-column" aria-label="Social links">
@@ -96,7 +102,8 @@ function Footer() {
         </nav>
       </div>
       <div className="global-footer__bottom">
-        <p>© 2026 Domain Rating Checker. Made with ❤️ by <a href="https://socialbu.com">SocialBu</a></p>
+        <p>© 2026 Domain Rating Checker | All rights reserved.</p>
+        <p>Made with ❤️ by <a href="https://socialbu.com">SocialBu</a></p>
       </div>
     </footer>
   );
