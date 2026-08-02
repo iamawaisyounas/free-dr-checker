@@ -127,8 +127,9 @@ a {
 }
 
 .global-footer {
-  border-top: 1px solid var(--border);
-  background: var(--card);
+  border-top: 1px solid var(--hero-control-border);
+  color: #ffffff;
+  background: var(--hero-bg);
 }
 
 .global-footer__inner {
@@ -153,7 +154,7 @@ a {
   width: min(212px, 100%);
   border-radius: 8px;
   padding: 8px 10px;
-  background: var(--hero-bg);
+  background: transparent;
 }
 
 .footer-logo-link img {
@@ -164,7 +165,7 @@ a {
 
 .footer-tagline {
   margin: 4px 0 0;
-  color: var(--foreground);
+  color: #ffffff;
   font-size: 1rem;
   font-weight: 800;
 }
@@ -172,21 +173,21 @@ a {
 .footer-built-by,
 .global-footer__bottom p {
   margin: 0;
-  color: var(--muted-foreground);
+  color: rgba(255, 255, 255, 0.82);
   font-size: 0.92rem;
   line-height: 1.5;
 }
 
 .footer-column h2 {
   margin: 0 0 4px;
-  color: var(--foreground);
+  color: #ffffff;
   font-size: 0.95rem;
   font-weight: 800;
 }
 
 .footer-column a,
 .footer-column span {
-  color: var(--muted-foreground);
+  color: rgba(255, 255, 255, 0.82);
   font-size: 0.92rem;
   font-weight: 700;
   line-height: 1.45;
@@ -197,10 +198,14 @@ a {
 }
 
 .global-footer__bottom {
-  border-top: 1px solid var(--border);
+  border-top: 1px solid var(--hero-control-border);
   width: min(100%, 1180px);
   margin: 0 auto;
   padding: 18px 24px 24px;
+}
+
+.global-footer a:hover {
+  color: #ffffff;
 }
 
 h1,
@@ -297,9 +302,9 @@ body.dark-mode .tool-shell::before {
 }
 
 .site-header {
-  display: flex;
+  display: grid;
   align-items: center;
-  justify-content: space-between;
+  grid-template-columns: minmax(180px, 240px) minmax(0, 1fr) minmax(42px, 240px);
   gap: 24px;
   width: min(100%, 1180px);
   min-height: 64px;
@@ -375,20 +380,16 @@ body.dark-mode .brand-mark {
 }
 
 .header-actions {
-  display: inline-flex;
-  align-items: center;
-  justify-content: flex-end;
-  flex-wrap: wrap;
-  gap: 16px;
-  flex: 0 0 auto;
+  display: contents;
 }
 
 .site-nav {
-  order: 1;
+  grid-column: 2;
+  justify-self: center;
   display: inline-flex;
   align-items: center;
   flex-wrap: wrap;
-  justify-content: flex-end;
+  justify-content: center;
   gap: 16px;
   color: rgba(255, 255, 255, 0.88);
   font-size: 0.9rem;
@@ -406,7 +407,6 @@ body.dark-mode .brand-mark {
 
 .theme-toggle,
 .menu-toggle {
-  order: 2;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -423,6 +423,8 @@ body.dark-mode .brand-mark {
 .theme-toggle,
 .menu-toggle {
   position: relative;
+  grid-column: 3;
+  justify-self: end;
   width: 42px;
   padding: 0;
 }
@@ -435,7 +437,6 @@ body.dark-mode .brand-mark {
 }
 
 .menu-toggle {
-  order: 3;
   display: none;
 }
 
@@ -1516,6 +1517,7 @@ details p {
 
   .site-header {
     position: relative;
+    display: flex;
     align-items: center;
     flex-direction: row;
     flex-wrap: nowrap;
@@ -1547,6 +1549,7 @@ details p {
   }
 
   .header-actions {
+    display: inline-flex;
     width: auto;
     flex: 0 0 auto;
     flex-wrap: nowrap;
