@@ -157,10 +157,22 @@ a {
   background: transparent;
 }
 
-.footer-logo-link img {
+.footer-logo {
   display: block;
   width: 100%;
   height: auto;
+}
+
+.footer-logo-dark {
+  display: none;
+}
+
+body.dark-mode .footer-logo-light {
+  display: none;
+}
+
+body.dark-mode .footer-logo-dark {
+  display: block;
 }
 
 .footer-tagline {

@@ -61,7 +61,8 @@ function Footer() {
       <div className="global-footer__inner">
         <div className="footer-brand-block">
           <Link className="footer-logo-link" href="/" aria-label="Domain Rating Checker home">
-            <img src="/assets/da-checker-logo-dark.svg" alt="Domain Rating Checker" width="320" height="82" />
+            <img className="footer-logo footer-logo-light" src="/assets/da-checker-logo-light.svg" alt="Domain Rating Checker" width="320" height="82" />
+            <img className="footer-logo footer-logo-dark" src="/assets/da-checker-logo-dark.svg" alt="Domain Rating Checker" width="320" height="82" />
           </Link>
           <p className="footer-tagline">Make Better SEO Decisions</p>
           <p className="footer-built-by">Built by <a href="https://socialbu.com">SocialBu</a></p>
