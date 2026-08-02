@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { FormEvent, useEffect, useMemo, useRef, useState } from "react";
+import { FormEvent, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import TurnstileWidget from "./TurnstileWidget";
 
 type AuthorityResult = {
   domain: string;
@@ -66,6 +67,8 @@ export default function SeoBulkTool({ tool }: Props) {
   const [error, setError] = useState("");
   const [notice, setNotice] = useState("");
   const [loading, setLoading] = useState(false);
+  const [turnstileToken, setTurnstileToken] = useState("");
+  const [turnstileResetKey, setTurnstileResetKey] = useState(0);
   const [authorityResults, setAuthorityResults] = useState<AuthorityResult[]>([]);
   const [ageResults, setAgeResults] = useState<DomainAgeResult[]>([]);
   const resultRef = useRef<HTMLDivElement>(null);
@@ -87,6 +90,7 @@ export default function SeoBulkTool({ tool }: Props) {
   const endpoint = isAuthority ? "/api/tools/authority-score" : "/api/tools/domain-age";
   const placeholder = "example.com\nsocialbu.com\n";
   const resultCount = isAuthority ? authorityResults.length : ageResults.length;
+  const turnstileSiteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || "";
 
   useEffect(() => {
     const domain = new URLSearchParams(window.location.search).get("domain");
@@ -100,6 +104,10 @@ export default function SeoBulkTool({ tool }: Props) {
     return dedupe ? Array.from(new Set(items)) : items;
   }, [dedupe, input]);
 
+  const handleTurnstileError = useCallback(() => {
+    setError("Bot protection could not load. Please refresh and try again.");
+  }, []);
+
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setError("");
@@ -111,13 +119,18 @@ export default function SeoBulkTool({ tool }: Props) {
       return;
     }
 
+    if (turnstileSiteKey && !turnstileToken) {
+      setError("Please complete the bot protection check.");
+      return;
+    }
+
     setLoading(true);
 
     try {
       const response = await fetch(endpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ domains })
+        body: JSON.stringify({ domains, turnstileToken })
       });
       const data = await response.json();
 
@@ -150,6 +163,10 @@ export default function SeoBulkTool({ tool }: Props) {
       setError("Unable to check these domains right now.");
     } finally {
       setLoading(false);
+      if (turnstileSiteKey) {
+        setTurnstileToken("");
+        setTurnstileResetKey((value) => value + 1);
+      }
     }
   }
 
@@ -216,7 +233,14 @@ export default function SeoBulkTool({ tool }: Props) {
             </label>
             <span>{preparedDomains.length} queued · max {maxDomains}</span>
           </div>
-          <button type="submit" disabled={loading}>
+          <TurnstileWidget
+            disabled={loading}
+            resetKey={turnstileResetKey}
+            siteKey={turnstileSiteKey}
+            onError={handleTurnstileError}
+            onTokenChange={setTurnstileToken}
+          />
+          <button type="submit" disabled={loading || Boolean(turnstileSiteKey && !turnstileToken)}>
             <svg aria-hidden="true" viewBox="0 0 24 24">
               <path d="m21 21-4.35-4.35"></path>
               <circle cx="11" cy="11" r="7"></circle>

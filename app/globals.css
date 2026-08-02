@@ -654,6 +654,13 @@ h1 {
   accent-color: var(--primary);
 }
 
+.turnstile-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  min-height: 65px;
+}
+
 .form-helper {
   margin: 14px 0 0;
   color: rgba(255, 255, 255, 0.84);
@@ -1716,6 +1723,11 @@ details p {
   .bulk-tool-form button {
     width: 100%;
     justify-self: stretch;
+  }
+
+  .turnstile-wrap {
+    justify-content: flex-start;
+    overflow-x: auto;
   }
 
   .input-row {

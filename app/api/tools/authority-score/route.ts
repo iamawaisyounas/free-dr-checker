@@ -3,6 +3,7 @@ import { normalizeDomain, parseDomainInput } from "../../../../lib/domain-normal
 import { currentUsageKey, getCachedJson, getCounter, incrementCounter, secondsUntilMonthBuffer, setCachedJson } from "../../../../lib/kv-cache";
 import { fetchAuthorityScores, type OpenPageRankRow } from "../../../../lib/open-pagerank";
 import { checkRateLimit, getClientIp } from "../../../../lib/rate-limit";
+import { verifyTurnstileToken } from "../../../../lib/turnstile";
 
 export const runtime = "nodejs";
 
@@ -28,12 +29,18 @@ async function readBody(request: NextRequest) {
 
   if (contentType.includes("application/json")) {
     const body = await request.json().catch(() => ({}));
-    return body.domains ?? body.domain ?? [];
+    return {
+      input: body.domains ?? body.domain ?? [],
+      turnstileToken: body.turnstileToken
+    };
   }
 
-  return request.nextUrl.searchParams.get("domains")
-    || request.nextUrl.searchParams.get("domain")
-    || "";
+  return {
+    input: request.nextUrl.searchParams.get("domains")
+      || request.nextUrl.searchParams.get("domain")
+      || "",
+    turnstileToken: request.nextUrl.searchParams.get("turnstileToken")
+  };
 }
 
 function toAuthorityResult(row: OpenPageRankRow): AuthorityResult {
@@ -77,7 +84,12 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Too many requests. Please wait a minute and try again." }, { status: 429 });
   }
 
-  const input = await readBody(request);
+  const { input, turnstileToken } = await readBody(request);
+  const turnstileError = await verifyTurnstileToken(request, turnstileToken);
+  if (turnstileError) {
+    return turnstileError;
+  }
+
   const parsed = parseDomainInput(input, MAX_DOMAINS);
 
   if (!parsed.domains.length) {

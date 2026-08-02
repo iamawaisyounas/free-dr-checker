@@ -51,6 +51,8 @@ Required Vercel environment variables for the new tools:
 
 ```text
 OPEN_PAGERANK_API_KEY=xxxxx
+NEXT_PUBLIC_TURNSTILE_SITE_KEY=xxxxx
+TURNSTILE_SECRET_KEY=xxxxx
 KV_REST_API_URL=auto-injected by Vercel KV/Redis
 KV_REST_API_TOKEN=auto-injected by Vercel KV/Redis
 CRON_SECRET=optional shared secret for manual quota checks
