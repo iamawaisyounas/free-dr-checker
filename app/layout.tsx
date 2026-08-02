@@ -60,12 +60,11 @@ function Footer() {
     <footer className="global-footer">
       <div className="global-footer__inner">
         <div className="footer-brand-block">
-          <Link className="footer-logo-link" href="/" aria-label="Domain Rating Checker home">
-            <img className="footer-logo footer-logo-light" src="/assets/da-checker-logo-light.svg" alt="Domain Rating Checker" width="320" height="82" />
-            <img className="footer-logo footer-logo-dark" src="/assets/da-checker-logo-dark.svg" alt="Domain Rating Checker" width="320" height="82" />
-          </Link>
           <p className="footer-tagline">Make Better SEO Decisions</p>
-          <p className="footer-built-by">Built by <a href="https://socialbu.com">SocialBu</a></p>
+          <p className="footer-built-by">Built by</p>
+          <a className="footer-socialbu-logo-link" href="https://socialbu.com" aria-label="SocialBu">
+            <img className="footer-socialbu-logo" src="/assets/socialbu-logo.svg" alt="SocialBu" width="138" height="28" />
+          </a>
         </div>
 
         <nav className="footer-column" aria-label="DR Checker footer links">
