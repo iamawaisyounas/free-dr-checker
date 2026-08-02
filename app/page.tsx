@@ -29,9 +29,9 @@ export default function HomePage() {
                 <circle cx="12" cy="12" r="6"></circle>
                 <circle cx="12" cy="12" r="2"></circle>
               </svg>
-              Use cases
+              Benefits
             </p>
-            <h2>When to use this DR checker</h2>
+            <h2>The benefits you&apos;ll get with DR Checker</h2>
             <div className="feature-grid">
               <article>
                 <h3>Competitor research</h3>
