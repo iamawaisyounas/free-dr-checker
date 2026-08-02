@@ -6,7 +6,11 @@ type TurnstileResponse = {
 };
 
 export function turnstileIsConfigured() {
-  return Boolean(process.env.TURNSTILE_SECRET_KEY);
+  return Boolean(getTurnstileSecret());
+}
+
+function getTurnstileSecret() {
+  return process.env.TURNSTILE_SECRET || process.env.TURNSTILE_SECRET_KEY;
 }
 
 export async function verifyTurnstileToken(request: NextRequest, token: unknown) {
@@ -19,7 +23,7 @@ export async function verifyTurnstileToken(request: NextRequest, token: unknown)
   }
 
   const formData = new FormData();
-  formData.append("secret", process.env.TURNSTILE_SECRET_KEY as string);
+  formData.append("secret", getTurnstileSecret() as string);
   formData.append("response", token);
 
   const ip = request.headers.get("cf-connecting-ip")
