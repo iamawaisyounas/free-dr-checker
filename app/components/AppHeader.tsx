@@ -66,6 +66,8 @@ export default function AppHeader() {
             aria-label="Primary navigation"
           >
             <Link href="/about" onClick={() => setMenuOpen(false)}>About</Link>
+            <Link href="/authority-score" onClick={() => setMenuOpen(false)}>Authority Score</Link>
+            <Link href="/domain-age" onClick={() => setMenuOpen(false)}>Domain Age</Link>
             <Link href="/blog" onClick={() => setMenuOpen(false)}>Blog</Link>
             <Link href="/faq" onClick={() => setMenuOpen(false)}>FAQs</Link>
             <Link href="/contact" onClick={() => setMenuOpen(false)}>Contact us</Link>

@@ -34,6 +34,31 @@ The frontend calls the local backend only:
 GET /api/dr-checker?domain=socialbu.com
 ```
 
+New bulk tool endpoints:
+
+```text
+POST /api/tools/domain-age
+POST /api/tools/authority-score
+```
+
+Both accept JSON in the shape:
+
+```json
+{ "domains": ["github.com", "google.com"] }
+```
+
+Required Vercel environment variables for the new tools:
+
+```text
+OPEN_PAGERANK_API_KEY=xxxxx
+KV_REST_API_URL=auto-injected by Vercel KV/Redis
+KV_REST_API_TOKEN=auto-injected by Vercel KV/Redis
+CRON_SECRET=optional shared secret for manual quota checks
+ALERT_WEBHOOK_URL=optional Slack-compatible alert webhook
+```
+
+The quota monitor runs daily through `vercel.json` at `/api/internal/quota-check`.
+
 Example response:
 
 ```json

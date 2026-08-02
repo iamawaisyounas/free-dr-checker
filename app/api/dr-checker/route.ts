@@ -1,28 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-
-function normalizeDomain(value: string | null) {
-  return String(value || "")
-    .trim()
-    .replace(/^https?:\/\//i, "")
-    .replace(/^www\./i, "")
-    .split(/[/?#]/)[0]
-    .replace(/\.+$/, "")
-    .toLowerCase();
-}
-
-function isValidDomain(domain: string) {
-  if (!domain || domain.length > 253 || domain.includes("..")) {
-    return false;
-  }
-
-  const labels = domain.split(".");
-  if (labels.length < 2) {
-    return false;
-  }
-
-  return labels.every((label) => /^[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?$/.test(label))
-    && /^[a-z]{2,63}$/.test(labels.at(-1) || "");
-}
+import { isValidDomain, normalizeDomain } from "../../../lib/domain-normalize";
 
 export async function GET(request: NextRequest) {
   const domain = normalizeDomain(request.nextUrl.searchParams.get("domain"));
