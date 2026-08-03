@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { verifyTurnstileToken } from "../../../lib/turnstile";
 
 const CONTACT_TO_EMAIL = process.env.CONTACT_TO_EMAIL || "support@dr-checker.com";
 const CONTACT_FROM_EMAIL = process.env.CONTACT_FROM_EMAIL || "";
@@ -22,6 +23,7 @@ export async function POST(request: NextRequest) {
   }
 
   const name = cleanText(payload.name, 120);
+  const subject = cleanText(payload.subject, 160);
   const email = cleanText(payload.email, 240);
   const message = cleanText(payload.message, 5000);
   const website = cleanText(payload.website, 240);
@@ -30,8 +32,13 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ ok: true });
   }
 
-  if (!name || !email || !message || !isValidEmail(email)) {
-    return NextResponse.json({ error: "Please enter your name, email, and message." }, { status: 400 });
+  if (!name || !subject || !email || !message || !isValidEmail(email)) {
+    return NextResponse.json({ error: "Please enter your name, subject, email, and message." }, { status: 400 });
+  }
+
+  const turnstileError = await verifyTurnstileToken(request, payload.turnstileToken);
+  if (turnstileError) {
+    return turnstileError;
   }
 
   if (!RESEND_API_KEY || !CONTACT_FROM_EMAIL) {
@@ -48,14 +55,15 @@ export async function POST(request: NextRequest) {
       from: CONTACT_FROM_EMAIL,
       to: [CONTACT_TO_EMAIL],
       reply_to: email,
-      subject: `New DR Checker contact form message from ${name}`,
+      subject: `DR Checker contact: ${subject}`,
       text: [
         "New message from the DR Checker contact form.",
         "",
         `Name: ${name}`,
         `Email: ${email}`,
+        `Subject: ${subject}`,
         "",
-        "Message:",
+        "How we can help:",
         message
       ].join("\n")
     })
