@@ -10,7 +10,7 @@ type BlogSearchProps = {
 
 const POSTS_PER_PAGE = 9;
 
-type PaginationItem = number | "ellipsis";
+type PaginationItem = number | "ellipsis" | "last";
 
 function matchesPost(post: BlogPost, query: string) {
   const haystack = [
@@ -48,10 +48,6 @@ function BlogCard({ post }: { post: BlogPost }) {
 }
 
 function paginationItems(currentPage: number, totalPages: number): PaginationItem[] {
-  if (totalPages <= 2) {
-    return Array.from({ length: totalPages }, (_, index) => index + 1);
-  }
-
   if (totalPages <= 7) {
     return Array.from({ length: totalPages }, (_, index) => index + 1);
   }
@@ -82,7 +78,7 @@ function paginationItems(currentPage: number, totalPages: number): PaginationIte
     result.push(page);
   });
 
-  return result;
+  return [...result, "ellipsis", "last"];
 }
 
 export default function BlogSearch({ posts }: BlogSearchProps) {
@@ -151,6 +147,23 @@ export default function BlogSearch({ posts }: BlogSearchProps) {
                     <span className="blog-pagination__ellipsis" aria-hidden="true" key={`ellipsis-${index}`}>
                       ...
                     </span>
+                  );
+                }
+
+                if (item === "last") {
+                  return (
+                    <a
+                      href="#blog-posts"
+                      className="blog-pagination__last"
+                      aria-label={`Go to last page, page ${totalPages}`}
+                      onClick={(event) => {
+                        event.preventDefault();
+                        setCurrentPage(totalPages);
+                      }}
+                      key="last"
+                    >
+                      Last
+                    </a>
                   );
                 }
 
