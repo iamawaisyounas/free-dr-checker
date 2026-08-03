@@ -10,7 +10,7 @@ type BlogSearchProps = {
 
 const POSTS_PER_PAGE = 9;
 
-type PaginationItem = number | "ellipsis" | "last";
+type PaginationItem = number | "ellipsis";
 
 function matchesPost(post: BlogPost, query: string) {
   const haystack = [
@@ -53,10 +53,7 @@ function paginationItems(currentPage: number, totalPages: number): PaginationIte
   }
 
   if (totalPages <= 7) {
-    return [
-      ...Array.from({ length: totalPages - 1 }, (_, index) => index + 1),
-      "last"
-    ];
+    return Array.from({ length: totalPages }, (_, index) => index + 1);
   }
 
   const items = new Set<number>([
@@ -67,10 +64,11 @@ function paginationItems(currentPage: number, totalPages: number): PaginationIte
     currentPage,
     currentPage + 1,
     totalPages - 2,
-    totalPages - 1
+    totalPages - 1,
+    totalPages
   ]);
   const pages = Array.from(items)
-    .filter((page) => page >= 1 && page < totalPages)
+    .filter((page) => page >= 1 && page <= totalPages)
     .sort((a, b) => a - b);
   const result: PaginationItem[] = [];
 
@@ -83,8 +81,6 @@ function paginationItems(currentPage: number, totalPages: number): PaginationIte
 
     result.push(page);
   });
-
-  result.push("last");
 
   return result;
 }
@@ -137,7 +133,11 @@ export default function BlogSearch({ posts }: BlogSearchProps) {
 
       {visiblePosts.length ? (
         <>
-          <section className="blog-grid" aria-label={normalizedQuery ? "Search results" : "Latest blog posts"}>
+          <section
+            className="blog-grid"
+            id="blog-posts"
+            aria-label={normalizedQuery ? "Search results" : "Latest blog posts"}
+          >
             {pagePosts.map((post) => (
               <BlogCard post={post} key={post.slug} />
             ))}
@@ -154,19 +154,20 @@ export default function BlogSearch({ posts }: BlogSearchProps) {
                   );
                 }
 
-                const page = item === "last" ? totalPages : item;
-                const label = item === "last" ? "Last" : String(page);
-
                 return (
-                  <button
-                    type="button"
-                    className={page === currentPage ? "is-active" : undefined}
-                    aria-current={page === currentPage ? "page" : undefined}
-                    onClick={() => setCurrentPage(page)}
-                    key={item === "last" ? "last" : page}
+                  <a
+                    href="#blog-posts"
+                    className={item === currentPage ? "is-active" : undefined}
+                    aria-current={item === currentPage ? "page" : undefined}
+                    aria-label={`Go to page ${item}`}
+                    onClick={(event) => {
+                      event.preventDefault();
+                      setCurrentPage(item);
+                    }}
+                    key={item}
                   >
-                    {label}
-                  </button>
+                    {item}
+                  </a>
                 );
               })}
             </nav>

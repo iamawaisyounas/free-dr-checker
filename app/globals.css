@@ -2524,35 +2524,36 @@ details p {
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: 9px;
+  gap: 10px;
   margin: 32px 0 72px;
   color: var(--blog-text);
 }
 
-.blog-pagination button {
-  min-width: 0;
+.blog-pagination a {
+  appearance: none;
   border: 0;
-  border-radius: 6px;
-  padding: 4px 2px;
+  border-radius: 0;
+  padding: 0;
   color: var(--blog-text);
   background: transparent;
+  box-shadow: none;
   font: inherit;
   font-size: 0.96rem;
   font-weight: 500;
   line-height: 1.2;
   cursor: pointer;
+  text-decoration: none;
 }
 
-.blog-pagination button:hover:not(:disabled),
-.blog-pagination button.is-active {
-  color: #020817;
+.blog-pagination a:hover,
+.blog-pagination a.is-active {
+  color: var(--primary);
   background: transparent;
-  font-weight: 700;
 }
 
-.blog-pagination button:focus-visible {
-  outline: 3px solid rgba(19, 104, 233, 0.18);
-  outline-offset: 2px;
+.blog-pagination a:focus-visible {
+  outline: 1px solid currentColor;
+  outline-offset: 3px;
 }
 
 .blog-pagination__ellipsis {
@@ -2562,12 +2563,6 @@ details p {
 
 .blog-pagination + .blog-domain-cta {
   margin-top: 0;
-}
-
-.blog-pagination button:disabled {
-  color: var(--blog-muted);
-  cursor: not-allowed;
-  opacity: 0.55;
 }
 
 .blog-card {
@@ -3217,8 +3212,7 @@ details p {
     margin: 28px 0 54px;
   }
 
-  .blog-pagination button {
-    padding: 6px 2px;
+  .blog-pagination a {
     font-size: 0.94rem;
   }
 
