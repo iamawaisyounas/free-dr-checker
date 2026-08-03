@@ -1,16 +1,21 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { PortableText } from "@portabletext/react";
 import BlogCtaSection from "../../components/BlogCtaSection";
 import BlogDrCard from "../../components/BlogDrCard";
 import BlogToc from "../../components/BlogToc";
-import { blogPosts, getBlogPost } from "../posts";
+import { getBlogPostBySlug, getBlogSlugs } from "../../../lib/sanity/blog";
+import { urlFor } from "../../../lib/sanity/image";
+
+export const revalidate = 60;
 
 type PageProps = {
   params: Promise<{ slug: string }>;
 };
 
-export function generateStaticParams() {
-  return blogPosts.map((post) => ({ slug: post.slug }));
+export async function generateStaticParams() {
+  const slugs = await getBlogSlugs();
+  return slugs.map((slug) => ({ slug }));
 }
 
 function headingId(value: string) {
@@ -30,7 +35,7 @@ function formatPostDate(value: string) {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const post = getBlogPost(slug);
+  const post = await getBlogPostBySlug(slug);
 
   if (!post) {
     return {};
@@ -48,7 +53,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       type: "article",
       images: [
         {
-          url: `https://dr-checker.com${post.featuredImage}`,
+          url: absoluteImageUrl(post.featuredImage),
           alt: post.featuredImageAlt
         }
       ]
@@ -56,9 +61,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   };
 }
 
+function absoluteImageUrl(image: string) {
+  return image.startsWith("http") ? image : `https://dr-checker.com${image}`;
+}
+
 export default async function BlogPostPage({ params }: PageProps) {
   const { slug } = await params;
-  const post = getBlogPost(slug);
+  const post = await getBlogPostBySlug(slug);
 
   if (!post) {
     notFound();
@@ -69,7 +78,7 @@ export default async function BlogPostPage({ params }: PageProps) {
     "@type": "BlogPosting",
     headline: post.title,
     description: post.excerpt,
-    image: `https://dr-checker.com${post.featuredImage}`,
+    image: absoluteImageUrl(post.featuredImage),
     datePublished: post.date,
     dateModified: post.date,
     author: {
@@ -113,7 +122,7 @@ export default async function BlogPostPage({ params }: PageProps) {
             <p className="blog-card__meta">{post.category}</p>
             <h1 id="blog-post-title">{post.title}</h1>
             <div className="blog-post__byline" aria-label="Article author, publish date, and read time">
-              <img src="/assets/awais-younas.jpg" alt="" width="96" height="96" decoding="async" />
+              <img src={post.author.photo || "/assets/awais-younas.jpg"} alt="" width="96" height="96" decoding="async" />
               <div>
                 <p>{post.author.name}</p>
                 <div className="blog-post__meta-line">
@@ -149,14 +158,38 @@ export default async function BlogPostPage({ params }: PageProps) {
           <p className="lead">{post.intro}</p>
 
           <div className="blog-post__body">
-            {post.sections.map((section) => (
-              <section id={headingId(section.heading)} key={section.heading}>
-                <h2>{section.heading}</h2>
-                {section.body.map((paragraph) => (
-                  <p key={paragraph}>{paragraph}</p>
-                ))}
-              </section>
-            ))}
+            {post.body?.length ? (
+              <PortableText
+                value={post.body}
+                components={{
+                  block: {
+                    h2: ({ children }) => <h2 id={headingId(String(children))}>{children}</h2>
+                  },
+                  types: {
+                    image: ({ value }) => {
+                      const alt = typeof value?.alt === "string" ? value.alt : "";
+                      return (
+                        <img
+                          src={urlFor(value).width(1200).auto("format").url()}
+                          alt={alt}
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      );
+                    }
+                  }
+                }}
+              />
+            ) : (
+              post.sections.map((section) => (
+                <section id={headingId(section.heading)} key={section.heading}>
+                  <h2>{section.heading}</h2>
+                  {section.body.map((paragraph) => (
+                    <p key={paragraph}>{paragraph}</p>
+                  ))}
+                </section>
+              ))
+            )}
           </div>
 
         </article>
@@ -170,7 +203,7 @@ export default async function BlogPostPage({ params }: PageProps) {
         <section className="blog-author" aria-label="Article author">
           <img
             className="blog-author__photo"
-            src="/assets/awais-younas.jpg"
+            src={post.author.photo || "/assets/awais-younas.jpg"}
             alt="Awais Younas"
             width="96"
             height="96"

@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import BlogCtaSection from "../components/BlogCtaSection";
 import BlogSearch from "../components/BlogSearch";
-import { blogPosts } from "./posts";
+import { getBlogPosts } from "../../lib/sanity/blog";
+
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: "Blog - Dr Checker",
@@ -33,25 +35,6 @@ const blogFaqs = [
   }
 ];
 
-const blogSchema = {
-  "@context": "https://schema.org",
-  "@type": "Blog",
-  name: "Dr Checker Blog",
-  url: "https://dr-checker.com/blog",
-  blogPost: blogPosts.map((post) => ({
-    "@type": "BlogPosting",
-    headline: post.title,
-    description: post.excerpt,
-    image: `https://dr-checker.com${post.featuredImage}`,
-    datePublished: post.date,
-    author: {
-      "@type": "Person",
-      name: post.author.name
-    },
-    url: `https://dr-checker.com/blog/${post.slug}`
-  }))
-};
-
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
@@ -73,9 +56,32 @@ function formatPostDate(date: string) {
   }).format(new Date(date));
 }
 
-export default function BlogPage() {
+function absoluteImageUrl(image: string) {
+  return image.startsWith("http") ? image : `https://dr-checker.com${image}`;
+}
+
+export default async function BlogPage() {
+  const blogPosts = await getBlogPosts();
   const [featuredPost] = blogPosts;
   const featuredHref = `/blog/${featuredPost.slug}`;
+  const blogSchema = {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    name: "Dr Checker Blog",
+    url: "https://dr-checker.com/blog",
+    blogPost: blogPosts.map((post) => ({
+      "@type": "BlogPosting",
+      headline: post.title,
+      description: post.excerpt,
+      image: absoluteImageUrl(post.featuredImage),
+      datePublished: post.date,
+      author: {
+        "@type": "Person",
+        name: post.author.name
+      },
+      url: `https://dr-checker.com/blog/${post.slug}`
+    }))
+  };
 
   return (
     <main className="blog-page">
@@ -98,7 +104,7 @@ export default function BlogPage() {
             </h1>
             <p className="blog-home-hero__excerpt">{featuredPost.excerpt}</p>
             <div className="blog-post__byline" aria-label="Featured article author, publish date, and read time">
-              <img src="/assets/awais-younas.jpg" alt="" width="96" height="96" decoding="async" />
+              <img src={featuredPost.author.photo || "/assets/awais-younas.jpg"} alt="" width="96" height="96" decoding="async" />
               <div>
                 <p>{featuredPost.author.name}</p>
                 <div className="blog-post__meta-line">

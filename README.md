@@ -69,6 +69,56 @@ CONTACT_TO_EMAIL=support@dr-checker.com
 
 `CONTACT_FROM_EMAIL` must be a sender/domain verified in Resend. The form sends submissions to `CONTACT_TO_EMAIL` and sets the visitor email as the reply-to address.
 
+## Sanity blog CMS
+
+The public blog URLs stay the same:
+
+```text
+/blog
+/blog/[slug]
+```
+
+Sanity Studio is embedded at:
+
+```text
+/studio
+```
+
+Required Sanity environment variables:
+
+```text
+NEXT_PUBLIC_SANITY_PROJECT_ID=xxxxx
+NEXT_PUBLIC_SANITY_DATASET=production
+SANITY_API_READ_TOKEN=optional, only needed for private datasets
+SANITY_REVALIDATE_SECRET=random shared webhook secret
+SANITY_WRITE_TOKEN=only needed locally when running the one-time migration script
+```
+
+Publishing in Sanity can revalidate the live site through:
+
+```text
+POST https://dr-checker.com/api/revalidate
+```
+
+Configure that webhook in Sanity with:
+
+```text
+Dataset: production
+Trigger: Create, Update, Delete
+Filter: _type == "post"
+Projection: {"slug": slug.current}
+Secret: same value as SANITY_REVALIDATE_SECRET
+```
+
+The current file-based posts remain as a fallback until Sanity is configured and populated. To migrate them into Sanity with identical slugs:
+
+```bash
+NEXT_PUBLIC_SANITY_PROJECT_ID=xxxxx \
+NEXT_PUBLIC_SANITY_DATASET=production \
+SANITY_WRITE_TOKEN=xxxxx \
+npm run sanity:migrate-blog
+```
+
 The quota monitor runs daily through `vercel.json` at `/api/internal/quota-check`.
 
 Example response:

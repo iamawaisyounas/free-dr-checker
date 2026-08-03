@@ -1,6 +1,11 @@
+import type { PortableTextBlock } from "@portabletext/types";
+
 export type BlogAuthor = {
   name: string;
   bio: string;
+  photo?: string;
+  role?: string;
+  linkedinUrl?: string;
 };
 
 export type BlogSection = {
@@ -20,6 +25,7 @@ export type BlogPost = {
   featuredImageAlt: string;
   author: BlogAuthor;
   sections: BlogSection[];
+  body?: PortableTextBlock[];
   faqs: Array<{
     question: string;
     answer: string;
