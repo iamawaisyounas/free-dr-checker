@@ -103,10 +103,18 @@ export default function SeoBulkTool({ tool }: Props) {
     const items = splitInput(input);
     return dedupe ? Array.from(new Set(items)) : items;
   }, [dedupe, input]);
+  const hasPreparedDomains = preparedDomains.length > 0;
+  const needsTurnstileVerification = Boolean(turnstileSiteKey && hasPreparedDomains);
+  const canSubmit = !loading && hasPreparedDomains && (!needsTurnstileVerification || Boolean(turnstileToken));
 
   const handleTurnstileError = useCallback(() => {
     setError("Bot protection could not load. Please refresh and try again.");
   }, []);
+
+  useEffect(() => {
+    setTurnstileToken("");
+    setTurnstileResetKey((value) => value + 1);
+  }, [input]);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -119,7 +127,7 @@ export default function SeoBulkTool({ tool }: Props) {
       return;
     }
 
-    if (turnstileSiteKey && !turnstileToken) {
+    if (needsTurnstileVerification && !turnstileToken) {
       setError("Please complete the bot protection check.");
       return;
     }
@@ -233,14 +241,16 @@ export default function SeoBulkTool({ tool }: Props) {
             </label>
             <span>{preparedDomains.length} queued · max {maxDomains}</span>
           </div>
-          <TurnstileWidget
-            disabled={loading}
-            resetKey={turnstileResetKey}
-            siteKey={turnstileSiteKey}
-            onError={handleTurnstileError}
-            onTokenChange={setTurnstileToken}
-          />
-          <button type="submit" disabled={loading}>
+          {needsTurnstileVerification ? (
+            <TurnstileWidget
+              disabled={loading}
+              resetKey={turnstileResetKey}
+              siteKey={turnstileSiteKey}
+              onError={handleTurnstileError}
+              onTokenChange={setTurnstileToken}
+            />
+          ) : null}
+          <button type="submit" disabled={!canSubmit}>
             <svg aria-hidden="true" viewBox="0 0 24 24">
               <path d="m21 21-4.35-4.35"></path>
               <circle cx="11" cy="11" r="7"></circle>
