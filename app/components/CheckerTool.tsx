@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useEffect, useRef, useState } from "react";
+import { FormEvent, useCallback, useEffect, useRef, useState } from "react";
 
 type Result = {
   domain: string;
@@ -67,28 +67,10 @@ export default function CheckerTool() {
   const [result, setResult] = useState<Result | null>(null);
   const resultRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    if (!result) {
-      return;
-    }
-
-    const canonicalHref = "https://dr-checker.com/";
-    let canonical = document.querySelector<HTMLLinkElement>('link[rel="canonical"]');
-
-    if (!canonical) {
-      canonical = document.createElement("link");
-      canonical.rel = "canonical";
-      document.head.appendChild(canonical);
-    }
-
-    canonical.setAttribute("href", canonicalHref);
-  }, [result]);
-
-  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
+  const runCheck = useCallback(async (value: string) => {
     setError("");
 
-    const nextDomain = cleanDomain(domain);
+    const nextDomain = cleanDomain(value);
 
     if (!nextDomain) {
       setError("Please enter a website.");
@@ -121,6 +103,36 @@ export default function CheckerTool() {
     } finally {
       setLoading(false);
     }
+  }, []);
+
+  useEffect(() => {
+    const initialDomain = new URLSearchParams(window.location.search).get("domain");
+
+    if (initialDomain) {
+      void runCheck(initialDomain);
+    }
+  }, [runCheck]);
+
+  useEffect(() => {
+    if (!result) {
+      return;
+    }
+
+    const canonicalHref = "https://dr-checker.com/";
+    let canonical = document.querySelector<HTMLLinkElement>('link[rel="canonical"]');
+
+    if (!canonical) {
+      canonical = document.createElement("link");
+      canonical.rel = "canonical";
+      document.head.appendChild(canonical);
+    }
+
+    canonical.setAttribute("href", canonicalHref);
+  }, [result]);
+
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    await runCheck(domain);
   }
 
   const score = Math.max(0, Math.min(100, Number(result?.dr) || 0));

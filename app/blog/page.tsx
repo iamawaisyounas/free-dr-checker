@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import BlogCtaSection from "../components/BlogCtaSection";
+import BlogSearch from "../components/BlogSearch";
 import { blogPosts } from "./posts";
 
 export const metadata: Metadata = {
@@ -43,7 +45,7 @@ const blogSchema = {
     image: `https://dr-checker.com${post.featuredImage}`,
     datePublished: post.date,
     author: {
-      "@type": "Organization",
+      "@type": "Person",
       name: post.author.name
     },
     url: `https://dr-checker.com/blog/${post.slug}`
@@ -63,7 +65,18 @@ const faqSchema = {
   }))
 };
 
+function formatPostDate(date: string) {
+  return new Intl.DateTimeFormat("en", {
+    month: "short",
+    day: "numeric",
+    year: "numeric"
+  }).format(new Date(date));
+}
+
 export default function BlogPage() {
+  const [featuredPost] = blogPosts;
+  const featuredHref = `/blog/${featuredPost.slug}`;
+
   return (
     <main className="blog-page">
       <script
@@ -74,56 +87,42 @@ export default function BlogPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
-      <div className="blog-page__inner">
-        <section className="blog-hero">
-          <p className="page-kicker">Blog</p>
-          <h1>Domain Rating and SEO Guides</h1>
-          <p className="lead">
-            Clean, practical articles for checking websites, comparing competitors, and making better link-building decisions.
-          </p>
-        </section>
-
-        <section className="blog-lead-magnet" aria-labelledby="lead-magnet-title">
-          <div>
-            <p className="blog-card__meta">Free checklist</p>
-            <h2 id="lead-magnet-title">Domain Rating research checklist</h2>
-            <p>
-              Use this quick checklist before guest posting, outreach, competitor research, or SEO reporting.
-              Check DR, compare competitors, review relevance, inspect page quality, and choose the next action.
-            </p>
-          </div>
-          <div className="blog-lead-magnet__actions">
-            <Link className="blog-read-link" href="/">Check a domain</Link>
-            <Link className="blog-read-link" href="/blog/what-is-domain-rating">Read the DR guide</Link>
-          </div>
-        </section>
-
-        <section className="blog-grid" aria-label="Latest blog posts">
-          {blogPosts.map((post) => (
-            <article className="blog-card" key={post.slug}>
-              <Link className="blog-card__image" href={`/blog/${post.slug}`} aria-label={post.title}>
-                <img src={post.featuredImage} alt={post.featuredImageAlt} loading="lazy" />
+      <section className="blog-home-hero" aria-labelledby="blog-home-title">
+        <div className="blog-home-hero__inner">
+          <div className="blog-home-hero__content">
+            <p className="blog-card__meta">{featuredPost.category}</p>
+            <h1 id="blog-home-title">
+              <Link className="blog-home-hero__title-link" href={featuredHref}>
+                {featuredPost.title}
               </Link>
-              <p className="blog-card__meta">{post.category} · {post.readTime}</p>
-              <h2><Link href={`/blog/${post.slug}`}>{post.title}</Link></h2>
-              <p>{post.excerpt}</p>
-              <p className="blog-card__author">By {post.author.name}</p>
-              <Link className="blog-read-link" href={`/blog/${post.slug}`}>Read more</Link>
-            </article>
-          ))}
-        </section>
-
-        <section className="blog-faq-strip" aria-labelledby="blog-faq-title">
-          <h2 id="blog-faq-title">Blog FAQs</h2>
-          <div className="faq-list">
-            {blogFaqs.map((faq) => (
-              <details key={faq.question}>
-                <summary>{faq.question}</summary>
-                <p>{faq.answer}</p>
-              </details>
-            ))}
+            </h1>
+            <p className="blog-home-hero__excerpt">{featuredPost.excerpt}</p>
+            <div className="blog-post__byline" aria-label="Featured article author, publish date, and read time">
+              <img src="/assets/awais-younas.jpg" alt="" width="96" height="96" decoding="async" />
+              <div>
+                <p>{featuredPost.author.name}</p>
+                <div className="blog-post__meta-line">
+                  <time dateTime={featuredPost.date}>{formatPostDate(featuredPost.date)}</time>
+                  <span>{featuredPost.readTime}</span>
+                </div>
+              </div>
+            </div>
           </div>
-        </section>
+          <Link className="blog-post-hero__image blog-home-hero__image-link" href={featuredHref} aria-label={`Read ${featuredPost.title}`}>
+            <img
+              src={featuredPost.featuredImage}
+              alt={featuredPost.featuredImageAlt}
+              width="1200"
+              height="628"
+              fetchPriority="high"
+              decoding="async"
+            />
+          </Link>
+        </div>
+      </section>
+      <div className="blog-page__inner">
+        <BlogSearch posts={blogPosts} />
+        <BlogCtaSection />
       </div>
     </main>
   );

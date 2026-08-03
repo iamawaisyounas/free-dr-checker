@@ -1,13 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
-<title id="title">What Is Domain Rating?</title><desc id="desc">Domain Rating guide from DR Checker</desc>
-<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#184ca9"/><stop offset="1" stop-color="#0b2a66"/></linearGradient></defs>
-<rect width="1200" height="675" fill="url(#g)"/>
-<circle cx="1030" cy="92" r="190" fill="#5eead4" opacity=".18"/>
-<circle cx="190" cy="575" r="260" fill="#ffffff" opacity=".09"/>
-<rect x="88" y="86" width="1024" height="503" rx="34" fill="#ffffff" opacity=".10" stroke="#ffffff" stroke-opacity=".24"/>
-<text x="118" y="158" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="600" letter-spacing="3">DOMAIN RATING</text>
-<text x="118" y="326" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="76" font-weight="900">What Is Domain Rating?</text>
-<text x="118" y="414" fill="#dbeafe" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="700">Practical SEO guide by DR Checker</text>
-<text x="118" y="522" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="86" font-weight="900">DR</text>
-<text x="246" y="522" fill="#dbeafe" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="600">dr-checker.com</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="628" viewBox="0 0 1200 628">
+<rect width="1200" height="628" fill="#F8F9FB"/>
+<ellipse cx="600" cy="548" rx="300" ry="28" fill="#18324A" opacity=".08"/>
+<defs><filter id="s" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="18" stdDeviation="16" flood-color="#18324A" flood-opacity=".14"/></filter></defs><g filter="url(#s)"><rect x="356" y="126" width="488" height="352" rx="34" fill="#fff" stroke="#DCEBFF" stroke-width="6"/><circle cx="600" cy="302" r="132" fill="#EAF4FF"/><circle cx="600" cy="302" r="104" fill="#fff" stroke="#DCEBFF" stroke-width="18"/><path d="M 535.52 318.64 A 66.56 66.56 0 0 1 660.3199999999999 293.68" fill="none" stroke="#1368E9" stroke-width="18" stroke-linecap="round"/><path d="M600 302l49.43418199157919 6.9475211999264666" stroke="#18324A" stroke-width="14" stroke-linecap="round"/><circle cx="600" cy="302" r="16" fill="#20C7A8"/><path d="M444 458h312" stroke="#20C7A8" stroke-width="16" stroke-linecap="round"/></g>
 </svg>

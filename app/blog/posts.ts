@@ -35,11 +35,12 @@ type BlogPostSeed = Omit<BlogPost, "readTime" | "featuredImage" | "featuredImage
   example: string;
   mistake: string;
   benchmark: string;
+  imageSlug?: string;
 };
 
 export const blogAuthor: BlogAuthor = {
-  name: "Dr Checker Editorial Team",
-  bio: "The Dr Checker Editorial Team writes practical SEO guides for founders, agencies, and marketers who need fast backlink research, cleaner outreach decisions, and simple Domain Rating workflows. Each guide focuses on plain-English steps you can use before deeper SEO analysis."
+  name: "Awais Younas",
+  bio: "Awais Younas, co-founder of DR Checker, writes about SEO, marketing, and also building socialbu.com. When not creating content, he enjoys video games and snooker."
 };
 
 function imageFor(slug: string) {
@@ -105,6 +106,23 @@ function buildSections(seed: BlogPostSeed): BlogSection[] {
       ]
     }
   ];
+}
+
+function wordCount(text: string) {
+  return text.trim().split(/\s+/).filter(Boolean).length;
+}
+
+function estimateReadTime(seed: BlogPostSeed, sections: BlogSection[]) {
+  const words = [
+    seed.title,
+    seed.excerpt,
+    seed.intro,
+    ...sections.flatMap((section) => [section.heading, ...section.body]),
+    ...seed.faqs.flatMap((faq) => [faq.question, faq.answer])
+  ].reduce((total, text) => total + wordCount(text), 0);
+  const minutes = Math.max(1, Math.ceil(words / 225));
+
+  return `${minutes} min read`;
 }
 
 const seeds: BlogPostSeed[] = [
@@ -269,6 +287,26 @@ const seeds: BlogPostSeed[] = [
     related: ["check-domain-rating-for-guest-posts", "dr-checker-for-agencies", "backlink-quality-over-quantity"]
   },
   {
+    slug: "hootsuite-alternatives",
+    title: "Hootsuite Alternatives for SEO and Content Teams",
+    excerpt: "Compare Hootsuite alternatives by workflow fit, publishing quality, collaboration, and measurable SEO impact.",
+    category: "Tools",
+    date: "2026-08-03",
+    intro: "Hootsuite alternatives can help content teams plan social distribution, collaborate on campaigns, and support SEO work with better reporting. The right choice depends on your publishing volume, approval process, and how closely social promotion connects to organic growth.",
+    keyword: "Hootsuite alternatives",
+    audience: "content teams comparing social media tools",
+    promise: "The best Hootsuite alternative is the one that fits your publishing workflow and helps you measure the content outcomes that matter.",
+    workflow: "Shortlist tools by channel coverage, scheduling speed, approvals, analytics, team access, and whether your SEO content gets enough promotion after publishing.",
+    example: "For example, a small SEO team may prefer a lightweight scheduling tool that makes campaign tracking simple over a larger suite built for enterprise social departments.",
+    mistake: "The mistake is choosing a social tool by feature count alone instead of checking whether it improves the team's weekly publishing rhythm.",
+    benchmark: "A useful benchmark is how quickly your team can move a post from draft to approved, scheduled, tracked, and reviewed after publication.",
+    faqs: [
+      { question: "What should SEO teams look for in a Hootsuite alternative?", answer: "Look for easy scheduling, approvals, link tracking, reporting, and a workflow that helps promote your best organic content consistently." },
+      { question: "Do social tools improve Domain Rating directly?", answer: "No. Social tools do not directly improve DR, but better promotion can help useful content reach people who may cite or link to it." }
+    ],
+    related: ["outreach-list-domain-rating", "track-domain-rating-over-time", "dr-checker-for-agencies"]
+  },
+  {
     slug: "track-domain-rating-over-time",
     title: "How to Track Domain Rating Over Time",
     excerpt: "Measure DR trends without reacting to every small score movement.",
@@ -330,14 +368,18 @@ const seeds: BlogPostSeed[] = [
   }
 ];
 
-export const blogPosts: BlogPost[] = seeds.map((seed) => ({
-  ...seed,
-  readTime: "9 min read",
-  featuredImage: imageFor(seed.slug),
-  featuredImageAlt: `${seed.title} featured image`,
-  author: blogAuthor,
-  sections: buildSections(seed)
-}));
+export const blogPosts: BlogPost[] = seeds.map((seed) => {
+  const sections = buildSections(seed);
+
+  return {
+    ...seed,
+    readTime: estimateReadTime(seed, sections),
+    featuredImage: imageFor(seed.imageSlug || seed.slug),
+    featuredImageAlt: `${seed.title} featured image`,
+    author: blogAuthor,
+    sections
+  };
+});
 
 export function getBlogPost(slug: string) {
   return blogPosts.find((post) => post.slug === slug);
