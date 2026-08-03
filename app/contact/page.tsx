@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import ContactForm from "../components/ContactForm";
 import RelatedLinks from "../components/RelatedLinks";
 
 export const metadata: Metadata = {
@@ -38,12 +39,7 @@ export default function ContactPage() {
           <p>Dr Checker is a free tool brought to you by <a href="https://socialbu.com">SocialBu</a>. If you&apos;re looking for a full social media management platform with scheduling, automation, analytics, and more, check them out too. You can read more about the tool on the <a href="/about#socialbu">About page</a>.</p>
         </section>
 
-        <form className="contact-form" action="mailto:support@dr-checker.com" method="post" encType="text/plain">
-          <label>Name<input name="name" type="text" autoComplete="name" /></label>
-          <label>Email<input name="email" type="email" autoComplete="email" /></label>
-          <label>Message<textarea name="message" rows={6}></textarea></label>
-          <button type="submit">Submit</button>
-        </form>
+        <ContactForm />
 
         <RelatedLinks
           links={[

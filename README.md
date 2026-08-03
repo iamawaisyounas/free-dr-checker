@@ -59,6 +59,16 @@ CRON_SECRET=optional shared secret for manual quota checks
 ALERT_WEBHOOK_URL=optional Slack-compatible alert webhook
 ```
 
+Required Vercel environment variables for the contact form:
+
+```text
+RESEND_API_KEY=xxxxx
+CONTACT_FROM_EMAIL=DR Checker <support@dr-checker.com>
+CONTACT_TO_EMAIL=support@dr-checker.com
+```
+
+`CONTACT_FROM_EMAIL` must be a sender/domain verified in Resend. The form sends submissions to `CONTACT_TO_EMAIL` and sets the visitor email as the reply-to address.
+
 The quota monitor runs daily through `vercel.json` at `/api/internal/quota-check`.
 
 Example response:

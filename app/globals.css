@@ -3031,6 +3031,10 @@ details p {
   font-weight: 700;
 }
 
+.contact-form__trap {
+  display: none !important;
+}
+
 .contact-form input,
 .contact-form textarea {
   width: 100%;
@@ -3048,6 +3052,17 @@ details p {
 
 .contact-form button {
   justify-self: start;
+}
+
+.contact-form-status {
+  margin: 0;
+  color: #d24b4b;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.contact-form-status.is-success {
+  color: #0a7a42;
 }
 
 @media (max-width: 1080px) {
