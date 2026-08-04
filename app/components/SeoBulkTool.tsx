@@ -67,8 +67,10 @@ export default function SeoBulkTool({ tool }: Props) {
   const [error, setError] = useState("");
   const [notice, setNotice] = useState("");
   const [loading, setLoading] = useState(false);
+  const [showTurnstile, setShowTurnstile] = useState(false);
   const [turnstileToken, setTurnstileToken] = useState("");
   const [turnstileResetKey, setTurnstileResetKey] = useState(0);
+  const [pendingVerification, setPendingVerification] = useState(false);
   const [authorityResults, setAuthorityResults] = useState<AuthorityResult[]>([]);
   const [ageResults, setAgeResults] = useState<DomainAgeResult[]>([]);
   const resultRef = useRef<HTMLDivElement>(null);
@@ -104,41 +106,39 @@ export default function SeoBulkTool({ tool }: Props) {
     return dedupe ? Array.from(new Set(items)) : items;
   }, [dedupe, input]);
   const hasPreparedDomains = preparedDomains.length > 0;
-  const needsTurnstileVerification = Boolean(turnstileSiteKey && hasPreparedDomains);
-  const canSubmit = !loading && hasPreparedDomains && (!needsTurnstileVerification || Boolean(turnstileToken));
+  const canSubmit = !loading && hasPreparedDomains;
 
   const handleTurnstileError = useCallback(() => {
     setError("Bot protection could not load. Please refresh and try again.");
   }, []);
 
-  useEffect(() => {
+  const resetTurnstile = useCallback(() => {
     setTurnstileToken("");
+    setPendingVerification(false);
     setTurnstileResetKey((value) => value + 1);
-  }, [input]);
+  }, []);
 
-  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    setError("");
-    setNotice("");
-
-    const domains = preparedDomains.slice(0, maxDomains);
-    if (!domains.length) {
-      setError("Enter at least one domain.");
-      return;
+  useEffect(() => {
+    if (turnstileToken || pendingVerification) {
+      resetTurnstile();
     }
+  }, [input, pendingVerification, resetTurnstile, turnstileToken]);
 
-    if (needsTurnstileVerification && !turnstileToken) {
-      setError("Please complete the bot protection check.");
-      return;
+  function handleInputChange(value: string) {
+    setInput(value);
+    if (showTurnstile) {
+      setShowTurnstile(false);
     }
+  }
 
+  const runCheck = useCallback(async (domains: string[], token: string) => {
     setLoading(true);
 
     try {
       const response = await fetch(endpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ domains, turnstileToken })
+        body: JSON.stringify({ domains, turnstileToken: token })
       });
       const data = await response.json();
 
@@ -164,6 +164,11 @@ export default function SeoBulkTool({ tool }: Props) {
         setNotice((current) => `${current ? `${current} ` : ""}Only the first ${data.max_domains || maxDomains} domains were checked.`);
       }
 
+      if (turnstileSiteKey) {
+        setShowTurnstile(false);
+        resetTurnstile();
+      }
+
       window.setTimeout(() => {
         resultRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" });
       }, 50);
@@ -171,11 +176,35 @@ export default function SeoBulkTool({ tool }: Props) {
       setError("Unable to check these domains right now.");
     } finally {
       setLoading(false);
-      if (turnstileSiteKey) {
-        setTurnstileToken("");
-        setTurnstileResetKey((value) => value + 1);
-      }
     }
+  }, [endpoint, isAuthority, maxDomains, resetTurnstile, turnstileSiteKey]);
+
+  useEffect(() => {
+    if (pendingVerification && turnstileToken && !loading) {
+      setPendingVerification(false);
+      void runCheck(preparedDomains.slice(0, maxDomains), turnstileToken);
+    }
+  }, [loading, maxDomains, pendingVerification, preparedDomains, runCheck, turnstileToken]);
+
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setError("");
+    setNotice("");
+
+    const domains = preparedDomains.slice(0, maxDomains);
+    if (!domains.length) {
+      setError("Enter at least one domain.");
+      return;
+    }
+
+    if (turnstileSiteKey && !turnstileToken) {
+      setShowTurnstile(true);
+      setPendingVerification(true);
+      setError("Please complete the bot protection check.");
+      return;
+    }
+
+    await runCheck(domains, turnstileToken);
   }
 
   function exportCsv() {
@@ -227,7 +256,7 @@ export default function SeoBulkTool({ tool }: Props) {
             value={input}
             placeholder={placeholder}
             disabled={loading}
-            onChange={(event) => setInput(event.target.value)}
+            onChange={(event) => handleInputChange(event.target.value)}
           />
           <div className="tool-controls">
             <label className="toggle-control">
@@ -241,7 +270,7 @@ export default function SeoBulkTool({ tool }: Props) {
             </label>
             <span>{preparedDomains.length} queued · max {maxDomains}</span>
           </div>
-          {needsTurnstileVerification ? (
+          {showTurnstile ? (
             <TurnstileWidget
               disabled={loading}
               resetKey={turnstileResetKey}
