@@ -3,7 +3,7 @@ import DiscoverTools from "../components/DiscoverTools";
 import SeoBulkTool from "../components/SeoBulkTool";
 
 export const metadata: Metadata = {
-  title: "Free Domain Age Checker — Check Domain Registration Age Instantly",
+  title: "Free Domain Age Checker Online | DR Checker",
   description:
     "Check any domain's age for free using live WHOIS and RDAP data. See registration date, domain age, and expiry. No signup required.",
   alternates: { canonical: "https://dr-checker.com/domain-age-checker" }

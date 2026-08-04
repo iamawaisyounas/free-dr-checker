@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import RelatedLinks from "../components/RelatedLinks";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy - Dr Checker",
+  title: "Privacy Policy | DR Checker",
   description:
     "Read the Dr Checker privacy policy to understand what data we collect, how we use it, and your rights.",
   alternates: { canonical: "https://dr-checker.com/privacy-policy" },

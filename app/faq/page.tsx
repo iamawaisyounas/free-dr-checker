@@ -2,12 +2,12 @@ import type { Metadata } from "next";
 import RelatedLinks from "../components/RelatedLinks";
 
 export const metadata: Metadata = {
-  title: "FAQ - Dr Checker | Domain Rating Checker Questions Answered",
+  title: "Frequently Asked Questions | DR Checker",
   description:
     "Answers to common questions about Domain Rating, how Dr Checker calculates scores, and how to use the tool effectively.",
   alternates: { canonical: "https://dr-checker.com/faq" },
   openGraph: {
-    title: "Dr Checker - FAQ",
+    title: "Frequently Asked Questions | DR Checker",
     description: "Common questions about Domain Rating and how Dr Checker works.",
     url: "https://dr-checker.com/faq",
     siteName: "Dr Checker",

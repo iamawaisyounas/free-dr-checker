@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import RelatedLinks from "../components/RelatedLinks";
 
 export const metadata: Metadata = {
-  title: "Terms and Conditions - Dr Checker",
+  title: "Terms of Service | DR Checker",
   description: "The terms and conditions for using the Dr Checker domain rating tool.",
   alternates: { canonical: "https://dr-checker.com/terms" },
   robots: { index: true, follow: true }

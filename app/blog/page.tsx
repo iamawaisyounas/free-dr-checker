@@ -7,12 +7,12 @@ import { getBlogPosts } from "../../lib/sanity/blog";
 export const revalidate = 60;
 
 export const metadata: Metadata = {
-  title: "Blog - Dr Checker",
+  title: "DR Checker Blog | Get Better at SEO and Marketing",
   description:
     "Read practical guides about Domain Rating, SEO research, backlinks, outreach, and using Dr Checker for smarter website checks.",
   alternates: { canonical: "https://dr-checker.com/blog" },
   openGraph: {
-    title: "Dr Checker Blog",
+    title: "DR Checker Blog | Get Better at SEO and Marketing",
     description: "Practical Domain Rating and SEO guides from Dr Checker.",
     url: "https://dr-checker.com/blog",
     siteName: "Dr Checker",

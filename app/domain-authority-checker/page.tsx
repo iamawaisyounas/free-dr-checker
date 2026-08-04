@@ -3,7 +3,7 @@ import DiscoverTools from "../components/DiscoverTools";
 import SeoBulkTool from "../components/SeoBulkTool";
 
 export const metadata: Metadata = {
-  title: "Free Domain Authority Checker — Check DA Score Instantly | DR Checker",
+  title: "Free Domain Authority Checker Online | DR Checker",
   description:
     "Check any website's Domain Authority score for free. Bulk check domains, no signup required. Get referring domains and global rank instantly.",
   alternates: { canonical: "https://dr-checker.com/domain-authority-checker" }

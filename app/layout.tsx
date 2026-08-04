@@ -8,7 +8,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   metadataBase: new URL("https://dr-checker.com"),
   title: {
-    default: "Free Domain Rating Checker — Powered by Ahrefs | No Login",
+    default: "Domain Rating Checker – Free, No Signup, Unlimited | DR Checker",
     template: "%s"
   },
   description:
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     canonical: "https://dr-checker.com/"
   },
   openGraph: {
-    title: "Free Domain Rating Checker — Powered by Ahrefs | No Login",
+    title: "Domain Rating Checker – Free, No Signup, Unlimited | DR Checker",
     description: "Check any website's Domain Rating instantly. Free, no login required.",
     url: "https://dr-checker.com",
     siteName: "DR Checker",

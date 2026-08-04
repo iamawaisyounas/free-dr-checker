@@ -3,12 +3,12 @@ import ContactForm from "../components/ContactForm";
 import RelatedLinks from "../components/RelatedLinks";
 
 export const metadata: Metadata = {
-  title: "Contact Us - Dr Checker",
+  title: "Contact Us | DR Checker",
   description:
     "Have a question, feedback, or found a bug? Get in touch with the Dr Checker team - we read every message.",
   alternates: { canonical: "https://dr-checker.com/contact" },
   openGraph: {
-    title: "Contact Dr Checker",
+    title: "Contact Us | DR Checker",
     description: "Reach out to the Dr Checker team with questions, feedback, or bug reports.",
     url: "https://dr-checker.com/contact",
     siteName: "Dr Checker",

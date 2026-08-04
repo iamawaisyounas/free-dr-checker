@@ -3,12 +3,12 @@ import CheckerTool from "./components/CheckerTool";
 import DiscoverTools from "./components/DiscoverTools";
 
 export const metadata: Metadata = {
-  title: "Free Domain Rating Checker — Powered by Ahrefs | No Login",
+  title: "Domain Rating Checker – Free, No Signup, Unlimited | DR Checker",
   description:
     "Check any website's Domain Rating (DR) for free using real Ahrefs data. No login required. Enter a domain and get your DR score instantly.",
   alternates: { canonical: "https://dr-checker.com/" },
   openGraph: {
-    title: "Free Domain Rating Checker — Powered by Ahrefs | No Login",
+    title: "Domain Rating Checker – Free, No Signup, Unlimited | DR Checker",
     description: "Check any website's Domain Rating instantly. Free, no login required.",
     url: "https://dr-checker.com",
     siteName: "DR Checker",

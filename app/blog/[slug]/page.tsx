@@ -42,11 +42,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 
   return {
-    title: `${post.title} - Dr Checker Blog`,
+    title: `${post.title} | DR Checker Blog`,
     description: post.excerpt,
     alternates: { canonical: `https://dr-checker.com/blog/${post.slug}` },
     openGraph: {
-      title: post.title,
+      title: `${post.title} | DR Checker Blog`,
       description: post.excerpt,
       url: `https://dr-checker.com/blog/${post.slug}`,
       siteName: "Dr Checker",
