@@ -5,11 +5,11 @@ import DiscoverTools from "./components/DiscoverTools";
 export const metadata: Metadata = {
   title: "Domain Rating Checker - Check Ahrefs DR for Free | DR Checker",
   description:
-    "Check the Domain Rating (DR) of any website in seconds. Use our free Domain Rating Checker to analyze website authority, compare domains, and make smarter SEO decisions. No signup required.",
+    "Check the Ahrefs Domain Rating (DR) of any website for free. Get accurate DR scores powered by the Ahrefs API and analyze your website's authority with a single click.",
   alternates: { canonical: "https://dr-checker.com/" },
   openGraph: {
     title: "Domain Rating Checker - Check Ahrefs DR for Free | DR Checker",
-    description: "Check the Domain Rating (DR) of any website in seconds. Use our free Domain Rating Checker to analyze website authority, compare domains, and make smarter SEO decisions. No signup required.",
+    description: "Check the Ahrefs Domain Rating (DR) of any website for free. Get accurate DR scores powered by the Ahrefs API and analyze your website's authority with a single click.",
     url: "https://dr-checker.com",
     siteName: "DR Checker",
     type: "website"
