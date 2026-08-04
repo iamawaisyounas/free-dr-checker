@@ -8,7 +8,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   metadataBase: new URL("https://dr-checker.com"),
   title: {
-    default: "Domain Rating Checker – Free, No Signup, Unlimited | DR Checker",
+    default: "Domain Rating Checker – Free DR, UR Score | DR Checker",
     template: "%s"
   },
   description:
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     canonical: "https://dr-checker.com/"
   },
   openGraph: {
-    title: "Domain Rating Checker – Free, No Signup, Unlimited | DR Checker",
+    title: "Domain Rating Checker – Free DR, UR Score | DR Checker",
     description: "Check the Domain Rating (DR) of any website in seconds. Use our free Domain Rating Checker to analyze website authority, compare domains, and make smarter SEO decisions. No signup required.",
     url: "https://dr-checker.com",
     siteName: "DR Checker",
