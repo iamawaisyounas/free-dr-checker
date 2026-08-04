@@ -1,6 +1,7 @@
 import { createReadStream, existsSync } from "node:fs";
-import { join } from "node:path";
+import { extname, join, parse } from "node:path";
 import { createClient } from "next-sanity";
+import sharp from "sharp";
 import { blogAuthor, blogPosts } from "../app/blog/posts";
 
 const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID;
@@ -50,6 +51,20 @@ async function uploadFeaturedImage(post: (typeof blogPosts)[number]) {
 
   if (!existsSync(imagePath)) {
     return null;
+  }
+
+  if (extname(imagePath).toLowerCase() === ".svg") {
+    const pngBuffer = await sharp(imagePath)
+      .resize(1200, 628, { fit: "cover" })
+      .png()
+      .toBuffer();
+    const filename = `${parse(imagePath).name}.png`;
+
+    return client.assets.upload("image", pngBuffer, {
+      filename,
+      title: post.featuredImageAlt,
+      contentType: "image/png"
+    });
   }
 
   return client.assets.upload("image", createReadStream(imagePath), {

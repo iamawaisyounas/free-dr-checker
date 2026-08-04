@@ -22,6 +22,11 @@ type SanityPost = {
   intro?: string;
   featuredImage?: {
     alt?: string;
+    asset?: {
+      url?: string;
+      mimeType?: string;
+      extension?: string;
+    };
     [key: string]: unknown;
   };
   body?: PortableTextBlock[];
@@ -97,6 +102,12 @@ function sectionsFromBody(post: SanityPost): BlogSection[] {
 function imageUrl(post: SanityPost, fallbackSlug: string) {
   if (!post.featuredImage) {
     return `/blog-images/${fallbackSlug}.svg`;
+  }
+
+  const asset = post.featuredImage.asset;
+
+  if (asset?.url && (asset.mimeType === "image/svg+xml" || asset.extension === "svg")) {
+    return asset.url;
   }
 
   return urlFor(post.featuredImage)

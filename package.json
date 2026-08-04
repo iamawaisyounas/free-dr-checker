@@ -9,6 +9,7 @@
     "build": "next build",
     "start": "next start",
     "sanity:migrate-blog": "tsx scripts/migrate-blog-to-sanity.ts",
+    "sanity:repair-featured-images": "tsx scripts/repair-blog-featured-images.ts",
     "deploy": "vercel --prod"
   },
   "engines": {

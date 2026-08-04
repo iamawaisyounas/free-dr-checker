@@ -6,7 +6,10 @@ export const postsListQuery = groq`
     "slug": slug.current,
     excerpt,
     intro,
-    featuredImage,
+    featuredImage{
+      ...,
+      asset->{_id, url, mimeType, extension}
+    },
     readingTime,
     publishedAt,
     "author": author->{name, "slug": slug.current, photo, bio, role, linkedinUrl},
@@ -20,7 +23,10 @@ export const postBySlugQuery = groq`
     "slug": slug.current,
     excerpt,
     intro,
-    featuredImage,
+    featuredImage{
+      ...,
+      asset->{_id, url, mimeType, extension}
+    },
     body,
     faqs,
     readingTime,
