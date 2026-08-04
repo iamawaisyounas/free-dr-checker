@@ -4,7 +4,7 @@ import RelatedLinks from "../components/RelatedLinks";
 export const metadata: Metadata = {
   title: "Privacy Policy | DR Checker",
   description:
-    "Read the Dr Checker privacy policy to understand what data we collect, how we use it, and your rights.",
+    "Read our Privacy Policy to learn what information we collect, how we use it, and the steps we take to keep your data safe while using DR Checker.",
   alternates: { canonical: "https://dr-checker.com/privacy-policy" },
   robots: { index: true, follow: true }
 };

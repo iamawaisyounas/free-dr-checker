@@ -12,13 +12,13 @@ export const metadata: Metadata = {
     template: "%s"
   },
   description:
-    "Check any website's Domain Rating (DR) for free using real Ahrefs data. No login required. Enter a domain and get your DR score instantly.",
+    "Check the Domain Rating (DR) of any website in seconds. Use our free Domain Rating Checker to analyze website authority, compare domains, and make smarter SEO decisions. No signup required.",
   alternates: {
     canonical: "https://dr-checker.com/"
   },
   openGraph: {
     title: "Domain Rating Checker – Free, No Signup, Unlimited | DR Checker",
-    description: "Check any website's Domain Rating instantly. Free, no login required.",
+    description: "Check the Domain Rating (DR) of any website in seconds. Use our free Domain Rating Checker to analyze website authority, compare domains, and make smarter SEO decisions. No signup required.",
     url: "https://dr-checker.com",
     siteName: "DR Checker",
     type: "website"
@@ -45,7 +45,7 @@ const webApplicationSchema = {
   name: "DR Checker",
   url: "https://dr-checker.com",
   description:
-    "Check any website's Domain Rating (DR) for free using real Ahrefs data. No login required. Enter a domain and get your DR score instantly.",
+    "Check the Domain Rating (DR) of any website in seconds. Use our free Domain Rating Checker to analyze website authority, compare domains, and make smarter SEO decisions. No signup required.",
   applicationCategory: "SEO Tool",
   operatingSystem: "Web",
   offers: {

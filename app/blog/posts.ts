@@ -17,6 +17,7 @@ export type BlogPost = {
   slug: string;
   title: string;
   excerpt: string;
+  seoDescription?: string;
   category: string;
   date: string;
   readTime: string;
@@ -336,6 +337,7 @@ const seeds: BlogPostSeed[] = [
     slug: "dr-checker-for-agencies",
     title: "How Agencies Can Use a Free DR Checker",
     excerpt: "Use quick DR checks for audits, prospecting, and client-friendly SEO reporting.",
+    seoDescription: "Learn how SEO agencies use a free DR Checker to analyze websites, qualify backlink opportunities, audit competitors, and deliver better results for clients.",
     category: "Agencies",
     date: "2026-06-15",
     intro: "Agencies need fast ways to qualify websites and explain SEO opportunities. A free DR checker helps with early research before deeper paid-tool analysis.",

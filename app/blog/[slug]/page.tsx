@@ -41,13 +41,15 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     return {};
   }
 
+  const metaDescription = post.seoDescription || post.excerpt;
+
   return {
     title: `${post.title} | DR Checker Blog`,
-    description: post.excerpt,
+    description: metaDescription,
     alternates: { canonical: `https://dr-checker.com/blog/${post.slug}` },
     openGraph: {
       title: `${post.title} | DR Checker Blog`,
-      description: post.excerpt,
+      description: metaDescription,
       url: `https://dr-checker.com/blog/${post.slug}`,
       siteName: "Dr Checker",
       type: "article",

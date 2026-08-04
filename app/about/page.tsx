@@ -4,11 +4,11 @@ import RelatedLinks from "../components/RelatedLinks";
 export const metadata: Metadata = {
   title: "About DR Checker – Our Mission, Team & Story | DR Checker",
   description:
-    "Learn about Dr Checker, a free and simple tool to check the Domain Rating of any website. Built by the team behind SocialBu.",
+    "Learn why we built DR Checker and our mission to make powerful SEO tools free, simple, and accessible for marketers, agencies, and website owners.",
   alternates: { canonical: "https://dr-checker.com/about" },
   openGraph: {
     title: "About DR Checker – Our Mission, Team & Story | DR Checker",
-    description: "The story behind Dr Checker - a simple, free Domain Rating checker tool.",
+    description: "Learn why we built DR Checker and our mission to make powerful SEO tools free, simple, and accessible for marketers, agencies, and website owners.",
     url: "https://dr-checker.com/about",
     siteName: "Dr Checker",
     type: "website"

@@ -3,7 +3,7 @@ import RelatedLinks from "../components/RelatedLinks";
 
 export const metadata: Metadata = {
   title: "Terms of Service | DR Checker",
-  description: "The terms and conditions for using the Dr Checker domain rating tool.",
+  description: "Review the DR Checker Terms of Service to understand the rules, responsibilities, and conditions for using our website and free SEO tools.",
   alternates: { canonical: "https://dr-checker.com/terms" },
   robots: { index: true, follow: true }
 };

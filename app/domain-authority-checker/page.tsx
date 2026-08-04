@@ -5,7 +5,7 @@ import SeoBulkTool from "../components/SeoBulkTool";
 export const metadata: Metadata = {
   title: "Free Domain Authority Checker Online | DR Checker",
   description:
-    "Check any website's Domain Authority score for free. Bulk check domains, no signup required. Get referring domains and global rank instantly.",
+    "Check Domain Authority (DA) for any website with our free Domain Authority Checker. Compare websites, evaluate SEO strength, and track authority instantly without creating an account.",
   alternates: { canonical: "https://dr-checker.com/domain-authority-checker" }
 };
 
@@ -15,7 +15,7 @@ export default function AuthorityScorePage() {
     "@type": "SoftwareApplication",
     name: "Domain Authority Checker",
     description:
-      "Check any website's Domain Authority score for free. Bulk check domains, no signup required. Get referring domains and global rank instantly.",
+      "Check Domain Authority (DA) for any website with our free Domain Authority Checker. Compare websites, evaluate SEO strength, and track authority instantly without creating an account.",
     applicationCategory: "SEO Tool",
     operatingSystem: "Web",
     offers: {

@@ -132,6 +132,7 @@ function normalizeSanityPost(post: SanityPost): BlogPost | null {
     slug: post.slug,
     title: post.title,
     excerpt: post.excerpt || staticPost?.excerpt || "",
+    seoDescription: staticPost?.seoDescription || post.seoDescription,
     category: post.category?.title || staticPost?.category || "SEO",
     date: publishedAt.split("T")[0],
     readTime: `${readingTime} min read`,

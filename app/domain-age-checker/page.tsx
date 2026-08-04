@@ -5,7 +5,7 @@ import SeoBulkTool from "../components/SeoBulkTool";
 export const metadata: Metadata = {
   title: "Free Domain Age Checker Online | DR Checker",
   description:
-    "Check any domain's age for free using live WHOIS and RDAP data. See registration date, domain age, and expiry. No signup required.",
+    "Find the exact age of any domain in seconds. Use our free Domain Age Checker to view registration details, website age, and domain history for better SEO research.",
   alternates: { canonical: "https://dr-checker.com/domain-age-checker" }
 };
 
@@ -15,7 +15,7 @@ export default function DomainAgePage() {
     "@type": "SoftwareApplication",
     name: "Domain Age Checker",
     description:
-      "Check any domain's age for free using live WHOIS and RDAP data. See registration date, domain age, and expiry. No signup required.",
+      "Find the exact age of any domain in seconds. Use our free Domain Age Checker to view registration details, website age, and domain history for better SEO research.",
     applicationCategory: "SEO Tool",
     operatingSystem: "Web",
     offers: {

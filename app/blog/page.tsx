@@ -9,11 +9,11 @@ export const revalidate = 60;
 export const metadata: Metadata = {
   title: "DR Checker Blog | Get Better at SEO and Marketing",
   description:
-    "Read practical guides about Domain Rating, SEO research, backlinks, outreach, and using Dr Checker for smarter website checks.",
+    "Actionable SEO guides, link building strategies, and marketing tips to help you rank higher, grow organic traffic, and make better SEO decisions with confidence.",
   alternates: { canonical: "https://dr-checker.com/blog" },
   openGraph: {
     title: "DR Checker Blog | Get Better at SEO and Marketing",
-    description: "Practical Domain Rating and SEO guides from Dr Checker.",
+    description: "Actionable SEO guides, link building strategies, and marketing tips to help you rank higher, grow organic traffic, and make better SEO decisions with confidence.",
     url: "https://dr-checker.com/blog",
     siteName: "Dr Checker",
     type: "website"
