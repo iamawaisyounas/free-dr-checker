@@ -118,14 +118,12 @@ export default function SeoBulkTool({ tool }: Props) {
     setTurnstileResetKey((value) => value + 1);
   }, []);
 
-  useEffect(() => {
+  function handleInputChange(value: string) {
+    setInput(value);
     if (turnstileToken || pendingVerification) {
       resetTurnstile();
     }
-  }, [input, pendingVerification, resetTurnstile, turnstileToken]);
 
-  function handleInputChange(value: string) {
-    setInput(value);
     if (showTurnstile) {
       setShowTurnstile(false);
     }
