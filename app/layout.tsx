@@ -91,13 +91,11 @@ function Footer() {
           </span>
         </nav>
 
-        <nav className="footer-column" aria-label="Social links">
-          <h2>Find Us On</h2>
-          <a href="https://www.linkedin.com/company/socialbu" rel="me noopener noreferrer" target="_blank">LinkedIn</a>
-          <a href="https://twitter.com/socialbu" rel="me noopener noreferrer" target="_blank">Twitter</a>
-          <a href="https://www.instagram.com/socialbu/" rel="me noopener noreferrer" target="_blank">Instagram</a>
-          <a href="https://www.tiktok.com/@socialbu" rel="me noopener noreferrer" target="_blank">TikTok</a>
-          <a href="https://www.facebook.com/socialbu" rel="me noopener noreferrer" target="_blank">Facebook</a>
+        <nav className="footer-column" aria-label="Support links">
+          <h2>Support</h2>
+          <Link href="/faq">Ask a Question</Link>
+          <a href="mailto:support@dr-checker.com">Email</a>
+          <Link href="/contact">Submit Your Request</Link>
         </nav>
       </div>
       <div className="global-footer__bottom">
