@@ -3,6 +3,7 @@ import Link from "next/link";
 import Script from "next/script";
 import { Analytics } from "@vercel/analytics/next";
 import AppHeader from "./components/AppHeader";
+import ScrollToTopOnRouteChange from "./components/ScrollToTopOnRouteChange";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -150,6 +151,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           dangerouslySetInnerHTML={{ __html: JSON.stringify(webApplicationSchema) }}
         />
         <AppHeader />
+        <ScrollToTopOnRouteChange />
         {children}
         <Footer />
         <Analytics />

@@ -6,7 +6,21 @@ export const metadata: Metadata = {
   title: "Free Domain Authority Checker Online | DR Checker",
   description:
     "Check Domain Authority (DA) for any website with our free Domain Authority Checker. Compare websites, evaluate SEO strength, and track authority instantly without creating an account.",
-  alternates: { canonical: "https://dr-checker.com/domain-authority-checker" }
+  alternates: { canonical: "https://dr-checker.com/domain-authority-checker" },
+  openGraph: {
+    title: "Free Domain Authority Checker Online | DR Checker",
+    description:
+      "Check Domain Authority (DA) for any website with our free Domain Authority Checker. Compare websites, evaluate SEO strength, and track authority instantly without creating an account.",
+    url: "https://dr-checker.com/domain-authority-checker",
+    siteName: "DR Checker",
+    type: "website"
+  },
+  twitter: {
+    card: "summary",
+    title: "Free Domain Authority Checker Online | DR Checker",
+    description:
+      "Check Domain Authority (DA) for any website with our free Domain Authority Checker. Compare websites, evaluate SEO strength, and track authority instantly without creating an account."
+  }
 };
 
 export default function AuthorityScorePage() {

@@ -6,7 +6,21 @@ export const metadata: Metadata = {
   title: "Free Domain Age Checker Online | DR Checker",
   description:
     "Find the exact age of any domain in seconds. Use our free Domain Age Checker to view registration details, website age, and domain history for better SEO research.",
-  alternates: { canonical: "https://dr-checker.com/domain-age-checker" }
+  alternates: { canonical: "https://dr-checker.com/domain-age-checker" },
+  openGraph: {
+    title: "Free Domain Age Checker Online | DR Checker",
+    description:
+      "Find the exact age of any domain in seconds. Use our free Domain Age Checker to view registration details, website age, and domain history for better SEO research.",
+    url: "https://dr-checker.com/domain-age-checker",
+    siteName: "DR Checker",
+    type: "website"
+  },
+  twitter: {
+    card: "summary",
+    title: "Free Domain Age Checker Online | DR Checker",
+    description:
+      "Find the exact age of any domain in seconds. Use our free Domain Age Checker to view registration details, website age, and domain history for better SEO research."
+  }
 };
 
 export default function DomainAgePage() {

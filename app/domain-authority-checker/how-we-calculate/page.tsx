@@ -4,7 +4,19 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "How We Calculate Domain Authority Score | DR Checker",
   description: "How DR Checker calculates its 0-100 Domain Authority Score from OpenPageRank data.",
-  alternates: { canonical: "https://dr-checker.com/domain-authority-checker/how-we-calculate" }
+  alternates: { canonical: "https://dr-checker.com/domain-authority-checker/how-we-calculate" },
+  openGraph: {
+    title: "How We Calculate Domain Authority Score | DR Checker",
+    description: "How DR Checker calculates its 0-100 Domain Authority Score from OpenPageRank data.",
+    url: "https://dr-checker.com/domain-authority-checker/how-we-calculate",
+    siteName: "DR Checker",
+    type: "website"
+  },
+  twitter: {
+    card: "summary",
+    title: "How We Calculate Domain Authority Score | DR Checker",
+    description: "How DR Checker calculates its 0-100 Domain Authority Score from OpenPageRank data."
+  }
 };
 
 export default function AuthorityScoreMethodPage() {
