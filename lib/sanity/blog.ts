@@ -127,6 +127,10 @@ function normalizeSanityPost(post: SanityPost): BlogPost | null {
   const sections = sectionsFromBody(post);
   const publishedAt = staticPost?.date || post.publishedAt || new Date().toISOString();
   const readingTime = post.readingTime || estimateReadTimeFromBody(post);
+  const sanityFaqs = post.faqs?.filter((faq) => faq.question && faq.answer).map((faq) => ({
+    question: faq.question as string,
+    answer: faq.answer as string
+  })) || [];
 
   return {
     slug: post.slug,
@@ -148,10 +152,7 @@ function normalizeSanityPost(post: SanityPost): BlogPost | null {
     },
     sections: sections.length ? sections : staticPost?.sections || [],
     body: post.body,
-    faqs: post.faqs?.filter((faq) => faq.question && faq.answer).map((faq) => ({
-      question: faq.question as string,
-      answer: faq.answer as string
-    })) || staticPost?.faqs || [],
+    faqs: sanityFaqs.length ? sanityFaqs : staticPost?.faqs || [],
     related: post.relatedPosts?.map((relatedPost) => relatedPost.slug).filter((slug): slug is string => Boolean(slug)) || staticPost?.related || []
   };
 }

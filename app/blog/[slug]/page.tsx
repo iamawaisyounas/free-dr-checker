@@ -96,6 +96,7 @@ export default async function BlogPostPage({ params }: PageProps) {
   }
 
   const relatedPosts = getRelatedPosts(post);
+  const faqs = post.faqs.filter((faq) => faq.question && faq.answer);
 
   const articleSchema = {
     "@context": "https://schema.org",
@@ -117,10 +118,10 @@ export default async function BlogPostPage({ params }: PageProps) {
     },
     mainEntityOfPage: `https://dr-checker.com/blog/${post.slug}`
   };
-  const faqSchema = {
+  const faqSchema = faqs.length ? {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: post.faqs.map((faq) => ({
+    mainEntity: faqs.map((faq) => ({
       "@type": "Question",
       name: faq.question,
       acceptedAnswer: {
@@ -128,7 +129,7 @@ export default async function BlogPostPage({ params }: PageProps) {
         text: faq.answer
       }
     }))
-  };
+  } : null;
 
   return (
     <main className="blog-post-page">
@@ -136,10 +137,12 @@ export default async function BlogPostPage({ params }: PageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
       />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
+      {faqSchema ? (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+      ) : null}
       <section className="blog-post-hero" aria-labelledby="blog-post-title">
         <div className="blog-post-hero__inner">
           <div className="blog-post-hero__content">
@@ -280,17 +283,19 @@ export default async function BlogPostPage({ params }: PageProps) {
             </section>
           ) : null}
 
-          <section className="blog-post__faqs" aria-labelledby="domain-rating-faqs">
-            <h2 id="domain-rating-faqs">Frequently asked questions</h2>
-            <div className="faq-list">
-              {post.faqs.map((faq) => (
-                <details key={faq.question}>
-                  <summary>{faq.question}</summary>
-                  <p>{faq.answer}</p>
-                </details>
-              ))}
-            </div>
-          </section>
+          {faqs.length ? (
+            <section className="blog-post__faqs" aria-labelledby="domain-rating-faqs">
+              <h2 id="domain-rating-faqs">Frequently asked questions</h2>
+              <div className="faq-list">
+                {faqs.map((faq) => (
+                  <details key={faq.question}>
+                    <summary>{faq.question}</summary>
+                    <p>{faq.answer}</p>
+                  </details>
+                ))}
+              </div>
+            </section>
+          ) : null}
 
         </article>
 
