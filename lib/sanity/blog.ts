@@ -125,7 +125,7 @@ function normalizeSanityPost(post: SanityPost): BlogPost | null {
 
   const staticPost = getBlogPost(post.slug);
   const sections = sectionsFromBody(post);
-  const publishedAt = post.publishedAt || staticPost?.date || new Date().toISOString();
+  const publishedAt = staticPost?.date || post.publishedAt || new Date().toISOString();
   const readingTime = post.readingTime || estimateReadTimeFromBody(post);
 
   return {

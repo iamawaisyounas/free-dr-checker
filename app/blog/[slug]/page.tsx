@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PortableText } from "@portabletext/react";
 import BlogCtaSection from "../../components/BlogCtaSection";
@@ -6,6 +7,7 @@ import BlogDrCard from "../../components/BlogDrCard";
 import BlogToc from "../../components/BlogToc";
 import { getBlogPostBySlug, getBlogSlugs } from "../../../lib/sanity/blog";
 import { urlFor } from "../../../lib/sanity/image";
+import { getRelatedPosts } from "../posts";
 
 export const revalidate = 60;
 
@@ -67,6 +69,24 @@ function absoluteImageUrl(image: string) {
   return image.startsWith("http") ? image : `https://dr-checker.com${image}`;
 }
 
+const toolLinks = [
+  {
+    href: "/",
+    label: "Free Domain Rating Checker",
+    description: "Check a website's DR before comparing competitors, outreach targets, or backlink opportunities."
+  },
+  {
+    href: "/domain-authority-checker",
+    label: "Domain Authority Checker",
+    description: "Compare another authority-style score when you want a second link graph perspective."
+  },
+  {
+    href: "/domain-age-checker",
+    label: "Domain Age Checker",
+    description: "Review domain history context before outreach, acquisition, or competitor research."
+  }
+];
+
 export default async function BlogPostPage({ params }: PageProps) {
   const { slug } = await params;
   const post = await getBlogPostBySlug(slug);
@@ -74,6 +94,8 @@ export default async function BlogPostPage({ params }: PageProps) {
   if (!post) {
     notFound();
   }
+
+  const relatedPosts = getRelatedPosts(post);
 
   const articleSchema = {
     "@context": "https://schema.org",
@@ -193,6 +215,82 @@ export default async function BlogPostPage({ params }: PageProps) {
               ))
             )}
           </div>
+
+          <section className="blog-post__table" aria-labelledby="domain-rating-review-checklist">
+            <h2 id="domain-rating-review-checklist">Domain Rating review checklist</h2>
+            <p>Use this table to turn the article into a practical decision instead of relying on one authority score.</p>
+            <div className="responsive-table">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Review area</th>
+                    <th>What to check</th>
+                    <th>Why it matters</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Domain Rating</td>
+                    <td>Compare the domain with similar sites in the same niche.</td>
+                    <td>Keeps the benchmark relevant instead of chasing a generic DR target.</td>
+                  </tr>
+                  <tr>
+                    <td>Relevance</td>
+                    <td>Check topic fit, audience fit, and whether the page would help a real reader.</td>
+                    <td>Relevant links and partnerships are usually more useful than unrelated authority.</td>
+                  </tr>
+                  <tr>
+                    <td>Quality</td>
+                    <td>Review content depth, editorial standards, outbound links, and trust signals.</td>
+                    <td>Manual review helps avoid weak placements that look good only in a spreadsheet.</td>
+                  </tr>
+                  <tr>
+                    <td>Next action</td>
+                    <td>Record the score, add notes, and decide whether to research, pitch, track, or skip.</td>
+                    <td>A clear next step makes DR useful for SEO execution and reporting.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section className="blog-post__internal-links" aria-labelledby="useful-dr-checker-tools">
+            <h2 id="useful-dr-checker-tools">Useful DR Checker tools</h2>
+            <div className="blog-post__tool-links">
+              {toolLinks.map((tool) => (
+                <Link key={tool.href} href={tool.href}>
+                  <strong>{tool.label}</strong>
+                  <span>{tool.description}</span>
+                </Link>
+              ))}
+            </div>
+          </section>
+
+          {relatedPosts.length ? (
+            <section className="related-posts" aria-labelledby="related-domain-rating-guides">
+              <h2 id="related-domain-rating-guides">Related Domain Rating guides</h2>
+              <div>
+                {relatedPosts.slice(0, 4).map((relatedPost) => (
+                  <Link key={relatedPost.slug} href={`/blog/${relatedPost.slug}`}>
+                    <span>{relatedPost.category}</span>
+                    <strong>{relatedPost.title}</strong>
+                  </Link>
+                ))}
+              </div>
+            </section>
+          ) : null}
+
+          <section className="blog-post__faqs" aria-labelledby="domain-rating-faqs">
+            <h2 id="domain-rating-faqs">Frequently asked questions</h2>
+            <div className="faq-list">
+              {post.faqs.map((faq) => (
+                <details key={faq.question}>
+                  <summary>{faq.question}</summary>
+                  <p>{faq.answer}</p>
+                </details>
+              ))}
+            </div>
+          </section>
 
         </article>
 
