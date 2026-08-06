@@ -13,13 +13,13 @@ export const metadata: Metadata = {
     template: "%s"
   },
   description:
-    "Check the Ahrefs Domain Rating (DR) of any website for free. Get accurate DR scores powered by the Ahrefs API and analyze your website's authority with a single click.",
+    "Check Ahrefs Domain Rating (DR), URL Rating (UR), and website authority for any website with our free Bulk DR Checker. Fast, accurate results powered by the Ahrefs API.",
   alternates: {
     canonical: "https://dr-checker.com/"
   },
   openGraph: {
     title: "Domain Rating Checker - Check Ahrefs DR for Free | DR Checker",
-    description: "Check the Ahrefs Domain Rating (DR) of any website for free. Get accurate DR scores powered by the Ahrefs API and analyze your website's authority with a single click.",
+    description: "Check Ahrefs Domain Rating (DR), URL Rating (UR), and website authority for any website with our free Bulk DR Checker. Fast, accurate results powered by the Ahrefs API.",
     url: "https://dr-checker.com",
     siteName: "DR Checker",
     type: "website"
@@ -46,7 +46,7 @@ const webApplicationSchema = {
   name: "DR Checker",
   url: "https://dr-checker.com",
   description:
-    "Check the Ahrefs Domain Rating (DR) of any website for free. Get accurate DR scores powered by the Ahrefs API and analyze your website's authority with a single click.",
+    "Check Ahrefs Domain Rating (DR), URL Rating (UR), and website authority for any website with our free Bulk DR Checker.",
   applicationCategory: "SEO Tool",
   operatingSystem: "Web",
   offers: {
