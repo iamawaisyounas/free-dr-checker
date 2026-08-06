@@ -3,12 +3,12 @@ import DiscoverTools from "../components/DiscoverTools";
 import SeoBulkTool from "../components/SeoBulkTool";
 
 export const metadata: Metadata = {
-  title: "Free Domain Age Checker Online | DR Checker",
+  title: "Free Domain Age Checker - Check Domain Age Of any Website",
   description:
     "Find the exact age of any domain in seconds. Use our free Domain Age Checker to view registration details, website age, and domain history for better SEO research.",
   alternates: { canonical: "https://dr-checker.com/domain-age-checker" },
   openGraph: {
-    title: "Free Domain Age Checker Online | DR Checker",
+    title: "Free Domain Age Checker - Check Domain Age Of any Website",
     description:
       "Find the exact age of any domain in seconds. Use our free Domain Age Checker to view registration details, website age, and domain history for better SEO research.",
     url: "https://dr-checker.com/domain-age-checker",
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary",
-    title: "Free Domain Age Checker Online | DR Checker",
+    title: "Free Domain Age Checker - Check Domain Age Of any Website",
     description:
       "Find the exact age of any domain in seconds. Use our free Domain Age Checker to view registration details, website age, and domain history for better SEO research."
   }
