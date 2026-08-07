@@ -2994,6 +2994,23 @@ details p {
   margin: 0;
 }
 
+.blog-post__body a {
+  color: var(--blog-primary);
+  font-weight: 650;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+.blog-post__body a:hover {
+  color: var(--blog-primary-strong);
+}
+
+.blog-post__body a:focus-visible {
+  outline: 3px solid rgba(19, 104, 233, 0.28);
+  outline-offset: 3px;
+}
+
 .blog-post__takeaways {
   display: grid;
   gap: 14px;
