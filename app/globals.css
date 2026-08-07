@@ -1496,6 +1496,25 @@ body.dark-mode .tip-list p:hover {
   margin: 0 auto;
 }
 
+.faq-list__item {
+  border-bottom: 1px solid var(--border);
+  padding: 18px 0;
+  text-align: left;
+}
+
+.faq-list__item h3 {
+  margin: 0 0 8px;
+  color: var(--foreground);
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+.faq-list__item p {
+  margin: 0;
+  color: var(--muted-foreground);
+  line-height: 1.65;
+}
+
 .faq-block details {
   margin: 0;
   padding: 0;

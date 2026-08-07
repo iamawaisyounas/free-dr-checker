@@ -68,10 +68,11 @@ function imageFor(slug: string) {
 }
 
 function buildSections(seed: BlogPostSeed): BlogSection[] {
-  const relatedLinks = seed.related.map((slug) => blogLinkText[slug]).filter(Boolean);
+  const relatedLinks = internalBlogLinksFor(seed);
   const firstRelated = relatedLinks[0];
   const secondRelated = relatedLinks[1];
   const thirdRelated = relatedLinks[2];
+  const fourthRelated = relatedLinks[3];
 
   return [
     {
@@ -106,7 +107,7 @@ function buildSections(seed: BlogPostSeed): BlogSection[] {
       heading: "The mistake to avoid",
       body: [
         `${seed.mistake} This is where many teams make the wrong call. They accept a site only because the DR is high, reject a niche site only because the DR is modest, or chase links that look good in a spreadsheet but make little sense for readers. That creates busy work, not better SEO.`,
-        `A better rule is simple: if the link would still look valuable without the DR score, it is probably worth considering. If the link only looks attractive because a metric is high, slow down. Check the content, the outbound link pattern, the topic fit, and whether a real reader would trust the page.`
+        `A better rule is simple: if the link would still look valuable without the DR score, it is probably worth considering. If the link only looks attractive because a metric is high, slow down. Check the content, the outbound link pattern, the topic fit, and whether a real reader would trust the page.${fourthRelated ? ` When the decision still feels unclear, compare it with [${fourthRelated.label}](${fourthRelated.href}) to ground the next step in a related SEO workflow.` : ""}`
       ]
     },
     {
@@ -140,6 +141,35 @@ const blogLinkText: Record<string, { href: string; label: string }> = {
   "dr-checker-for-agencies": { href: "/blog/dr-checker-for-agencies", label: "using a free DR checker for agencies" },
   "technical-seo-and-domain-rating": { href: "/blog/technical-seo-and-domain-rating", label: "technical SEO and Domain Rating" }
 };
+
+function internalBlogLinksFor(seed: BlogPostSeed) {
+  const links = seed.related.map((slug) => blogLinkText[slug]).filter(Boolean);
+  const fallbackSlugs = [
+    "what-is-domain-rating",
+    "domain-rating-vs-domain-authority",
+    "how-accurate-is-domain-rating",
+    "check-domain-rating-for-guest-posts",
+    "competitor-domain-rating-analysis",
+    "improve-domain-rating",
+    "backlink-quality-over-quantity",
+    "outreach-list-domain-rating",
+    "track-domain-rating-over-time",
+    "dr-checker-for-agencies",
+    "technical-seo-and-domain-rating"
+  ];
+
+  for (const slug of fallbackSlugs) {
+    const link = blogLinkText[slug];
+    if (slug !== seed.slug && link && !links.some((existing) => existing.href === link.href)) {
+      links.push(link);
+    }
+    if (links.length >= 4) {
+      break;
+    }
+  }
+
+  return links;
+}
 
 function wordCount(text: string) {
   return text.trim().split(/\s+/).filter(Boolean).length;
