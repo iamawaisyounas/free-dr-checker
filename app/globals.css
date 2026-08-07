@@ -1515,6 +1515,18 @@ body.dark-mode .tip-list p:hover {
   line-height: 1.65;
 }
 
+.blog-post__faqs .faq-list__item {
+  border-bottom-color: var(--blog-border);
+}
+
+.blog-post__faqs .faq-list__item h3 {
+  color: var(--blog-text);
+}
+
+.blog-post__faqs .faq-list__item p {
+  color: var(--blog-muted);
+}
+
 .faq-block details {
   margin: 0;
   padding: 0;
