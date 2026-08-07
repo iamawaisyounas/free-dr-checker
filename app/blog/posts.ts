@@ -13,6 +13,17 @@ export type BlogSection = {
   body: string[];
 };
 
+export type BlogSupportBlock = {
+  heading: string;
+  intro: string;
+  type: "comparison" | "checklist" | "pros-cons" | "timeline" | "matrix" | "scorecard";
+  columns?: string[];
+  rows?: string[][];
+  items?: string[];
+  pros?: string[];
+  cons?: string[];
+};
+
 export type BlogPost = {
   slug: string;
   title: string;
@@ -22,6 +33,8 @@ export type BlogPost = {
   date: string;
   readTime: string;
   intro: string;
+  takeaways: string[];
+  supportBlock: BlogSupportBlock;
   featuredImage: string;
   featuredImageAlt: string;
   author: BlogAuthor;
@@ -34,7 +47,7 @@ export type BlogPost = {
   related: string[];
 };
 
-type BlogPostSeed = Omit<BlogPost, "readTime" | "featuredImage" | "featuredImageAlt" | "author" | "sections"> & {
+type BlogPostSeed = Omit<BlogPost, "readTime" | "featuredImage" | "featuredImageAlt" | "author" | "sections" | "takeaways" | "supportBlock"> & {
   keyword: string;
   audience: string;
   promise: string;
@@ -55,11 +68,16 @@ function imageFor(slug: string) {
 }
 
 function buildSections(seed: BlogPostSeed): BlogSection[] {
+  const relatedLinks = seed.related.map((slug) => blogLinkText[slug]).filter(Boolean);
+  const firstRelated = relatedLinks[0];
+  const secondRelated = relatedLinks[1];
+  const thirdRelated = relatedLinks[2];
+
   return [
     {
-      heading: `The quick answer on ${seed.keyword}`,
+      heading: `How ${seed.keyword} works in practice`,
       body: [
-        `${seed.promise} The fastest way to use this idea is to treat Domain Rating as a screening metric, not as the final verdict. Run a domain through the free DR checker, note the score, and then ask a second question: does the website look relevant, trustworthy, and useful for the searcher or campaign you are working on? That sequence keeps the metric helpful without letting it take over the decision.`,
+        `${seed.promise} The fastest way to use this idea is to treat Domain Rating as a screening metric, not as the final verdict. Run a domain through the [free Domain Rating checker](/), note the score, and then ask a second question: does the website look relevant, trustworthy, and useful for the searcher or campaign you are working on? That sequence keeps the metric helpful without letting it take over the decision.`,
         `This matters because SEO teams often waste time debating one number. A DR score can tell you whether a backlink profile looks strong compared with other domains, but it cannot tell you whether a link is contextually useful, whether the page satisfies search intent, or whether the audience is a good fit. Use the number to move faster, then use human review to make the decision smarter.`
       ]
     },
@@ -67,13 +85,13 @@ function buildSections(seed: BlogPostSeed): BlogSection[] {
       heading: `Why ${seed.audience} should care`,
       body: [
         `For ${seed.audience}, a simple way to compare opportunities before opening a full backlink report can save hours of review time. ${seed.keyword} gives you that first-pass filter. It helps you sort competitors, guest post targets, partner sites, and outreach prospects into groups that deserve more attention and groups that probably are not worth a long review.`,
-        `The key is consistency. Check your own domain, your direct competitors, and a few respected publishers in your niche with the same tool. When you compare DR against DR, the benchmark becomes easier to explain. That is much cleaner than mixing authority scores from different platforms and trying to force them into one universal truth.`
+        `The key is consistency. Check your own domain, your direct competitors, and a few respected publishers in your niche with the same tool. When you compare DR against DR, the benchmark becomes easier to explain. If you need a second view of authority, use the [Domain Authority checker](/domain-authority-checker) separately instead of mixing scores into one universal truth.`
       ]
     },
     {
       heading: "A simple step-by-step workflow",
       body: [
-        `${seed.workflow} Start with the homepage checker, enter the domain, and record the score with the date. Then add the domain to a small comparison sheet that includes relevance, organic visibility, publishing quality, and notes about the page you might earn a link from. This gives you a practical view of the site instead of a lonely score with no context.`,
+        `${seed.workflow} Start with the homepage checker, enter the domain, and record the score with the date. Then add the domain to a small comparison sheet that includes relevance, organic visibility, publishing quality, and notes about the page you might earn a link from. ${firstRelated ? `For the next layer of context, use the guide to [${firstRelated.label}](${firstRelated.href}) before you make the final call.` : "This gives you a practical view of the site instead of a lonely score with no context."}`,
         `Next, group domains into three buckets: strong opportunities, possible opportunities, and weak opportunities. Strong opportunities have a useful DR score, clear topical relevance, and real editorial standards. Possible opportunities may need a closer look. Weak opportunities are sites where the score, relevance, or quality signals do not support the effort required.`
       ]
     },
@@ -81,7 +99,7 @@ function buildSections(seed: BlogPostSeed): BlogSection[] {
       heading: "How to read the score without overreacting",
       body: [
         `DR moves when backlink indexes update, when websites gain or lose links, and when the wider link graph changes. Small changes are normal. A one-point movement should not trigger a new strategy, a panic audit, or a rushed link campaign. Look for direction over time and compare that direction against the sites that actually compete with you.`,
-        `${seed.benchmark} That benchmark is more useful than a generic target like "get to DR 70." A local service site, a SaaS startup, and a national publisher live in different competitive environments. The right question is not "what is a perfect DR?" The right question is "what DR range is normal for the websites that rank, partner, and earn attention in this market?"`
+        `${seed.benchmark} That benchmark is more useful than a generic target like "get to DR 70." ${secondRelated ? `If the number looks surprising, compare it with [${secondRelated.label}](${secondRelated.href}) so you understand whether the score is a trend, a data limitation, or a strategy signal.` : "The right question is not \"what is a perfect DR?\" The right question is \"what DR range is normal for the websites that rank, partner, and earn attention in this market?\""}`
       ]
     },
     {
@@ -92,16 +110,9 @@ function buildSections(seed: BlogPostSeed): BlogSection[] {
       ]
     },
     {
-      heading: "Internal links that support the decision",
-      body: [
-        `After you check a domain, use internal resources to keep the next step clear. The free checker gives you the score, the Domain Rating FAQ explains common questions, and the related guides on competitor research, guest posting, backlink quality, and tracking help you turn the number into an action plan. Internal links are not just for crawlers; they help readers move from research to execution.`,
-        `This is also good SEO practice for your own site. When you publish useful guides, connect them to your tools, FAQs, and related articles. Search engines can discover the relationship between pages, and users can continue learning without going back to search results. For a DR-focused website, that means every article should naturally point readers back to the checker and to the next guide that helps them make a better decision.`
-      ]
-    },
-    {
       heading: "What to review before taking action",
       body: [
-        `${seed.example} Use that example as a reminder that DR is only one layer of the review. Before you send an outreach email, buy a sponsorship, accept a guest post offer, or report progress to a client, look at the page quality, search intent, link placement, topical fit, and whether the site seems to have a real audience.`,
+        `${seed.example} Use that example as a reminder that DR is only one layer of the review. Before you send an outreach email, buy a sponsorship, accept a guest post offer, or report progress to a client, look at the page quality, search intent, link placement, topical fit, and whether the site seems to have a real audience. ${thirdRelated ? `The related guide on [${thirdRelated.label}](${thirdRelated.href}) can help you connect the metric to the next practical decision.` : ""}`,
         `For important decisions, add a manual check. Open recent articles, scan author pages, look for excessive outbound links, and see whether the site covers the topic with genuine expertise. The more money, reputation, or client trust is involved, the more you should combine DR with deeper review.`
       ]
     },
@@ -109,21 +120,43 @@ function buildSections(seed: BlogPostSeed): BlogSection[] {
       heading: "Conclusion and practical checklist",
       body: [
         `Here is the short version: check the DR, compare it with relevant alternatives, review topical fit, inspect content quality, look for natural editorial standards, and decide whether the opportunity would make sense even without the metric. That checklist keeps the process fast but not shallow.`,
-        `If you want the simplest next step, run your domain and three competitors through Dr Checker today. Write down the score, note what each site does better, and choose one backlink or content improvement you can act on this week. Small, consistent improvements compound faster than occasional metric-chasing campaigns.`
+        `For the simplest next step, run your domain and three competitors through Dr Checker today. Write down the score, note what each site does better, and use the [Domain Age checker](/domain-age-checker) when history or ownership context matters. Small, consistent improvements compound faster than occasional metric-chasing campaigns.`
       ]
     }
   ];
 }
 
+const blogLinkText: Record<string, { href: string; label: string }> = {
+  "what-is-domain-rating": { href: "/blog/what-is-domain-rating", label: "what Domain Rating means" },
+  "domain-rating-vs-domain-authority": { href: "/blog/domain-rating-vs-domain-authority", label: "Domain Rating vs Domain Authority" },
+  "how-accurate-is-domain-rating": { href: "/blog/how-accurate-is-domain-rating", label: "Domain Rating accuracy" },
+  "check-domain-rating-for-guest-posts": { href: "/blog/check-domain-rating-for-guest-posts", label: "checking Domain Rating before guest posting" },
+  "competitor-domain-rating-analysis": { href: "/blog/competitor-domain-rating-analysis", label: "competitor Domain Rating analysis" },
+  "improve-domain-rating": { href: "/blog/improve-domain-rating", label: "improving Domain Rating safely" },
+  "backlink-quality-over-quantity": { href: "/blog/backlink-quality-over-quantity", label: "backlink quality vs quantity" },
+  "outreach-list-domain-rating": { href: "/blog/outreach-list-domain-rating", label: "using Domain Rating in outreach lists" },
+  "hootsuite-alternatives": { href: "/blog/hootsuite-alternatives", label: "Hootsuite alternatives for content teams" },
+  "track-domain-rating-over-time": { href: "/blog/track-domain-rating-over-time", label: "tracking Domain Rating over time" },
+  "dr-checker-for-agencies": { href: "/blog/dr-checker-for-agencies", label: "using a free DR checker for agencies" },
+  "technical-seo-and-domain-rating": { href: "/blog/technical-seo-and-domain-rating", label: "technical SEO and Domain Rating" }
+};
+
 function wordCount(text: string) {
   return text.trim().split(/\s+/).filter(Boolean).length;
 }
 
-function estimateReadTime(seed: BlogPostSeed, sections: BlogSection[]) {
+function estimateReadTime(seed: BlogPostSeed & Pick<BlogPost, "takeaways" | "supportBlock">, sections: BlogSection[]) {
   const words = [
     seed.title,
     seed.excerpt,
     seed.intro,
+    ...seed.takeaways,
+    seed.supportBlock.heading,
+    seed.supportBlock.intro,
+    ...(seed.supportBlock.items || []),
+    ...(seed.supportBlock.pros || []),
+    ...(seed.supportBlock.cons || []),
+    ...(seed.supportBlock.rows || []).flat(),
     ...sections.flatMap((section) => [section.heading, ...section.body]),
     ...seed.faqs.flatMap((faq) => [faq.question, faq.answer])
   ].reduce((total, text) => total + wordCount(text), 0);
@@ -132,13 +165,194 @@ function estimateReadTime(seed: BlogPostSeed, sections: BlogSection[]) {
   return `${minutes} min read`;
 }
 
+function defaultFaqs(seed: BlogPostSeed) {
+  const faqs = [...seed.faqs];
+  const defaults = [
+    {
+      question: `What is the fastest way to use ${seed.keyword}?`,
+      answer: `Use ${seed.keyword} as a first-pass filter, then review relevance, content quality, traffic signals, and whether the opportunity supports a real SEO goal.`
+    },
+    {
+      question: `Should ${seed.keyword} be the only metric I use?`,
+      answer: `No. It is useful for comparison, but stronger decisions also include topical relevance, backlink quality, organic visibility, and manual review.`
+    },
+    {
+      question: `How often should I review ${seed.keyword}?`,
+      answer: `Monthly review is enough for most websites. Check more often during migrations, active outreach campaigns, or major backlink changes.`
+    },
+    {
+      question: `Can a lower-DR website still be valuable?`,
+      answer: `Yes. A relevant lower-DR site with real readers and editorial standards can be more valuable than an unrelated higher-DR site.`
+    }
+  ];
+
+  for (const faq of defaults) {
+    if (faqs.length >= 4) {
+      break;
+    }
+    if (!faqs.some((existing) => existing.question === faq.question)) {
+      faqs.push(faq);
+    }
+  }
+
+  return faqs;
+}
+
+function takeawaysFor(seed: BlogPostSeed) {
+  return [
+    seed.promise,
+    seed.workflow,
+    seed.mistake,
+    `${seed.benchmark} Use that context before you spend time, budget, or client trust on the decision.`
+  ];
+}
+
+const supportBlocks: Record<string, BlogSupportBlock> = {
+  "what-is-domain-rating": {
+    heading: "Domain Rating decision checklist",
+    intro: "Use this quick checklist when a DR score is about to influence content, outreach, or reporting.",
+    type: "checklist",
+    items: [
+      "Check the domain and record the score with the date.",
+      "Compare it only with relevant competitors or publishers.",
+      "Review backlink quality and topical fit before taking action.",
+      "Use the score as a signal, not as proof of ranking potential."
+    ]
+  },
+  "domain-rating-vs-domain-authority": {
+    heading: "DR vs DA comparison",
+    intro: "The two metrics answer similar questions, but they should not be blended into one benchmark.",
+    type: "comparison",
+    columns: ["Metric", "Best use", "Watch out for"],
+    rows: [
+      ["Domain Rating", "Comparing backlink strength inside DR-based workflows.", "Treating it as a Google metric."],
+      ["Domain Authority", "Getting another authority-style view from a different provider.", "Comparing it directly against DR."],
+      ["Both together", "Building a broader view during audits.", "Averaging them into one score."]
+    ]
+  },
+  "how-accurate-is-domain-rating": {
+    heading: "How to judge DR accuracy",
+    intro: "Accuracy is easier to evaluate when you separate normal score movement from decision-changing evidence.",
+    type: "matrix",
+    columns: ["Signal", "Meaning", "Action"],
+    rows: [
+      ["One-point movement", "Usually normal index noise.", "Watch, but do not rewrite strategy."],
+      ["Repeated monthly growth", "Likely stronger backlink trend.", "Connect it to new referring domains."],
+      ["Large unexpected drop", "Could be lost links or index changes.", "Audit important links and redirects."]
+    ]
+  },
+  "check-domain-rating-for-guest-posts": {
+    heading: "Guest post screening scorecard",
+    intro: "A good guest post target needs more than a score. Use these checks before you say yes.",
+    type: "scorecard",
+    columns: ["Review area", "Pass signal", "Risk signal"],
+    rows: [
+      ["DR", "Similar to reputable niche sites.", "High score with unrelated content."],
+      ["Relevance", "Audience matches your market.", "Generic site accepting every pitch."],
+      ["Editorial quality", "Real authors and useful pages.", "Thin posts with excessive outbound links."]
+    ]
+  },
+  "competitor-domain-rating-analysis": {
+    heading: "Competitor research workflow",
+    intro: "Use DR to decide where to look deeper, then validate the reason competitors are ahead.",
+    type: "timeline",
+    items: [
+      "List direct competitors and niche publishers.",
+      "Check DR for each domain on the same day.",
+      "Sort by DR range, then inspect top-ranking pages.",
+      "Turn the gaps into content, PR, or outreach priorities."
+    ]
+  },
+  "improve-domain-rating": {
+    heading: "Safe DR growth priorities",
+    intro: "The safest improvements are the ones that would still make sense if no score existed.",
+    type: "pros-cons",
+    pros: [
+      "Original research and data pages can earn editorial citations.",
+      "Relevant outreach builds relationships as well as links.",
+      "Mention reclamation recovers value from attention you already earned."
+    ],
+    cons: [
+      "Paid link networks can create risk without real audience value.",
+      "Irrelevant high-DR links rarely support qualified traffic.",
+      "Sudden link spikes can be hard to explain in client reporting."
+    ]
+  },
+  "backlink-quality-over-quantity": {
+    heading: "Quality vs quantity decision matrix",
+    intro: "Use this matrix when a campaign is producing links but the value is unclear.",
+    type: "matrix",
+    columns: ["Link profile", "What it suggests", "Best next step"],
+    rows: [
+      ["Few relevant links", "Small but clean authority base.", "Earn more links from similar sites."],
+      ["Many weak links", "Volume without much trust.", "Stop counting links and audit quality."],
+      ["Relevant high-authority links", "Strongest long-term pattern.", "Protect those relationships and pages."]
+    ]
+  },
+  "outreach-list-domain-rating": {
+    heading: "Outreach list checklist",
+    intro: "A prospect list should get smaller and stronger after DR review, not just longer.",
+    type: "checklist",
+    items: [
+      "Add DR, relevance, editor fit, and notes for every prospect.",
+      "Keep mid-DR sites when the niche fit is strong.",
+      "Remove high-DR sites that publish unrelated or low-quality posts.",
+      "Personalize pitches around the site, not around the metric."
+    ]
+  },
+  "hootsuite-alternatives": {
+    heading: "Social tool selection matrix",
+    intro: "For SEO teams, the best social tool is the one that helps strong content reach the right people consistently.",
+    type: "comparison",
+    columns: ["Need", "What to compare", "Why it matters"],
+    rows: [
+      ["Publishing speed", "Drafting, approvals, scheduling.", "Keeps promotion from slowing down launches."],
+      ["Campaign reporting", "UTMs, link clicks, post performance.", "Shows whether distribution supports SEO assets."],
+      ["Team workflow", "Roles, comments, approvals.", "Prevents content from getting stuck before publishing."]
+    ]
+  },
+  "track-domain-rating-over-time": {
+    heading: "DR tracking timeline",
+    intro: "A calm reporting rhythm makes DR more useful and easier to explain.",
+    type: "timeline",
+    items: [
+      "Record the baseline score and current referring domains.",
+      "Log major outreach, PR, migration, and content launches.",
+      "Review DR monthly alongside competitor movement.",
+      "Explain changes with notes, not just screenshots."
+    ]
+  },
+  "dr-checker-for-agencies": {
+    heading: "Agency DR use cases",
+    intro: "Agencies can use quick DR checks at different points in the client workflow.",
+    type: "comparison",
+    columns: ["Use case", "How DR helps", "What to add"],
+    rows: [
+      ["Initial audit", "Shows backlink strength quickly.", "Competitor context and quality notes."],
+      ["Prospecting", "Filters outreach targets.", "Relevance and editorial review."],
+      ["Reporting", "Makes authority trends visible.", "Traffic, conversions, and referring domains."]
+    ]
+  },
+  "technical-seo-and-domain-rating": {
+    heading: "Technical SEO and link authority checks",
+    intro: "Technical issues do not create DR, but they can affect how link value reaches important pages.",
+    type: "checklist",
+    items: [
+      "Fix broken pages that have backlinks.",
+      "Keep redirects short, clean, and relevant.",
+      "Strengthen internal links to important linked pages.",
+      "Monitor DR and crawlability after migrations."
+    ]
+  }
+};
+
 const seeds: BlogPostSeed[] = [
   {
     slug: "what-is-domain-rating",
     title: "What Is Domain Rating and How Should You Use It?",
     excerpt: "A practical guide to reading DR scores without treating them like a direct ranking factor.",
     category: "Domain Rating",
-    date: "2026-08-06",
+    date: "2026-08-07",
     intro: "Domain Rating is useful when you need a quick view of backlink strength, but it works best when paired with context. Use it to compare domains, qualify outreach targets, and spot backlink gaps before you dig deeper.",
     keyword: "Domain Rating",
     audience: "site owners and SEO teams",
@@ -158,7 +372,7 @@ const seeds: BlogPostSeed[] = [
     title: "Domain Rating vs Domain Authority: What Is the Difference?",
     excerpt: "Understand how popular authority metrics differ and when each one is useful.",
     category: "SEO Metrics",
-    date: "2026-08-06",
+    date: "2026-08-07",
     intro: "Domain Rating and Domain Authority are both authority-style SEO metrics, but they come from different tools and use different data. The important thing is consistency: compare one metric against itself instead of mixing scores from multiple platforms.",
     keyword: "Domain Rating vs Domain Authority",
     audience: "marketers comparing SEO tools",
@@ -178,7 +392,7 @@ const seeds: BlogPostSeed[] = [
     title: "How Accurate Is Domain Rating?",
     excerpt: "Learn why DR is an estimate and how to make better decisions with it.",
     category: "SEO Metrics",
-    date: "2026-08-06",
+    date: "2026-08-07",
     intro: "DR is accurate enough for directional research, but it is not a live count of every backlink on the web. Treat it as a helpful estimate, then validate important opportunities with deeper checks.",
     keyword: "Domain Rating accuracy",
     audience: "SEOs validating backlink data",
@@ -198,7 +412,7 @@ const seeds: BlogPostSeed[] = [
     title: "How to Check Domain Rating Before Guest Posting",
     excerpt: "Use DR, relevance, and page quality together before saying yes to guest post opportunities.",
     category: "Link Building",
-    date: "2026-08-06",
+    date: "2026-08-07",
     intro: "Guest posting works best when the host site is relevant, editorial, and trusted. DR helps you screen opportunities quickly, but it should never be the only filter.",
     keyword: "DR for guest posting",
     audience: "guest post buyers, founders, and outreach teams",
@@ -218,7 +432,7 @@ const seeds: BlogPostSeed[] = [
     title: "How to Use Domain Rating for Competitor Research",
     excerpt: "Find stronger competitors, backlink gaps, and realistic SEO benchmarks with DR checks.",
     category: "Research",
-    date: "2026-08-06",
+    date: "2026-08-07",
     intro: "Competitor research gets easier when you know how strong each domain is. DR gives you a quick way to sort competitors before reviewing content, links, and traffic potential.",
     keyword: "competitor Domain Rating analysis",
     audience: "SEO teams planning competitive research",
@@ -238,7 +452,7 @@ const seeds: BlogPostSeed[] = [
     title: "How to Improve Domain Rating Safely",
     excerpt: "A calm approach to earning better links without chasing risky shortcuts.",
     category: "Link Building",
-    date: "2026-08-06",
+    date: "2026-08-07",
     intro: "Improving DR is really about improving the quality of websites that link to you. Sustainable growth comes from useful content, relevant outreach, and relationships that create natural mentions.",
     keyword: "improve Domain Rating",
     audience: "website owners building authority",
@@ -258,7 +472,7 @@ const seeds: BlogPostSeed[] = [
     title: "Backlink Quality vs Quantity: What Matters for DR?",
     excerpt: "Why a few strong, relevant links often beat a pile of weak links.",
     category: "Backlinks",
-    date: "2026-08-06",
+    date: "2026-08-07",
     intro: "DR rewards stronger backlink profiles, but more links are not always better. Link quality, authority, and relevance matter more than raw volume.",
     keyword: "backlink quality vs quantity",
     audience: "link builders and SEO managers",
@@ -278,7 +492,7 @@ const seeds: BlogPostSeed[] = [
     title: "How to Use Domain Rating in Outreach Lists",
     excerpt: "Build cleaner prospect lists by combining DR, relevance, and editorial quality.",
     category: "Outreach",
-    date: "2026-08-06",
+    date: "2026-08-07",
     intro: "Outreach works better when your list is focused. DR can help prioritize prospects, but the best lists also account for niche relevance and content quality.",
     keyword: "Domain Rating outreach lists",
     audience: "outreach specialists and agencies",
@@ -298,7 +512,7 @@ const seeds: BlogPostSeed[] = [
     title: "Hootsuite Alternatives for SEO and Content Teams",
     excerpt: "Compare Hootsuite alternatives by workflow fit, publishing quality, collaboration, and measurable SEO impact.",
     category: "Tools",
-    date: "2026-08-06",
+    date: "2026-08-07",
     intro: "Hootsuite alternatives can help content teams plan social distribution, collaborate on campaigns, and support SEO work with better reporting. The right choice depends on your publishing volume, approval process, and how closely social promotion connects to organic growth.",
     keyword: "Hootsuite alternatives",
     audience: "content teams comparing social media tools",
@@ -318,7 +532,7 @@ const seeds: BlogPostSeed[] = [
     title: "How to Track Domain Rating Over Time",
     excerpt: "Measure DR trends without reacting to every small score movement.",
     category: "Reporting",
-    date: "2026-08-06",
+    date: "2026-08-07",
     intro: "DR tracking is most useful when you look at trends. One score is a snapshot; repeated checks show whether your backlink profile is getting stronger.",
     keyword: "track Domain Rating over time",
     audience: "reporting teams and website owners",
@@ -339,7 +553,7 @@ const seeds: BlogPostSeed[] = [
     excerpt: "Use quick DR checks for audits, prospecting, and client-friendly SEO reporting.",
     seoDescription: "Learn how SEO agencies use a free DR Checker to analyze websites, qualify backlink opportunities, audit competitors, and deliver better results for clients.",
     category: "Agencies",
-    date: "2026-08-06",
+    date: "2026-08-07",
     intro: "Agencies need fast ways to qualify websites and explain SEO opportunities. A free DR checker helps with early research before deeper paid-tool analysis.",
     keyword: "free DR checker for agencies",
     audience: "SEO agencies and consultants",
@@ -359,7 +573,7 @@ const seeds: BlogPostSeed[] = [
     title: "Technical SEO and Domain Rating: How They Work Together",
     excerpt: "DR measures links, but technical SEO helps your best pages earn and keep value.",
     category: "Technical SEO",
-    date: "2026-08-06",
+    date: "2026-08-07",
     intro: "Technical SEO does not directly create DR, but it helps search engines crawl, index, and understand the pages that earn links. A strong website needs both a healthy backlink profile and a clean technical foundation.",
     keyword: "technical SEO and Domain Rating",
     audience: "technical SEOs and site owners",
@@ -378,10 +592,26 @@ const seeds: BlogPostSeed[] = [
 
 export const blogPosts: BlogPost[] = seeds.map((seed) => {
   const sections = buildSections(seed);
+  const faqs = defaultFaqs(seed);
+  const takeaways = takeawaysFor(seed);
+  const supportBlock = supportBlocks[seed.slug] || {
+    heading: "Practical review checklist",
+    intro: "Use these checks before you make a decision from the score.",
+    type: "checklist" as const,
+    items: [
+      "Check the domain and compare it with relevant alternatives.",
+      "Review relevance, content quality, and backlink context.",
+      "Choose the next action based on evidence, not one metric."
+    ]
+  };
 
   return {
     ...seed,
-    readTime: estimateReadTime(seed, sections),
+    faqs,
+    takeaways,
+    supportBlock,
+    intro: `${seed.promise} ${seed.intro}`,
+    readTime: estimateReadTime({ ...seed, faqs, takeaways, supportBlock, intro: `${seed.promise} ${seed.intro}` }, sections),
     featuredImage: imageFor(seed.imageSlug || seed.slug),
     featuredImageAlt: `${seed.title} featured image`,
     author: blogAuthor,

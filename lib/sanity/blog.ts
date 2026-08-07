@@ -141,6 +141,17 @@ function normalizeSanityPost(post: SanityPost): BlogPost | null {
     date: publishedAt.split("T")[0],
     readTime: `${readingTime} min read`,
     intro: post.intro || post.excerpt || staticPost?.intro || "",
+    takeaways: staticPost?.takeaways || [],
+    supportBlock: staticPost?.supportBlock || {
+      heading: "Practical review checklist",
+      intro: "Use these checks before you make a decision from the score.",
+      type: "checklist",
+      items: [
+        "Check the domain and compare it with relevant alternatives.",
+        "Review relevance, content quality, and backlink context.",
+        "Choose the next action based on evidence, not one metric."
+      ]
+    },
     featuredImage: imageUrl(post, post.slug),
     featuredImageAlt: post.featuredImage?.alt || `${post.title} featured image`,
     author: {

@@ -1,4 +1,4 @@
-import { createReadStream, existsSync } from "node:fs";
+import { createReadStream, existsSync, readFileSync } from "node:fs";
 import { extname, join, parse } from "node:path";
 import { createClient } from "next-sanity";
 import sharp from "sharp";
@@ -6,7 +6,7 @@ import { blogAuthor, blogPosts } from "../app/blog/posts";
 
 const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID;
 const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET || "production";
-const token = process.env.SANITY_WRITE_TOKEN;
+const token = process.env.SANITY_WRITE_TOKEN || process.env.SANITY_AUTH_TOKEN || getSanityCliToken();
 
 if (!projectId || !token) {
   console.error("Missing NEXT_PUBLIC_SANITY_PROJECT_ID or SANITY_WRITE_TOKEN.");
@@ -25,6 +25,56 @@ function slugId(prefix: string, value: string) {
   return `${prefix}.${value.toLowerCase().replace(/[^a-z0-9-]+/g, "-")}`;
 }
 
+function getSanityCliToken() {
+  const configPath = join(process.env.HOME || "", ".config", "sanity", "config.json");
+
+  if (!existsSync(configPath)) {
+    return undefined;
+  }
+
+  try {
+    const config = JSON.parse(readFileSync(configPath, "utf8")) as {
+      authToken?: string;
+      unclaimedProjects?: Record<string, { token?: string }>;
+    };
+
+    return config.authToken || (projectId ? config.unclaimedProjects?.[projectId]?.token : undefined);
+  } catch {
+    return undefined;
+  }
+}
+
+function portableChildrenFromMarkdown(text: string, keyStart: number) {
+  const children = [];
+  const markDefs = [];
+  const linkPattern = /\[([^\]]+)\]\(([^)]+)\)/g;
+  let lastIndex = 0;
+  let key = keyStart;
+  let match: RegExpExecArray | null;
+
+  while ((match = linkPattern.exec(text))) {
+    const [fullMatch, label, href] = match;
+    if (match.index > lastIndex) {
+      children.push({ _type: "span", _key: `span-${key++}`, text: text.slice(lastIndex, match.index), marks: [] });
+    }
+
+    const markKey = `link-${key++}`;
+    markDefs.push({ _key: markKey, _type: "link", href });
+    children.push({ _type: "span", _key: `span-${key++}`, text: label, marks: [markKey] });
+    lastIndex = match.index + fullMatch.length;
+  }
+
+  if (lastIndex < text.length) {
+    children.push({ _type: "span", _key: `span-${key++}`, text: text.slice(lastIndex), marks: [] });
+  }
+
+  return {
+    children: children.length ? children : [{ _type: "span", _key: `span-${key++}`, text, marks: [] }],
+    markDefs,
+    key
+  };
+}
+
 function portableTextFromPost(post: (typeof blogPosts)[number]) {
   let key = 0;
 
@@ -36,13 +86,18 @@ function portableTextFromPost(post: (typeof blogPosts)[number]) {
       markDefs: [],
       children: [{ _type: "span", _key: `span-${key++}`, text: section.heading, marks: [] }]
     },
-    ...section.body.map((paragraph) => ({
-      _type: "block",
-      _key: `paragraph-${key++}`,
-      style: "normal",
-      markDefs: [],
-      children: [{ _type: "span", _key: `span-${key++}`, text: paragraph, marks: [] }]
-    }))
+    ...section.body.map((paragraph) => {
+      const parsed = portableChildrenFromMarkdown(paragraph, key);
+      key = parsed.key;
+
+      return {
+        _type: "block",
+        _key: `paragraph-${key++}`,
+        style: "normal",
+        markDefs: parsed.markDefs,
+        children: parsed.children
+      };
+    })
   ]);
 }
 

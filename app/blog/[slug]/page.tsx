@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import type { ReactNode } from "react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PortableText } from "@portabletext/react";
@@ -7,7 +8,6 @@ import BlogDrCard from "../../components/BlogDrCard";
 import BlogToc from "../../components/BlogToc";
 import { getBlogPostBySlug, getBlogSlugs } from "../../../lib/sanity/blog";
 import { urlFor } from "../../../lib/sanity/image";
-import { getRelatedPosts } from "../posts";
 
 export const revalidate = 60;
 
@@ -69,23 +69,89 @@ function absoluteImageUrl(image: string) {
   return image.startsWith("http") ? image : `https://dr-checker.com${image}`;
 }
 
-const toolLinks = [
-  {
-    href: "/",
-    label: "Free Domain Rating Checker",
-    description: "Check a website's DR before comparing competitors, outreach targets, or backlink opportunities."
-  },
-  {
-    href: "/domain-authority-checker",
-    label: "Domain Authority Checker",
-    description: "Compare another authority-style score when you want a second link graph perspective."
-  },
-  {
-    href: "/domain-age-checker",
-    label: "Domain Age Checker",
-    description: "Review domain history context before outreach, acquisition, or competitor research."
+function renderLinkedText(text: string) {
+  const parts: ReactNode[] = [];
+  const linkPattern = /\[([^\]]+)\]\(([^)]+)\)/g;
+  let lastIndex = 0;
+  let match: RegExpExecArray | null;
+
+  while ((match = linkPattern.exec(text))) {
+    const [fullMatch, label, href] = match;
+    if (match.index > lastIndex) {
+      parts.push(text.slice(lastIndex, match.index));
+    }
+    parts.push(<Link key={`${href}-${match.index}`} href={href}>{label}</Link>);
+    lastIndex = match.index + fullMatch.length;
   }
-];
+
+  if (lastIndex < text.length) {
+    parts.push(text.slice(lastIndex));
+  }
+
+  return parts.length ? parts : text;
+}
+
+type BlogPostResult = NonNullable<Awaited<ReturnType<typeof getBlogPostBySlug>>>;
+
+function SupportBlock({ block }: { block: BlogPostResult["supportBlock"] }) {
+  if (!block) {
+    return null;
+  }
+
+  if (block.type === "checklist" || block.type === "timeline") {
+    return (
+      <section className={`blog-post__support blog-post__support--${block.type}`} aria-labelledby={headingId(block.heading)}>
+        <h2 id={headingId(block.heading)}>{block.heading}</h2>
+        <p>{block.intro}</p>
+        <ol>
+          {(block.items || []).map((item) => (
+            <li key={item}>{item}</li>
+          ))}
+        </ol>
+      </section>
+    );
+  }
+
+  if (block.type === "pros-cons") {
+    return (
+      <section className="blog-post__support blog-post__support--pros-cons" aria-labelledby={headingId(block.heading)}>
+        <h2 id={headingId(block.heading)}>{block.heading}</h2>
+        <p>{block.intro}</p>
+        <div className="blog-post__pros-cons">
+          <div>
+            <h3>Worth doing</h3>
+            <ul>{(block.pros || []).map((item) => <li key={item}>{item}</li>)}</ul>
+          </div>
+          <div>
+            <h3>Avoid</h3>
+            <ul>{(block.cons || []).map((item) => <li key={item}>{item}</li>)}</ul>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  return (
+    <section className={`blog-post__support blog-post__support--${block.type}`} aria-labelledby={headingId(block.heading)}>
+      <h2 id={headingId(block.heading)}>{block.heading}</h2>
+      <p>{block.intro}</p>
+      <div className="responsive-table">
+        <table>
+          <thead>
+            <tr>{(block.columns || []).map((column) => <th key={column}>{column}</th>)}</tr>
+          </thead>
+          <tbody>
+            {(block.rows || []).map((row) => (
+              <tr key={row.join("-")}>
+                {row.map((cell) => <td key={cell}>{cell}</td>)}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+  );
+}
 
 export default async function BlogPostPage({ params }: PageProps) {
   const { slug } = await params;
@@ -95,7 +161,6 @@ export default async function BlogPostPage({ params }: PageProps) {
     notFound();
   }
 
-  const relatedPosts = getRelatedPosts(post);
   const faqs = post.faqs.filter((faq) => faq.question && faq.answer);
 
   const articleSchema = {
@@ -184,6 +249,17 @@ export default async function BlogPostPage({ params }: PageProps) {
         <article className="blog-post">
           <p className="lead">{post.intro}</p>
 
+          {post.takeaways.length ? (
+            <section className="blog-post__takeaways" aria-labelledby="key-takeaways">
+              <h2 id="key-takeaways">Key takeaways</h2>
+              <ul>
+                {post.takeaways.map((takeaway) => (
+                  <li key={takeaway}>{takeaway}</li>
+                ))}
+              </ul>
+            </section>
+          ) : null}
+
           <div className="blog-post__body">
             {post.body?.length ? (
               <PortableText
@@ -191,6 +267,12 @@ export default async function BlogPostPage({ params }: PageProps) {
                 components={{
                   block: {
                     h2: ({ children }) => <h2 id={headingId(String(children))}>{children}</h2>
+                  },
+                  marks: {
+                    link: ({ children, value }) => {
+                      const href = typeof value?.href === "string" ? value.href : "#";
+                      return <Link href={href}>{children}</Link>;
+                    }
                   },
                   types: {
                     image: ({ value }) => {
@@ -212,76 +294,14 @@ export default async function BlogPostPage({ params }: PageProps) {
                 <section id={headingId(section.heading)} key={section.heading}>
                   <h2>{section.heading}</h2>
                   {section.body.map((paragraph) => (
-                    <p key={paragraph}>{paragraph}</p>
+                    <p key={paragraph}>{renderLinkedText(paragraph)}</p>
                   ))}
                 </section>
               ))
             )}
           </div>
 
-          <section className="blog-post__table" aria-labelledby="domain-rating-review-checklist">
-            <h2 id="domain-rating-review-checklist">Domain Rating review checklist</h2>
-            <p>Use this table to turn the article into a practical decision instead of relying on one authority score.</p>
-            <div className="responsive-table">
-              <table>
-                <thead>
-                  <tr>
-                    <th>Review area</th>
-                    <th>What to check</th>
-                    <th>Why it matters</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Domain Rating</td>
-                    <td>Compare the domain with similar sites in the same niche.</td>
-                    <td>Keeps the benchmark relevant instead of chasing a generic DR target.</td>
-                  </tr>
-                  <tr>
-                    <td>Relevance</td>
-                    <td>Check topic fit, audience fit, and whether the page would help a real reader.</td>
-                    <td>Relevant links and partnerships are usually more useful than unrelated authority.</td>
-                  </tr>
-                  <tr>
-                    <td>Quality</td>
-                    <td>Review content depth, editorial standards, outbound links, and trust signals.</td>
-                    <td>Manual review helps avoid weak placements that look good only in a spreadsheet.</td>
-                  </tr>
-                  <tr>
-                    <td>Next action</td>
-                    <td>Record the score, add notes, and decide whether to research, pitch, track, or skip.</td>
-                    <td>A clear next step makes DR useful for SEO execution and reporting.</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </section>
-
-          <section className="blog-post__internal-links" aria-labelledby="useful-dr-checker-tools">
-            <h2 id="useful-dr-checker-tools">Useful DR Checker tools</h2>
-            <div className="blog-post__tool-links">
-              {toolLinks.map((tool) => (
-                <Link key={tool.href} href={tool.href}>
-                  <strong>{tool.label}</strong>
-                  <span>{tool.description}</span>
-                </Link>
-              ))}
-            </div>
-          </section>
-
-          {relatedPosts.length ? (
-            <section className="related-posts" aria-labelledby="related-domain-rating-guides">
-              <h2 id="related-domain-rating-guides">Related Domain Rating guides</h2>
-              <div>
-                {relatedPosts.slice(0, 4).map((relatedPost) => (
-                  <Link key={relatedPost.slug} href={`/blog/${relatedPost.slug}`}>
-                    <span>{relatedPost.category}</span>
-                    <strong>{relatedPost.title}</strong>
-                  </Link>
-                ))}
-              </div>
-            </section>
-          ) : null}
+          <SupportBlock block={post.supportBlock} />
 
           {faqs.length ? (
             <section className="blog-post__faqs" aria-labelledby="domain-rating-faqs">
