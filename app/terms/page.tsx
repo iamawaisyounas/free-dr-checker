@@ -24,7 +24,7 @@ export default function TermsPage() {
         <section><h2>5. Limitation of Liability</h2><p>To the fullest extent permitted by law, SocialBu and the Dr Checker team are not liable for any damages or losses arising from your use of, or inability to use, this website or its results.</p></section>
         <section><h2>6. Changes to the Service</h2><p>We may update, modify, or discontinue any part of Dr Checker at any time, with or without notice.</p></section>
         <section><h2>7. Changes to These Terms</h2><p>We may revise these terms from time to time. Continued use of the site after changes are posted means you accept the updated terms.</p></section>
-        <section><h2>8. Contact</h2><p>Questions about these terms? Reach out via our <a href="/contact">Contact page</a> or email support@dr-checker.com.</p></section>
+        <section><h2>8. Contact</h2><p>Questions about these terms? Reach out via our <a href="/contact">Contact page</a>.</p></section>
         <p><em>Dr Checker is a free tool provided by <a href="https://socialbu.com">SocialBu</a>.</em></p>
         <RelatedLinks
           links={[

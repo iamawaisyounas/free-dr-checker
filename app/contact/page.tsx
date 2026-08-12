@@ -25,8 +25,8 @@ export default function ContactPage() {
         <p className="lead">Got a question, found a bug, or just want to say hi? We&apos;d love to hear from you.</p>
 
         <section>
-          <h2>Email Us</h2>
-          <p>Drop us a line at <strong>support@dr-checker.com</strong> and we&apos;ll get back to you as soon as we can.</p>
+          <h2>Message Us</h2>
+          <p>Use the contact form below and we&apos;ll get back to you as soon as we can.</p>
         </section>
 
         <section>

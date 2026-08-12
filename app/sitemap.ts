@@ -8,6 +8,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   return [
     { url: "https://dr-checker.com", lastModified, priority: 1 },
+    { url: "https://dr-checker.com/bulk-dr-checker", lastModified, priority: 0.95 },
     { url: "https://dr-checker.com/domain-authority-checker", lastModified, priority: 0.9 },
     { url: "https://dr-checker.com/domain-authority-checker/how-we-calculate", lastModified, priority: 0.6 },
     { url: "https://dr-checker.com/domain-age-checker", lastModified, priority: 0.9 },

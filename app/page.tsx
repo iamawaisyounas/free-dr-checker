@@ -2,17 +2,38 @@ import type { Metadata } from "next";
 import CheckerTool from "./components/CheckerTool";
 import DiscoverTools from "./components/DiscoverTools";
 
+const homeTitle = "Domain Rating Checker - Check Ahrefs DR for Free";
+const homeDescription =
+  "Check Ahrefs Domain Rating, URL Rating, and website authority for free. Enter any domain to get a fast DR score with backlink context.";
+const homeOgImage = {
+  url: "/opengraph-image",
+  width: 1200,
+  height: 630,
+  alt: "DR Checker domain rating score preview"
+};
+
 export const metadata: Metadata = {
-  title: "Domain Rating Checker - Check Ahrefs DR for Free | DR Checker",
-  description:
-    "Check Ahrefs Domain Rating (DR), URL Rating (UR), and website authority for any website with our free Bulk DR Checker. Fast, accurate results powered by the Ahrefs API.",
+  title: homeTitle,
+  description: homeDescription,
   alternates: { canonical: "https://dr-checker.com/" },
   openGraph: {
-    title: "Domain Rating Checker - Check Ahrefs DR for Free | DR Checker",
-    description: "Check Ahrefs Domain Rating (DR), URL Rating (UR), and website authority for any website with our free Bulk DR Checker. Fast, accurate results powered by the Ahrefs API.",
+    title: homeTitle,
+    description: homeDescription,
     url: "https://dr-checker.com",
     siteName: "DR Checker",
-    type: "website"
+    locale: "en_US",
+    type: "website",
+    images: [homeOgImage]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: homeTitle,
+    description: homeDescription,
+    images: [homeOgImage.url]
+  },
+  robots: {
+    index: true,
+    follow: true
   }
 };
 
@@ -21,8 +42,7 @@ export default function HomePage() {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     name: "Domain Rating Checker",
-    description:
-      "Check Ahrefs Domain Rating (DR), URL Rating (UR), and website authority for any website with our free Bulk DR Checker.",
+    description: homeDescription,
     applicationCategory: "SEO Tool",
     operatingSystem: "Web",
     offers: {

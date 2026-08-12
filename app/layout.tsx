@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Script from "next/script";
 import { Analytics } from "@vercel/analytics/next";
 import AppHeader from "./components/AppHeader";
 import ScrollToTopOnRouteChange from "./components/ScrollToTopOnRouteChange";
@@ -9,20 +8,8 @@ import "./globals.css";
 export const metadata: Metadata = {
   metadataBase: new URL("https://dr-checker.com"),
   title: {
-    default: "Domain Rating Checker - Check Ahrefs DR for Free | DR Checker",
+    default: "Domain Rating Checker - Check Ahrefs DR for Free",
     template: "%s"
-  },
-  description:
-    "Check Ahrefs Domain Rating (DR), URL Rating (UR), and website authority for any website with our free Bulk DR Checker. Fast, accurate results powered by the Ahrefs API.",
-  alternates: {
-    canonical: "https://dr-checker.com/"
-  },
-  openGraph: {
-    title: "Domain Rating Checker - Check Ahrefs DR for Free | DR Checker",
-    description: "Check Ahrefs Domain Rating (DR), URL Rating (UR), and website authority for any website with our free Bulk DR Checker. Fast, accurate results powered by the Ahrefs API.",
-    url: "https://dr-checker.com",
-    siteName: "DR Checker",
-    type: "website"
   },
   icons: {
     icon: [
@@ -39,22 +26,6 @@ export const metadata: Metadata = {
 
 const googleTagManagerId = "GTM-PN765D4C";
 const googleAnalyticsId = "G-FKY1D8N8WY";
-
-const webApplicationSchema = {
-  "@context": "https://schema.org",
-  "@type": "WebApplication",
-  name: "DR Checker",
-  url: "https://dr-checker.com",
-  description:
-    "Check Ahrefs Domain Rating (DR), URL Rating (UR), and website authority for any website with our free Bulk DR Checker.",
-  applicationCategory: "SEO Tool",
-  operatingSystem: "Web",
-  offers: {
-    "@type": "Offer",
-    price: "0",
-    priceCurrency: "USD"
-  }
-};
 
 function Footer() {
   return (
@@ -80,6 +51,7 @@ function Footer() {
         <nav className="footer-column" aria-label="Free SEO tools">
           <h2>Free SEO Tools</h2>
           <Link href="/">DR Checker</Link>
+          <Link href="/bulk-dr-checker">Bulk DR Checker</Link>
           <Link href="/domain-authority-checker">Domain Authority Checker</Link>
           <Link href="/domain-age-checker">Domain Age Checker</Link>
           <span className="footer-coming-soon">
@@ -95,7 +67,6 @@ function Footer() {
         <nav className="footer-column" aria-label="Support links">
           <h2>Support</h2>
           <Link href="/faq">Ask a Question</Link>
-          <a href="mailto:support@dr-checker.com">Email</a>
           <Link href="/contact">Submit Your Request</Link>
         </nav>
       </div>
@@ -144,12 +115,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             style={{ display: "none", visibility: "hidden" }}
           />
         </noscript>
-        <Script
-          id="schema-markup"
-          strategy="beforeInteractive"
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(webApplicationSchema) }}
-        />
         <AppHeader />
         <ScrollToTopOnRouteChange />
         {children}

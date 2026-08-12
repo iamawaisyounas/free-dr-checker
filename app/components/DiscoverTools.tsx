@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-type ToolKey = "dr" | "authority" | "age";
+type ToolKey = "dr" | "bulk-dr" | "authority" | "age";
 
 type ToolCard = {
   key: ToolKey;
@@ -8,7 +8,7 @@ type ToolCard = {
   title: string;
   description: string;
   cta: string;
-  icon: "gauge" | "link" | "calendar";
+  icon: "gauge" | "list" | "link" | "calendar";
 };
 
 const tools: ToolCard[] = [
@@ -19,6 +19,14 @@ const tools: ToolCard[] = [
     description: "Check the Domain Rating of any website instantly using real Ahrefs data.",
     cta: "Try DR Checker Now",
     icon: "gauge"
+  },
+  {
+    key: "bulk-dr",
+    href: "/bulk-dr-checker",
+    title: "Bulk DR Checker",
+    description: "Check Ahrefs Domain Rating for up to 100 domains at once and export CSV results.",
+    cta: "Try Bulk DR Checker Now",
+    icon: "list"
   },
   {
     key: "authority",
@@ -39,6 +47,15 @@ const tools: ToolCard[] = [
 ];
 
 function ToolIcon({ icon }: { icon: ToolCard["icon"] }) {
+  if (icon === "list") {
+    return (
+      <svg aria-hidden="true" viewBox="0 0 24 24">
+        <path d="M8 6h13M8 12h13M8 18h13"></path>
+        <path d="M3 6h.01M3 12h.01M3 18h.01"></path>
+      </svg>
+    );
+  }
+
   if (icon === "link") {
     return (
       <svg aria-hidden="true" viewBox="0 0 24 24">

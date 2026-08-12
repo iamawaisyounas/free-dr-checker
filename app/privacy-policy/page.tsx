@@ -26,7 +26,7 @@ export default function PrivacyPolicyPage() {
         <section><h2>Your Choices</h2><p>You can disable cookies in your browser at any time. Doing so may affect how parts of the site function.</p></section>
         <section><h2>Children&apos;s Privacy</h2><p>Dr Checker is not directed at children under 13, and we do not knowingly collect personal information from children.</p></section>
         <section><h2>Changes to This Policy</h2><p>We may update this privacy policy occasionally. Any changes will be posted on this page with an updated Last updated date.</p></section>
-        <section><h2>Contact Us</h2><p>Questions about this policy? Reach out via our <a href="/contact">Contact page</a> or email support@dr-checker.com.</p></section>
+        <section><h2>Contact Us</h2><p>Questions about this policy? Reach out via our <a href="/contact">Contact page</a>.</p></section>
         <p><em>Dr Checker is a free tool provided by <a href="https://socialbu.com">SocialBu</a>.</em></p>
         <RelatedLinks
           links={[

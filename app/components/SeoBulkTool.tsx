@@ -25,8 +25,14 @@ type DomainAgeResult = {
   from_cache?: boolean;
 };
 
+type DrResult = {
+  domain: string;
+  dr: number | null;
+  status: "ok" | "not_found" | "unavailable";
+};
+
 type Props = {
-  tool: "authority" | "age";
+  tool: "authority" | "age" | "dr";
 };
 
 function splitInput(value: string) {
@@ -61,6 +67,20 @@ function authorityStatusLabel(result: AuthorityResult) {
   return "Temporarily limited";
 }
 
+function drStatusLabel(result: DrResult) {
+  if (result.status === "ok") return "Found";
+  if (result.status === "not_found") return "Not found";
+  return "Unavailable";
+}
+
+function drStatus(score: number | null) {
+  if (typeof score !== "number") return "Not found";
+  if (score < 30) return "Poor";
+  if (score < 50) return "Fair";
+  if (score < 70) return "Good";
+  return "Excellent";
+}
+
 export default function SeoBulkTool({ tool }: Props) {
   const [input, setInput] = useState("");
   const [dedupe, setDedupe] = useState(true);
@@ -71,27 +91,35 @@ export default function SeoBulkTool({ tool }: Props) {
   const [turnstileToken, setTurnstileToken] = useState("");
   const [turnstileResetKey, setTurnstileResetKey] = useState(0);
   const [pendingVerification, setPendingVerification] = useState(false);
+  const [drResults, setDrResults] = useState<DrResult[]>([]);
   const [authorityResults, setAuthorityResults] = useState<AuthorityResult[]>([]);
   const [ageResults, setAgeResults] = useState<DomainAgeResult[]>([]);
   const resultRef = useRef<HTMLDivElement>(null);
 
+  const isDr = tool === "dr";
   const isAuthority = tool === "authority";
-  const maxDomains = isAuthority ? 1000 : 50;
-  const title = isAuthority ? "Domain Authority Checker" : "Domain Age Checker";
-  const subtitle = isAuthority
+  const maxDomains = isDr ? 100 : isAuthority ? 1000 : 50;
+  const title = isDr ? "Bulk DR Checker" : isAuthority ? "Domain Authority Checker" : "Domain Age Checker";
+  const subtitle = isDr
+    ? "Check Ahrefs Domain Rating for multiple websites at once. Paste a list of domains or URLs, remove duplicates, and export the DR results to CSV."
+    : isAuthority
     ? "Check the Domain Authority score of any website from 0 to 100 along with referring domains and global rank. You can check a single domain or run a bulk list."
     : "Check any domain's age for free. Enter a domain to see its registration date, exact age, and expiry date, pulled from live WHOIS and RDAP records.";
-  const inputLabel = isAuthority ? "Domains or URLs" : "Website URL or domain";
-  const buttonLabel = isAuthority ? "Check DA" : "Check Age";
-  const trustLine = isAuthority
+  const inputLabel = isDr || isAuthority ? "Domains or URLs" : "Website URL or domain";
+  const buttonLabel = isDr ? "Check DR" : isAuthority ? "Check DA" : "Check Age";
+  const trustLine = isDr
+    ? "100% Free. No Sign-up Required. Bulk check up to 100 domains."
+    : isAuthority
     ? "100% Free. No Sign-up Required. Bulk check up to 1000 domains."
     : "100% Free. No Sign-up Required.";
-  const emptyState = isAuthority
+  const emptyState = isDr
+    ? "Paste domains above to see their Ahrefs Domain Rating scores here."
+    : isAuthority
     ? "Paste a domain above to see its Domain Authority score here."
     : "Enter a domain above to see its age and registration details here.";
-  const endpoint = isAuthority ? "/api/tools/authority-score" : "/api/tools/domain-age";
+  const endpoint = isDr ? "/api/dr-checker" : isAuthority ? "/api/tools/authority-score" : "/api/tools/domain-age";
   const placeholder = "example.com\nsocialbu.com\n";
-  const resultCount = isAuthority ? authorityResults.length : ageResults.length;
+  const resultCount = isDr ? drResults.length : isAuthority ? authorityResults.length : ageResults.length;
   const turnstileSiteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || "";
 
   useEffect(() => {
@@ -148,14 +176,23 @@ export default function SeoBulkTool({ tool }: Props) {
       if (isAuthority) {
         setAuthorityResults(data.results || []);
         setAgeResults([]);
+        setDrResults([]);
         if (data.quota_status === "cache_only") {
           setNotice("OpenPageRank quota is temporarily limited, so cached data is shown where available.");
         } else if (data.quota_status === "warning") {
           setNotice("OpenPageRank monthly usage is close to the configured cap.");
         }
+      } else if (isDr) {
+        setDrResults(data.results || []);
+        setAuthorityResults([]);
+        setAgeResults([]);
+        if (data.invalid?.length) {
+          setNotice(`${data.invalid.length} invalid domain${data.invalid.length === 1 ? " was" : "s were"} skipped.`);
+        }
       } else {
         setAgeResults(data.results || []);
         setAuthorityResults([]);
+        setDrResults([]);
       }
 
       if (data.truncated) {
@@ -175,7 +212,7 @@ export default function SeoBulkTool({ tool }: Props) {
     } finally {
       setLoading(false);
     }
-  }, [endpoint, isAuthority, maxDomains, resetTurnstile, turnstileSiteKey]);
+  }, [endpoint, isAuthority, isDr, maxDomains, resetTurnstile, turnstileSiteKey]);
 
   useEffect(() => {
     if (pendingVerification && turnstileToken && !loading) {
@@ -206,7 +243,17 @@ export default function SeoBulkTool({ tool }: Props) {
   }
 
   function exportCsv() {
-    const rows = isAuthority
+    const rows = isDr
+      ? [
+        ["Domain", "Domain Rating", "Rating Label", "Status"],
+        ...drResults.map((result) => [
+          result.domain,
+          result.dr ?? "",
+          drStatus(result.dr),
+          drStatusLabel(result)
+        ])
+      ]
+      : isAuthority
       ? [
         ["Domain", "Authority Score", "Referring Domains", "Global Rank", "Last Checked", "Status"],
         ...authorityResults.map((result) => [
@@ -234,7 +281,7 @@ export default function SeoBulkTool({ tool }: Props) {
     const url = URL.createObjectURL(new Blob([csv], { type: "text/csv;charset=utf-8" }));
     const link = document.createElement("a");
     link.href = url;
-    link.download = isAuthority ? "authority-score-results.csv" : "domain-age-results.csv";
+    link.download = isDr ? "bulk-dr-results.csv" : isAuthority ? "authority-score-results.csv" : "domain-age-results.csv";
     link.click();
     URL.revokeObjectURL(url);
   }
@@ -308,7 +355,32 @@ export default function SeoBulkTool({ tool }: Props) {
               <button type="button" onClick={exportCsv}>Export CSV</button>
             </div>
 
-            {isAuthority ? (
+            {isDr ? (
+              <div className="responsive-table">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Domain</th>
+                      <th>Domain Rating</th>
+                      <th>Rating Label</th>
+                      <th>Status</th>
+                      <th>Tools</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {drResults.map((result) => (
+                      <tr key={result.domain}>
+                        <td>{result.domain}</td>
+                        <td><strong>{result.dr ?? "Not found"}</strong></td>
+                        <td>{drStatus(result.dr)}</td>
+                        <td>{drStatusLabel(result)}</td>
+                        <td><Link href={`/?domain=${encodeURIComponent(result.domain)}`}>Single DR</Link></td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            ) : isAuthority ? (
               <>
                 <p className="score-disclaimer">
                   Domain Authority Score is our own 0-100 authority rating, calculated from open link-graph data. It is not affiliated with or equivalent to Moz&apos;s Domain Authority metric.

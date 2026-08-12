@@ -5,6 +5,8 @@ import { client, sanityIsConfigured } from "./client";
 import { urlFor } from "./image";
 import { allSlugsQuery, postBySlugQuery, postsListQuery } from "./queries";
 
+let sanityReadUnavailable = false;
+
 type PortableBlockChild = {
   text?: string;
 };
@@ -168,42 +170,55 @@ function normalizeSanityPost(post: SanityPost): BlogPost | null {
   };
 }
 
-export async function getBlogPosts() {
-  if (!sanityIsConfigured()) {
-    return blogPosts;
+function isSanityAuthError(error: unknown) {
+  const maybeError = error as {
+    statusCode?: number;
+    response?: {
+      statusCode?: number;
+      body?: {
+        errorCode?: string;
+      };
+    };
+  };
+
+  return maybeError.statusCode === 401
+    || maybeError.response?.statusCode === 401
+    || maybeError.response?.body?.errorCode === "SIO-401-ANF";
+}
+
+async function fetchSanity<T>(query: string, params?: Record<string, string>) {
+  if (!sanityIsConfigured() || sanityReadUnavailable) {
+    return null;
   }
 
-  const posts = await client.fetch<SanityPost[]>(postsListQuery).catch((error) => {
-    console.warn("Sanity blog list fetch failed, using static posts.", error);
+  try {
+    return params ? await client.fetch<T>(query, params) : await client.fetch<T>(query);
+  } catch (error) {
+    if (isSanityAuthError(error)) {
+      sanityReadUnavailable = true;
+      return null;
+    }
+
+    console.warn("Sanity read failed, using static blog content.", error instanceof Error ? error.message : error);
     return null;
-  });
+  }
+}
+
+export async function getBlogPosts() {
+  const posts = await fetchSanity<SanityPost[]>(postsListQuery);
 
   const normalized = posts?.map(normalizeSanityPost).filter((post): post is BlogPost => Boolean(post)) || [];
   return normalized.length ? normalized : blogPosts;
 }
 
 export async function getBlogPostBySlug(slug: string) {
-  if (!sanityIsConfigured()) {
-    return getBlogPost(slug) || null;
-  }
-
-  const post = await client.fetch<SanityPost | null>(postBySlugQuery, { slug }).catch((error) => {
-    console.warn("Sanity blog post fetch failed, using static post.", error);
-    return null;
-  });
+  const post = await fetchSanity<SanityPost | null>(postBySlugQuery, { slug });
 
   return post ? normalizeSanityPost(post) : getBlogPost(slug) || null;
 }
 
 export async function getBlogSlugs() {
-  if (!sanityIsConfigured()) {
-    return blogPosts.map((post) => post.slug);
-  }
-
-  const slugs = await client.fetch<Array<{ slug?: string }>>(allSlugsQuery).catch((error) => {
-    console.warn("Sanity slug fetch failed, using static slugs.", error);
-    return null;
-  });
+  const slugs = await fetchSanity<Array<{ slug?: string }>>(allSlugsQuery);
 
   const sanitySlugs = slugs?.map((item) => item.slug).filter((slug): slug is string => Boolean(slug)) || [];
   return sanitySlugs.length ? sanitySlugs : blogPosts.map((post) => post.slug);

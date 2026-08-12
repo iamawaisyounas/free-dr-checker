@@ -6,7 +6,7 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
-        disallow: "/studio"
+        disallow: ["/studio", "/cdn-cgi/"]
       }
     ],
     sitemap: "https://dr-checker.com/sitemap.xml",

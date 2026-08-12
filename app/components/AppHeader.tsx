@@ -46,6 +46,7 @@ export default function AppHeader() {
             className={`site-nav${menuOpen ? " is-open" : ""}`}
             aria-label="Primary navigation"
           >
+            <Link href="/bulk-dr-checker" onClick={() => setMenuOpen(false)}>Bulk DR Checker</Link>
             <Link href="/domain-authority-checker" onClick={() => setMenuOpen(false)}>Domain Authority Checker</Link>
             <Link href="/domain-age-checker" onClick={() => setMenuOpen(false)}>Domain Age Checker</Link>
             <Link href="/blog" onClick={() => setMenuOpen(false)}>Blog</Link>

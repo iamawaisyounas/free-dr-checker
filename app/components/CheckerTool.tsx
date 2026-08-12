@@ -113,23 +113,6 @@ export default function CheckerTool() {
     }
   }, [runCheck]);
 
-  useEffect(() => {
-    if (!result) {
-      return;
-    }
-
-    const canonicalHref = "https://dr-checker.com/";
-    let canonical = document.querySelector<HTMLLinkElement>('link[rel="canonical"]');
-
-    if (!canonical) {
-      canonical = document.createElement("link");
-      canonical.rel = "canonical";
-      document.head.appendChild(canonical);
-    }
-
-    canonical.setAttribute("href", canonicalHref);
-  }, [result]);
-
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     await runCheck(domain);
