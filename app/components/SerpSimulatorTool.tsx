@@ -43,6 +43,11 @@ export default function SerpSimulatorTool() {
   const [copied, setCopied] = useState("");
 
   const displayUrl = useMemo(() => formatDisplayUrl(url), [url]);
+  const previewDate = useMemo(() => new Intl.DateTimeFormat("en", {
+    month: "short",
+    day: "numeric",
+    year: "numeric"
+  }).format(new Date()), []);
   const titleStatus = scoreLength(title.trim().length, 35, 60, 70);
   const descriptionStatus = scoreLength(description.trim().length, 110, 155, 170);
   const previewTitle = title.trim() || "Untitled page";
@@ -164,7 +169,7 @@ export default function SerpSimulatorTool() {
               <div className="serp-preview__site">DR Checker</div>
               <div className="serp-preview__url">{displayUrl}</div>
               <h2>{previewTitle}</h2>
-              <p>{showDate ? "Aug 12, 2026 - " : ""}{previewDescription}</p>
+              <p>{showDate ? `${previewDate} - ` : ""}{previewDescription}</p>
             </div>
           </div>
 
