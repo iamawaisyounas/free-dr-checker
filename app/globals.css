@@ -969,16 +969,61 @@ button svg {
   animation: fade-up 420ms ease both;
 }
 
-.serp-editor {
+.serp-tool-shell {
+  padding-bottom: 72px;
+}
+
+.serp-tool-shell .checker-container {
+  width: min(100%, 1180px);
+  margin: 0 auto;
+}
+
+.serp-workbench {
   display: grid;
-  gap: 16px;
-  width: min(100%, 860px);
-  margin: 40px auto 0;
+  grid-template-columns: minmax(320px, 0.85fr) minmax(0, 1.15fr);
+  gap: 18px;
+  width: 100%;
+  margin: 42px auto 0;
   border-radius: 18px;
-  padding: 14px;
+  padding: 12px;
   background: rgba(255, 255, 255, 0.1);
   text-align: left;
   backdrop-filter: blur(12px);
+}
+
+.serp-panel {
+  display: grid;
+  align-content: start;
+  gap: 16px;
+  min-width: 0;
+  border: 1px solid rgba(255, 255, 255, 0.42);
+  border-radius: 10px;
+  padding: clamp(18px, 2.3vw, 26px);
+  background: rgba(255, 255, 255, 0.95);
+  color: var(--foreground);
+  box-shadow: 0 18px 42px -34px rgba(9, 17, 35, 0.68);
+}
+
+.serp-panel-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 14px;
+}
+
+.serp-panel-header strong {
+  color: var(--foreground);
+  font-size: 1.05rem;
+}
+
+.serp-panel-header span {
+  color: var(--muted-foreground);
+  font-size: 0.84rem;
+  font-weight: 700;
+  line-height: 1.35;
+  text-align: right;
 }
 
 .serp-field {
@@ -987,7 +1032,7 @@ button svg {
 }
 
 .serp-field label {
-  color: rgba(255, 255, 255, 0.9);
+  color: var(--foreground);
   font-size: 0.9rem;
   font-weight: 700;
 }
@@ -997,7 +1042,7 @@ button svg {
 }
 
 .serp-field span {
-  color: rgba(255, 255, 255, 0.78);
+  color: var(--muted-foreground);
   font-size: 0.82rem;
   font-weight: 700;
 }
@@ -1010,9 +1055,24 @@ button svg {
   gap: 12px;
 }
 
+.serp-actions .segmented-control {
+  border-color: var(--border);
+  background: var(--stat-bg);
+}
+
+.serp-actions .segmented-control button {
+  color: var(--muted-foreground);
+}
+
+.serp-actions .segmented-control button:hover,
+.serp-actions .segmented-control button.is-active {
+  color: var(--button-text);
+  background: var(--button-bg);
+}
+
 .serp-toggle {
   min-height: 42px;
-  color: rgba(255, 255, 255, 0.86);
+  color: var(--muted-foreground);
 }
 
 .secondary-button {
@@ -1025,18 +1085,71 @@ button svg {
   background: rgba(255, 255, 255, 0.2);
 }
 
+.serp-command-row {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: 12px;
+}
+
+.serp-command-row button {
+  width: 100%;
+  padding-inline: 18px;
+}
+
+.serp-command-row .secondary-button {
+  color: var(--foreground);
+  background: var(--stat-bg);
+  box-shadow: none;
+}
+
+.serp-command-row .secondary-button:hover {
+  background: var(--secondary);
+}
+
 .serp-copy-status {
   min-height: 18px;
   margin: -4px 0 0;
-  color: rgba(255, 255, 255, 0.84);
+  color: var(--muted-foreground);
   font-size: 0.85rem;
   font-weight: 700;
   text-align: right;
 }
 
-.serp-preview-card {
+.serp-output-panel {
+  background: #f8fafc;
+}
+
+.serp-search-bar {
   display: grid;
-  gap: 24px;
+  grid-template-columns: 20px minmax(0, 1fr);
+  align-items: center;
+  gap: 10px;
+  min-height: 48px;
+  border: 1px solid #dadce0;
+  border-radius: 999px;
+  padding: 0 18px;
+  color: #3c4043;
+  background: #ffffff;
+  box-shadow: 0 1px 6px rgba(32, 33, 36, 0.16);
+}
+
+.serp-search-bar svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: #5f6368;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2;
+}
+
+.serp-search-bar span {
+  overflow: hidden;
+  color: #3c4043;
+  font-family: Arial, sans-serif;
+  font-size: 0.95rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .serp-preview {
@@ -1055,6 +1168,13 @@ button svg {
 
 .serp-preview--mobile {
   max-width: 390px;
+}
+
+.serp-preview-note {
+  margin: 0;
+  color: var(--muted-foreground);
+  font-size: 0.9rem;
+  line-height: 1.55;
 }
 
 .serp-preview__favicon {
@@ -1832,6 +1952,7 @@ details p {
   .steps,
   .split-block,
   .discover-tools__grid,
+  .serp-workbench,
   .serp-guidance-grid {
     grid-template-columns: 1fr;
   }
@@ -1995,7 +2116,7 @@ details p {
     overflow-x: auto;
   }
 
-  .serp-editor {
+  .serp-workbench {
     margin-top: 30px;
     padding: 10px;
   }
@@ -2006,16 +2127,18 @@ details p {
   }
 
   .serp-actions button,
-  .segmented-control {
+  .segmented-control,
+  .serp-command-row {
     width: 100%;
+    grid-template-columns: 1fr;
   }
 
   .serp-toggle {
-    justify-content: center;
+    justify-content: flex-start;
   }
 
   .serp-copy-status {
-    text-align: center;
+    text-align: left;
   }
 
   .serp-preview {

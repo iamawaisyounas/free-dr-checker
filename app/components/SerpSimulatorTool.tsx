@@ -98,99 +98,115 @@ export default function SerpSimulatorTool() {
             Preview your Google snippet before publishing. Check title length, URL display, and meta description fit in desktop or mobile search results.
           </p>
 
-          <div className="serp-editor" aria-label="SERP snippet inputs">
-            <div className="serp-field">
-              <label htmlFor="serpTitle">Title tag</label>
-              <input
-                id="serpTitle"
-                type="text"
-                value={title}
-                onChange={(event) => setTitle(event.target.value)}
-                maxLength={120}
-              />
-              <span>{title.trim().length} characters - {titleStatus}</span>
-            </div>
-
-            <div className="serp-field">
-              <label htmlFor="serpUrl">Page URL</label>
-              <input
-                id="serpUrl"
-                type="text"
-                value={url}
-                onChange={(event) => setUrl(event.target.value)}
-                maxLength={180}
-              />
-            </div>
-
-            <div className="serp-field">
-              <label htmlFor="serpDescription">Meta description</label>
-              <textarea
-                id="serpDescription"
-                value={description}
-                onChange={(event) => setDescription(event.target.value)}
-                maxLength={260}
-              />
-              <span>{description.trim().length} characters - {descriptionStatus}</span>
-            </div>
-
-            <div className="serp-actions">
-              <div className="segmented-control" aria-label="Preview device">
-                <button type="button" className={device === "desktop" ? "is-active" : ""} onClick={() => setDevice("desktop")}>
-                  Desktop
-                </button>
-                <button type="button" className={device === "mobile" ? "is-active" : ""} onClick={() => setDevice("mobile")}>
-                  Mobile
-                </button>
+          <div className="serp-workbench" aria-label="SERP simulator editor and live preview">
+            <section className="serp-panel serp-input-panel" aria-label="Snippet inputs">
+              <div className="serp-panel-header">
+                <strong>Input</strong>
+                <span>Edit your snippet fields</span>
               </div>
-              <label className="toggle-control serp-toggle">
-                <input type="checkbox" checked={showDate} onChange={(event) => setShowDate(event.target.checked)} />
-                Show date
-              </label>
-              <button type="button" className="secondary-button" onClick={resetFields}>Reset</button>
-              <button type="button" onClick={copySnippet}>Copy snippet</button>
-            </div>
-            <p className="serp-copy-status" aria-live="polite">{copied}</p>
-          </div>
-        </div>
-      </section>
 
-      <section className="tool-results-section serp-results-section" aria-label="Google search result preview">
-        <div className="tool-results-card serp-preview-card">
-          <div className="tool-results-header">
-            <div>
-              <strong>Snippet preview</strong>
-              <p>Google can rewrite snippets, but this preview helps you catch obvious truncation and messaging issues before publishing.</p>
-            </div>
-          </div>
+              <div className="serp-field">
+                <label htmlFor="serpTitle">Title tag</label>
+                <input
+                  id="serpTitle"
+                  type="text"
+                  value={title}
+                  onChange={(event) => setTitle(event.target.value)}
+                  maxLength={120}
+                />
+                <span>{title.trim().length} characters - {titleStatus}</span>
+              </div>
 
-          <div className={`serp-preview serp-preview--${device}`}>
-            <div className="serp-preview__favicon" aria-hidden="true">D</div>
-            <div className="serp-preview__body">
-              <div className="serp-preview__site">DR Checker</div>
-              <div className="serp-preview__url">{displayUrl}</div>
-              <h2>{previewTitle}</h2>
-              <p>{showDate ? `${previewDate} - ` : ""}{previewDescription}</p>
-            </div>
-          </div>
+              <div className="serp-field">
+                <label htmlFor="serpUrl">Page URL</label>
+                <input
+                  id="serpUrl"
+                  type="text"
+                  value={url}
+                  onChange={(event) => setUrl(event.target.value)}
+                  maxLength={180}
+                />
+              </div>
 
-          <div className="serp-guidance-grid">
-            <article>
-              <strong>Title</strong>
-              <span>{titleStatus}</span>
-              <p>Aim for roughly 35 to 60 characters with the primary keyword near the front.</p>
-            </article>
-            <article>
-              <strong>Description</strong>
-              <span>{descriptionStatus}</span>
-              <p>Keep the benefit clear in about 110 to 155 characters so the message survives truncation.</p>
-            </article>
-            <article>
-              <strong>URL</strong>
-              <span>Readable</span>
-              <p>Use short, descriptive slugs that help searchers understand the page before clicking.</p>
-            </article>
+              <div className="serp-field">
+                <label htmlFor="serpDescription">Meta description</label>
+                <textarea
+                  id="serpDescription"
+                  value={description}
+                  onChange={(event) => setDescription(event.target.value)}
+                  maxLength={260}
+                />
+                <span>{description.trim().length} characters - {descriptionStatus}</span>
+              </div>
+
+              <div className="serp-actions">
+                <div className="segmented-control" aria-label="Preview device">
+                  <button type="button" className={device === "desktop" ? "is-active" : ""} onClick={() => setDevice("desktop")}>
+                    Desktop
+                  </button>
+                  <button type="button" className={device === "mobile" ? "is-active" : ""} onClick={() => setDevice("mobile")}>
+                    Mobile
+                  </button>
+                </div>
+                <label className="toggle-control serp-toggle">
+                  <input type="checkbox" checked={showDate} onChange={(event) => setShowDate(event.target.checked)} />
+                  Show date
+                </label>
+              </div>
+
+              <div className="serp-command-row">
+                <button type="button" className="secondary-button" onClick={resetFields}>Reset</button>
+                <button type="button" onClick={copySnippet}>Copy snippet</button>
+              </div>
+              <p className="serp-copy-status" aria-live="polite">{copied}</p>
+            </section>
+
+            <section className="serp-panel serp-output-panel" aria-label="Live Google search result preview">
+              <div className="serp-panel-header">
+                <strong>Output</strong>
+                <span>Live SERP preview</span>
+              </div>
+
+              <div className="serp-search-bar" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <circle cx="11" cy="11" r="7"></circle>
+                  <path d="m21 21-4.35-4.35"></path>
+                </svg>
+                <span>{previewTitle}</span>
+              </div>
+
+              <div className={`serp-preview serp-preview--${device}`}>
+                <div className="serp-preview__favicon" aria-hidden="true">D</div>
+                <div className="serp-preview__body">
+                  <div className="serp-preview__site">DR Checker</div>
+                  <div className="serp-preview__url">{displayUrl}</div>
+                  <h2>{previewTitle}</h2>
+                  <p>{showDate ? `${previewDate} - ` : ""}{previewDescription}</p>
+                </div>
+              </div>
+
+              <p className="serp-preview-note">Google can rewrite snippets, but this preview helps catch truncation and weak messaging before publishing.</p>
+
+              <div className="serp-guidance-grid">
+                <article>
+                  <strong>Title</strong>
+                  <span>{titleStatus}</span>
+                  <p>35 to 60 characters is a useful target.</p>
+                </article>
+                <article>
+                  <strong>Description</strong>
+                  <span>{descriptionStatus}</span>
+                  <p>110 to 155 characters usually fits cleanly.</p>
+                </article>
+                <article>
+                  <strong>URL</strong>
+                  <span>Readable</span>
+                  <p>Short, descriptive slugs help the click.</p>
+                </article>
+              </div>
+            </section>
           </div>
-        </div>
+            </div>
       </section>
     </>
   );
