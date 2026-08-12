@@ -1,6 +1,6 @@
 # Free DR Checker
 
-A small free Domain Rating checker powered by the Ahrefs free Domain Rating API.
+A small free Domain Rating checker powered by the Ahrefs Domain Rating API.
 
 Live URL:
 
@@ -50,6 +50,7 @@ Both accept JSON in the shape:
 Required Vercel environment variables for the new tools:
 
 ```text
+AHREFS_API_KEY=xxxxx
 OPEN_PAGERANK_API_KEY=xxxxx
 NEXT_PUBLIC_TURNSTILE_SITE_KEY=xxxxx
 TURNSTILE_SECRET=xxxxx
@@ -136,7 +137,7 @@ The backend validates and normalizes domains, then calls:
 GET https://api.ahrefs.com/v3/public/domain-rating-free?target=socialbu.com&output=json
 ```
 
-The official docs define `target` as the required domain or URL parameter and `output` as the optional response format. No Ahrefs API key is required for this free endpoint.
+The official docs define `target` as the required domain or URL parameter and `output` as the optional response format. Ahrefs now requires a free APIv3 key sent as `Authorization: Bearer <token>`.
 
 ## Deploy to Vercel
 

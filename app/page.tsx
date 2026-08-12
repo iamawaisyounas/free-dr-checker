@@ -104,7 +104,7 @@ export default function HomePage() {
               <li>One simple input for any domain or URL.</li>
               <li>Instant DR score with an easy rating label.</li>
               <li>Plain-English explanation so the number is useful.</li>
-              <li>Powered by Ahrefs&apos; free Domain Rating API.</li>
+              <li>Powered by Ahrefs&apos; Domain Rating API.</li>
             </ul>
           </section>
 
@@ -191,7 +191,7 @@ export default function HomePage() {
               </details>
               <details>
                 <summary>Does this tool require an Ahrefs account?<svg aria-hidden="true" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"></path></svg></summary>
-                <p>No. It uses Ahrefs&apos; free public Domain Rating endpoint through a backend proxy.</p>
+                <p>No user Ahrefs account is required. DR Checker uses a server-side Ahrefs APIv3 key to fetch Domain Rating data.</p>
               </details>
             </div>
           </section>

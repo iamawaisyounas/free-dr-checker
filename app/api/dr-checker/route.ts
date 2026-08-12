@@ -1,7 +1,18 @@
 import { NextRequest, NextResponse } from "next/server";
 import { isValidDomain, normalizeDomain, parseDomainInput } from "../../../lib/domain-normalize";
 
+const AHREFS_API_KEY =
+  process.env.AHREFS_API_KEY
+  || process.env.AHREFS_API_TOKEN
+  || process.env.AHREFS_API_V3_KEY;
+
+type DrStatus = "ok" | "not_found" | "unavailable" | "auth_required";
+
 async function fetchDomainRating(domain: string) {
+  if (!AHREFS_API_KEY) {
+    return { domain, dr: null, status: "auth_required" as const };
+  }
+
   const apiUrl = new URL("https://api.ahrefs.com/v3/public/domain-rating-free");
   apiUrl.searchParams.set("target", domain);
   apiUrl.searchParams.set("output", "json");
@@ -9,16 +20,21 @@ async function fetchDomainRating(domain: string) {
   const response = await fetch(apiUrl, {
     headers: {
       accept: "application/json",
+      authorization: `Bearer ${AHREFS_API_KEY}`,
       "user-agent": "FreeDRChecker/1.0"
     },
     cache: "no-store"
   });
 
   if (!response.ok) {
+    if (response.status === 401 || response.status === 403) {
+      return { domain, dr: null, status: "auth_required" as const };
+    }
+
     return {
       domain,
       dr: null,
-      status: response.status === 404 ? "not_found" : "unavailable" as const
+      status: response.status === 404 ? "not_found" : "unavailable" as DrStatus
     };
   }
 
@@ -30,6 +46,20 @@ async function fetchDomainRating(domain: string) {
   }
 
   return { domain, dr: Math.round(dr), status: "ok" as const };
+}
+
+function domainRatingError(status: DrStatus) {
+  if (status === "auth_required") {
+    return {
+      message: "Domain Rating data is temporarily unavailable while the Ahrefs API key is being configured.",
+      status: 503
+    };
+  }
+
+  return {
+    message: "Unable to fetch Domain Rating.",
+    status: 502
+  };
 }
 
 export async function GET(request: NextRequest) {
@@ -47,7 +77,8 @@ export async function GET(request: NextRequest) {
     const result = await fetchDomainRating(domain);
 
     if (result.status !== "ok") {
-      return NextResponse.json({ error: "Unable to fetch Domain Rating." }, { status: 502 });
+      const error = domainRatingError(result.status);
+      return NextResponse.json({ error: error.message }, { status: error.status });
     }
 
     return NextResponse.json({ domain: result.domain, dr: result.dr });
@@ -72,6 +103,11 @@ export async function POST(request: NextRequest) {
 
     for (const domain of parsed.domains) {
       results.push(await fetchDomainRating(domain));
+    }
+
+    if (results.some((result) => result.status === "auth_required")) {
+      const error = domainRatingError("auth_required");
+      return NextResponse.json({ error: error.message }, { status: error.status });
     }
 
     return NextResponse.json({
