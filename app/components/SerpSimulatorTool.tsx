@@ -1,0 +1,192 @@
+"use client";
+
+import { useMemo, useState } from "react";
+
+const defaultTitle = "Domain Rating Checker - Check Ahrefs DR for Free";
+const defaultUrl = "https://dr-checker.com/google-serp-simulator";
+const defaultDescription =
+  "Preview how your title tag, URL, and meta description may appear in Google search results before publishing a page.";
+
+function normalizeUrl(value: string) {
+  const trimmed = value.trim();
+
+  if (!trimmed) {
+    return "https://example.com/page";
+  }
+
+  return /^https?:\/\//i.test(trimmed) ? trimmed : `https://${trimmed}`;
+}
+
+function formatDisplayUrl(value: string) {
+  try {
+    const url = new URL(normalizeUrl(value));
+    const path = url.pathname === "/" ? "" : url.pathname.replace(/\/$/, "");
+    return `${url.hostname}${path}`.replace(/^www\./, "");
+  } catch {
+    return value.trim() || "example.com/page";
+  }
+}
+
+function scoreLength(length: number, goodMin: number, goodMax: number, okMax: number) {
+  if (length < goodMin) return "Short";
+  if (length <= goodMax) return "Good";
+  if (length <= okMax) return "Long";
+  return "Likely truncated";
+}
+
+export default function SerpSimulatorTool() {
+  const [title, setTitle] = useState(defaultTitle);
+  const [url, setUrl] = useState(defaultUrl);
+  const [description, setDescription] = useState(defaultDescription);
+  const [device, setDevice] = useState<"desktop" | "mobile">("desktop");
+  const [showDate, setShowDate] = useState(false);
+  const [copied, setCopied] = useState("");
+
+  const displayUrl = useMemo(() => formatDisplayUrl(url), [url]);
+  const titleStatus = scoreLength(title.trim().length, 35, 60, 70);
+  const descriptionStatus = scoreLength(description.trim().length, 110, 155, 170);
+  const previewTitle = title.trim() || "Untitled page";
+  const previewDescription = description.trim() || "Add a meta description to preview your search snippet.";
+
+  async function copySnippet() {
+    const snippet = [
+      `Title: ${previewTitle}`,
+      `URL: ${normalizeUrl(url)}`,
+      `Meta description: ${previewDescription}`
+    ].join("\n");
+
+    try {
+      await navigator.clipboard.writeText(snippet);
+      setCopied("Snippet copied");
+      window.setTimeout(() => setCopied(""), 1800);
+    } catch {
+      setCopied("Copy failed");
+    }
+  }
+
+  function resetFields() {
+    setTitle(defaultTitle);
+    setUrl(defaultUrl);
+    setDescription(defaultDescription);
+    setDevice("desktop");
+    setShowDate(false);
+    setCopied("");
+  }
+
+  return (
+    <>
+      <section className="tool-shell serp-tool-shell" aria-labelledby="page-title">
+        <div className="hero-backdrop" aria-hidden="true">
+          <div className="hero-grid"></div>
+        </div>
+        <div className="checker-container">
+          <p className="eyebrow">
+            <svg aria-hidden="true" viewBox="0 0 24 24">
+              <path d="M4 7h16"></path>
+              <path d="M4 12h10"></path>
+              <path d="M4 17h16"></path>
+            </svg>
+            Free SEO Tool
+          </p>
+          <h1 id="page-title">Google SERP Simulator</h1>
+          <p className="subtitle">
+            Preview your Google snippet before publishing. Check title length, URL display, and meta description fit in desktop or mobile search results.
+          </p>
+
+          <div className="serp-editor" aria-label="SERP snippet inputs">
+            <div className="serp-field">
+              <label htmlFor="serpTitle">Title tag</label>
+              <input
+                id="serpTitle"
+                type="text"
+                value={title}
+                onChange={(event) => setTitle(event.target.value)}
+                maxLength={120}
+              />
+              <span>{title.trim().length} characters - {titleStatus}</span>
+            </div>
+
+            <div className="serp-field">
+              <label htmlFor="serpUrl">Page URL</label>
+              <input
+                id="serpUrl"
+                type="text"
+                value={url}
+                onChange={(event) => setUrl(event.target.value)}
+                maxLength={180}
+              />
+            </div>
+
+            <div className="serp-field">
+              <label htmlFor="serpDescription">Meta description</label>
+              <textarea
+                id="serpDescription"
+                value={description}
+                onChange={(event) => setDescription(event.target.value)}
+                maxLength={260}
+              />
+              <span>{description.trim().length} characters - {descriptionStatus}</span>
+            </div>
+
+            <div className="serp-actions">
+              <div className="segmented-control" aria-label="Preview device">
+                <button type="button" className={device === "desktop" ? "is-active" : ""} onClick={() => setDevice("desktop")}>
+                  Desktop
+                </button>
+                <button type="button" className={device === "mobile" ? "is-active" : ""} onClick={() => setDevice("mobile")}>
+                  Mobile
+                </button>
+              </div>
+              <label className="toggle-control serp-toggle">
+                <input type="checkbox" checked={showDate} onChange={(event) => setShowDate(event.target.checked)} />
+                Show date
+              </label>
+              <button type="button" className="secondary-button" onClick={resetFields}>Reset</button>
+              <button type="button" onClick={copySnippet}>Copy snippet</button>
+            </div>
+            <p className="serp-copy-status" aria-live="polite">{copied}</p>
+          </div>
+        </div>
+      </section>
+
+      <section className="tool-results-section serp-results-section" aria-label="Google search result preview">
+        <div className="tool-results-card serp-preview-card">
+          <div className="tool-results-header">
+            <div>
+              <strong>Snippet preview</strong>
+              <p>Google can rewrite snippets, but this preview helps you catch obvious truncation and messaging issues before publishing.</p>
+            </div>
+          </div>
+
+          <div className={`serp-preview serp-preview--${device}`}>
+            <div className="serp-preview__favicon" aria-hidden="true">D</div>
+            <div className="serp-preview__body">
+              <div className="serp-preview__site">DR Checker</div>
+              <div className="serp-preview__url">{displayUrl}</div>
+              <h2>{previewTitle}</h2>
+              <p>{showDate ? "Aug 12, 2026 - " : ""}{previewDescription}</p>
+            </div>
+          </div>
+
+          <div className="serp-guidance-grid">
+            <article>
+              <strong>Title</strong>
+              <span>{titleStatus}</span>
+              <p>Aim for roughly 35 to 60 characters with the primary keyword near the front.</p>
+            </article>
+            <article>
+              <strong>Description</strong>
+              <span>{descriptionStatus}</span>
+              <p>Keep the benefit clear in about 110 to 155 characters so the message survives truncation.</p>
+            </article>
+            <article>
+              <strong>URL</strong>
+              <span>Readable</span>
+              <p>Use short, descriptive slugs that help searchers understand the page before clicking.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}

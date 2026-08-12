@@ -49,6 +49,7 @@ export default function AppHeader() {
             <Link href="/bulk-dr-checker" onClick={() => setMenuOpen(false)}>Bulk DR Checker</Link>
             <Link href="/domain-authority-checker" onClick={() => setMenuOpen(false)}>Domain Authority Checker</Link>
             <Link href="/domain-age-checker" onClick={() => setMenuOpen(false)}>Domain Age Checker</Link>
+            <Link href="/google-serp-simulator" onClick={() => setMenuOpen(false)}>SERP Simulator</Link>
             <Link href="/blog" onClick={() => setMenuOpen(false)}>Blog</Link>
             <Link href="/contact" onClick={() => setMenuOpen(false)}>Contact</Link>
           </nav>

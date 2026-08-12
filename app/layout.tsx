@@ -54,6 +54,7 @@ function Footer() {
           <Link href="/bulk-dr-checker">Bulk DR Checker</Link>
           <Link href="/domain-authority-checker">Domain Authority Checker</Link>
           <Link href="/domain-age-checker">Domain Age Checker</Link>
+          <Link href="/google-serp-simulator">Google SERP Simulator</Link>
           <span className="footer-coming-soon">
             <span>Domain Backlinks Checker</span>
             <small>Coming Soon</small>

@@ -42,6 +42,16 @@ POST /api/tools/domain-age
 POST /api/tools/authority-score
 ```
 
+Public tool pages:
+
+```text
+/
+/bulk-dr-checker
+/domain-authority-checker
+/domain-age-checker
+/google-serp-simulator
+```
+
 Both accept JSON in the shape:
 
 ```json

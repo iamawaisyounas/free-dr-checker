@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-type ToolKey = "dr" | "bulk-dr" | "authority" | "age";
+type ToolKey = "dr" | "bulk-dr" | "authority" | "age" | "serp";
 
 type ToolCard = {
   key: ToolKey;
@@ -8,7 +8,7 @@ type ToolCard = {
   title: string;
   description: string;
   cta: string;
-  icon: "gauge" | "list" | "link" | "calendar";
+  icon: "gauge" | "list" | "link" | "calendar" | "search";
 };
 
 const tools: ToolCard[] = [
@@ -43,6 +43,14 @@ const tools: ToolCard[] = [
     description: "See how old any domain is, pulled live from WHOIS and RDAP registry data.",
     cta: "Try Domain Age Checker Now",
     icon: "calendar"
+  },
+  {
+    key: "serp",
+    href: "/google-serp-simulator",
+    title: "Google SERP Simulator",
+    description: "Preview title tags, URLs, and meta descriptions before publishing a page.",
+    cta: "Try SERP Simulator Now",
+    icon: "search"
   }
 ];
 
@@ -71,6 +79,16 @@ function ToolIcon({ icon }: { icon: ToolCard["icon"] }) {
         <path d="M8 2v4M16 2v4M3 10h18"></path>
         <rect x="3" y="4" width="18" height="18" rx="2"></rect>
         <path d="M12 14v3l2 1"></path>
+      </svg>
+    );
+  }
+
+  if (icon === "search") {
+    return (
+      <svg aria-hidden="true" viewBox="0 0 24 24">
+        <circle cx="11" cy="11" r="8"></circle>
+        <path d="m21 21-4.35-4.35"></path>
+        <path d="M8 11h6"></path>
       </svg>
     );
   }

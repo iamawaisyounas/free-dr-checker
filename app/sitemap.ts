@@ -12,6 +12,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: "https://dr-checker.com/domain-authority-checker", lastModified, priority: 0.9 },
     { url: "https://dr-checker.com/domain-authority-checker/how-we-calculate", lastModified, priority: 0.6 },
     { url: "https://dr-checker.com/domain-age-checker", lastModified, priority: 0.9 },
+    { url: "https://dr-checker.com/google-serp-simulator", lastModified, priority: 0.9 },
     { url: "https://dr-checker.com/about", lastModified, priority: 0.8 },
     { url: "https://dr-checker.com/blog", lastModified, priority: 0.7 },
     ...uniqueBlogPosts.map((post) => ({
