@@ -104,7 +104,7 @@ export default function HomePage() {
               <li>One simple input for any domain or URL.</li>
               <li>Instant DR score with an easy rating label.</li>
               <li>Plain-English explanation so the number is useful.</li>
-              <li>Powered by Ahrefs&apos; Domain Rating API.</li>
+              <li>Powered by Ahrefs&apos; Domain Rating API through a server-side APIv3 key.</li>
             </ul>
           </section>
 
@@ -130,7 +130,7 @@ export default function HomePage() {
               <article>
                 <span>3</span>
                 <h3>Get the result</h3>
-                <p>The backend calls Ahrefs and returns a DR score with context.</p>
+                <p>The backend calls Ahrefs with the configured API key and returns a DR score with context.</p>
               </article>
             </div>
           </section>

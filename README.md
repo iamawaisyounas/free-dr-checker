@@ -1,6 +1,6 @@
 # Free DR Checker
 
-A small free Domain Rating checker powered by the Ahrefs Domain Rating API.
+A small free Domain Rating checker powered by the Ahrefs Domain Rating API. Ahrefs now requires a free APIv3 key for the public Domain Rating endpoint, so production must have `AHREFS_API_KEY` configured server-side.
 
 Live URL:
 
@@ -34,9 +34,10 @@ The frontend calls the local backend only:
 GET /api/dr-checker?domain=socialbu.com
 ```
 
-New bulk tool endpoints:
+Bulk tool endpoints:
 
 ```text
+POST /api/dr-checker
 POST /api/tools/domain-age
 POST /api/tools/authority-score
 ```
@@ -47,7 +48,7 @@ Both accept JSON in the shape:
 { "domains": ["github.com", "google.com"] }
 ```
 
-Required Vercel environment variables for the new tools:
+Required Vercel environment variables for the DR checker and supporting tools:
 
 ```text
 AHREFS_API_KEY=xxxxx
@@ -141,15 +142,12 @@ The official docs define `target` as the required domain or URL parameter and `o
 
 ## Deploy to Vercel
 
-This project includes a Vercel serverless function at:
-
-```text
-api/dr-checker.js
-```
+Make sure `AHREFS_API_KEY` is set for the Production environment before deploying. The key is used only by the Next.js API route and is never exposed to the browser.
 
 Deploy with:
 
 ```bash
+npm run build
 npx vercel --prod
 ```
 
@@ -162,13 +160,13 @@ https://github.com/iamawaisyounas/free-dr-checker
 Use these Vercel settings:
 
 ```text
-Framework Preset: Other
-Build Command: empty
-Output Directory: public
+Framework Preset: Next.js
+Build Command: npm run build
+Output Directory: .next
 Install Command: npm install
 ```
 
-The public frontend will be served from `public/`, and the frontend will call the production API at:
+The frontend calls the production API at:
 
 ```text
 /api/dr-checker?domain=socialbu.com
