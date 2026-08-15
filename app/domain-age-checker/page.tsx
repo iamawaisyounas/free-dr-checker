@@ -93,7 +93,7 @@ export default function DomainAgePage() {
               </svg>
               Quick answer
             </p>
-            <h2>Check domain age and history fast</h2>
+            <h2>Check domain age and website history</h2>
             <p className="wide-copy">A domain age checker shows when a domain was first registered and when it expires. That history helps with expired-domain reviews, link prospecting, and email-domain checks, but age alone does not prove SEO strength.</p>
             <div className="answer-grid" aria-label="Domain age quick facts">
               <article>
@@ -138,7 +138,7 @@ export default function DomainAgePage() {
               </svg>
               Query guide
             </p>
-            <h2>Use domain age by SEO task</h2>
+            <h2>Use domain age for SEO checks</h2>
             <div className="intent-grid">
               <article className="intent-card">
                 <span>SEO</span>

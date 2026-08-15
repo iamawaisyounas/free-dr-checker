@@ -293,7 +293,7 @@ export default function GoogleSerpSimulatorPage() {
               </svg>
               Keyword fit
             </p>
-            <h2>SERP preview keyword fit</h2>
+            <h2>SERP preview tool keyword fit</h2>
             <ul className="query-pill-list" aria-label="SERP simulator keyword targets">
               <li>google serp simulator</li>
               <li>serp preview tool</li>

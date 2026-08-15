@@ -45,7 +45,7 @@ export default function Image() {
 
         <div style={{ display: "flex", flexDirection: "column", gap: 22 }}>
           <div style={{ fontSize: 72, lineHeight: 1.05, fontWeight: 900, maxWidth: 900 }}>
-            Check Ahrefs DR for Free
+            Free Ahrefs DR Checker
           </div>
           <div style={{ fontSize: 32, lineHeight: 1.35, color: "#40546a", maxWidth: 880 }}>
             Enter any domain to get a fast Domain Rating score from Ahrefs.

@@ -96,7 +96,7 @@ export default function BulkDrCheckerPage() {
               </svg>
               Quick answer
             </p>
-            <h2>Check bulk Domain Rating faster</h2>
+            <h2>Check bulk Domain Rating lists</h2>
             <p className="wide-copy">A bulk DR checker helps you check many websites at once, clean duplicate entries, and export a working CSV. It is best for triage: remove obviously weak or irrelevant domains first, then manually review the sites that still look promising.</p>
             <div className="answer-grid" aria-label="Bulk DR quick facts">
               <article>
@@ -217,7 +217,7 @@ export default function BulkDrCheckerPage() {
               </svg>
               Bulk query coverage
             </p>
-            <h2>Bulk DR checker query matches</h2>
+            <h2>Bulk DR checker keyword matches</h2>
             <div className="keyword-map">
               <article className="keyword-card">
                 <span>bulk dr checker</span>

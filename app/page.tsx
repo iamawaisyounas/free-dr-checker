@@ -3,7 +3,7 @@ import CheckerTool from "./components/CheckerTool";
 import DiscoverTools from "./components/DiscoverTools";
 import { absoluteUrl, breadcrumbSchema, faqSchema, softwareApplicationSchema } from "../lib/schema";
 
-const homeTitle = "Free Domain Rating Checker - Check Ahrefs DR Instantly";
+const homeTitle = "Domain Rating Checker - Free Ahrefs DR Checker";
 const homeDescription =
   "Check Ahrefs Domain Rating for free. Compare backlink strength, qualify websites faster, and decide which domains deserve deeper SEO review.";
 const homeOgImage = {
@@ -95,7 +95,7 @@ export default function HomePage() {
               </svg>
               Quick answer
             </p>
-            <h2>Check domain rating before outreach</h2>
+            <h2>Check Domain Rating with Ahrefs data</h2>
             <p className="wide-copy">A Domain Rating checker gives you a fast 0 to 100 backlink-strength signal for any domain. The score is useful for competitor research, guest post screening, and outreach prioritization, but it should be paired with relevance, traffic, editorial quality, and the page where a link would appear.</p>
             <div className="answer-grid" aria-label="Domain Rating quick facts">
               <article>

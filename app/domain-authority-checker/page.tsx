@@ -93,7 +93,7 @@ export default function AuthorityScorePage() {
               </svg>
               Quick answer
             </p>
-            <h2>Check website authority with context</h2>
+            <h2>Check website authority for free</h2>
             <p className="wide-copy">DR Checker&apos;s Domain Authority tool gives an independent 0 to 100 authority-style score from OpenPageRank data. It helps you compare domains quickly, but it should be read beside Ahrefs DR, referring domains, topical relevance, and manual backlink review.</p>
             <div className="answer-grid" aria-label="Domain Authority quick facts">
               <article>
@@ -135,7 +135,7 @@ export default function AuthorityScorePage() {
               </svg>
               Intent match
             </p>
-            <h2>Domain Authority checker query matches</h2>
+            <h2>Domain Authority checker keywords</h2>
             <p className="wide-copy">Some users want Moz DA specifically, while others want any quick website authority score. This page is built for the second need: a free authority-style comparison score with clear limits and links to Ahrefs DR when that metric is the better fit.</p>
             <div className="intent-grid">
               <article className="intent-card">

@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 
-const defaultTitle = "Free Domain Rating Checker - Check Ahrefs DR Instantly";
+const defaultTitle = "Domain Rating Checker - Free Ahrefs DR Checker";
 const defaultUrl = "https://dr-checker.com/google-serp-simulator";
 const defaultDescription =
   "Preview your Google search snippet, test desktop and mobile fit, and improve title tags and meta descriptions before publishing.";
@@ -93,7 +93,7 @@ export default function SerpSimulatorTool() {
             </svg>
             Free SEO Tool
           </p>
-          <h1 id="page-title">Google SERP Simulator for Title and Meta Preview</h1>
+          <h1 id="page-title">Google SERP Simulator</h1>
           <p className="subtitle">
             Preview your title tag, URL, and meta description before a page goes live. Use the simulator to catch truncation, tighten the search promise, and compare desktop and mobile snippets in one place.
           </p>
