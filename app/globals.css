@@ -1896,6 +1896,159 @@ body.dark-mode .tip-list p:hover {
   margin: 0;
 }
 
+.intent-grid,
+.workflow-grid,
+.comparison-grid,
+.keyword-map,
+.audit-grid {
+  display: grid;
+  gap: 16px;
+  margin-top: 28px;
+  text-align: left;
+}
+
+.intent-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.workflow-grid,
+.comparison-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.keyword-map,
+.audit-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.intent-card,
+.workflow-card,
+.comparison-card,
+.keyword-card,
+.audit-card,
+.callout-panel {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--card);
+  box-shadow: var(--shadow-card);
+}
+
+.intent-card,
+.keyword-card,
+.audit-card {
+  padding: 20px;
+}
+
+.workflow-card,
+.comparison-card {
+  display: grid;
+  gap: 12px;
+  padding: 22px;
+}
+
+.intent-card span,
+.workflow-card span,
+.comparison-card span,
+.keyword-card span,
+.audit-card span {
+  display: inline-flex;
+  width: fit-content;
+  margin-bottom: 10px;
+  border-radius: 999px;
+  padding: 5px 9px;
+  color: var(--primary);
+  background: var(--secondary);
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.intent-card h3,
+.workflow-card h3,
+.comparison-card h3,
+.keyword-card h3,
+.audit-card h3 {
+  margin-bottom: 8px;
+}
+
+.intent-card p,
+.workflow-card p,
+.comparison-card p,
+.keyword-card p,
+.audit-card p {
+  margin: 0;
+}
+
+.callout-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 0.88fr) minmax(0, 1.12fr);
+  gap: 28px;
+  align-items: start;
+  margin-top: 28px;
+  padding: 28px;
+  text-align: left;
+}
+
+.callout-panel h3 {
+  margin-bottom: 10px;
+  font-size: clamp(1.25rem, 3vw, 1.55rem);
+}
+
+.callout-panel p:last-child {
+  margin-bottom: 0;
+}
+
+.mini-metric-list {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.mini-metric-list li {
+  display: grid;
+  grid-template-columns: minmax(84px, 0.28fr) minmax(0, 1fr);
+  gap: 12px;
+  align-items: start;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px;
+  background: var(--secondary);
+  box-shadow: none;
+}
+
+.mini-metric-list strong {
+  color: var(--foreground);
+  line-height: 1.35;
+}
+
+.mini-metric-list span {
+  color: var(--muted-foreground);
+  line-height: 1.5;
+}
+
+.query-pill-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin: 24px auto 0;
+  padding: 0;
+  list-style: none;
+}
+
+.query-pill-list li {
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 8px 12px;
+  color: var(--foreground);
+  background: var(--card);
+  font-size: 0.9rem;
+  line-height: 1.25;
+}
+
 .decision-table {
   margin-top: 10px;
   text-align: left;
@@ -2040,6 +2193,12 @@ details p {
   .feature-grid,
   .steps,
   .split-block,
+  .intent-grid,
+  .workflow-grid,
+  .comparison-grid,
+  .keyword-map,
+  .audit-grid,
+  .callout-panel,
   .discover-tools__grid,
   .serp-workbench,
   .serp-guidance-grid {
@@ -2051,8 +2210,13 @@ details p {
   }
 
   .split-block,
-  .split-block > div:first-child {
+  .split-block > div:first-child,
+  .callout-panel {
     text-align: center;
+  }
+
+  .mini-metric-list li {
+    grid-template-columns: 1fr;
   }
 
   .site-header {

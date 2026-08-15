@@ -144,6 +144,40 @@ export default function HomePage() {
           <section className="copy-block">
             <p className="section-label">
               <svg aria-hidden="true" viewBox="0 0 24 24">
+                <path d="M5 12h14"></path>
+                <path d="m12 5 7 7-7 7"></path>
+              </svg>
+              Search intent map
+            </p>
+            <h2>Choose the right next step for the query behind your DR check</h2>
+            <p className="wide-copy">Most people searching for a domain rating checker are not just curious about a number. They want to decide whether a website is strong enough to pitch, compare, audit, buy, or report on. Use the score differently depending on the job.</p>
+            <div className="intent-grid">
+              <article className="intent-card">
+                <span>Outreach</span>
+                <h3>Can I pitch this site?</h3>
+                <p>Keep the domain only if DR, topical fit, recent publishing quality, and outbound link patterns all look reasonable.</p>
+              </article>
+              <article className="intent-card">
+                <span>Competitors</span>
+                <h3>How strong are they?</h3>
+                <p>Compare direct competitors in the same niche, then review their best linked pages instead of stopping at domain-level DR.</p>
+              </article>
+              <article className="intent-card">
+                <span>Reporting</span>
+                <h3>Did authority improve?</h3>
+                <p>Record DR monthly with notes about earned links, lost links, redirects, and major content updates.</p>
+              </article>
+              <article className="intent-card">
+                <span>Due diligence</span>
+                <h3>Is the score trustworthy?</h3>
+                <p>Check whether the domain has relevant real pages, organic visibility, and a clean link history before trusting a high number.</p>
+              </article>
+            </div>
+          </section>
+
+          <section className="copy-block">
+            <p className="section-label">
+              <svg aria-hidden="true" viewBox="0 0 24 24">
                 <path d="M4 5h16"></path>
                 <path d="M4 12h16"></path>
                 <path d="M4 19h16"></path>
@@ -183,6 +217,39 @@ export default function HomePage() {
                   </tr>
                 </tbody>
               </table>
+            </div>
+          </section>
+
+          <section className="copy-block">
+            <p className="section-label">
+              <svg aria-hidden="true" viewBox="0 0 24 24">
+                <path d="M9 11 12 14 22 4"></path>
+                <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+              </svg>
+              Review workflow
+            </p>
+            <h2>A practical DR review workflow for SEO teams</h2>
+            <div className="workflow-grid">
+              <article className="workflow-card">
+                <span>Step 1</span>
+                <h3>Check the exact root domain</h3>
+                <p>Paste the domain or URL, then confirm the normalized domain is the one you meant to evaluate. This prevents judging a prospect by a subdomain, redirect, or tracking URL.</p>
+              </article>
+              <article className="workflow-card">
+                <span>Step 2</span>
+                <h3>Compare only relevant alternatives</h3>
+                <p>A DR 42 domain can be strong in a narrow niche and weak in another. Compare against direct search competitors, not giant publishers that are outside your market.</p>
+              </article>
+              <article className="workflow-card">
+                <span>Step 3</span>
+                <h3>Inspect the pages earning links</h3>
+                <p>Good DR should come from useful resources, brand mentions, tools, studies, or editorial coverage. Be careful when the link profile is mostly unrelated placements.</p>
+              </article>
+              <article className="workflow-card">
+                <span>Step 4</span>
+                <h3>Make a yes, no, or review-later decision</h3>
+                <p>Use DR to speed up triage, then let relevance, traffic, page quality, and business fit decide the final action.</p>
+              </article>
             </div>
           </section>
 
@@ -261,6 +328,17 @@ export default function HomePage() {
             </p>
             <h2>What Domain Rating really means</h2>
             <p className="wide-copy">Domain Rating is an Ahrefs metric that estimates the strength of a website&apos;s backlink profile on a 0 to 100 scale. A higher DR usually means the domain has stronger links, but DR is not a Google ranking factor and it does not measure content quality. Use it with relevance, organic traffic, search intent, and manual review.</p>
+            <div className="callout-panel">
+              <div>
+                <h3>Keyword targets this page now answers</h3>
+                <p>These phrases match the user jobs behind a free DR checker page, so the copy covers both the tool action and the follow-up decision.</p>
+              </div>
+              <ul className="mini-metric-list">
+                <li><strong>domain rating checker</strong><span>Primary tool query for checking a single domain&apos;s Ahrefs DR.</span></li>
+                <li><strong>dr checker</strong><span>Short-form query from users who already know the metric.</span></li>
+                <li><strong>check domain rating</strong><span>Action-led query that needs quick input, result interpretation, and next steps.</span></li>
+              </ul>
+            </div>
           </section>
 
           <section className="copy-block faq-block" aria-labelledby="faq-title">

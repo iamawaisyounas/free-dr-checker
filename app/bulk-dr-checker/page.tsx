@@ -131,6 +131,42 @@ export default function BulkDrCheckerPage() {
           <section className="copy-block">
             <p className="section-label">
               <svg aria-hidden="true" viewBox="0 0 24 24">
+                <path d="M9 3H5a2 2 0 0 0-2 2v4"></path>
+                <path d="M15 3h4a2 2 0 0 1 2 2v4"></path>
+                <path d="M9 21H5a2 2 0 0 1-2-2v-4"></path>
+                <path d="M15 21h4a2 2 0 0 0 2-2v-4"></path>
+                <path d="M8 12h8"></path>
+              </svg>
+              List cleanup flow
+            </p>
+            <h2>Turn a messy prospect list into a scored outreach sheet</h2>
+            <div className="workflow-grid">
+              <article className="workflow-card">
+                <span>Input</span>
+                <h3>Paste domains, URLs, or mixed rows</h3>
+                <p>Bulk checks work best when you can paste raw exports from Sheets, CRMs, Ahrefs, Google Search, or prospecting tools without cleaning every row first.</p>
+              </article>
+              <article className="workflow-card">
+                <span>Normalize</span>
+                <h3>Collapse duplicates before checking</h3>
+                <p>The page cleans protocols, paths, and repeated domains so you do not waste time comparing the same website several times.</p>
+              </article>
+              <article className="workflow-card">
+                <span>Segment</span>
+                <h3>Sort by DR and relevance tier</h3>
+                <p>Use high, medium, and low DR buckets as review queues. Keep niche-relevant domains visible even if they are not the highest-scoring entries.</p>
+              </article>
+              <article className="workflow-card">
+                <span>Export</span>
+                <h3>Move the result into your working process</h3>
+                <p>Download CSV results for outreach qualification, client reporting, link gap review, or a manual editorial-quality checklist.</p>
+              </article>
+            </div>
+          </section>
+
+          <section className="copy-block">
+            <p className="section-label">
+              <svg aria-hidden="true" viewBox="0 0 24 24">
                 <path d="M4 5h16"></path>
                 <path d="M4 12h16"></path>
                 <path d="M4 19h16"></path>
@@ -170,6 +206,33 @@ export default function BulkDrCheckerPage() {
                   </tr>
                 </tbody>
               </table>
+            </div>
+          </section>
+
+          <section className="copy-block">
+            <p className="section-label">
+              <svg aria-hidden="true" viewBox="0 0 24 24">
+                <path d="M20 6 9 17l-5-5"></path>
+              </svg>
+              Bulk query coverage
+            </p>
+            <h2>What bulk DR searchers usually need after the score</h2>
+            <div className="keyword-map">
+              <article className="keyword-card">
+                <span>bulk dr checker</span>
+                <h3>Fast multi-domain scoring</h3>
+                <p>Answer the core query with a visible tool, clear limits, and CSV export so the user can process many domains in one session.</p>
+              </article>
+              <article className="keyword-card">
+                <span>bulk domain rating checker</span>
+                <h3>Ahrefs-style authority context</h3>
+                <p>Explain that DR is a backlink-strength metric and should be paired with relevance, traffic, and link placement checks.</p>
+              </article>
+              <article className="keyword-card">
+                <span>bulk website authority checker</span>
+                <h3>List prioritization</h3>
+                <p>Help users convert scores into keep, review, remove, and follow-up buckets instead of exporting a number with no guidance.</p>
+              </article>
             </div>
           </section>
 

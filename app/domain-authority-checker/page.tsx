@@ -129,6 +129,40 @@ export default function AuthorityScorePage() {
           <section className="copy-block">
             <p className="section-label">
               <svg aria-hidden="true" viewBox="0 0 24 24">
+                <path d="M12 3v18"></path>
+                <path d="M3 12h18"></path>
+              </svg>
+              Intent match
+            </p>
+            <h2>What users mean when they search for a DA checker</h2>
+            <p className="wide-copy">Some users want Moz DA specifically, while others want any quick website authority score. This page is built for the second need: a free authority-style comparison score with clear limits and links to Ahrefs DR when that metric is the better fit.</p>
+            <div className="intent-grid">
+              <article className="intent-card">
+                <span>DA checker</span>
+                <h3>Quick authority estimate</h3>
+                <p>Give users a fast 0 to 100 comparison score without requiring an account or a paid suite.</p>
+              </article>
+              <article className="intent-card">
+                <span>DA vs DR</span>
+                <h3>Metric clarification</h3>
+                <p>Explain that DA-style scores and Ahrefs DR are separate authority signals from different data sources.</p>
+              </article>
+              <article className="intent-card">
+                <span>Prospecting</span>
+                <h3>Website screening</h3>
+                <p>Help link builders decide which sites deserve manual review based on authority plus relevance.</p>
+              </article>
+              <article className="intent-card">
+                <span>Reporting</span>
+                <h3>Client-friendly context</h3>
+                <p>Give non-technical readers a simple score, then warn them not to treat it as Google&apos;s opinion.</p>
+              </article>
+            </div>
+          </section>
+
+          <section className="copy-block">
+            <p className="section-label">
+              <svg aria-hidden="true" viewBox="0 0 24 24">
                 <path d="M4 5h16"></path>
                 <path d="M4 12h16"></path>
                 <path d="M4 19h16"></path>
@@ -163,6 +197,34 @@ export default function AuthorityScorePage() {
                   </tr>
                 </tbody>
               </table>
+            </div>
+          </section>
+
+          <section className="copy-block">
+            <p className="section-label">
+              <svg aria-hidden="true" viewBox="0 0 24 24">
+                <path d="M6 3h12l4 6-10 12L2 9z"></path>
+                <path d="M11 3 8 9l4 12 4-12-3-6"></path>
+              </svg>
+              Authority checklist
+            </p>
+            <h2>Before trusting a high authority score, check the quality signals</h2>
+            <div className="audit-grid">
+              <article className="audit-card">
+                <span>Links</span>
+                <h3>Are referring sites relevant?</h3>
+                <p>A strong score is more useful when the domain earns links from pages in its actual topic area.</p>
+              </article>
+              <article className="audit-card">
+                <span>Traffic</span>
+                <h3>Does the site have real search visibility?</h3>
+                <p>Authority without rankings or real pages can signal a domain that looks better in tools than it is for users.</p>
+              </article>
+              <article className="audit-card">
+                <span>Editorial</span>
+                <h3>Would you trust the publishing pattern?</h3>
+                <p>Review recent posts, author quality, outbound links, topic focus, and whether sponsored content dominates the site.</p>
+              </article>
             </div>
           </section>
 

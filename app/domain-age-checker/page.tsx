@@ -129,6 +129,42 @@ export default function DomainAgePage() {
           <section className="copy-block">
             <p className="section-label">
               <svg aria-hidden="true" viewBox="0 0 24 24">
+                <path d="M4 19V5"></path>
+                <path d="M4 19h16"></path>
+                <path d="M8 15h2"></path>
+                <path d="M12 11h2"></path>
+                <path d="M16 7h2"></path>
+              </svg>
+              Query guide
+            </p>
+            <h2>Use domain age differently for SEO, buying, and outreach checks</h2>
+            <div className="intent-grid">
+              <article className="intent-card">
+                <span>SEO</span>
+                <h3>Is an older domain stronger?</h3>
+                <p>Age gives you history to inspect, but rankings still depend on content, links, technical quality, and intent match.</p>
+              </article>
+              <article className="intent-card">
+                <span>Buying</span>
+                <h3>Is this aged domain safe?</h3>
+                <p>Check creation date, expiry, redirects, past content, and whether the old backlink profile matches your future topic.</p>
+              </article>
+              <article className="intent-card">
+                <span>Outreach</span>
+                <h3>Is the site established?</h3>
+                <p>Combine age with DR, publishing history, contact credibility, and editorial standards before pitching.</p>
+              </article>
+              <article className="intent-card">
+                <span>Email</span>
+                <h3>Is the sending domain too new?</h3>
+                <p>Very new domains may need slower warmup and cleaner DNS before cold outreach campaigns.</p>
+              </article>
+            </div>
+          </section>
+
+          <section className="copy-block">
+            <p className="section-label">
+              <svg aria-hidden="true" viewBox="0 0 24 24">
                 <path d="M4 5h16"></path>
                 <path d="M4 12h16"></path>
                 <path d="M4 19h16"></path>
@@ -163,6 +199,41 @@ export default function DomainAgePage() {
                   </tr>
                 </tbody>
               </table>
+            </div>
+          </section>
+
+          <section className="copy-block">
+            <p className="section-label">
+              <svg aria-hidden="true" viewBox="0 0 24 24">
+                <path d="M6 3v18"></path>
+                <path d="M18 3v18"></path>
+                <path d="M6 8h12"></path>
+                <path d="M6 16h12"></path>
+              </svg>
+              Age vs website age
+            </p>
+            <h2>Domain age and website age are not always the same thing</h2>
+            <div className="comparison-grid">
+              <article className="comparison-card">
+                <span>Domain age</span>
+                <h3>Registration history</h3>
+                <p>A domain can be 10 years old even if the current website launched last month. Domain age follows the registration record, not the current design or content.</p>
+              </article>
+              <article className="comparison-card">
+                <span>Website age</span>
+                <h3>Public content history</h3>
+                <p>Website age depends on when useful pages were published, indexed, archived, and linked. Use web archives and content history for this review.</p>
+              </article>
+              <article className="comparison-card">
+                <span>Ownership changes</span>
+                <h3>Risk context</h3>
+                <p>A domain can keep its original creation date after a sale. Always check whether the topic, owner, redirects, or language changed sharply.</p>
+              </article>
+              <article className="comparison-card">
+                <span>Expiry date</span>
+                <h3>Operational signal</h3>
+                <p>Expiry does not measure age, but it helps buyers and site owners confirm whether a domain is maintained or close to lapsing.</p>
+              </article>
             </div>
           </section>
 

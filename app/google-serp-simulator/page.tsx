@@ -133,6 +133,40 @@ export default function GoogleSerpSimulatorPage() {
           <section className="copy-block">
             <p className="section-label">
               <svg aria-hidden="true" viewBox="0 0 24 24">
+                <path d="M4 6h16"></path>
+                <path d="M4 12h12"></path>
+                <path d="M4 18h8"></path>
+              </svg>
+              Snippet strategy
+            </p>
+            <h2>Write snippets for the searcher&apos;s next click, not only for length limits</h2>
+            <div className="intent-grid">
+              <article className="intent-card">
+                <span>Title tag</span>
+                <h3>Lead with the page topic</h3>
+                <p>Put the clearest topic and value near the beginning so truncation does not hide the reason to click.</p>
+              </article>
+              <article className="intent-card">
+                <span>Description</span>
+                <h3>Answer the query quickly</h3>
+                <p>Use the first sentence to state what the page helps the reader do, compare, learn, or decide.</p>
+              </article>
+              <article className="intent-card">
+                <span>URL path</span>
+                <h3>Make the slug readable</h3>
+                <p>A short descriptive path supports trust and helps the result feel aligned with the query.</p>
+              </article>
+              <article className="intent-card">
+                <span>Device view</span>
+                <h3>Check mobile and desktop</h3>
+                <p>Search results can expose different amounts of text, so protect the most useful words in both previews.</p>
+              </article>
+            </div>
+          </section>
+
+          <section className="copy-block">
+            <p className="section-label">
+              <svg aria-hidden="true" viewBox="0 0 24 24">
                 <path d="M4 5h16"></path>
                 <path d="M4 12h16"></path>
                 <path d="M4 19h16"></path>
@@ -167,6 +201,40 @@ export default function GoogleSerpSimulatorPage() {
                   </tr>
                 </tbody>
               </table>
+            </div>
+          </section>
+
+          <section className="copy-block">
+            <p className="section-label">
+              <svg aria-hidden="true" viewBox="0 0 24 24">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <path d="M7 10l5 5 5-5"></path>
+                <path d="M12 15V3"></path>
+              </svg>
+              Rewrite framework
+            </p>
+            <h2>A simple framework for stronger title tags and meta descriptions</h2>
+            <div className="workflow-grid">
+              <article className="workflow-card">
+                <span>Search intent</span>
+                <h3>Name the job of the page</h3>
+                <p>Before editing length, decide whether the result should help someone learn, compare, buy, troubleshoot, or complete a task.</p>
+              </article>
+              <article className="workflow-card">
+                <span>Primary phrase</span>
+                <h3>Use the keyword naturally once</h3>
+                <p>The title should contain the main phrase when it accurately describes the page. The description can use related wording if that reads better.</p>
+              </article>
+              <article className="workflow-card">
+                <span>Proof point</span>
+                <h3>Add one concrete reason to click</h3>
+                <p>Examples include free tool, current guide, checklist, calculator, comparison table, template, or step-by-step process.</p>
+              </article>
+              <article className="workflow-card">
+                <span>Preview</span>
+                <h3>Trim only after the message is clear</h3>
+                <p>Shorter is not automatically better. First make the snippet useful, then remove extra words that hide the main value.</p>
+              </article>
             </div>
           </section>
 
@@ -212,6 +280,26 @@ export default function GoogleSerpSimulatorPage() {
               <li>Use one clear benefit or answer instead of repeating the same phrase mechanically.</li>
               <li>Preview desktop and mobile because visible space can change by device and query.</li>
               <li>Expect Google to rewrite some snippets when it thinks another page excerpt fits the query better.</li>
+            </ul>
+          </section>
+
+          <section className="copy-block">
+            <p className="section-label">
+              <svg aria-hidden="true" viewBox="0 0 24 24">
+                <path d="M4 4h16v16H4z"></path>
+                <path d="M8 9h8"></path>
+                <path d="M8 13h6"></path>
+              </svg>
+              Keyword fit
+            </p>
+            <h2>Search terms this SERP preview page is built to satisfy</h2>
+            <ul className="query-pill-list" aria-label="SERP simulator keyword targets">
+              <li>google serp simulator</li>
+              <li>serp preview tool</li>
+              <li>snippet preview tool</li>
+              <li>meta description preview</li>
+              <li>title tag preview</li>
+              <li>mobile serp preview</li>
             </ul>
           </section>
 
