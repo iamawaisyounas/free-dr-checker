@@ -1178,7 +1178,7 @@ button svg {
 }
 
 .serp-browser {
-  --serp-left-offset: clamp(24px, 14vw, 138px);
+  --serp-left-offset: clamp(24px, 10vw, 138px);
   --serp-right-gutter: 32px;
   display: grid;
   gap: 0;
@@ -1198,8 +1198,8 @@ button svg {
 }
 
 .serp-browser--desktop {
-  justify-self: center;
-  width: min(calc(100% - 72px), 780px);
+  justify-self: stretch;
+  width: 100%;
 }
 
 .serp-browser--mobile {
@@ -1238,7 +1238,7 @@ button svg {
   grid-template-columns: minmax(0, 1fr) 1px 22px 18px;
   align-items: center;
   gap: 14px;
-  width: min(720px, 100%);
+  width: min(920px, 100%);
   min-height: 46px;
   border: 1px solid #dadce0;
   border-radius: 999px;
@@ -1331,7 +1331,7 @@ button svg {
 .serp-preview {
   display: grid;
   gap: 9px;
-  width: min(600px, calc(100% - var(--serp-left-offset) - var(--serp-right-gutter)));
+  width: min(900px, calc(100% - var(--serp-left-offset) - var(--serp-right-gutter)));
   margin: 30px var(--serp-right-gutter) 0 var(--serp-left-offset);
   border: 0;
   border-radius: 0;
@@ -2527,7 +2527,7 @@ details p {
 
   .serp-browser--desktop {
     margin-inline: auto;
-    width: min(calc(100% - 56px), 780px);
+    width: 100%;
   }
 }
 
