@@ -228,18 +228,25 @@ export default function SerpSimulatorTool() {
                   <div className="serp-google-topbar">
                     <div className="serp-google-logo">Google</div>
                     <div className="serp-search-bar">
+                      <span>{searchQuery}</span>
+                      <i aria-hidden="true"></i>
+                      <b aria-hidden="true">x</b>
                       <svg viewBox="0 0 24 24">
                         <circle cx="11" cy="11" r="7"></circle>
                         <path d="m21 21-4.35-4.35"></path>
                       </svg>
-                      <span>{searchQuery}</span>
                     </div>
                   </div>
                   <nav className="serp-tabs">
+                    <span>AI Mode</span>
                     <span className="is-active">All</span>
                     <span>Images</span>
                     <span>Videos</span>
+                    <span>Forums</span>
+                    <span>Short videos</span>
                     <span>News</span>
+                    <span>More</span>
+                    <span>Tools</span>
                   </nav>
                 </div>
 

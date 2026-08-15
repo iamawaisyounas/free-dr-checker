@@ -1165,11 +1165,11 @@ button svg {
 
 .serp-browser {
   display: grid;
-  gap: 14px;
+  gap: 0;
   overflow: hidden;
   border: 1px solid #e5e7eb;
   border-radius: 8px;
-  padding: 0 0 18px;
+  padding: 0 0 28px;
   background: #ffffff;
   color: #202124;
   color-scheme: light;
@@ -1189,10 +1189,10 @@ button svg {
 
 .serp-google-topbar {
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
+  grid-template-columns: 124px minmax(0, 1fr);
   align-items: center;
-  gap: 18px;
-  padding: 18px 20px 12px;
+  gap: 24px;
+  padding: 18px 32px 12px;
 }
 
 .serp-google-logo {
@@ -1206,13 +1206,14 @@ button svg {
 
 .serp-search-bar {
   display: grid;
-  grid-template-columns: 18px minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr) 1px 22px 18px;
   align-items: center;
-  gap: 10px;
+  gap: 14px;
+  width: min(720px, 100%);
   min-height: 46px;
   border: 1px solid #dadce0;
   border-radius: 999px;
-  padding: 0 17px;
+  padding: 0 18px 0 24px;
   color: #3c4043;
   background: #ffffff;
   box-shadow: 0 1px 6px rgba(32, 33, 36, 0.16);
@@ -1232,21 +1233,36 @@ button svg {
   overflow: hidden;
   color: #3c4043;
   font-family: Arial, sans-serif;
-  font-size: 0.95rem;
+  font-size: 0.98rem;
   font-weight: 400;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
+.serp-search-bar i {
+  width: 1px;
+  height: 28px;
+  background: #dadce0;
+}
+
+.serp-search-bar b {
+  color: #70757a;
+  font-family: Arial, sans-serif;
+  font-size: 1.45rem;
+  font-weight: 300;
+  line-height: 1;
+  text-align: center;
+}
+
 .serp-tabs {
   display: flex;
   align-items: flex-end;
-  gap: 24px;
+  gap: 26px;
   overflow-x: auto;
-  padding: 0 20px;
+  padding: 0 32px 0 180px;
   color: #5f6368;
   font-family: Arial, sans-serif;
-  font-size: 0.84rem;
+  font-size: 0.83rem;
   scrollbar-width: none;
 }
 
@@ -1276,7 +1292,7 @@ button svg {
 }
 
 .serp-result-count {
-  padding: 0 20px;
+  padding: 18px 32px 0 180px;
   color: #70757a;
   font-family: Arial, sans-serif;
   font-size: 0.82rem;
@@ -1285,9 +1301,9 @@ button svg {
 
 .serp-preview {
   display: grid;
-  gap: 10px;
-  width: min(600px, calc(100% - 40px));
-  margin: 0 20px;
+  gap: 9px;
+  width: min(680px, calc(100% - 212px));
+  margin: 30px 32px 0 180px;
   border: 0;
   border-radius: 0;
   padding: 0;
@@ -1310,20 +1326,20 @@ button svg {
 
 .serp-preview__topline {
   display: grid;
-  grid-template-columns: 28px minmax(0, 1fr) 26px;
+  grid-template-columns: 32px minmax(0, 1fr) 26px;
   align-items: center;
-  gap: 11px;
+  gap: 12px;
 }
 
 .serp-preview__favicon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 28px;
-  height: 28px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   color: #ffffff;
-  background: #0f766e;
+  background: #2b5bbb;
   font-size: 0.78rem;
   font-weight: 600;
 }
@@ -1399,12 +1415,12 @@ button svg {
 .serp-preview h2 {
   display: block;
   overflow: hidden;
-  margin: 0 0 3px;
+  margin: 0 0 4px;
   color: #1a0dab;
   font-family: Arial, sans-serif;
-  font-size: 1.25rem;
+  font-size: 1.18rem;
   font-weight: 400;
-  line-height: 1.3;
+  line-height: 1.25;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
@@ -1417,7 +1433,7 @@ button svg {
   margin: 0;
   color: #4d5156;
   font-family: Arial, sans-serif;
-  font-size: 0.92rem;
+  font-size: 0.86rem;
   font-weight: 400;
   line-height: 1.45;
 }
@@ -1485,38 +1501,79 @@ button svg {
 
 body.dark-mode .serp-search-bar,
 body.dark-mode .serp-browser,
-body.dark-mode .serp-google-shell,
-body.dark-mode .serp-preview {
-  background: #ffffff;
-  color: #202124;
+body.dark-mode .serp-google-shell {
+  border-color: #3c4043;
+  background: #202124;
+  color: #e8eaed;
+  color-scheme: dark;
+}
+
+body.dark-mode .serp-browser {
+  box-shadow: 0 20px 44px -34px rgba(0, 0, 0, 0.8);
+}
+
+body.dark-mode .serp-google-shell {
+  border-bottom-color: #3c4043;
+}
+
+body.dark-mode .serp-search-bar {
+  border-color: #4d5156;
+  background: #4d5156;
+  color: #e8eaed;
+  box-shadow: none;
 }
 
 body.dark-mode .serp-search-bar span {
-  color: #3c4043;
+  color: #e8eaed;
+}
+
+body.dark-mode .serp-search-bar i {
+  background: #6f7378;
+}
+
+body.dark-mode .serp-search-bar b {
+  color: #bdc1c6;
 }
 
 body.dark-mode .serp-search-bar svg {
-  stroke: #5f6368;
+  stroke: #bdc1c6;
+}
+
+body.dark-mode .serp-preview {
+  background: transparent;
+  color: #e8eaed;
 }
 
 body.dark-mode .serp-preview__site {
-  color: #202124;
+  color: #e8eaed;
 }
 
 body.dark-mode .serp-preview__url,
 body.dark-mode .serp-preview p,
 body.dark-mode .serp-result-count,
 body.dark-mode .serp-tabs {
-  color: #4d5156;
+  color: #bdc1c6;
 }
 
 body.dark-mode .serp-preview h2 {
-  color: #1a0dab;
+  color: #a8c7fa;
 }
 
 body.dark-mode .serp-sitelinks,
 body.dark-mode .serp-tabs .is-active {
-  color: #1a73e8;
+  color: #e8eaed;
+}
+
+body.dark-mode .serp-tabs .is-active::after {
+  background: #e8eaed;
+}
+
+body.dark-mode .serp-more span {
+  background: #bdc1c6;
+}
+
+body.dark-mode .serp-more:hover {
+  background: #303134;
 }
 
 .tool-results-header {
@@ -2779,6 +2836,12 @@ details p {
     font-size: 1.35rem;
   }
 
+  .serp-search-bar {
+    grid-template-columns: minmax(0, 1fr) 1px 22px 18px;
+    width: 100%;
+    padding-inline: 18px;
+  }
+
   .serp-tabs {
     gap: 20px;
     padding-inline: 16px;
@@ -2786,6 +2849,11 @@ details p {
 
   .serp-result-count {
     padding-inline: 16px;
+  }
+
+  .serp-preview {
+    width: calc(100% - 32px);
+    margin: 18px 16px 0;
   }
 
   .serp-sitelinks {
