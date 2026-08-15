@@ -1199,7 +1199,7 @@ button svg {
 
 .serp-browser--desktop {
   justify-self: center;
-  width: min(100%, 960px);
+  width: min(calc(100% - 72px), 900px);
 }
 
 .serp-browser--mobile {
@@ -2527,6 +2527,7 @@ details p {
 
   .serp-browser--desktop {
     margin-inline: auto;
+    width: min(calc(100% - 56px), 900px);
   }
 }
 
@@ -2879,6 +2880,10 @@ details p {
   .serp-search-bar,
   .serp-browser {
     max-width: 100%;
+  }
+
+  .serp-browser--desktop {
+    width: 100%;
   }
 
   .serp-google-topbar {
