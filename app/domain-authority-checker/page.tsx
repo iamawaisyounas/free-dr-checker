@@ -38,6 +38,10 @@ const faqs = [
     answer: "No. Authority scores are third-party metrics. Google does not use them directly in rankings."
   },
   {
+    question: "How is Domain Authority calculated?",
+    answer: "This tool converts OpenPageRank link graph data into a 0 to 100 authority-style score. The score reflects backlink strength signals such as referring domains, link quality, global rank context, and historical link graph data, but it is not Moz's proprietary Domain Authority formula."
+  },
+  {
     question: "Can a low DA site still rank well?",
     answer: "Yes. Strong content, search intent match, and page-level relevance can help lower authority sites rank."
   },
@@ -125,6 +129,48 @@ export default function AuthorityScorePage() {
             </p>
             <h2>What this authority checker measures</h2>
             <p className="wide-copy">This Domain Authority checker returns an independent authority-style score on a 0 to 100 scale. It uses OpenPageRank&apos;s open link graph data rather than Moz&apos;s proprietary Domain Authority algorithm, so treat it as a comparison signal, not an official Moz DA lookup or a Google ranking factor.</p>
+          </section>
+
+          <section className="copy-block">
+            <p className="section-label">
+              <svg aria-hidden="true" viewBox="0 0 24 24">
+                <path d="M4 19V5"></path>
+                <path d="M4 19h16"></path>
+                <path d="m7 15 4-4 3 3 5-7"></path>
+              </svg>
+              Methodology
+            </p>
+            <h2>How Domain Authority is calculated</h2>
+            <p className="wide-copy">DR Checker calculates a Domain Authority-style score by taking OpenPageRank link graph data and converting the returned 0 to 10 Open PageRank value into a clearer 0 to 100 authority score. The result is designed for fast domain comparison, not as a copy of Moz&apos;s private Domain Authority formula.</p>
+            <div className="method-summary" aria-label="Domain Authority calculation method">
+              <article>
+                <span>Step 1</span>
+                <strong>Normalize the domain</strong>
+                <p>The tool cleans the submitted URL down to the root domain so results stay consistent across homepage URLs, paths, and protocols.</p>
+              </article>
+              <article>
+                <span>Step 2</span>
+                <strong>Read link graph signals</strong>
+                <p>OpenPageRank returns authority data, referring domain counts, global rank context, and available historical score points.</p>
+              </article>
+              <article>
+                <span>Step 3</span>
+                <strong>Convert to a 0-100 score</strong>
+                <p>The Open PageRank score is multiplied by 10 and rounded, so a 6.4 provider score becomes a 64 authority score.</p>
+              </article>
+            </div>
+            <div className="comparison-grid" aria-label="Domain Authority calculation factors">
+              <article className="comparison-card">
+                <span>Included signals</span>
+                <h3>Backlink strength and authority context</h3>
+                <p>The score is influenced by the link graph behind the domain, including the strength and number of referring domains visible to the provider.</p>
+              </article>
+              <article className="comparison-card">
+                <span>Not included</span>
+                <h3>No direct Google ranking data</h3>
+                <p>The score does not use Google Search Console, Google Analytics, revenue, conversion data, or Google&apos;s ranking systems.</p>
+              </article>
+            </div>
           </section>
 
           <section className="copy-block">
