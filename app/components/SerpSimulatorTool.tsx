@@ -57,6 +57,28 @@ function scoreLength(length: number, goodMin: number, goodMax: number, okMax: nu
   return "Likely truncated";
 }
 
+function getTitlePixelWidth(value: string, device: "desktop" | "mobile") {
+  if (typeof document === "undefined") return 0;
+
+  const canvas = document.createElement("canvas");
+  const context = canvas.getContext("2d");
+
+  if (!context) return 0;
+
+  context.font = device === "desktop" ? "20px Arial" : "18px Arial";
+  return Math.round(context.measureText(value).width);
+}
+
+function scoreTitlePixels(width: number, device: "desktop" | "mobile") {
+  const goodMax = device === "desktop" ? 580 : 430;
+  const edgeMax = device === "desktop" ? 600 : 480;
+
+  if (!width) return "Needs title";
+  if (width <= goodMax) return "Fits SERP";
+  if (width <= edgeMax) return "Near edge";
+  return "Likely truncated";
+}
+
 export default function SerpSimulatorTool() {
   const [title, setTitle] = useState(defaultTitle);
   const [url, setUrl] = useState(defaultUrl);
@@ -65,6 +87,7 @@ export default function SerpSimulatorTool() {
   const [device, setDevice] = useState<"desktop" | "mobile">("desktop");
   const [showDate, setShowDate] = useState(false);
   const [copied, setCopied] = useState("");
+  const [titlePixelWidth, setTitlePixelWidth] = useState(0);
 
   useEffect(() => {
     if (window.matchMedia("(max-width: 640px)").matches) {
@@ -80,15 +103,20 @@ export default function SerpSimulatorTool() {
     day: "numeric",
     year: "numeric"
   }).format(new Date()), []);
-  const titleStatus = scoreLength(title.trim().length, 35, 60, 70);
   const descriptionStatus = scoreLength(description.trim().length, 110, 155, 170);
   const previewTitle = title.trim() || "Untitled page";
   const previewDescription = description.trim() || "Add a meta description to preview your search snippet.";
   const searchQuery = query.trim() || previewTitle.split(" - ")[0] || previewTitle;
   const titleLength = title.trim().length;
   const descriptionLength = description.trim().length;
-  const titleMeter = Math.min(100, Math.round((titleLength / 70) * 100));
+  const titleStatus = scoreTitlePixels(titlePixelWidth, device);
+  const titlePixelLimit = device === "desktop" ? 600 : 480;
+  const titleMeter = Math.min(100, Math.round((titlePixelWidth / titlePixelLimit) * 100));
   const descriptionMeter = Math.min(100, Math.round((descriptionLength / 170) * 100));
+
+  useEffect(() => {
+    setTitlePixelWidth(getTitlePixelWidth(title.trim(), device));
+  }, [title, device]);
 
   async function copySnippet() {
     const snippet = [
@@ -153,8 +181,8 @@ export default function SerpSimulatorTool() {
                   onChange={(event) => setTitle(event.target.value)}
                   maxLength={120}
                 />
-                <div className="serp-meter" aria-label={`Title length is ${titleLength} characters and ${titleStatus.toLowerCase()}`}>
-                  <span>{titleLength} characters - {titleStatus}</span>
+                <div className="serp-meter" aria-label={`Title length is ${titleLength} characters, ${titlePixelWidth} pixels, and ${titleStatus.toLowerCase()}`}>
+                  <span>{titleLength} characters / {titlePixelWidth}px - {titleStatus}</span>
                   <div className="serp-meter__track"><i style={{ width: `${titleMeter}%` }}></i></div>
                 </div>
               </div>
@@ -288,7 +316,7 @@ export default function SerpSimulatorTool() {
                 <article>
                   <strong>Title</strong>
                   <span>{titleStatus}</span>
-                  <p>35 to 60 characters is a useful target.</p>
+                  <p>Measured in rendered pixels against the selected SERP view.</p>
                 </article>
                 <article>
                   <strong>Description</strong>

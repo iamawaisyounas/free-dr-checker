@@ -1166,7 +1166,8 @@ button svg {
 .serp-browser {
   display: grid;
   gap: 0;
-  overflow: hidden;
+  overflow-x: auto;
+  overflow-y: hidden;
   border: 1px solid #e5e7eb;
   border-radius: 8px;
   padding: 0 0 28px;
@@ -1174,6 +1175,10 @@ button svg {
   color: #202124;
   color-scheme: light;
   box-shadow: 0 14px 34px -30px rgba(9, 17, 35, 0.7);
+}
+
+.serp-browser--desktop {
+  min-width: 960px;
 }
 
 .serp-browser--mobile {
@@ -1302,7 +1307,7 @@ button svg {
 .serp-preview {
   display: grid;
   gap: 9px;
-  width: min(680px, calc(100% - 212px));
+  width: min(600px, calc(100% - 212px));
   margin: 30px 32px 0 180px;
   border: 0;
   border-radius: 0;
