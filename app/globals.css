@@ -1173,11 +1173,12 @@ button svg {
   padding: 20px;
   background: #ffffff;
   color: #202124;
+  color-scheme: light;
   box-shadow: 0 14px 34px -30px rgba(9, 17, 35, 0.7);
 }
 
 .serp-preview--mobile {
-  max-width: 390px;
+  max-width: min(390px, 100%);
 }
 
 .serp-preview-note {
@@ -1286,6 +1287,33 @@ button svg {
   color: var(--serp-panel-muted);
   font-size: 0.9rem;
   line-height: 1.55;
+}
+
+body.dark-mode .serp-search-bar,
+body.dark-mode .serp-preview {
+  background: #ffffff;
+  color: #202124;
+}
+
+body.dark-mode .serp-search-bar span {
+  color: #3c4043;
+}
+
+body.dark-mode .serp-search-bar svg {
+  stroke: #5f6368;
+}
+
+body.dark-mode .serp-preview__site {
+  color: #202124;
+}
+
+body.dark-mode .serp-preview__url,
+body.dark-mode .serp-preview p {
+  color: #4d5156;
+}
+
+body.dark-mode .serp-preview h2 {
+  color: #1a0dab;
 }
 
 .tool-results-header {
@@ -2488,6 +2516,45 @@ details p {
   .discover-card a {
     width: 100%;
     min-height: 48px;
+  }
+
+  .answer-grid,
+  .method-summary,
+  .feature-grid,
+  .steps,
+  .intent-grid,
+  .workflow-grid,
+  .comparison-grid,
+  .keyword-map,
+  .audit-grid,
+  .discover-tools__grid,
+  .serp-guidance-grid {
+    grid-template-columns: minmax(0, 1fr);
+    width: 100%;
+  }
+
+  .answer-grid article,
+  .method-summary article,
+  .feature-grid article,
+  .steps article,
+  .intent-card,
+  .workflow-card,
+  .comparison-card,
+  .keyword-card,
+  .audit-card,
+  .discover-card,
+  .serp-guidance-grid article {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .serp-output-panel {
+    overflow: hidden;
+  }
+
+  .serp-preview,
+  .serp-search-bar {
+    max-width: 100%;
   }
 
   .global-footer__inner {
