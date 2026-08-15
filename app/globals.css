@@ -999,10 +999,16 @@ button svg {
   backdrop-filter: blur(12px);
 }
 
+.serp-workbench > * {
+  max-width: 100%;
+}
+
 .serp-panel {
   display: grid;
   align-content: start;
   gap: 18px;
+  width: 100%;
+  max-width: 100%;
   min-width: 0;
   border: 1px solid var(--serp-panel-border);
   border-radius: 8px;
@@ -1165,6 +1171,9 @@ button svg {
   gap: 16px;
   min-width: 0;
   overflow: hidden;
+  overflow: clip;
+  contain: paint;
+  clip-path: inset(0 round 8px);
   justify-items: stretch;
 }
 
@@ -1173,6 +1182,7 @@ button svg {
   --serp-right-gutter: 32px;
   display: grid;
   gap: 0;
+  box-sizing: border-box;
   width: 100%;
   max-width: 100%;
   min-width: 0;
