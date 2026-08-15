@@ -9,8 +9,8 @@ const defaultDescription =
 const defaultQuery = "google serp simulator";
 const serpCharacterLimits = {
   desktop: {
-    title: 65,
-    description: 160
+    title: 61,
+    description: 167
   },
   mobile: {
     title: 58,
@@ -169,7 +169,7 @@ export default function SerpSimulatorTool() {
                 <span>Edit your snippet fields</span>
               </div>
 
-              <div className="serp-field">
+              <div className="serp-field serp-field--wide">
                 <label htmlFor="serpTitle">Title tag</label>
                 <input
                   id="serpTitle"
@@ -184,7 +184,7 @@ export default function SerpSimulatorTool() {
                 </div>
               </div>
 
-              <div className="serp-field">
+              <div className="serp-field serp-field--half">
                 <label htmlFor="serpUrl">Page URL</label>
                 <input
                   id="serpUrl"
@@ -195,7 +195,7 @@ export default function SerpSimulatorTool() {
                 />
               </div>
 
-              <div className="serp-field">
+              <div className="serp-field serp-field--half">
                 <label htmlFor="serpQuery">Search query</label>
                 <input
                   id="serpQuery"
@@ -206,7 +206,7 @@ export default function SerpSimulatorTool() {
                 />
               </div>
 
-              <div className="serp-field">
+              <div className="serp-field serp-field--wide">
                 <label htmlFor="serpDescription">Meta description</label>
                 <textarea
                   id="serpDescription"
@@ -313,12 +313,12 @@ export default function SerpSimulatorTool() {
                 <article>
                   <strong>Title</strong>
                   <span>{titleStatus}</span>
-                  <p>{device === "desktop" ? "Web preview uses a 65-character title line." : "Mobile preview uses a tighter 58-character title line."}</p>
+                  <p>{device === "desktop" ? "Web preview matches the 61-character title shown in the reference SERP." : "Mobile preview uses a tighter 58-character title line."}</p>
                 </article>
                 <article>
                   <strong>Description</strong>
                   <span>{descriptionStatus}</span>
-                  <p>{device === "desktop" ? "Web preview uses about 160 characters across two lines." : "Mobile preview uses about 155 characters across two lines."}</p>
+                  <p>{device === "desktop" ? "Web preview matches the 167-character two-line description shown in the reference SERP." : "Mobile preview uses about 155 characters across two lines."}</p>
                 </article>
                 <article>
                   <strong>URL</strong>

@@ -972,7 +972,7 @@ button svg {
 }
 
 .serp-tool-shell {
-  padding-bottom: 72px;
+  padding: 94px 24px 48px;
 }
 
 .serp-tool-shell .checker-container {
@@ -988,12 +988,13 @@ button svg {
   --serp-soft-bg: #f4f8fb;
   --serp-soft-border: #dbe7f0;
   display: grid;
-  grid-template-columns: minmax(320px, 360px) minmax(0, 1fr);
-  gap: 20px;
+  align-items: start;
+  grid-template-columns: minmax(400px, 430px) minmax(0, 1fr);
+  gap: 18px;
   width: 100%;
-  margin: 42px auto 0;
+  margin: 16px auto 0;
   border-radius: 16px;
-  padding: 14px;
+  padding: 12px;
   background: rgba(255, 255, 255, 0.1);
   text-align: left;
   backdrop-filter: blur(12px);
@@ -1003,16 +1004,29 @@ button svg {
   max-width: 100%;
 }
 
+.serp-input-panel {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+}
+
+.serp-input-panel > .serp-panel-header,
+.serp-input-panel > .serp-field--wide,
+.serp-input-panel > .serp-actions,
+.serp-input-panel > .serp-command-row,
+.serp-input-panel > .serp-copy-status {
+  grid-column: 1 / -1;
+}
+
 .serp-panel {
   display: grid;
   align-content: start;
-  gap: 18px;
+  gap: 14px;
   width: 100%;
   max-width: 100%;
   min-width: 0;
   border: 1px solid var(--serp-panel-border);
   border-radius: 8px;
-  padding: clamp(18px, 2.3vw, 26px);
+  padding: clamp(16px, 1.8vw, 22px);
   background: var(--serp-panel-bg);
   color: var(--serp-panel-text);
   box-shadow: 0 18px 42px -36px rgba(9, 17, 35, 0.58);
@@ -1024,7 +1038,7 @@ button svg {
   justify-content: space-between;
   gap: 16px;
   border-bottom: 1px solid var(--serp-panel-border);
-  padding-bottom: 14px;
+  padding-bottom: 10px;
 }
 
 .serp-panel-header strong {
@@ -1043,7 +1057,7 @@ button svg {
 
 .serp-field {
   display: grid;
-  gap: 8px;
+  gap: 6px;
 }
 
 .serp-field label {
@@ -1053,14 +1067,22 @@ button svg {
 }
 
 .serp-field input {
+  height: 44px;
   border-color: var(--serp-panel-border);
   padding-left: 16px;
   color: var(--serp-panel-text);
   background: #ffffff;
 }
 
+.serp-field textarea {
+  min-height: 74px;
+  padding: 12px 14px;
+  line-height: 1.4;
+}
+
 .serp-field input,
 .serp-field textarea {
+  font-size: 0.92rem;
   font-weight: 400;
 }
 
@@ -1094,8 +1116,8 @@ button svg {
   align-items: center;
   justify-content: flex-start;
   flex-wrap: wrap;
-  gap: 14px;
-  margin-top: 2px;
+  gap: 12px;
+  margin-top: 0;
 }
 
 .serp-actions .segmented-control {
@@ -1115,7 +1137,7 @@ button svg {
 }
 
 .serp-toggle {
-  min-height: 42px;
+  min-height: 38px;
   color: var(--serp-panel-muted);
   font-size: 0.9rem;
   font-weight: 500;
@@ -1135,13 +1157,14 @@ button svg {
   display: flex;
   justify-content: flex-start;
   flex-wrap: wrap;
-  gap: 14px;
-  margin-top: 10px;
+  gap: 12px;
+  margin-top: 4px;
 }
 
 .serp-command-row button {
+  height: 44px;
   width: auto;
-  min-width: 168px;
+  min-width: 150px;
   padding-inline: 18px;
   font-weight: 600;
 }
@@ -1190,7 +1213,7 @@ button svg {
   overflow-y: hidden;
   border: 1px solid #e5e7eb;
   border-radius: 8px;
-  padding: 0 0 28px;
+  padding: 0 0 18px;
   background: #ffffff;
   color: #202124;
   color-scheme: light;
@@ -1221,13 +1244,13 @@ button svg {
   grid-template-columns: 92px minmax(0, 1fr);
   align-items: center;
   gap: 14px;
-  padding: 18px 32px 12px;
+  padding: 12px 28px 8px;
 }
 
 .serp-google-logo {
   color: #4285f4;
   font-family: Arial, sans-serif;
-  font-size: 1.55rem;
+  font-size: 1.42rem;
   font-weight: 500;
   letter-spacing: 0;
   white-space: nowrap;
@@ -1239,7 +1262,7 @@ button svg {
   align-items: center;
   gap: 14px;
   width: min(920px, 100%);
-  min-height: 46px;
+  min-height: 40px;
   border: 1px solid #dadce0;
   border-radius: 999px;
   padding: 0 18px 0 24px;
@@ -1286,7 +1309,7 @@ button svg {
 .serp-tabs {
   display: flex;
   align-items: flex-end;
-  gap: 26px;
+  gap: 24px;
   overflow-x: auto;
   padding: 0 var(--serp-right-gutter) 0 var(--serp-left-offset);
   color: #5f6368;
@@ -1302,7 +1325,7 @@ button svg {
 .serp-tabs span {
   position: relative;
   flex: 0 0 auto;
-  padding: 0 0 11px;
+  padding: 0 0 8px;
 }
 
 .serp-tabs .is-active {
@@ -1321,7 +1344,7 @@ button svg {
 }
 
 .serp-result-count {
-  padding: 18px var(--serp-right-gutter) 0 var(--serp-left-offset);
+  padding: 12px var(--serp-right-gutter) 0 var(--serp-left-offset);
   color: #70757a;
   font-family: Arial, sans-serif;
   font-size: 0.82rem;
@@ -1330,9 +1353,9 @@ button svg {
 
 .serp-preview {
   display: grid;
-  gap: 9px;
+  gap: 7px;
   width: min(900px, calc(100% - var(--serp-left-offset) - var(--serp-right-gutter)));
-  margin: 30px var(--serp-right-gutter) 0 var(--serp-left-offset);
+  margin: 16px var(--serp-right-gutter) 0 var(--serp-left-offset);
   border: 0;
   border-radius: 0;
   padding: 0;
@@ -1347,6 +1370,7 @@ button svg {
 }
 
 .serp-preview-note {
+  display: none;
   margin: 0;
   color: var(--serp-panel-muted);
   font-size: 0.9rem;
@@ -1355,7 +1379,7 @@ button svg {
 
 .serp-preview__topline {
   display: grid;
-  grid-template-columns: 32px minmax(0, 1fr) 26px;
+  grid-template-columns: 28px minmax(0, 1fr) 26px;
   align-items: center;
   gap: 12px;
 }
@@ -1364,8 +1388,8 @@ button svg {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 32px;
-  height: 32px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
   color: #ffffff;
   background: #2b5bbb;
@@ -1444,10 +1468,10 @@ button svg {
 .serp-preview h2 {
   display: block;
   overflow: hidden;
-  margin: 0 0 4px;
+  margin: 0 0 2px;
   color: #1a0dab;
   font-family: Arial, sans-serif;
-  font-size: 1.18rem;
+  font-size: 1.16rem;
   font-weight: 400;
   line-height: 1.25;
   text-overflow: ellipsis;
@@ -1462,13 +1486,13 @@ button svg {
   margin: 0;
   color: #4d5156;
   font-family: Arial, sans-serif;
-  font-size: 0.86rem;
+  font-size: 0.84rem;
   font-weight: 400;
-  line-height: 1.45;
+  line-height: 1.38;
 }
 
 .serp-sitelinks {
-  display: flex;
+  display: none;
   flex-wrap: wrap;
   gap: 8px 18px;
   padding-top: 3px;
@@ -1493,16 +1517,16 @@ button svg {
 .serp-guidance-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
-  gap: 14px;
+  gap: 10px;
 }
 
 .serp-guidance-grid article {
   display: grid;
-  gap: 9px;
+  gap: 6px;
   min-width: 0;
   border: 1px solid var(--serp-soft-border);
   border-radius: 8px;
-  padding: 16px 17px;
+  padding: 10px 12px;
   background: var(--serp-soft-bg);
 }
 
@@ -1524,8 +1548,8 @@ button svg {
 .serp-guidance-grid p {
   margin: 0;
   color: var(--serp-panel-muted);
-  font-size: 0.9rem;
-  line-height: 1.55;
+  font-size: 0.8rem;
+  line-height: 1.35;
   overflow-wrap: anywhere;
 }
 
@@ -2717,6 +2741,14 @@ details p {
   .serp-workbench {
     margin-top: 30px;
     padding: 10px;
+  }
+
+  .serp-input-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .serp-input-panel > .serp-field--half {
+    grid-column: 1 / -1;
   }
 
   .serp-actions {
