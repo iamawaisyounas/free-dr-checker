@@ -464,7 +464,7 @@ body.dark-mode .brand-mark {
   align-items: center;
   flex-wrap: wrap;
   justify-content: flex-end;
-  gap: 18px;
+  gap: 36px;
   color: rgba(255, 255, 255, 0.88);
   font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   font-size: 0.9rem;

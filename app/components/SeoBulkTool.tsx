@@ -399,7 +399,6 @@ export default function SeoBulkTool({ tool }: Props) {
               <>
                 <p className="score-disclaimer">
                   Domain Authority Score is our own 0-100 authority rating, calculated from open link-graph data. It is not affiliated with or equivalent to Moz&apos;s Domain Authority metric.
-                  {" "}<Link href="/domain-authority-checker/how-we-calculate">How we calculate this score</Link>
                 </p>
                 <div className="responsive-table">
                   <table>
