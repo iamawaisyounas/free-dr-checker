@@ -1,11 +1,12 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 const defaultTitle = "Domain Rating Checker - Free Ahrefs DR Checker";
 const defaultUrl = "https://dr-checker.com/google-serp-simulator";
 const defaultDescription =
   "Preview your Google search snippet, test desktop and mobile fit, and improve title tags and meta descriptions before publishing.";
+const defaultQuery = "google serp simulator";
 
 function normalizeUrl(value: string) {
   const trimmed = value.trim();
@@ -27,6 +28,28 @@ function formatDisplayUrl(value: string) {
   }
 }
 
+function getOriginLabel(value: string) {
+  try {
+    const url = new URL(normalizeUrl(value));
+    return url.hostname.replace(/^www\./, "");
+  } catch {
+    return "example.com";
+  }
+}
+
+function getPathCrumbs(value: string) {
+  try {
+    const url = new URL(normalizeUrl(value));
+    return url.pathname
+      .split("/")
+      .filter(Boolean)
+      .slice(0, 3)
+      .map((part) => part.replace(/-/g, " "));
+  } catch {
+    return [];
+  }
+}
+
 function scoreLength(length: number, goodMin: number, goodMax: number, okMax: number) {
   if (length < goodMin) return "Short";
   if (length <= goodMax) return "Good";
@@ -38,11 +61,20 @@ export default function SerpSimulatorTool() {
   const [title, setTitle] = useState(defaultTitle);
   const [url, setUrl] = useState(defaultUrl);
   const [description, setDescription] = useState(defaultDescription);
+  const [query, setQuery] = useState(defaultQuery);
   const [device, setDevice] = useState<"desktop" | "mobile">("desktop");
   const [showDate, setShowDate] = useState(false);
   const [copied, setCopied] = useState("");
 
+  useEffect(() => {
+    if (window.matchMedia("(max-width: 640px)").matches) {
+      setDevice("mobile");
+    }
+  }, []);
+
   const displayUrl = useMemo(() => formatDisplayUrl(url), [url]);
+  const originLabel = useMemo(() => getOriginLabel(url), [url]);
+  const pathCrumbs = useMemo(() => getPathCrumbs(url), [url]);
   const previewDate = useMemo(() => new Intl.DateTimeFormat("en", {
     month: "short",
     day: "numeric",
@@ -52,13 +84,18 @@ export default function SerpSimulatorTool() {
   const descriptionStatus = scoreLength(description.trim().length, 110, 155, 170);
   const previewTitle = title.trim() || "Untitled page";
   const previewDescription = description.trim() || "Add a meta description to preview your search snippet.";
-  const searchQuery = previewTitle.split(" - ")[0] || previewTitle;
+  const searchQuery = query.trim() || previewTitle.split(" - ")[0] || previewTitle;
+  const titleLength = title.trim().length;
+  const descriptionLength = description.trim().length;
+  const titleMeter = Math.min(100, Math.round((titleLength / 70) * 100));
+  const descriptionMeter = Math.min(100, Math.round((descriptionLength / 170) * 100));
 
   async function copySnippet() {
     const snippet = [
       `Title: ${previewTitle}`,
       `URL: ${normalizeUrl(url)}`,
-      `Meta description: ${previewDescription}`
+      `Meta description: ${previewDescription}`,
+      `Search query: ${searchQuery}`
     ].join("\n");
 
     try {
@@ -74,6 +111,7 @@ export default function SerpSimulatorTool() {
     setTitle(defaultTitle);
     setUrl(defaultUrl);
     setDescription(defaultDescription);
+    setQuery(defaultQuery);
     setDevice("desktop");
     setShowDate(false);
     setCopied("");
@@ -115,7 +153,10 @@ export default function SerpSimulatorTool() {
                   onChange={(event) => setTitle(event.target.value)}
                   maxLength={120}
                 />
-                <span>{title.trim().length} characters - {titleStatus}</span>
+                <div className="serp-meter" aria-label={`Title length is ${titleLength} characters and ${titleStatus.toLowerCase()}`}>
+                  <span>{titleLength} characters - {titleStatus}</span>
+                  <div className="serp-meter__track"><i style={{ width: `${titleMeter}%` }}></i></div>
+                </div>
               </div>
 
               <div className="serp-field">
@@ -130,6 +171,17 @@ export default function SerpSimulatorTool() {
               </div>
 
               <div className="serp-field">
+                <label htmlFor="serpQuery">Search query</label>
+                <input
+                  id="serpQuery"
+                  type="text"
+                  value={query}
+                  onChange={(event) => setQuery(event.target.value)}
+                  maxLength={90}
+                />
+              </div>
+
+              <div className="serp-field">
                 <label htmlFor="serpDescription">Meta description</label>
                 <textarea
                   id="serpDescription"
@@ -137,7 +189,10 @@ export default function SerpSimulatorTool() {
                   onChange={(event) => setDescription(event.target.value)}
                   maxLength={260}
                 />
-                <span>{description.trim().length} characters - {descriptionStatus}</span>
+                <div className="serp-meter" aria-label={`Meta description length is ${descriptionLength} characters and ${descriptionStatus.toLowerCase()}`}>
+                  <span>{descriptionLength} characters - {descriptionStatus}</span>
+                  <div className="serp-meter__track"><i style={{ width: `${descriptionMeter}%` }}></i></div>
+                </div>
               </div>
 
               <div className="serp-actions">
@@ -165,28 +220,58 @@ export default function SerpSimulatorTool() {
             <section className="serp-panel serp-output-panel" aria-label="Live Google search result preview">
               <div className="serp-panel-header">
                 <strong>Output</strong>
-                <span>Live SERP preview</span>
+                <span>{device === "desktop" ? "Desktop SERP" : "Mobile SERP"}</span>
               </div>
 
-              <div className="serp-search-bar" aria-hidden="true">
-                <svg viewBox="0 0 24 24">
-                  <circle cx="11" cy="11" r="7"></circle>
-                  <path d="m21 21-4.35-4.35"></path>
-                </svg>
-                <span>{searchQuery}</span>
-              </div>
-
-              <div className={`serp-preview serp-preview--${device}`}>
-                <div className="serp-preview__topline">
-                  <div className="serp-preview__favicon" aria-hidden="true">D</div>
-                  <div className="serp-preview__source">
-                    <div className="serp-preview__site">DR Checker</div>
-                    <div className="serp-preview__url">{displayUrl}</div>
+              <div className={`serp-browser serp-browser--${device}`}>
+                <div className="serp-google-shell" aria-hidden="true">
+                  <div className="serp-google-topbar">
+                    <div className="serp-google-logo">Google</div>
+                    <div className="serp-search-bar">
+                      <svg viewBox="0 0 24 24">
+                        <circle cx="11" cy="11" r="7"></circle>
+                        <path d="m21 21-4.35-4.35"></path>
+                      </svg>
+                      <span>{searchQuery}</span>
+                    </div>
                   </div>
+                  <nav className="serp-tabs">
+                    <span className="is-active">All</span>
+                    <span>Images</span>
+                    <span>Videos</span>
+                    <span>News</span>
+                  </nav>
                 </div>
-                <div className="serp-preview__body">
-                  <h2 title={previewTitle}>{previewTitle}</h2>
-                  <p>{showDate ? `${previewDate} - ` : ""}{previewDescription}</p>
+
+                <div className="serp-result-count" aria-hidden="true">
+                  About 128,000 results (0.32 seconds)
+                </div>
+
+                <div className={`serp-preview serp-preview--${device}`}>
+                  <div className="serp-preview__topline">
+                    <div className="serp-preview__favicon" aria-hidden="true">{originLabel.charAt(0).toUpperCase()}</div>
+                    <div className="serp-preview__source">
+                      <div className="serp-preview__site">{originLabel}</div>
+                      <div className="serp-preview__url">
+                        <span>{displayUrl}</span>
+                        {pathCrumbs.map((crumb, index) => (
+                          <span key={`${crumb}-${index}`} className="serp-preview__crumb">{crumb}</span>
+                        ))}
+                      </div>
+                    </div>
+                    <button type="button" className="serp-more" aria-label="Result options">
+                      <span></span><span></span><span></span>
+                    </button>
+                  </div>
+                  <div className="serp-preview__body">
+                    <h2 title={previewTitle}>{previewTitle}</h2>
+                    <p>{showDate ? `${previewDate} - ` : ""}{previewDescription}</p>
+                  </div>
+                  <div className="serp-sitelinks" aria-hidden="true">
+                    <span>Title preview</span>
+                    <span>Meta description</span>
+                    <span>URL check</span>
+                  </div>
                 </div>
               </div>
 
