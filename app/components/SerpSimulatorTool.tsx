@@ -9,8 +9,8 @@ const defaultDescription =
 const defaultQuery = "google serp simulator";
 const serpCharacterLimits = {
   desktop: {
-    title: 60,
-    description: 155
+    title: 65,
+    description: 160
   },
   mobile: {
     title: 58,
@@ -108,8 +108,10 @@ export default function SerpSimulatorTool() {
   const visibleDescription = truncateForSerp(previewDescription, descriptionLimit);
   const titleLength = title.trim().length;
   const descriptionLength = description.trim().length;
-  const titleStatus = scoreCharacters(titleLength, titleLimit, "one line");
-  const descriptionStatus = scoreCharacters(descriptionLength, descriptionLimit, "two lines");
+  const titleLineLabel = device === "desktop" ? "web title line" : "mobile title line";
+  const descriptionLineLabel = device === "desktop" ? "web two-line snippet" : "mobile two-line snippet";
+  const titleStatus = scoreCharacters(titleLength, titleLimit, titleLineLabel);
+  const descriptionStatus = scoreCharacters(descriptionLength, descriptionLimit, descriptionLineLabel);
   const titleMeter = Math.min(100, Math.round((titleLength / titleLimit) * 100));
   const descriptionMeter = Math.min(100, Math.round((descriptionLength / descriptionLimit) * 100));
 
@@ -311,12 +313,12 @@ export default function SerpSimulatorTool() {
                 <article>
                   <strong>Title</strong>
                   <span>{titleStatus}</span>
-                  <p>Measured in rendered pixels against the selected SERP view.</p>
+                  <p>{device === "desktop" ? "Web preview uses a 65-character title line." : "Mobile preview uses a tighter 58-character title line."}</p>
                 </article>
                 <article>
                   <strong>Description</strong>
                   <span>{descriptionStatus}</span>
-                  <p>110 to 155 characters usually fits cleanly.</p>
+                  <p>{device === "desktop" ? "Web preview uses about 160 characters across two lines." : "Mobile preview uses about 155 characters across two lines."}</p>
                 </article>
                 <article>
                   <strong>URL</strong>
