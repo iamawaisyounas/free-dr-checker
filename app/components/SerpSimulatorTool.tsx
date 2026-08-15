@@ -2,11 +2,21 @@
 
 import { useEffect, useMemo, useState } from "react";
 
-const defaultTitle = "Domain Rating Checker - Free Ahrefs DR Checker";
-const defaultUrl = "https://dr-checker.com/google-serp-simulator";
+const defaultTitle = "Domain Rating Checker - Check Ahrefs DR for Free | DR Checker";
+const defaultUrl = "https://dr-checker.com";
 const defaultDescription =
-  "Preview your Google search snippet, test desktop and mobile fit, and improve title tags and meta descriptions before publishing.";
+  "Check the Domain Rating (DR) of any website instantly. See a clear visual score and find out where your domain stands. Get a free 0-100 authority score for any domain.";
 const defaultQuery = "google serp simulator";
+const serpCharacterLimits = {
+  desktop: {
+    title: 60,
+    description: 155
+  },
+  mobile: {
+    title: 58,
+    description: 155
+  }
+};
 
 function normalizeUrl(value: string) {
   const trimmed = value.trim();
@@ -50,32 +60,19 @@ function getPathCrumbs(value: string) {
   }
 }
 
-function scoreLength(length: number, goodMin: number, goodMax: number, okMax: number) {
-  if (length < goodMin) return "Short";
-  if (length <= goodMax) return "Good";
-  if (length <= okMax) return "Long";
-  return "Likely truncated";
+function truncateForSerp(value: string, limit: number) {
+  const normalized = value.replace(/\s+/g, " ").trim();
+
+  if (normalized.length <= limit) {
+    return normalized;
+  }
+
+  return `${normalized.slice(0, Math.max(0, limit - 3)).trimEnd()}...`;
 }
 
-function getTitlePixelWidth(value: string, device: "desktop" | "mobile") {
-  if (typeof document === "undefined") return 0;
-
-  const canvas = document.createElement("canvas");
-  const context = canvas.getContext("2d");
-
-  if (!context) return 0;
-
-  context.font = device === "desktop" ? "20px Arial" : "18px Arial";
-  return Math.round(context.measureText(value).width);
-}
-
-function scoreTitlePixels(width: number, device: "desktop" | "mobile") {
-  const goodMax = device === "desktop" ? 580 : 430;
-  const edgeMax = device === "desktop" ? 600 : 480;
-
-  if (!width) return "Needs title";
-  if (width <= goodMax) return "Fits SERP";
-  if (width <= edgeMax) return "Near edge";
+function scoreCharacters(length: number, limit: number, label: string) {
+  if (!length) return `Needs ${label}`;
+  if (length <= limit) return `Fits ${label}`;
   return "Likely truncated";
 }
 
@@ -87,7 +84,6 @@ export default function SerpSimulatorTool() {
   const [device, setDevice] = useState<"desktop" | "mobile">("desktop");
   const [showDate, setShowDate] = useState(false);
   const [copied, setCopied] = useState("");
-  const [titlePixelWidth, setTitlePixelWidth] = useState(0);
 
   useEffect(() => {
     if (window.matchMedia("(max-width: 640px)").matches) {
@@ -103,20 +99,19 @@ export default function SerpSimulatorTool() {
     day: "numeric",
     year: "numeric"
   }).format(new Date()), []);
-  const descriptionStatus = scoreLength(description.trim().length, 110, 155, 170);
   const previewTitle = title.trim() || "Untitled page";
   const previewDescription = description.trim() || "Add a meta description to preview your search snippet.";
   const searchQuery = query.trim() || previewTitle.split(" - ")[0] || previewTitle;
+  const titleLimit = serpCharacterLimits[device].title;
+  const descriptionLimit = serpCharacterLimits[device].description;
+  const visibleTitle = truncateForSerp(previewTitle, titleLimit);
+  const visibleDescription = truncateForSerp(previewDescription, descriptionLimit);
   const titleLength = title.trim().length;
   const descriptionLength = description.trim().length;
-  const titleStatus = scoreTitlePixels(titlePixelWidth, device);
-  const titlePixelLimit = device === "desktop" ? 600 : 480;
-  const titleMeter = Math.min(100, Math.round((titlePixelWidth / titlePixelLimit) * 100));
-  const descriptionMeter = Math.min(100, Math.round((descriptionLength / 170) * 100));
-
-  useEffect(() => {
-    setTitlePixelWidth(getTitlePixelWidth(title.trim(), device));
-  }, [title, device]);
+  const titleStatus = scoreCharacters(titleLength, titleLimit, "one line");
+  const descriptionStatus = scoreCharacters(descriptionLength, descriptionLimit, "two lines");
+  const titleMeter = Math.min(100, Math.round((titleLength / titleLimit) * 100));
+  const descriptionMeter = Math.min(100, Math.round((descriptionLength / descriptionLimit) * 100));
 
   async function copySnippet() {
     const snippet = [
@@ -181,8 +176,8 @@ export default function SerpSimulatorTool() {
                   onChange={(event) => setTitle(event.target.value)}
                   maxLength={120}
                 />
-                <div className="serp-meter" aria-label={`Title length is ${titleLength} characters, ${titlePixelWidth} pixels, and ${titleStatus.toLowerCase()}`}>
-                  <span>{titleLength} characters / {titlePixelWidth}px - {titleStatus}</span>
+                <div className="serp-meter" aria-label={`Title length is ${titleLength} characters out of ${titleLimit} and ${titleStatus.toLowerCase()}`}>
+                  <span>{titleLength} / {titleLimit} characters - {titleStatus}</span>
                   <div className="serp-meter__track"><i style={{ width: `${titleMeter}%` }}></i></div>
                 </div>
               </div>
@@ -217,8 +212,8 @@ export default function SerpSimulatorTool() {
                   onChange={(event) => setDescription(event.target.value)}
                   maxLength={260}
                 />
-                <div className="serp-meter" aria-label={`Meta description length is ${descriptionLength} characters and ${descriptionStatus.toLowerCase()}`}>
-                  <span>{descriptionLength} characters - {descriptionStatus}</span>
+                <div className="serp-meter" aria-label={`Meta description length is ${descriptionLength} characters out of ${descriptionLimit} and ${descriptionStatus.toLowerCase()}`}>
+                  <span>{descriptionLength} / {descriptionLimit} characters - {descriptionStatus}</span>
                   <div className="serp-meter__track"><i style={{ width: `${descriptionMeter}%` }}></i></div>
                 </div>
               </div>
@@ -299,8 +294,8 @@ export default function SerpSimulatorTool() {
                     </button>
                   </div>
                   <div className="serp-preview__body">
-                    <h2 title={previewTitle}>{previewTitle}</h2>
-                    <p>{showDate ? `${previewDate} - ` : ""}{previewDescription}</p>
+                    <h2 title={previewTitle}>{visibleTitle}</h2>
+                    <p>{showDate ? `${previewDate} - ` : ""}{visibleDescription}</p>
                   </div>
                   <div className="serp-sitelinks" aria-hidden="true">
                     <span>Title preview</span>

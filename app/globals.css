@@ -1479,12 +1479,11 @@ button svg {
 }
 
 .serp-preview--mobile h2 {
-  display: -webkit-box;
+  display: block;
   font-size: 1.12rem;
+  text-overflow: ellipsis;
   overflow-wrap: normal;
-  white-space: normal;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
+  white-space: nowrap;
 }
 
 .serp-preview--mobile p {
