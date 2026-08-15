@@ -3,7 +3,7 @@ import DiscoverTools from "../components/DiscoverTools";
 import SeoBulkTool from "../components/SeoBulkTool";
 import { absoluteUrl, breadcrumbSchema, faqSchema, softwareApplicationSchema } from "../../lib/schema";
 
-const title = "Bulk DR Checker - Check Ahrefs DR for Multiple Domains";
+const title = "Bulk DR Checker - Check Domain Rating in Bulk";
 const description =
   "Check Ahrefs Domain Rating for up to 100 domains at once. Clean prospect lists, compare backlink strength, and export bulk DR results to CSV.";
 
@@ -96,7 +96,7 @@ export default function BulkDrCheckerPage() {
               </svg>
               Quick answer
             </p>
-            <h2>Score prospect lists faster</h2>
+            <h2>Check bulk Domain Rating faster</h2>
             <p className="wide-copy">A bulk DR checker helps you check many websites at once, clean duplicate entries, and export a working CSV. It is best for triage: remove obviously weak or irrelevant domains first, then manually review the sites that still look promising.</p>
             <div className="answer-grid" aria-label="Bulk DR quick facts">
               <article>
@@ -125,7 +125,7 @@ export default function BulkDrCheckerPage() {
               </svg>
               Bulk DR lookup
             </p>
-            <h2>Bulk DR without cleanup</h2>
+            <h2>Clean bulk DR lists before export</h2>
             <p className="wide-copy">A bulk DR checker is useful when your prospect sheet has dozens of websites and you need a fast authority screen. Paste domains or full URLs, let the tool remove duplicates, and export Ahrefs Domain Rating scores you can add back to your outreach, audit, or competitor research workflow.</p>
           </section>
 
@@ -140,7 +140,7 @@ export default function BulkDrCheckerPage() {
               </svg>
               List cleanup flow
             </p>
-            <h2>From messy list to CSV</h2>
+            <h2>Turn messy domains into a CSV</h2>
             <div className="workflow-grid">
               <article className="workflow-card">
                 <span>Input</span>
@@ -174,7 +174,7 @@ export default function BulkDrCheckerPage() {
               </svg>
               Review matrix
             </p>
-            <h2>After export</h2>
+            <h2>Prioritize prospects after export</h2>
             <div className="responsive-table decision-table">
               <table>
                 <thead>
@@ -217,7 +217,7 @@ export default function BulkDrCheckerPage() {
               </svg>
               Bulk query coverage
             </p>
-            <h2>Bulk DR query needs</h2>
+            <h2>Bulk DR checker query matches</h2>
             <div className="keyword-map">
               <article className="keyword-card">
                 <span>bulk dr checker</span>
@@ -246,7 +246,7 @@ export default function BulkDrCheckerPage() {
               </svg>
               Use cases
             </p>
-            <h2>Best bulk use cases</h2>
+            <h2>Best ways to use bulk DR scores</h2>
             <div className="feature-grid">
               <article>
                 <h3>Guest post prospecting</h3>
@@ -272,7 +272,7 @@ export default function BulkDrCheckerPage() {
                 </svg>
                 Better decisions
               </p>
-              <h2>Use bulk DR wisely</h2>
+              <h2>Use bulk Domain Rating wisely</h2>
             </div>
             <ul className="check-list">
               <li>Use the exported DR score as a first-pass filter, not an automatic yes or no.</li>

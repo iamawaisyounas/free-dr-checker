@@ -4,12 +4,12 @@ import SeoBulkTool from "../components/SeoBulkTool";
 import { absoluteUrl, breadcrumbSchema, faqSchema, softwareApplicationSchema } from "../../lib/schema";
 
 export const metadata: Metadata = {
-  title: "Free Domain Age Checker - Check Domain Age Of any Website",
+  title: "Free Domain Age Checker - Check Website Age and History",
   description:
     "Find the age of any domain in seconds. Check registration date, expiry date, and WHOIS/RDAP history for SEO research, outreach, and domain reviews.",
   alternates: { canonical: "https://dr-checker.com/domain-age-checker" },
   openGraph: {
-    title: "Free Domain Age Checker - Check Domain Age Of any Website",
+    title: "Free Domain Age Checker - Check Website Age and History",
     description:
       "Find the age of any domain in seconds. Check registration date, expiry date, and WHOIS/RDAP history for SEO research, outreach, and domain reviews.",
     url: "https://dr-checker.com/domain-age-checker",
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary",
-    title: "Free Domain Age Checker - Check Domain Age Of any Website",
+    title: "Free Domain Age Checker - Check Website Age and History",
     description:
       "Find the age of any domain in seconds. Check registration date, expiry date, and WHOIS/RDAP history for SEO research, outreach, and domain reviews."
   }
@@ -93,7 +93,7 @@ export default function DomainAgePage() {
               </svg>
               Quick answer
             </p>
-            <h2>Check domain history fast</h2>
+            <h2>Check domain age and history fast</h2>
             <p className="wide-copy">A domain age checker shows when a domain was first registered and when it expires. That history helps with expired-domain reviews, link prospecting, and email-domain checks, but age alone does not prove SEO strength.</p>
             <div className="answer-grid" aria-label="Domain age quick facts">
               <article>
@@ -123,7 +123,7 @@ export default function DomainAgePage() {
               </svg>
               Domain age
             </p>
-            <h2>What domain age means</h2>
+            <h2>What domain age tells you</h2>
             <p className="wide-copy">Domain age is the time that has passed since a domain was first registered. DR Checker reads the creation date from public WHOIS and RDAP registry records, then shows the age, registration date, expiry date, and registrar details when available. Renewing a domain extends the expiry date, but it does not reset the original registration date.</p>
           </section>
 
@@ -138,7 +138,7 @@ export default function DomainAgePage() {
               </svg>
               Query guide
             </p>
-            <h2>Use age by task</h2>
+            <h2>Use domain age by SEO task</h2>
             <div className="intent-grid">
               <article className="intent-card">
                 <span>SEO</span>
@@ -172,7 +172,7 @@ export default function DomainAgePage() {
               </svg>
               Review guide
             </p>
-            <h2>Use age in SEO checks</h2>
+            <h2>Add age to SEO due diligence</h2>
             <div className="responsive-table decision-table">
               <table>
                 <thead>
@@ -247,7 +247,7 @@ export default function DomainAgePage() {
               </svg>
               SEO Context
             </p>
-            <h2>Domain age and SEO</h2>
+            <h2>How domain age supports SEO</h2>
             <p className="wide-copy">Domain age by itself is not a meaningful SEO shortcut. A newer domain can outrank an older one when the content, links, and search intent match are stronger. Domain age is still useful as context because older domains often have more history to review, including backlinks, ownership changes, expired content, redirects, and reputation signals.</p>
           </section>
 
@@ -260,7 +260,7 @@ export default function DomainAgePage() {
               </svg>
               Use cases
             </p>
-            <h2>Why domain age still matters</h2>
+            <h2>Why older domains still need review</h2>
             <div className="feature-grid">
               <article>
                 <h3>Buying an aged or expired domain</h3>
@@ -285,7 +285,7 @@ export default function DomainAgePage() {
               </svg>
               Data Sources
             </p>
-            <h2>WHOIS vs RDAP</h2>
+            <h2>WHOIS vs RDAP domain age data</h2>
             <p className="wide-copy">WHOIS has been the standard way to look up domain registration details for decades, but the data format varies by registry and isn&apos;t always machine readable. RDAP is the newer protocol replacing it, returning structured, consistent data across registries. This tool queries RDAP first and falls back to WHOIS where needed, so you get accurate registration and expiry dates without digging through raw WHOIS text yourself.</p>
           </section>
 
@@ -298,7 +298,7 @@ export default function DomainAgePage() {
                 </svg>
                 Data Notes
               </p>
-              <h2>WHOIS data limits</h2>
+              <h2>Know the limits of WHOIS data</h2>
             </div>
             <ul className="check-list">
               <li>Privacy or proxy registration services hide the registrant&apos;s personal details, but the creation date is normally still public.</li>

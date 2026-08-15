@@ -135,7 +135,7 @@ export default function CheckerTool() {
     <>
       <section className="checker-shell" aria-labelledby="page-title">
         <div className="checker-intro">
-          <h1 id="page-title">Domain Rating Checker</h1>
+          <h1 id="page-title">Free Domain Rating Checker</h1>
           <p className="subtitle">Check Ahrefs Domain Rating for any website in seconds. Use the DR score to compare backlink strength, qualify guest post targets, and decide which domains deserve deeper SEO review.</p>
         </div>
 

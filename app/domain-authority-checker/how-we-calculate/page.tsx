@@ -3,11 +3,11 @@ import Link from "next/link";
 import { absoluteUrl, breadcrumbSchema, faqSchema, softwareApplicationSchema } from "../../../lib/schema";
 
 export const metadata: Metadata = {
-  title: "How We Calculate Domain Authority Score | DR Checker",
+  title: "How Domain Authority Is Calculated | DR Checker",
   description: "See how DR Checker calculates its independent 0 to 100 Domain Authority Score from OpenPageRank data and how to use the result responsibly.",
   alternates: { canonical: "https://dr-checker.com/domain-authority-checker/how-we-calculate" },
   openGraph: {
-    title: "How We Calculate Domain Authority Score | DR Checker",
+    title: "How Domain Authority Is Calculated | DR Checker",
     description: "See how DR Checker calculates its independent 0 to 100 Domain Authority Score from OpenPageRank data and how to use the result responsibly.",
     url: "https://dr-checker.com/domain-authority-checker/how-we-calculate",
     siteName: "DR Checker",
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary",
-    title: "How We Calculate Domain Authority Score | DR Checker",
+    title: "How Domain Authority Is Calculated | DR Checker",
     description: "See how DR Checker calculates its independent 0 to 100 Domain Authority Score from OpenPageRank data and how to use the result responsibly."
   }
 };
@@ -71,7 +71,7 @@ export default function AuthorityScoreMethodPage() {
       ))}
       <div className="standard-page__inner">
         <p className="page-kicker">Methodology</p>
-        <h1>How We Calculate Domain Authority Score</h1>
+        <h1>How Domain Authority Is Calculated</h1>
         <p className="lead">DR Checker&apos;s Domain Authority Score is an independent 0 to 100 rating derived from open link-graph data. It is not Moz Domain Authority, it is not affiliated with Moz, and it should be used as a comparison signal rather than a ranking promise.</p>
         <section className="method-summary">
           <article>
@@ -91,7 +91,7 @@ export default function AuthorityScoreMethodPage() {
           </article>
         </section>
         <section>
-          <h2>Methodology intent</h2>
+          <h2>How Domain Authority is calculated</h2>
           <p>Searchers who ask how Domain Authority is calculated usually need more than a formula. They want to know what data is used, whether the score is official Moz DA, whether it can be compared with Ahrefs DR, and what the number can or cannot prove.</p>
           <div className="keyword-map">
             <article className="keyword-card">
@@ -112,16 +112,16 @@ export default function AuthorityScoreMethodPage() {
           </div>
         </section>
         <section>
-          <h2>Formula</h2>
+          <h2>Domain Authority formula</h2>
           <p>We fetch OpenPageRank&apos;s current score for the normalized registered domain, then convert it to a familiar 0 to 100 display scale:</p>
           <p><strong>displayed score = Math.round(open_page_rank * 10)</strong></p>
         </section>
         <section>
-          <h2>Quality Controls</h2>
+          <h2>Domain Authority quality controls</h2>
           <p>The checker normalizes each submitted URL to the registered domain before requesting the score. Results may be cached to keep the tool fast and reliable when third-party API quotas are temporarily limited.</p>
         </section>
         <section>
-          <h2>How To Use It</h2>
+          <h2>How to use authority scores</h2>
           <p>Treat the score as a quick comparison signal. It is most useful when you pair it with referring domains, global rank, topical relevance, organic traffic, and a manual review of link quality.</p>
           <div className="callout-panel">
             <div>
@@ -136,7 +136,7 @@ export default function AuthorityScoreMethodPage() {
           </div>
         </section>
         <section>
-          <h2>Related Tools</h2>
+          <h2>Related authority checker tools</h2>
           <p><Link href="/domain-authority-checker">Check Authority Score</Link> or compare it with <Link href="/">Ahrefs Domain Rating</Link> and <Link href="/domain-age-checker">Domain Age</Link>.</p>
         </section>
         <section className="faq-block" aria-labelledby="method-faq-title">

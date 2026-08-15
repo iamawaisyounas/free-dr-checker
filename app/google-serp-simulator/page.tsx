@@ -3,7 +3,7 @@ import DiscoverTools from "../components/DiscoverTools";
 import SerpSimulatorTool from "../components/SerpSimulatorTool";
 import { absoluteUrl, breadcrumbSchema, faqSchema, softwareApplicationSchema } from "../../lib/schema";
 
-const title = "Google SERP Simulator - Free Snippet Preview Tool";
+const title = "Google SERP Simulator - Preview Titles and Meta Descriptions";
 const description =
   "Preview your Google search snippet before publishing. Test title tags, URLs, and meta descriptions on desktop and mobile.";
 
@@ -97,7 +97,7 @@ export default function GoogleSerpSimulatorPage() {
               </svg>
               Quick answer
             </p>
-            <h2>Preview snippets before launch</h2>
+            <h2>Preview Google snippets before publishing</h2>
             <p className="wide-copy">A Google SERP simulator helps you preview title tags, URLs, and meta descriptions on desktop and mobile. It cannot force Google to show your exact snippet, but it helps you catch weak messaging, awkward truncation, and unclear page promises before publishing.</p>
             <div className="answer-grid" aria-label="SERP simulator quick facts">
               <article>
@@ -127,7 +127,7 @@ export default function GoogleSerpSimulatorPage() {
               </svg>
               Snippet preview
             </p>
-            <h2>Preview your snippet</h2>
+            <h2>Test your title and meta preview</h2>
             <p className="wide-copy">A Google SERP simulator shows how your title tag, display URL, and meta description may appear in search results. Use it before publishing to catch truncation, unclear promises, keyword stuffing, and descriptions that do not give searchers a reason to click.</p>
           </section>
 
@@ -140,7 +140,7 @@ export default function GoogleSerpSimulatorPage() {
               </svg>
               Snippet strategy
             </p>
-            <h2>Write for the next click</h2>
+            <h2>Write snippets that earn clicks</h2>
             <div className="intent-grid">
               <article className="intent-card">
                 <span>Title tag</span>
@@ -174,7 +174,7 @@ export default function GoogleSerpSimulatorPage() {
               </svg>
               Snippet matrix
             </p>
-            <h2>Fix weak snippets</h2>
+            <h2>Fix weak title and meta snippets</h2>
             <div className="responsive-table decision-table">
               <table>
                 <thead>
@@ -248,7 +248,7 @@ export default function GoogleSerpSimulatorPage() {
               </svg>
               SEO checks
             </p>
-            <h2>Pre-publish checks</h2>
+            <h2>Pre-publish SERP checks</h2>
             <div className="feature-grid">
               <article>
                 <h3>Title clarity</h3>
@@ -274,7 +274,7 @@ export default function GoogleSerpSimulatorPage() {
                 </svg>
                 Best practices
               </p>
-              <h2>Better title and meta copy</h2>
+              <h2>Better title tags and meta descriptions</h2>
             </div>
             <ul className="check-list">
               <li>Match the title and description to the exact page content, not just the target keyword.</li>
@@ -293,7 +293,7 @@ export default function GoogleSerpSimulatorPage() {
               </svg>
               Keyword fit
             </p>
-            <h2>SERP keyword fit</h2>
+            <h2>SERP preview keyword fit</h2>
             <ul className="query-pill-list" aria-label="SERP simulator keyword targets">
               <li>google serp simulator</li>
               <li>serp preview tool</li>
