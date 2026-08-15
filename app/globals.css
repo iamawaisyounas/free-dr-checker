@@ -1163,11 +1163,19 @@ button svg {
   --serp-panel-bg: #f8fafc;
   background: var(--serp-panel-bg);
   gap: 16px;
+  min-width: 0;
+  overflow: hidden;
+  justify-items: stretch;
 }
 
 .serp-browser {
+  --serp-left-offset: clamp(24px, 14vw, 138px);
+  --serp-right-gutter: 32px;
   display: grid;
   gap: 0;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
   overflow-x: hidden;
   overflow-y: hidden;
   border: 1px solid #e5e7eb;
@@ -1180,11 +1188,14 @@ button svg {
 }
 
 .serp-browser--desktop {
-  width: 100%;
-  max-width: 100%;
+  justify-self: center;
+  width: min(100%, 960px);
 }
 
 .serp-browser--mobile {
+  --serp-left-offset: 16px;
+  --serp-right-gutter: 16px;
+  justify-self: center;
   width: min(390px, 100%);
 }
 
@@ -1267,7 +1278,7 @@ button svg {
   align-items: flex-end;
   gap: 26px;
   overflow-x: auto;
-  padding: 0 32px 0 138px;
+  padding: 0 var(--serp-right-gutter) 0 var(--serp-left-offset);
   color: #5f6368;
   font-family: Arial, sans-serif;
   font-size: 0.83rem;
@@ -1300,7 +1311,7 @@ button svg {
 }
 
 .serp-result-count {
-  padding: 18px 32px 0 138px;
+  padding: 18px var(--serp-right-gutter) 0 var(--serp-left-offset);
   color: #70757a;
   font-family: Arial, sans-serif;
   font-size: 0.82rem;
@@ -1310,8 +1321,8 @@ button svg {
 .serp-preview {
   display: grid;
   gap: 9px;
-  width: min(600px, calc(100% - 170px));
-  margin: 30px 32px 0 138px;
+  width: min(600px, calc(100% - var(--serp-left-offset) - var(--serp-right-gutter)));
+  margin: 30px var(--serp-right-gutter) 0 var(--serp-left-offset);
   border: 0;
   border-radius: 0;
   padding: 0;
