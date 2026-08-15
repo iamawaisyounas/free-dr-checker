@@ -23,9 +23,9 @@ const tools: ToolCard[] = [
   {
     key: "bulk-dr",
     href: "/bulk-dr-checker",
-    title: "Bulk DR Checker",
+    title: "Free Bulk Domain Rating Checker",
     description: "Check Ahrefs Domain Rating for up to 100 domains at once and export CSV results.",
-    cta: "Try Bulk DR Checker Now",
+    cta: "Try Free Bulk Domain Rating Checker Now",
     icon: "list"
   },
   {

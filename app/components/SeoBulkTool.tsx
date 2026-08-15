@@ -102,7 +102,7 @@ export default function SeoBulkTool({ tool }: Props) {
   const isDr = tool === "dr";
   const isAuthority = tool === "authority";
   const maxDomains = isDr ? 100 : isAuthority ? 1000 : 50;
-  const title = isDr ? "Bulk DR Checker" : isAuthority ? "Free Domain Authority Checker" : "Free Domain Age Checker";
+  const title = isDr ? "Free Bulk Domain Rating Checker" : isAuthority ? "Free Domain Authority Checker" : "Free Domain Age Checker";
   const subtitle = isDr
     ? "Check Ahrefs Domain Rating for up to 100 domains at once. Clean messy prospect lists, remove duplicates, and export the DR scores your team needs for outreach or competitor research."
     : isAuthority

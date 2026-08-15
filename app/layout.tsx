@@ -65,7 +65,7 @@ function Footer() {
         <nav className="footer-column" aria-label="Free SEO tools">
           <h2>Free SEO Tools</h2>
           <Link href="/">DR Checker</Link>
-          <Link href="/bulk-dr-checker">Bulk DR Checker</Link>
+          <Link href="/bulk-dr-checker">Free Bulk Domain Rating Checker</Link>
           <Link href="/domain-authority-checker">Domain Authority Checker</Link>
           <Link href="/domain-age-checker">Domain Age Checker</Link>
           <Link href="/google-serp-simulator">Google SERP Simulator</Link>

@@ -3,7 +3,7 @@ import DiscoverTools from "../components/DiscoverTools";
 import SeoBulkTool from "../components/SeoBulkTool";
 import { absoluteUrl, breadcrumbSchema, faqSchema, softwareApplicationSchema } from "../../lib/schema";
 
-const title = "Bulk DR Checker - Check Domain Rating in Bulk";
+const title = "Free Bulk Domain Rating Checker - Check Domain Rating in Bulk";
 const description =
   "Check Ahrefs Domain Rating for up to 100 domains at once. Clean prospect lists, compare backlink strength, and export bulk DR results to CSV.";
 
@@ -57,7 +57,7 @@ const faqs = [
 export default function BulkDrCheckerPage() {
   const schemas = [
     softwareApplicationSchema({
-      name: "Bulk DR Checker",
+      name: "Free Bulk Domain Rating Checker",
       description,
       url: absoluteUrl("/bulk-dr-checker"),
       features: [
@@ -70,7 +70,7 @@ export default function BulkDrCheckerPage() {
     faqSchema(faqs),
     breadcrumbSchema([
       { name: "Domain Rating Checker", url: absoluteUrl("/") },
-      { name: "Bulk DR Checker", url: absoluteUrl("/bulk-dr-checker") }
+      { name: "Free Bulk Domain Rating Checker", url: absoluteUrl("/bulk-dr-checker") }
     ])
   ];
 
