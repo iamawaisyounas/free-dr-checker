@@ -974,7 +974,7 @@ button svg {
 }
 
 .serp-tool-shell .checker-container {
-  width: min(100%, 1180px);
+  width: min(100%, 1520px);
   margin: 0 auto;
 }
 
@@ -986,7 +986,7 @@ button svg {
   --serp-soft-bg: #f4f8fb;
   --serp-soft-border: #dbe7f0;
   display: grid;
-  grid-template-columns: minmax(320px, 0.78fr) minmax(0, 1.22fr);
+  grid-template-columns: minmax(340px, 440px) minmax(0, 1fr);
   gap: 20px;
   width: 100%;
   margin: 42px auto 0;
@@ -1178,7 +1178,8 @@ button svg {
 }
 
 .serp-browser--desktop {
-  min-width: 960px;
+  width: 960px;
+  max-width: 100%;
 }
 
 .serp-browser--mobile {
@@ -2478,6 +2479,30 @@ details p {
   overflow: hidden;
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
+}
+
+@media (max-width: 1500px) {
+  .serp-tool-shell .checker-container {
+    width: min(100%, 1120px);
+  }
+
+  .serp-workbench {
+    grid-template-columns: 1fr;
+  }
+
+  .serp-input-panel {
+    max-width: 760px;
+    width: 100%;
+    justify-self: center;
+  }
+
+  .serp-output-panel {
+    width: 100%;
+  }
+
+  .serp-browser--desktop {
+    margin-inline: auto;
+  }
 }
 
 @media (max-width: 860px) {
