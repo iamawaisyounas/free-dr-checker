@@ -2193,6 +2193,8 @@ details p {
   .feature-grid,
   .steps,
   .split-block,
+  .answer-grid,
+  .method-summary,
   .intent-grid,
   .workflow-grid,
   .comparison-grid,
@@ -2403,6 +2405,13 @@ details p {
     gap: 10px;
   }
 
+  button,
+  .discover-card a {
+    max-width: 100%;
+    white-space: normal;
+    text-align: center;
+  }
+
   input,
   button {
     height: 52px;
@@ -2451,6 +2460,17 @@ details p {
     padding: 50px 16px;
   }
 
+  .answer-grid,
+  .method-summary {
+    gap: 12px;
+    text-align: left;
+  }
+
+  .answer-grid article,
+  .method-summary article {
+    padding: 18px;
+  }
+
   .copy-block h2 {
     margin-bottom: 22px;
   }
@@ -2467,6 +2487,7 @@ details p {
 
   .discover-card a {
     width: 100%;
+    min-height: 48px;
   }
 
   .global-footer__inner {
