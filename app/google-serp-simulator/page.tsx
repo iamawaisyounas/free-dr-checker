@@ -84,6 +84,7 @@ export default function GoogleSerpSimulatorPage() {
         />
       ))}
       <SerpSimulatorTool />
+      <DiscoverTools activeTool="serp" />
 
       <section className="content-section" aria-label="Google SERP simulator guide">
         <div className="content-wrap">
@@ -96,7 +97,7 @@ export default function GoogleSerpSimulatorPage() {
               </svg>
               Quick answer
             </p>
-            <h2>Use the SERP simulator to test search-result clarity before a page goes live</h2>
+            <h2>Preview snippets before launch</h2>
             <p className="wide-copy">A Google SERP simulator helps you preview title tags, URLs, and meta descriptions on desktop and mobile. It cannot force Google to show your exact snippet, but it helps you catch weak messaging, awkward truncation, and unclear page promises before publishing.</p>
             <div className="answer-grid" aria-label="SERP simulator quick facts">
               <article>
@@ -126,7 +127,7 @@ export default function GoogleSerpSimulatorPage() {
               </svg>
               Snippet preview
             </p>
-            <h2>Preview your Google search snippet before publishing</h2>
+            <h2>Preview your snippet</h2>
             <p className="wide-copy">A Google SERP simulator shows how your title tag, display URL, and meta description may appear in search results. Use it before publishing to catch truncation, unclear promises, keyword stuffing, and descriptions that do not give searchers a reason to click.</p>
           </section>
 
@@ -139,7 +140,7 @@ export default function GoogleSerpSimulatorPage() {
               </svg>
               Snippet strategy
             </p>
-            <h2>Write snippets for the searcher&apos;s next click, not only for length limits</h2>
+            <h2>Write for the next click</h2>
             <div className="intent-grid">
               <article className="intent-card">
                 <span>Title tag</span>
@@ -173,7 +174,7 @@ export default function GoogleSerpSimulatorPage() {
               </svg>
               Snippet matrix
             </p>
-            <h2>How to diagnose a weak search snippet</h2>
+            <h2>Fix weak snippets</h2>
             <div className="responsive-table decision-table">
               <table>
                 <thead>
@@ -213,7 +214,7 @@ export default function GoogleSerpSimulatorPage() {
               </svg>
               Rewrite framework
             </p>
-            <h2>A simple framework for stronger title tags and meta descriptions</h2>
+            <h2>Snippet rewrite framework</h2>
             <div className="workflow-grid">
               <article className="workflow-card">
                 <span>Search intent</span>
@@ -247,7 +248,7 @@ export default function GoogleSerpSimulatorPage() {
               </svg>
               SEO checks
             </p>
-            <h2>What to check before publishing a snippet</h2>
+            <h2>Pre-publish checks</h2>
             <div className="feature-grid">
               <article>
                 <h3>Title clarity</h3>
@@ -273,7 +274,7 @@ export default function GoogleSerpSimulatorPage() {
                 </svg>
                 Best practices
               </p>
-              <h2>How to write better title tags and meta descriptions</h2>
+              <h2>Better title and meta copy</h2>
             </div>
             <ul className="check-list">
               <li>Match the title and description to the exact page content, not just the target keyword.</li>
@@ -292,7 +293,7 @@ export default function GoogleSerpSimulatorPage() {
               </svg>
               Keyword fit
             </p>
-            <h2>Search terms this SERP preview page is built to satisfy</h2>
+            <h2>SERP keyword fit</h2>
             <ul className="query-pill-list" aria-label="SERP simulator keyword targets">
               <li>google serp simulator</li>
               <li>serp preview tool</li>
@@ -324,7 +325,6 @@ export default function GoogleSerpSimulatorPage() {
           </section>
         </div>
       </section>
-      <DiscoverTools activeTool="serp" />
     </main>
   );
 }

@@ -84,6 +84,7 @@ export default function BulkDrCheckerPage() {
         />
       ))}
       <SeoBulkTool tool="dr" />
+      <DiscoverTools activeTool="bulk-dr" />
 
       <section className="content-section" aria-label="Bulk Domain Rating guide">
         <div className="content-wrap">
@@ -95,7 +96,7 @@ export default function BulkDrCheckerPage() {
               </svg>
               Quick answer
             </p>
-            <h2>Use bulk DR checks to shrink messy prospect lists before manual review</h2>
+            <h2>Score prospect lists faster</h2>
             <p className="wide-copy">A bulk DR checker helps you check many websites at once, clean duplicate entries, and export a working CSV. It is best for triage: remove obviously weak or irrelevant domains first, then manually review the sites that still look promising.</p>
             <div className="answer-grid" aria-label="Bulk DR quick facts">
               <article>
@@ -124,7 +125,7 @@ export default function BulkDrCheckerPage() {
               </svg>
               Bulk DR lookup
             </p>
-            <h2>Check Domain Rating in bulk without cleaning the list first</h2>
+            <h2>Bulk DR without cleanup</h2>
             <p className="wide-copy">A bulk DR checker is useful when your prospect sheet has dozens of websites and you need a fast authority screen. Paste domains or full URLs, let the tool remove duplicates, and export Ahrefs Domain Rating scores you can add back to your outreach, audit, or competitor research workflow.</p>
           </section>
 
@@ -139,7 +140,7 @@ export default function BulkDrCheckerPage() {
               </svg>
               List cleanup flow
             </p>
-            <h2>Turn a messy prospect list into a scored outreach sheet</h2>
+            <h2>From messy list to CSV</h2>
             <div className="workflow-grid">
               <article className="workflow-card">
                 <span>Input</span>
@@ -173,7 +174,7 @@ export default function BulkDrCheckerPage() {
               </svg>
               Review matrix
             </p>
-            <h2>What to do after exporting bulk DR results</h2>
+            <h2>After export</h2>
             <div className="responsive-table decision-table">
               <table>
                 <thead>
@@ -216,7 +217,7 @@ export default function BulkDrCheckerPage() {
               </svg>
               Bulk query coverage
             </p>
-            <h2>What bulk DR searchers usually need after the score</h2>
+            <h2>Bulk DR query needs</h2>
             <div className="keyword-map">
               <article className="keyword-card">
                 <span>bulk dr checker</span>
@@ -245,7 +246,7 @@ export default function BulkDrCheckerPage() {
               </svg>
               Use cases
             </p>
-            <h2>When bulk DR checks save the most time</h2>
+            <h2>Best bulk use cases</h2>
             <div className="feature-grid">
               <article>
                 <h3>Guest post prospecting</h3>
@@ -271,7 +272,7 @@ export default function BulkDrCheckerPage() {
                 </svg>
                 Better decisions
               </p>
-              <h2>How to use bulk DR responsibly</h2>
+              <h2>Use bulk DR wisely</h2>
             </div>
             <ul className="check-list">
               <li>Use the exported DR score as a first-pass filter, not an automatic yes or no.</li>
@@ -302,7 +303,6 @@ export default function BulkDrCheckerPage() {
           </section>
         </div>
       </section>
-      <DiscoverTools activeTool="bulk-dr" />
     </main>
   );
 }

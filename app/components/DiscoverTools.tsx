@@ -106,7 +106,7 @@ export default function DiscoverTools({ activeTool }: { activeTool: ToolKey }) {
   return (
     <section className="discover-tools" aria-labelledby="discover-tools-title">
       <div className="discover-tools__inner">
-        <h2 id="discover-tools-title">Discover more SEO tools</h2>
+        <h2 id="discover-tools-title">Free SEO tools</h2>
         <div className="discover-tools__grid">
           {tools.filter((tool) => tool.key !== activeTool).map((tool) => (
             <article className="discover-card" key={tool.key}>

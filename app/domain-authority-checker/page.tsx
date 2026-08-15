@@ -82,6 +82,7 @@ export default function AuthorityScorePage() {
         />
       ))}
       <SeoBulkTool tool="authority" />
+      <DiscoverTools activeTool="authority" />
       <section className="content-section" aria-label="Domain Authority guide">
         <div className="content-wrap">
           <section className="copy-block answer-block">
@@ -92,7 +93,7 @@ export default function AuthorityScorePage() {
               </svg>
               Quick answer
             </p>
-            <h2>Use this Domain Authority checker as a second authority view, not a Moz replacement</h2>
+            <h2>Check authority with context</h2>
             <p className="wide-copy">DR Checker&apos;s Domain Authority tool gives an independent 0 to 100 authority-style score from OpenPageRank data. It helps you compare domains quickly, but it should be read beside Ahrefs DR, referring domains, topical relevance, and manual backlink review.</p>
             <div className="answer-grid" aria-label="Domain Authority quick facts">
               <article>
@@ -122,7 +123,7 @@ export default function AuthorityScorePage() {
               </svg>
               Domain Authority
             </p>
-            <h2>What this Domain Authority checker measures</h2>
+            <h2>What this checker measures</h2>
             <p className="wide-copy">This Domain Authority checker returns an independent authority-style score on a 0 to 100 scale. It uses OpenPageRank&apos;s open link graph data rather than Moz&apos;s proprietary Domain Authority algorithm, so treat it as a comparison signal, not an official Moz DA lookup or a Google ranking factor.</p>
           </section>
 
@@ -134,7 +135,7 @@ export default function AuthorityScorePage() {
               </svg>
               Intent match
             </p>
-            <h2>What users mean when they search for a DA checker</h2>
+            <h2>DA checker intent</h2>
             <p className="wide-copy">Some users want Moz DA specifically, while others want any quick website authority score. This page is built for the second need: a free authority-style comparison score with clear limits and links to Ahrefs DR when that metric is the better fit.</p>
             <div className="intent-grid">
               <article className="intent-card">
@@ -169,7 +170,7 @@ export default function AuthorityScorePage() {
               </svg>
               Comparison guide
             </p>
-            <h2>When to use DA, DR, or both</h2>
+            <h2>DA, DR, or both?</h2>
             <div className="responsive-table decision-table">
               <table>
                 <thead>
@@ -208,7 +209,7 @@ export default function AuthorityScorePage() {
               </svg>
               Authority checklist
             </p>
-            <h2>Before trusting a high authority score, check the quality signals</h2>
+            <h2>Check quality signals</h2>
             <div className="audit-grid">
               <article className="audit-card">
                 <span>Links</span>
@@ -237,7 +238,7 @@ export default function AuthorityScorePage() {
               </svg>
               Score Guide
             </p>
-            <h2>How to read your authority score</h2>
+            <h2>Read your score</h2>
             <ul className="check-list score-guide-list">
               <li><strong>0 to 20:</strong> New or very low authority. Common for brand new sites or ones with very few backlinks.</li>
               <li><strong>21 to 40:</strong> Developing. The domain has started attracting links but isn&apos;t established yet.</li>
@@ -269,7 +270,7 @@ export default function AuthorityScorePage() {
                 </svg>
                 Ranking Signals
               </p>
-              <h2>What affects this authority score</h2>
+              <h2>What affects the score</h2>
             </div>
             <ul className="check-list">
               <li>The number and quality of referring domains found in the link graph.</li>
@@ -288,7 +289,7 @@ export default function AuthorityScorePage() {
               </svg>
               Use cases
             </p>
-            <h2>When to use this DA checker</h2>
+            <h2>Best DA use cases</h2>
             <div className="feature-grid">
               <article>
                 <h3>Competitor research</h3>
@@ -315,7 +316,7 @@ export default function AuthorityScorePage() {
                 </svg>
                 Common Mistakes
               </p>
-              <h2>Common mistakes people make with DA</h2>
+              <h2>Common DA mistakes</h2>
             </div>
             <ul className="check-list">
               <li>Treating it as a Google ranking factor. It isn&apos;t used directly.</li>
@@ -346,7 +347,6 @@ export default function AuthorityScorePage() {
           </section>
         </div>
       </section>
-      <DiscoverTools activeTool="authority" />
     </main>
   );
 }

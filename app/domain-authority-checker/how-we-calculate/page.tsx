@@ -91,7 +91,7 @@ export default function AuthorityScoreMethodPage() {
           </article>
         </section>
         <section>
-          <h2>What this methodology page is meant to answer</h2>
+          <h2>Methodology intent</h2>
           <p>Searchers who ask how Domain Authority is calculated usually need more than a formula. They want to know what data is used, whether the score is official Moz DA, whether it can be compared with Ahrefs DR, and what the number can or cannot prove.</p>
           <div className="keyword-map">
             <article className="keyword-card">
@@ -125,7 +125,7 @@ export default function AuthorityScoreMethodPage() {
           <p>Treat the score as a quick comparison signal. It is most useful when you pair it with referring domains, global rank, topical relevance, organic traffic, and a manual review of link quality.</p>
           <div className="callout-panel">
             <div>
-              <h3>Use the score in reports without overstating it</h3>
+              <h3>Report it clearly</h3>
               <p>When you share this metric with clients or teammates, name the source and keep it separate from official Moz DA and Ahrefs DR.</p>
             </div>
             <ul className="mini-metric-list">

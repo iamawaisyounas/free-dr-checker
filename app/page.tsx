@@ -84,6 +84,7 @@ export default function HomePage() {
         />
       ))}
       <CheckerTool />
+      <DiscoverTools activeTool="dr" />
 
       <section className="content-section" aria-label="Domain Rating guide">
         <div className="content-wrap">
@@ -94,7 +95,7 @@ export default function HomePage() {
               </svg>
               Quick answer
             </p>
-            <h2>Use Domain Rating to screen backlink strength, then verify quality manually</h2>
+            <h2>Check DR before deeper SEO review</h2>
             <p className="wide-copy">A Domain Rating checker gives you a fast 0 to 100 backlink-strength signal for any domain. The score is useful for competitor research, guest post screening, and outreach prioritization, but it should be paired with relevance, traffic, editorial quality, and the page where a link would appear.</p>
             <div className="answer-grid" aria-label="Domain Rating quick facts">
               <article>
@@ -124,7 +125,7 @@ export default function HomePage() {
               </svg>
               Use cases
             </p>
-            <h2>When to use this free Domain Rating checker</h2>
+            <h2>Best uses for a DR checker</h2>
             <div className="feature-grid">
               <article>
                 <h3>Benchmark competitors</h3>
@@ -149,7 +150,7 @@ export default function HomePage() {
               </svg>
               Search intent map
             </p>
-            <h2>Choose the right next step for the query behind your DR check</h2>
+            <h2>Match DR to the job</h2>
             <p className="wide-copy">Most people searching for a domain rating checker are not just curious about a number. They want to decide whether a website is strong enough to pitch, compare, audit, buy, or report on. Use the score differently depending on the job.</p>
             <div className="intent-grid">
               <article className="intent-card">
@@ -184,7 +185,7 @@ export default function HomePage() {
               </svg>
               Decision guide
             </p>
-            <h2>How to judge a DR score before acting on it</h2>
+            <h2>How to judge a DR score</h2>
             <div className="responsive-table decision-table">
               <table>
                 <thead>
@@ -228,7 +229,7 @@ export default function HomePage() {
               </svg>
               Review workflow
             </p>
-            <h2>A practical DR review workflow for SEO teams</h2>
+            <h2>DR review workflow</h2>
             <div className="workflow-grid">
               <article className="workflow-card">
                 <span>Step 1</span>
@@ -262,7 +263,7 @@ export default function HomePage() {
                 </svg>
                 Benefits
               </p>
-              <h2>What this DR checker gives you</h2>
+              <h2>What you get</h2>
             </div>
             <ul className="check-list">
               <li>One simple field for a full URL, root domain, or www version.</li>
@@ -279,7 +280,7 @@ export default function HomePage() {
               </svg>
               How it works
             </p>
-            <h2>How the Domain Rating lookup works</h2>
+            <h2>How the lookup works</h2>
             <div className="steps">
               <article>
                 <span>1</span>
@@ -308,7 +309,7 @@ export default function HomePage() {
                 </svg>
                 Tips
               </p>
-              <h2>How to improve Domain Rating without chasing shortcuts</h2>
+              <h2>Improve DR safely</h2>
             </div>
             <div className="tip-list">
               <p><svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="m9 12 2 2 4-4"></path></svg>Earn links from relevant sites that already publish for the audience you want to reach.</p>
@@ -326,11 +327,11 @@ export default function HomePage() {
               </svg>
               Understanding domain rating
             </p>
-            <h2>What Domain Rating really means</h2>
+            <h2>What DR means</h2>
             <p className="wide-copy">Domain Rating is an Ahrefs metric that estimates the strength of a website&apos;s backlink profile on a 0 to 100 scale. A higher DR usually means the domain has stronger links, but DR is not a Google ranking factor and it does not measure content quality. Use it with relevance, organic traffic, search intent, and manual review.</p>
             <div className="callout-panel">
               <div>
-                <h3>Keyword targets this page now answers</h3>
+                <h3>Keyword targets</h3>
                 <p>These phrases match the user jobs behind a free DR checker page, so the copy covers both the tool action and the follow-up decision.</p>
               </div>
               <ul className="mini-metric-list">
@@ -362,7 +363,6 @@ export default function HomePage() {
           </section>
         </div>
       </section>
-      <DiscoverTools activeTool="dr" />
     </main>
   );
 }

@@ -82,6 +82,7 @@ export default function DomainAgePage() {
         />
       ))}
       <SeoBulkTool tool="age" />
+      <DiscoverTools activeTool="age" />
       <section className="content-section" aria-label="Domain Age guide">
         <div className="content-wrap">
           <section className="copy-block answer-block">
@@ -92,7 +93,7 @@ export default function DomainAgePage() {
               </svg>
               Quick answer
             </p>
-            <h2>Use domain age to add history context, not to predict rankings by itself</h2>
+            <h2>Check domain history fast</h2>
             <p className="wide-copy">A domain age checker shows when a domain was first registered and when it expires. That history helps with expired-domain reviews, link prospecting, and email-domain checks, but age alone does not prove SEO strength.</p>
             <div className="answer-grid" aria-label="Domain age quick facts">
               <article>
@@ -137,7 +138,7 @@ export default function DomainAgePage() {
               </svg>
               Query guide
             </p>
-            <h2>Use domain age differently for SEO, buying, and outreach checks</h2>
+            <h2>Use age by task</h2>
             <div className="intent-grid">
               <article className="intent-card">
                 <span>SEO</span>
@@ -171,7 +172,7 @@ export default function DomainAgePage() {
               </svg>
               Review guide
             </p>
-            <h2>How to use domain age in real SEO checks</h2>
+            <h2>Use age in SEO checks</h2>
             <div className="responsive-table decision-table">
               <table>
                 <thead>
@@ -212,7 +213,7 @@ export default function DomainAgePage() {
               </svg>
               Age vs website age
             </p>
-            <h2>Domain age and website age are not always the same thing</h2>
+            <h2>Domain age vs website age</h2>
             <div className="comparison-grid">
               <article className="comparison-card">
                 <span>Domain age</span>
@@ -246,7 +247,7 @@ export default function DomainAgePage() {
               </svg>
               SEO Context
             </p>
-            <h2>Does domain age affect SEO rankings</h2>
+            <h2>Domain age and SEO</h2>
             <p className="wide-copy">Domain age by itself is not a meaningful SEO shortcut. A newer domain can outrank an older one when the content, links, and search intent match are stronger. Domain age is still useful as context because older domains often have more history to review, including backlinks, ownership changes, expired content, redirects, and reputation signals.</p>
           </section>
 
@@ -284,7 +285,7 @@ export default function DomainAgePage() {
               </svg>
               Data Sources
             </p>
-            <h2>WHOIS vs RDAP: how this tool gets its data</h2>
+            <h2>WHOIS vs RDAP</h2>
             <p className="wide-copy">WHOIS has been the standard way to look up domain registration details for decades, but the data format varies by registry and isn&apos;t always machine readable. RDAP is the newer protocol replacing it, returning structured, consistent data across registries. This tool queries RDAP first and falls back to WHOIS where needed, so you get accurate registration and expiry dates without digging through raw WHOIS text yourself.</p>
           </section>
 
@@ -297,7 +298,7 @@ export default function DomainAgePage() {
                 </svg>
                 Data Notes
               </p>
-              <h2>Why WHOIS data can look off sometimes</h2>
+              <h2>WHOIS data limits</h2>
             </div>
             <ul className="check-list">
               <li>Privacy or proxy registration services hide the registrant&apos;s personal details, but the creation date is normally still public.</li>
@@ -327,7 +328,6 @@ export default function DomainAgePage() {
           </section>
         </div>
       </section>
-      <DiscoverTools activeTool="age" />
     </main>
   );
 }
