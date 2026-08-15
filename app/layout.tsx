@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Analytics } from "@vercel/analytics/next";
 import AppHeader from "./components/AppHeader";
 import ScrollToTopOnRouteChange from "./components/ScrollToTopOnRouteChange";
+import { publisherSchema, siteUrl } from "../lib/schema";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -26,6 +27,19 @@ export const metadata: Metadata = {
 
 const googleTagManagerId = "GTM-PN765D4C";
 const googleAnalyticsId = "G-FKY1D8N8WY";
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": `${siteUrl}/#website`,
+  name: "DR Checker",
+  url: siteUrl,
+  publisher: publisherSchema,
+  potentialAction: {
+    "@type": "SearchAction",
+    target: `${siteUrl}/?domain={domain}`,
+    "query-input": "required name=domain"
+  }
+};
 
 function Footer() {
   return (
@@ -104,6 +118,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               gtag('config', '${googleAnalyticsId}');
             `
           }}
+        />
+        <script
+          id="website-schema"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
       </head>
       <body>

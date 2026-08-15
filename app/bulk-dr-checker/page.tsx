@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import DiscoverTools from "../components/DiscoverTools";
 import SeoBulkTool from "../components/SeoBulkTool";
+import { absoluteUrl, breadcrumbSchema, faqSchema, softwareApplicationSchema } from "../../lib/schema";
 
 const title = "Bulk DR Checker - Check Ahrefs DR for Multiple Domains";
 const description =
@@ -34,27 +35,54 @@ export const metadata: Metadata = {
   }
 };
 
+const faqs = [
+  {
+    question: "How many domains can I check at once?",
+    answer: "You can check up to 100 domains or URLs in one bulk DR lookup, then export the results to CSV."
+  },
+  {
+    question: "Does the bulk DR checker remove duplicate domains?",
+    answer: "Yes. The tool cleans each entry, removes duplicates, and checks the unique domains that remain."
+  },
+  {
+    question: "Should I use bulk DR as my only outreach filter?",
+    answer: "No. Use bulk DR as a first-pass screen, then review topical relevance, traffic signals, editorial quality, and page fit."
+  },
+  {
+    question: "Can I export bulk Domain Rating results?",
+    answer: "Yes. After the check finishes, you can export the table to CSV for prospect sheets, audits, or client reporting."
+  }
+];
+
 export default function BulkDrCheckerPage() {
-  const softwareApplicationSchema = {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    name: "Bulk DR Checker",
-    description,
-    applicationCategory: "SEO Tool",
-    operatingSystem: "Web",
-    offers: {
-      "@type": "Offer",
-      price: "0",
-      priceCurrency: "USD"
-    }
-  };
+  const schemas = [
+    softwareApplicationSchema({
+      name: "Bulk DR Checker",
+      description,
+      url: absoluteUrl("/bulk-dr-checker"),
+      features: [
+        "Bulk Ahrefs Domain Rating checks",
+        "Duplicate domain cleanup",
+        "CSV export",
+        "Mobile-friendly results table"
+      ]
+    }),
+    faqSchema(faqs),
+    breadcrumbSchema([
+      { name: "Domain Rating Checker", url: absoluteUrl("/") },
+      { name: "Bulk DR Checker", url: absoluteUrl("/bulk-dr-checker") }
+    ])
+  ];
 
   return (
     <main>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareApplicationSchema) }}
-      />
+      {schemas.map((schema) => (
+        <script
+          key={schema["@type"]}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+        />
+      ))}
       <SeoBulkTool tool="dr" />
       <DiscoverTools activeTool="bulk-dr" />
 
@@ -115,6 +143,26 @@ export default function BulkDrCheckerPage() {
               <li>Compare sites inside the same niche for a fairer benchmark.</li>
               <li>Export results and add notes for relevance, pricing, and editorial quality.</li>
             </ul>
+          </section>
+
+          <section className="copy-block faq-block" aria-labelledby="bulk-faq-title">
+            <p className="section-label">
+              <svg aria-hidden="true" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                <path d="M12 17h.01"></path>
+              </svg>
+              FAQs
+            </p>
+            <h2 id="bulk-faq-title">Frequently asked questions</h2>
+            <div className="faq-list">
+              {faqs.map((faq) => (
+                <details key={faq.question}>
+                  <summary>{faq.question}<svg aria-hidden="true" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"></path></svg></summary>
+                  <p>{faq.answer}</p>
+                </details>
+              ))}
+            </div>
           </section>
         </div>
       </section>

@@ -29,6 +29,9 @@ type DrResult = {
   domain: string;
   dr: number | null;
   status: "ok" | "not_found" | "unavailable";
+  source?: string;
+  license?: string | null;
+  checked_at?: string;
 };
 
 type Props = {
@@ -245,11 +248,13 @@ export default function SeoBulkTool({ tool }: Props) {
   function exportCsv() {
     const rows = isDr
       ? [
-        ["Domain", "Domain Rating", "Rating Label", "Status"],
+        ["Domain", "Domain Rating", "Data Point", "Source", "License", "Status"],
         ...drResults.map((result) => [
           result.domain,
           result.dr ?? "",
-          drStatus(result.dr),
+          "Domain Rating",
+          result.source || "Ahrefs Domain Rating API",
+          result.license || "",
           drStatusLabel(result)
         ])
       ]
@@ -356,30 +361,40 @@ export default function SeoBulkTool({ tool }: Props) {
             </div>
 
             {isDr ? (
-              <div className="responsive-table">
-                <table>
-                  <thead>
-                    <tr>
-                      <th>Domain</th>
-                      <th>Domain Rating</th>
-                      <th>Rating Label</th>
-                      <th>Status</th>
-                      <th>Tools</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {drResults.map((result) => (
-                      <tr key={result.domain}>
-                        <td>{result.domain}</td>
-                        <td><strong>{result.dr ?? "Not found"}</strong></td>
-                        <td>{drStatus(result.dr)}</td>
-                        <td>{drStatusLabel(result)}</td>
-                        <td><Link href={`/?domain=${encodeURIComponent(result.domain)}`}>Single DR</Link></td>
+              <>
+                <p className="score-disclaimer">
+                  Bulk DR uses the Ahrefs free Domain Rating endpoint, which returns Domain Rating only.
+                </p>
+                <div className="responsive-table">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Domain</th>
+                        <th>Domain Rating</th>
+                        <th>Rating Label</th>
+                        <th>Source</th>
+                        <th>Status</th>
+                        <th>Tools</th>
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
+                    </thead>
+                    <tbody>
+                      {drResults.map((result) => (
+                        <tr key={result.domain}>
+                          <td>{result.domain}</td>
+                          <td><strong>{result.dr ?? "Not found"}</strong></td>
+                          <td>{drStatus(result.dr)}</td>
+                          <td>
+                            Domain Rating by Ahrefs
+                            {result.license ? <> · <a href={result.license} rel="noreferrer" target="_blank">License</a></> : null}
+                          </td>
+                          <td>{drStatusLabel(result)}</td>
+                          <td><Link href={`/?domain=${encodeURIComponent(result.domain)}`}>Single DR</Link></td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </>
             ) : isAuthority ? (
               <>
                 <p className="score-disclaimer">

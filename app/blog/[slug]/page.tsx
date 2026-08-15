@@ -8,6 +8,7 @@ import BlogDrCard from "../../components/BlogDrCard";
 import BlogToc from "../../components/BlogToc";
 import { getBlogPostBySlug, getBlogSlugs } from "../../../lib/sanity/blog";
 import { urlFor } from "../../../lib/sanity/image";
+import { absoluteUrl, breadcrumbSchema, faqSchema as buildFaqSchema, softwareApplicationSchema } from "../../../lib/schema";
 
 export const revalidate = 60;
 
@@ -57,16 +58,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       type: "article",
       images: [
         {
-          url: absoluteImageUrl(post.featuredImage),
+          url: absoluteUrl(post.featuredImage),
           alt: post.featuredImageAlt
         }
       ]
     }
   };
-}
-
-function absoluteImageUrl(image: string) {
-  return image.startsWith("http") ? image : `https://dr-checker.com${image}`;
 }
 
 function renderLinkedText(text: string) {
@@ -168,40 +165,54 @@ export default async function BlogPostPage({ params }: PageProps) {
     "@type": "BlogPosting",
     headline: post.title,
     description: post.excerpt,
-    image: absoluteImageUrl(post.featuredImage),
+    image: absoluteUrl(post.featuredImage),
     datePublished: post.date,
     dateModified: post.date,
     author: {
       "@type": "Person",
       name: post.author.name,
-      description: post.author.bio
+      description: post.author.bio,
+      jobTitle: post.author.role || "Co-founder of DR Checker",
+      sameAs: post.author.linkedinUrl || "https://www.linkedin.com/in/awais-younas/"
     },
     publisher: {
       "@type": "Organization",
       name: "Dr Checker",
       url: "https://dr-checker.com"
     },
-    mainEntityOfPage: `https://dr-checker.com/blog/${post.slug}`
+    mainEntityOfPage: absoluteUrl(`/blog/${post.slug}`)
   };
-  const faqSchema = faqs.length ? {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faqs.map((faq) => ({
-      "@type": "Question",
-      name: faq.question,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: faq.answer
-      }
-    }))
-  } : null;
+  const faqSchema = faqs.length ? buildFaqSchema(faqs) : null;
+  const schemas = [
+    articleSchema,
+    softwareApplicationSchema({
+      name: "DR Checker",
+      description: "Free SEO tools for checking Domain Rating, bulk DR, domain age, authority-style scores, and search snippets.",
+      url: absoluteUrl("/"),
+      features: [
+        "Domain Rating checker",
+        "Bulk DR checker",
+        "Domain Authority checker",
+        "Domain Age checker",
+        "Google SERP simulator"
+      ]
+    }),
+    breadcrumbSchema([
+      { name: "Domain Rating Checker", url: absoluteUrl("/") },
+      { name: "Blog", url: absoluteUrl("/blog") },
+      { name: post.title, url: absoluteUrl(`/blog/${post.slug}`) }
+    ])
+  ];
 
   return (
     <main className="blog-post-page">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
-      />
+      {schemas.map((schema) => (
+        <script
+          key={schema["@type"]}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+        />
+      ))}
       {faqSchema ? (
         <script
           type="application/ld+json"
@@ -213,12 +224,13 @@ export default async function BlogPostPage({ params }: PageProps) {
           <div className="blog-post-hero__content">
             <p className="blog-card__meta">{post.category}</p>
             <h1 id="blog-post-title">{post.title}</h1>
-            <div className="blog-post__byline" aria-label="Article author, publish date, and read time">
+            <div className="blog-post__byline" aria-label="Article author, last reviewed date, and read time">
               <img src={post.author.photo || "/assets/awais-younas.jpg"} alt="" width="96" height="96" decoding="async" />
               <div>
                 <p>{post.author.name}</p>
+                <p className="blog-post__role">{post.author.role || "Co-founder of DR Checker"}</p>
                 <div className="blog-post__meta-line">
-                  <time dateTime={post.date}>{formatPostDate(post.date)}</time>
+                  <time dateTime={post.date}>Last reviewed {formatPostDate(post.date)}</time>
                   <span>{post.readTime}</span>
                 </div>
               </div>
@@ -309,8 +321,8 @@ export default async function BlogPostPage({ params }: PageProps) {
               <div className="faq-list">
                 {faqs.map((faq) => (
                   <div className="faq-list__item" key={faq.question}>
-                    <h3>{faq.question}</h3>
-                    <p>{faq.answer}</p>
+                    <h3>Q. {faq.question}</h3>
+                    <p>A. {faq.answer}</p>
                   </div>
                 ))}
               </div>

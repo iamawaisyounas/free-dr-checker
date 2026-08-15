@@ -48,7 +48,7 @@ export default function Image() {
             Check Ahrefs DR for Free
           </div>
           <div style={{ fontSize: 32, lineHeight: 1.35, color: "#40546a", maxWidth: 880 }}>
-            Enter any domain to get a fast Domain Rating score with backlink strength context.
+            Enter any domain to get a fast Domain Rating score from Ahrefs.
           </div>
         </div>
 
@@ -74,9 +74,7 @@ export default function Image() {
           >
             Domain Rating
             <span style={{ color: "#a0acb8" }}>/</span>
-            URL Rating
-            <span style={{ color: "#a0acb8" }}>/</span>
-            Website Authority
+            Ahrefs API
           </div>
         </div>
       </div>

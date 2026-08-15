@@ -5,6 +5,9 @@ import { FormEvent, useCallback, useEffect, useRef, useState } from "react";
 type Result = {
   domain: string;
   dr: number;
+  source?: string;
+  license?: string | null;
+  checked_at?: string;
 };
 
 function cleanDomain(value: string) {
@@ -94,7 +97,13 @@ export default function CheckerTool() {
         return;
       }
 
-      setResult({ domain: data.domain, dr: Math.round(Number(data.dr) || 0) });
+      setResult({
+        domain: data.domain,
+        dr: Math.round(Number(data.dr) || 0),
+        source: data.source,
+        license: data.license,
+        checked_at: data.checked_at
+      });
       window.setTimeout(() => {
         resultRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" });
       }, 50);
@@ -218,8 +227,12 @@ export default function CheckerTool() {
               </div>
               <div className="quick-stats" aria-label="Result summary">
                 <div><span>DR Score</span><strong>{score}</strong></div>
-                <div><span>Rating Scale</span><strong>0-100</strong></div>
+                <div><span>Data Point</span><strong>Domain Rating</strong></div>
               </div>
+              <p className="result-source">
+                Domain Rating by Ahrefs
+                {result.license ? <> · <a href={result.license} rel="noreferrer" target="_blank">License</a></> : null}
+              </p>
               <div className="score-ranges" aria-label="Score range">
                 <p>Score range</p>
                 <div>

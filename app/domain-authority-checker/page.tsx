@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import DiscoverTools from "../components/DiscoverTools";
 import SeoBulkTool from "../components/SeoBulkTool";
+import { absoluteUrl, breadcrumbSchema, faqSchema, softwareApplicationSchema } from "../../lib/schema";
 
 export const metadata: Metadata = {
   title: "Free Domain Authority Checker Online | DR Checker",
@@ -23,28 +24,63 @@ export const metadata: Metadata = {
   }
 };
 
+const faqs = [
+  {
+    question: "What is a good DA score?",
+    answer: "Anything above 50 is generally considered strong, but the right benchmark depends on your niche and who you are competing against."
+  },
+  {
+    question: "Is this the same as Moz's official Domain Authority?",
+    answer: "No. This is an independent 0 to 100 score built on open link graph data, not Moz's algorithm. Use it as a comparison metric, not an official DA lookup."
+  },
+  {
+    question: "Is DA a Google ranking factor?",
+    answer: "No. Authority scores are third-party metrics. Google does not use them directly in rankings."
+  },
+  {
+    question: "Can a low DA site still rank well?",
+    answer: "Yes. Strong content, search intent match, and page-level relevance can help lower authority sites rank."
+  },
+  {
+    question: "Do I need an account to check DA?",
+    answer: "No signup or login is required."
+  },
+  {
+    question: "How often is the score updated?",
+    answer: "Results are cached for 30 days per domain, so checking the same domain again soon after may return a cached score."
+  }
+];
+
 export default function AuthorityScorePage() {
-  const softwareApplicationSchema = {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    name: "Domain Authority Checker",
-    description:
-      "Check Domain Authority (DA) for any website with our free Domain Authority Checker. Compare websites, evaluate SEO strength, and track authority instantly without creating an account.",
-    applicationCategory: "SEO Tool",
-    operatingSystem: "Web",
-    offers: {
-      "@type": "Offer",
-      price: "0",
-      priceCurrency: "USD"
-    }
-  };
+  const schemas = [
+    softwareApplicationSchema({
+      name: "Domain Authority Checker",
+      description:
+        "Check Domain Authority (DA) for any website with our free Domain Authority Checker. Compare websites, evaluate SEO strength, and track authority instantly without creating an account.",
+      url: absoluteUrl("/domain-authority-checker"),
+      features: [
+        "Free authority-style score lookup",
+        "OpenPageRank-powered authority data",
+        "Bulk domain support",
+        "CSV export"
+      ]
+    }),
+    faqSchema(faqs),
+    breadcrumbSchema([
+      { name: "Domain Rating Checker", url: absoluteUrl("/") },
+      { name: "Domain Authority Checker", url: absoluteUrl("/domain-authority-checker") }
+    ])
+  ];
 
   return (
     <main>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareApplicationSchema) }}
-      />
+      {schemas.map((schema) => (
+        <script
+          key={schema["@type"]}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+        />
+      ))}
       <SeoBulkTool tool="authority" />
       <DiscoverTools activeTool="authority" />
       <section className="content-section" aria-label="Domain Authority guide">
@@ -170,30 +206,12 @@ export default function AuthorityScorePage() {
             </p>
             <h2 id="authority-faq-title">Frequently asked questions</h2>
             <div className="faq-list">
-              <details>
-                <summary>What is a good DA score?<svg aria-hidden="true" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"></path></svg></summary>
-                <p>Anything above 50 is generally considered strong, but the right benchmark depends on your niche and who you&apos;re competing against.</p>
-              </details>
-              <details>
-                <summary>Is this the same as Moz&apos;s official Domain Authority?<svg aria-hidden="true" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"></path></svg></summary>
-                <p>No. This is an independent 0 to 100 score built on open link graph data, not Moz&apos;s algorithm. Use it as a comparison metric, not an official DA lookup.</p>
-              </details>
-              <details>
-                <summary>Is DA a Google ranking factor?<svg aria-hidden="true" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"></path></svg></summary>
-                <p>No. Authority scores are third party metrics. Google doesn&apos;t use them directly in rankings.</p>
-              </details>
-              <details>
-                <summary>Can a low DA site still rank well?<svg aria-hidden="true" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"></path></svg></summary>
-                <p>Yes. Strong content, search intent match, and page level relevance can help lower authority sites rank.</p>
-              </details>
-              <details>
-                <summary>Do I need an account to check DA?<svg aria-hidden="true" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"></path></svg></summary>
-                <p>No signup or login is required.</p>
-              </details>
-              <details>
-                <summary>How often is the score updated?<svg aria-hidden="true" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"></path></svg></summary>
-                <p>Results are cached for 30 days per domain, so checking the same domain again soon after may return a cached score.</p>
-              </details>
+              {faqs.map((faq) => (
+                <details key={faq.question}>
+                  <summary>{faq.question}<svg aria-hidden="true" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"></path></svg></summary>
+                  <p>{faq.answer}</p>
+                </details>
+              ))}
             </div>
           </section>
         </div>

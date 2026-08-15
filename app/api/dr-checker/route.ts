@@ -8,6 +8,20 @@ const AHREFS_API_KEY =
 
 type DrStatus = "ok" | "not_found" | "unavailable" | "auth_required";
 
+function parseAhrefsDomainRating(data: any) {
+  const rawDr =
+    data?.domain_rating?.domain_rating
+    ?? data?.domainRating?.domainRating
+    ?? data?.domain_rating
+    ?? data?.domainRating;
+  const dr = Number(rawDr);
+
+  return {
+    dr: Number.isFinite(dr) ? Math.round(dr) : null,
+    license: typeof data?.domain_rating?.license === "string" ? data.domain_rating.license : null
+  };
+}
+
 async function fetchDomainRating(domain: string) {
   if (!AHREFS_API_KEY) {
     return { domain, dr: null, status: "auth_required" as const };
@@ -39,13 +53,20 @@ async function fetchDomainRating(domain: string) {
   }
 
   const data = await response.json();
-  const dr = data?.domain_rating?.domain_rating;
+  const parsed = parseAhrefsDomainRating(data);
 
-  if (typeof dr !== "number") {
+  if (parsed.dr === null) {
     return { domain, dr: null, status: "unavailable" as const };
   }
 
-  return { domain, dr: Math.round(dr), status: "ok" as const };
+  return {
+    domain,
+    dr: parsed.dr,
+    status: "ok" as const,
+    source: "Ahrefs Domain Rating API",
+    license: parsed.license,
+    checked_at: new Date().toISOString()
+  };
 }
 
 function domainRatingError(status: DrStatus) {
@@ -81,7 +102,13 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: error.message }, { status: error.status });
     }
 
-    return NextResponse.json({ domain: result.domain, dr: result.dr });
+    return NextResponse.json({
+      domain: result.domain,
+      dr: result.dr,
+      source: result.source,
+      license: result.license,
+      checked_at: result.checked_at
+    });
   } catch {
     return NextResponse.json({ error: "Unable to fetch Domain Rating." }, { status: 502 });
   }

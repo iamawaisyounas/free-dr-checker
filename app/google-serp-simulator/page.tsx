@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import DiscoverTools from "../components/DiscoverTools";
 import SerpSimulatorTool from "../components/SerpSimulatorTool";
+import { absoluteUrl, breadcrumbSchema, faqSchema, softwareApplicationSchema } from "../../lib/schema";
 
 const title = "Google SERP Simulator - Free Snippet Preview Tool";
 const description =
@@ -34,27 +35,54 @@ export const metadata: Metadata = {
   }
 };
 
+const faqs = [
+  {
+    question: "What does a Google SERP simulator do?",
+    answer: "A Google SERP simulator previews how a title tag, URL, and meta description may appear in search results before you publish a page."
+  },
+  {
+    question: "Will Google always show the snippet I write?",
+    answer: "No. Google may rewrite titles or descriptions based on the page content, search query, and what it thinks helps the searcher."
+  },
+  {
+    question: "Should I test snippets on mobile and desktop?",
+    answer: "Yes. Mobile and desktop results can display different amounts of text, so previewing both views helps you protect the most important message."
+  },
+  {
+    question: "What makes a stronger search snippet?",
+    answer: "A stronger snippet matches the page, puts the main topic near the start, explains the benefit clearly, and avoids keyword stuffing."
+  }
+];
+
 export default function GoogleSerpSimulatorPage() {
-  const softwareApplicationSchema = {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    name: "Google SERP Simulator",
-    description,
-    applicationCategory: "SEO Tool",
-    operatingSystem: "Web",
-    offers: {
-      "@type": "Offer",
-      price: "0",
-      priceCurrency: "USD"
-    }
-  };
+  const schemas = [
+    softwareApplicationSchema({
+      name: "Google SERP Simulator",
+      description,
+      url: absoluteUrl("/google-serp-simulator"),
+      features: [
+        "Desktop snippet preview",
+        "Mobile snippet preview",
+        "Title and meta description length checks",
+        "Search result URL preview"
+      ]
+    }),
+    faqSchema(faqs),
+    breadcrumbSchema([
+      { name: "Domain Rating Checker", url: absoluteUrl("/") },
+      { name: "Google SERP Simulator", url: absoluteUrl("/google-serp-simulator") }
+    ])
+  ];
 
   return (
     <main>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareApplicationSchema) }}
-      />
+      {schemas.map((schema) => (
+        <script
+          key={schema["@type"]}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+        />
+      ))}
       <SerpSimulatorTool />
       <DiscoverTools activeTool="serp" />
 
@@ -116,6 +144,26 @@ export default function GoogleSerpSimulatorPage() {
               <li>Compare desktop and mobile previews because available space can vary.</li>
               <li>Remember that Google may rewrite snippets based on the search query.</li>
             </ul>
+          </section>
+
+          <section className="copy-block faq-block" aria-labelledby="serp-faq-title">
+            <p className="section-label">
+              <svg aria-hidden="true" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                <path d="M12 17h.01"></path>
+              </svg>
+              FAQs
+            </p>
+            <h2 id="serp-faq-title">Frequently asked questions</h2>
+            <div className="faq-list">
+              {faqs.map((faq) => (
+                <details key={faq.question}>
+                  <summary>{faq.question}<svg aria-hidden="true" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"></path></svg></summary>
+                  <p>{faq.answer}</p>
+                </details>
+              ))}
+            </div>
           </section>
         </div>
       </section>

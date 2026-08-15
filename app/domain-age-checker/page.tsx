@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import DiscoverTools from "../components/DiscoverTools";
 import SeoBulkTool from "../components/SeoBulkTool";
+import { absoluteUrl, breadcrumbSchema, faqSchema, softwareApplicationSchema } from "../../lib/schema";
 
 export const metadata: Metadata = {
   title: "Free Domain Age Checker - Check Domain Age Of any Website",
@@ -23,28 +24,63 @@ export const metadata: Metadata = {
   }
 };
 
+const faqs = [
+  {
+    question: "Why does domain age matter for SEO?",
+    answer: "Domain age does not directly affect rankings, but older domains often have more time to build backlinks, brand signals, and trust."
+  },
+  {
+    question: "Is domain age a direct Google ranking factor?",
+    answer: "No. Google has said domain age by itself is not a significant ranking factor."
+  },
+  {
+    question: "How accurate is this domain age data?",
+    answer: "The tool pulls registration data from WHOIS and RDAP registry records, which are the public sources registrars use."
+  },
+  {
+    question: "Does this tool require signup?",
+    answer: "No. You can check domain age without creating an account."
+  },
+  {
+    question: "What is the difference between registration date and domain age?",
+    answer: "Registration date is the fixed date a domain was first registered. Domain age is the time that has passed since that date."
+  },
+  {
+    question: "Does renewing a domain reset its age?",
+    answer: "No. Renewing only extends the expiry date. The original registration date and domain age stay the same."
+  }
+];
+
 export default function DomainAgePage() {
-  const softwareApplicationSchema = {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    name: "Domain Age Checker",
-    description:
-      "Find the exact age of any domain in seconds. Use our free Domain Age Checker to view registration details, website age, and domain history for better SEO research.",
-    applicationCategory: "SEO Tool",
-    operatingSystem: "Web",
-    offers: {
-      "@type": "Offer",
-      price: "0",
-      priceCurrency: "USD"
-    }
-  };
+  const schemas = [
+    softwareApplicationSchema({
+      name: "Domain Age Checker",
+      description:
+        "Find the exact age of any domain in seconds. Use our free Domain Age Checker to view registration details, website age, and domain history for better SEO research.",
+      url: absoluteUrl("/domain-age-checker"),
+      features: [
+        "Domain registration date lookup",
+        "WHOIS and RDAP checks",
+        "Domain expiry context",
+        "Bulk domain support"
+      ]
+    }),
+    faqSchema(faqs),
+    breadcrumbSchema([
+      { name: "Domain Rating Checker", url: absoluteUrl("/") },
+      { name: "Domain Age Checker", url: absoluteUrl("/domain-age-checker") }
+    ])
+  ];
 
   return (
     <main>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareApplicationSchema) }}
-      />
+      {schemas.map((schema) => (
+        <script
+          key={schema["@type"]}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+        />
+      ))}
       <SeoBulkTool tool="age" />
       <DiscoverTools activeTool="age" />
       <section className="content-section" aria-label="Domain Age guide">
@@ -142,30 +178,12 @@ export default function DomainAgePage() {
             </p>
             <h2 id="age-faq-title">Frequently asked questions</h2>
             <div className="faq-list">
-              <details>
-                <summary>Why does domain age matter for SEO?<svg aria-hidden="true" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"></path></svg></summary>
-                <p>It doesn&apos;t directly affect rankings, but older domains often have more time to build backlinks and trust, and that does help.</p>
-              </details>
-              <details>
-                <summary>Is domain age a direct Google ranking factor?<svg aria-hidden="true" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"></path></svg></summary>
-                <p>No. Google has stated it isn&apos;t a significant factor on its own.</p>
-              </details>
-              <details>
-                <summary>How accurate is this data?<svg aria-hidden="true" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"></path></svg></summary>
-                <p>It&apos;s pulled live from WHOIS and RDAP registry records, the same source registrars themselves use.</p>
-              </details>
-              <details>
-                <summary>Does this tool require signup?<svg aria-hidden="true" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"></path></svg></summary>
-                <p>No login or account is needed.</p>
-              </details>
-              <details>
-                <summary>What&apos;s the difference between registration date and domain age?<svg aria-hidden="true" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"></path></svg></summary>
-                <p>Registration date is the fixed date a domain was first registered. Domain age is just the time that&apos;s passed since then, and it updates automatically.</p>
-              </details>
-              <details>
-                <summary>Does renewing a domain reset its age?<svg aria-hidden="true" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"></path></svg></summary>
-                <p>No. Renewing only extends the expiry date. The original registration date, and the domain&apos;s age, stays the same.</p>
-              </details>
+              {faqs.map((faq) => (
+                <details key={faq.question}>
+                  <summary>{faq.question}<svg aria-hidden="true" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"></path></svg></summary>
+                  <p>{faq.answer}</p>
+                </details>
+              ))}
             </div>
           </section>
         </div>

@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import CheckerTool from "./components/CheckerTool";
 import DiscoverTools from "./components/DiscoverTools";
+import { absoluteUrl, breadcrumbSchema, faqSchema, softwareApplicationSchema } from "../lib/schema";
 
 const homeTitle = "Domain Rating Checker - Check Ahrefs DR for Free";
 const homeDescription =
-  "Check Ahrefs Domain Rating, URL Rating, and website authority for free. Enter any domain to get a fast DR score with backlink context.";
+  "Check Ahrefs Domain Rating for free. Enter any domain to get a fast DR score from Ahrefs' Domain Rating API.";
 const homeOgImage = {
   url: "/opengraph-image",
   width: 1200,
@@ -37,27 +38,51 @@ export const metadata: Metadata = {
   }
 };
 
+const faqs = [
+  {
+    question: "What is a good DR score?",
+    answer: "A DR above 50 is usually strong, but the right benchmark depends on your niche and competitors."
+  },
+  {
+    question: "Is DR the same as Google rating?",
+    answer: "No. DR is an Ahrefs metric. Google does not use Ahrefs DR directly in rankings."
+  },
+  {
+    question: "Can a low DR website rank well?",
+    answer: "Yes. Strong content, search intent match, topical relevance, and page-level links can help lower-DR sites rank."
+  },
+  {
+    question: "Does this tool require an Ahrefs account?",
+    answer: "No user Ahrefs account is required. DR Checker uses a server-side Ahrefs APIv3 key to fetch Domain Rating data."
+  }
+];
+
 export default function HomePage() {
-  const softwareApplicationSchema = {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    name: "Domain Rating Checker",
-    description: homeDescription,
-    applicationCategory: "SEO Tool",
-    operatingSystem: "Web",
-    offers: {
-      "@type": "Offer",
-      price: "0",
-      priceCurrency: "USD"
-    }
-  };
+  const schemas = [
+    softwareApplicationSchema({
+      name: "Domain Rating Checker",
+      description: homeDescription,
+      url: absoluteUrl("/"),
+      features: [
+        "Free Ahrefs Domain Rating lookup",
+        "Domain and URL cleanup",
+        "Domain Rating explanation",
+        "Mobile-friendly SEO tool"
+      ]
+    }),
+    faqSchema(faqs),
+    breadcrumbSchema([{ name: "Domain Rating Checker", url: absoluteUrl("/") }])
+  ];
 
   return (
     <main>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareApplicationSchema) }}
-      />
+      {schemas.map((schema) => (
+        <script
+          key={schema["@type"]}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+        />
+      ))}
       <CheckerTool />
       <DiscoverTools activeTool="dr" />
 
@@ -177,22 +202,12 @@ export default function HomePage() {
             </p>
             <h2 id="faq-title">Frequently asked questions</h2>
             <div className="faq-list">
-              <details>
-                <summary>What is a good DR score?<svg aria-hidden="true" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"></path></svg></summary>
-                <p>A DR above 50 is usually strong, but the right benchmark depends on your niche and competitors.</p>
-              </details>
-              <details>
-                <summary>Is DR the same as Google rating?<svg aria-hidden="true" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"></path></svg></summary>
-                <p>No. DR is an Ahrefs metric. Google does not use Ahrefs DR directly in rankings.</p>
-              </details>
-              <details>
-                <summary>Can a low DR website rank well?<svg aria-hidden="true" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"></path></svg></summary>
-                <p>Yes. Strong content, search intent match, topical relevance, and page-level links can help lower-DR sites rank.</p>
-              </details>
-              <details>
-                <summary>Does this tool require an Ahrefs account?<svg aria-hidden="true" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"></path></svg></summary>
-                <p>No user Ahrefs account is required. DR Checker uses a server-side Ahrefs APIv3 key to fetch Domain Rating data.</p>
-              </details>
+              {faqs.map((faq) => (
+                <details key={faq.question}>
+                  <summary>{faq.question}<svg aria-hidden="true" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"></path></svg></summary>
+                  <p>{faq.answer}</p>
+                </details>
+              ))}
             </div>
           </section>
         </div>

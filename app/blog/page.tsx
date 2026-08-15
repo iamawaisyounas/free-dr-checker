@@ -3,6 +3,7 @@ import Link from "next/link";
 import BlogCtaSection from "../components/BlogCtaSection";
 import BlogSearch from "../components/BlogSearch";
 import { getBlogPosts } from "../../lib/sanity/blog";
+import { absoluteUrl, breadcrumbSchema, faqSchema as buildFaqSchema, softwareApplicationSchema } from "../../lib/schema";
 
 export const revalidate = 60;
 
@@ -35,18 +36,7 @@ const blogFaqs = [
   }
 ];
 
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: blogFaqs.map((faq) => ({
-    "@type": "Question",
-    name: faq.question,
-    acceptedAnswer: {
-      "@type": "Answer",
-      text: faq.answer
-    }
-  }))
-};
+const faqSchema = buildFaqSchema(blogFaqs);
 
 function formatPostDate(date: string) {
   return new Intl.DateTimeFormat("en", {
@@ -54,10 +44,6 @@ function formatPostDate(date: string) {
     day: "numeric",
     year: "numeric"
   }).format(new Date(date));
-}
-
-function absoluteImageUrl(image: string) {
-  return image.startsWith("http") ? image : `https://dr-checker.com${image}`;
 }
 
 export default async function BlogPage() {
@@ -73,26 +59,46 @@ export default async function BlogPage() {
       "@type": "BlogPosting",
       headline: post.title,
       description: post.excerpt,
-      image: absoluteImageUrl(post.featuredImage),
+      image: absoluteUrl(post.featuredImage),
       datePublished: post.date,
+      dateModified: post.date,
       author: {
         "@type": "Person",
         name: post.author.name
       },
-      url: `https://dr-checker.com/blog/${post.slug}`
+      url: absoluteUrl(`/blog/${post.slug}`)
     }))
   };
+  const schemas = [
+    blogSchema,
+    faqSchema,
+    softwareApplicationSchema({
+      name: "DR Checker",
+      description: "Free SEO tools and guides for Domain Rating, backlink research, domain age checks, and search snippet previews.",
+      url: absoluteUrl("/"),
+      features: [
+        "Domain Rating checker",
+        "Bulk DR checker",
+        "Domain Authority checker",
+        "Domain Age checker",
+        "Google SERP simulator"
+      ]
+    }),
+    breadcrumbSchema([
+      { name: "Domain Rating Checker", url: absoluteUrl("/") },
+      { name: "Blog", url: absoluteUrl("/blog") }
+    ])
+  ];
 
   return (
     <main className="blog-page">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
+      {schemas.map((schema) => (
+        <script
+          key={schema["@type"]}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+        />
+      ))}
       <section className="blog-home-hero" aria-labelledby="blog-home-title">
         <div className="blog-home-hero__inner">
           <div className="blog-home-hero__content">
@@ -103,12 +109,13 @@ export default async function BlogPage() {
               </Link>
             </h1>
             <p className="blog-home-hero__excerpt">{featuredPost.excerpt}</p>
-            <div className="blog-post__byline" aria-label="Featured article author, publish date, and read time">
+            <div className="blog-post__byline" aria-label="Featured article author, last reviewed date, and read time">
               <img src={featuredPost.author.photo || "/assets/awais-younas.jpg"} alt="" width="96" height="96" decoding="async" />
               <div>
                 <p>{featuredPost.author.name}</p>
+                <p className="blog-post__role">{featuredPost.author.role || "Co-founder of DR Checker"}</p>
                 <div className="blog-post__meta-line">
-                  <time dateTime={featuredPost.date}>{formatPostDate(featuredPost.date)}</time>
+                  <time dateTime={featuredPost.date}>Last reviewed {formatPostDate(featuredPost.date)}</time>
                   <span>{featuredPost.readTime}</span>
                 </div>
               </div>
