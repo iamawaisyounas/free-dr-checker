@@ -1194,9 +1194,9 @@ button svg {
 
 .serp-google-topbar {
   display: grid;
-  grid-template-columns: 124px minmax(0, 1fr);
+  grid-template-columns: 92px minmax(0, 1fr);
   align-items: center;
-  gap: 24px;
+  gap: 14px;
   padding: 18px 32px 12px;
 }
 
@@ -1264,7 +1264,7 @@ button svg {
   align-items: flex-end;
   gap: 26px;
   overflow-x: auto;
-  padding: 0 32px 0 180px;
+  padding: 0 32px 0 138px;
   color: #5f6368;
   font-family: Arial, sans-serif;
   font-size: 0.83rem;
@@ -1297,7 +1297,7 @@ button svg {
 }
 
 .serp-result-count {
-  padding: 18px 32px 0 180px;
+  padding: 18px 32px 0 138px;
   color: #70757a;
   font-family: Arial, sans-serif;
   font-size: 0.82rem;
@@ -1307,8 +1307,8 @@ button svg {
 .serp-preview {
   display: grid;
   gap: 9px;
-  width: min(600px, calc(100% - 212px));
-  margin: 30px 32px 0 180px;
+  width: min(600px, calc(100% - 170px));
+  margin: 30px 32px 0 138px;
   border: 0;
   border-radius: 0;
   padding: 0;
