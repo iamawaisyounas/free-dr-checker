@@ -6,11 +6,11 @@ const defaultTitle = "Domain Rating Checker - Check Ahrefs DR for Free | DR Chec
 const defaultUrl = "https://dr-checker.com";
 const defaultDescription =
   "Check the Domain Rating (DR) of any website instantly. See a clear visual score and find out where your domain stands. Get a free 0-100 authority score for any domain.";
-const defaultQuery = "google serp simulator";
+const defaultQuery = "dr checker com";
 const serpCharacterLimits = {
   desktop: {
-    title: 61,
-    description: 160
+    title: 57,
+    description: 158
   },
   mobile: {
     title: 58,
@@ -313,12 +313,12 @@ export default function SerpSimulatorTool() {
                 <article>
                   <strong>Title</strong>
                   <span>{titleStatus}</span>
-                  <p>{device === "desktop" ? "Web preview matches the 61-character title shown in the reference SERP." : "Mobile preview uses a tighter 58-character title line."}</p>
+                  <p>{device === "desktop" ? "Web preview uses the 57-character title cap from the reference SERP." : "Mobile preview uses a tighter 58-character title line."}</p>
                 </article>
                 <article>
                   <strong>Description</strong>
                   <span>{descriptionStatus}</span>
-                  <p>{device === "desktop" ? "Web preview matches the 160-character two-line description shown in the reference SERP." : "Mobile preview uses about 155 characters across two lines."}</p>
+                  <p>{device === "desktop" ? "Web preview uses the 158-character two-line description cap from the reference SERP." : "Mobile preview uses about 155 characters across two lines."}</p>
                 </article>
                 <article>
                   <strong>URL</strong>
