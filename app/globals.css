@@ -972,12 +972,34 @@ button svg {
 }
 
 .serp-tool-shell {
-  padding: 94px 24px 48px;
+  padding: 106px 24px 30px;
 }
 
 .serp-tool-shell .checker-container {
   width: min(100%, 1560px);
   margin: 0 auto;
+}
+
+.serp-tool-shell h1 {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
+.serp-tool-shell .eyebrow {
+  display: none;
+}
+
+.serp-tool-shell .subtitle {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
 }
 
 .serp-workbench {
@@ -989,10 +1011,11 @@ button svg {
   --serp-soft-border: #dbe7f0;
   display: grid;
   align-items: start;
+  box-sizing: border-box;
   grid-template-columns: minmax(400px, 430px) minmax(0, 1fr);
   gap: 18px;
   width: 100%;
-  margin: 16px auto 0;
+  margin: 12px auto 0;
   border-radius: 16px;
   padding: 12px;
   background: rgba(255, 255, 255, 0.1);
@@ -1007,6 +1030,7 @@ button svg {
 .serp-input-panel {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   align-items: start;
+  min-width: 0;
 }
 
 .serp-input-panel > .serp-panel-header,
@@ -1020,13 +1044,14 @@ button svg {
 .serp-panel {
   display: grid;
   align-content: start;
-  gap: 14px;
+  box-sizing: border-box;
+  gap: 12px;
   width: 100%;
   max-width: 100%;
   min-width: 0;
   border: 1px solid var(--serp-panel-border);
   border-radius: 8px;
-  padding: clamp(16px, 1.8vw, 22px);
+  padding: clamp(14px, 1.5vw, 20px);
   background: var(--serp-panel-bg);
   color: var(--serp-panel-text);
   box-shadow: 0 18px 42px -36px rgba(9, 17, 35, 0.58);
@@ -1058,6 +1083,7 @@ button svg {
 .serp-field {
   display: grid;
   gap: 6px;
+  min-width: 0;
 }
 
 .serp-field label {
@@ -1067,6 +1093,9 @@ button svg {
 }
 
 .serp-field input {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
   height: 44px;
   border-color: var(--serp-panel-border);
   padding-left: 16px;
@@ -1075,9 +1104,13 @@ button svg {
 }
 
 .serp-field textarea {
-  min-height: 74px;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  min-height: 126px;
   padding: 12px 14px;
   line-height: 1.4;
+  resize: vertical;
 }
 
 .serp-field input,
@@ -1158,11 +1191,11 @@ button svg {
   justify-content: flex-start;
   flex-wrap: wrap;
   gap: 12px;
-  margin-top: 4px;
+  margin-top: 0;
 }
 
 .serp-command-row button {
-  height: 44px;
+  height: 40px;
   width: auto;
   min-width: 150px;
   padding-inline: 18px;
@@ -1191,7 +1224,7 @@ button svg {
 .serp-output-panel {
   --serp-panel-bg: #f8fafc;
   background: var(--serp-panel-bg);
-  gap: 16px;
+  gap: 12px;
   min-width: 0;
   overflow: hidden;
   overflow: clip;
@@ -1213,7 +1246,7 @@ button svg {
   overflow-y: hidden;
   border: 1px solid #e5e7eb;
   border-radius: 8px;
-  padding: 0 0 18px;
+  padding: 0 0 14px;
   background: #ffffff;
   color: #202124;
   color-scheme: light;
@@ -1244,7 +1277,7 @@ button svg {
   grid-template-columns: 92px minmax(0, 1fr);
   align-items: center;
   gap: 14px;
-  padding: 12px 28px 8px;
+  padding: 10px 28px 7px;
 }
 
 .serp-google-logo {
@@ -1344,7 +1377,7 @@ button svg {
 }
 
 .serp-result-count {
-  padding: 12px var(--serp-right-gutter) 0 var(--serp-left-offset);
+  padding: 10px var(--serp-right-gutter) 0 var(--serp-left-offset);
   color: #70757a;
   font-family: Arial, sans-serif;
   font-size: 0.82rem;
@@ -1354,8 +1387,8 @@ button svg {
 .serp-preview {
   display: grid;
   gap: 7px;
-  width: min(900px, calc(100% - var(--serp-left-offset) - var(--serp-right-gutter)));
-  margin: 16px var(--serp-right-gutter) 0 var(--serp-left-offset);
+  width: min(600px, calc(100% - var(--serp-left-offset) - var(--serp-right-gutter)));
+  margin: 14px var(--serp-right-gutter) 0 var(--serp-left-offset);
   border: 0;
   border-radius: 0;
   padding: 0;
@@ -1526,7 +1559,7 @@ button svg {
   min-width: 0;
   border: 1px solid var(--serp-soft-border);
   border-radius: 8px;
-  padding: 10px 12px;
+  padding: 9px 11px;
   background: var(--serp-soft-bg);
 }
 
@@ -2739,12 +2772,19 @@ details p {
   }
 
   .serp-workbench {
+    grid-template-columns: minmax(0, 1fr) !important;
+    width: 100%;
+    max-width: 100%;
     margin-top: 30px;
     padding: 10px;
+    overflow: hidden;
   }
 
   .serp-input-panel {
     grid-template-columns: 1fr;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
   }
 
   .serp-input-panel > .serp-field--half {

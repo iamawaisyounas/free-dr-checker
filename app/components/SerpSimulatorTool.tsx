@@ -10,7 +10,7 @@ const defaultQuery = "google serp simulator";
 const serpCharacterLimits = {
   desktop: {
     title: 61,
-    description: 167
+    description: 160
   },
   mobile: {
     title: 58,
@@ -318,7 +318,7 @@ export default function SerpSimulatorTool() {
                 <article>
                   <strong>Description</strong>
                   <span>{descriptionStatus}</span>
-                  <p>{device === "desktop" ? "Web preview matches the 167-character two-line description shown in the reference SERP." : "Mobile preview uses about 155 characters across two lines."}</p>
+                  <p>{device === "desktop" ? "Web preview matches the 160-character two-line description shown in the reference SERP." : "Mobile preview uses about 155 characters across two lines."}</p>
                 </article>
                 <article>
                   <strong>URL</strong>
