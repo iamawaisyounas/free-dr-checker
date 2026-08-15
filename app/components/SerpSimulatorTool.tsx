@@ -52,6 +52,7 @@ export default function SerpSimulatorTool() {
   const descriptionStatus = scoreLength(description.trim().length, 110, 155, 170);
   const previewTitle = title.trim() || "Untitled page";
   const previewDescription = description.trim() || "Add a meta description to preview your search snippet.";
+  const searchQuery = previewTitle.split(" - ")[0] || previewTitle;
 
   async function copySnippet() {
     const snippet = [
@@ -172,15 +173,19 @@ export default function SerpSimulatorTool() {
                   <circle cx="11" cy="11" r="7"></circle>
                   <path d="m21 21-4.35-4.35"></path>
                 </svg>
-                <span>{previewTitle}</span>
+                <span>{searchQuery}</span>
               </div>
 
               <div className={`serp-preview serp-preview--${device}`}>
-                <div className="serp-preview__favicon" aria-hidden="true">D</div>
+                <div className="serp-preview__topline">
+                  <div className="serp-preview__favicon" aria-hidden="true">D</div>
+                  <div className="serp-preview__source">
+                    <div className="serp-preview__site">DR Checker</div>
+                    <div className="serp-preview__url">{displayUrl}</div>
+                  </div>
+                </div>
                 <div className="serp-preview__body">
-                  <div className="serp-preview__site">DR Checker</div>
-                  <div className="serp-preview__url">{displayUrl}</div>
-                  <h2>{previewTitle}</h2>
+                  <h2 title={previewTitle}>{previewTitle}</h2>
                   <p>{showDate ? `${previewDate} - ` : ""}{previewDescription}</p>
                 </div>
               </div>

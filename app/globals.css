@@ -983,15 +983,15 @@ button svg {
   --serp-panel-text: #101828;
   --serp-panel-muted: #667085;
   --serp-panel-border: rgba(15, 23, 42, 0.12);
-  --serp-soft-bg: #eef6ff;
-  --serp-soft-border: #d7e7f8;
+  --serp-soft-bg: #f4f8fb;
+  --serp-soft-border: #dbe7f0;
   display: grid;
-  grid-template-columns: minmax(320px, 0.85fr) minmax(0, 1.15fr);
-  gap: 18px;
+  grid-template-columns: minmax(320px, 0.82fr) minmax(0, 1.18fr);
+  gap: 20px;
   width: 100%;
   margin: 42px auto 0;
-  border-radius: 18px;
-  padding: 12px;
+  border-radius: 16px;
+  padding: 14px;
   background: rgba(255, 255, 255, 0.1);
   text-align: left;
   backdrop-filter: blur(12px);
@@ -1000,14 +1000,14 @@ button svg {
 .serp-panel {
   display: grid;
   align-content: start;
-  gap: 16px;
+  gap: 18px;
   min-width: 0;
   border: 1px solid var(--serp-panel-border);
-  border-radius: 10px;
+  border-radius: 8px;
   padding: clamp(18px, 2.3vw, 26px);
   background: var(--serp-panel-bg);
   color: var(--serp-panel-text);
-  box-shadow: 0 18px 42px -34px rgba(9, 17, 35, 0.68);
+  box-shadow: 0 18px 42px -36px rgba(9, 17, 35, 0.58);
 }
 
 .serp-panel-header {
@@ -1022,12 +1022,13 @@ button svg {
 .serp-panel-header strong {
   color: var(--serp-panel-text);
   font-size: 1.05rem;
+  font-weight: 500;
 }
 
 .serp-panel-header span {
   color: var(--serp-panel-muted);
   font-size: 0.84rem;
-  font-weight: 700;
+  font-weight: 500;
   line-height: 1.35;
   text-align: right;
 }
@@ -1040,7 +1041,7 @@ button svg {
 .serp-field label {
   color: var(--serp-panel-text);
   font-size: 0.9rem;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .serp-field input {
@@ -1050,18 +1051,24 @@ button svg {
   background: #ffffff;
 }
 
+.serp-field input,
+.serp-field textarea {
+  font-weight: 400;
+}
+
 .serp-field span {
   color: var(--serp-panel-muted);
   font-size: 0.82rem;
-  font-weight: 700;
+  font-weight: 500;
 }
 
 .serp-actions {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: flex-start;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 14px;
+  margin-top: 2px;
 }
 
 .serp-actions .segmented-control {
@@ -1071,6 +1078,7 @@ button svg {
 
 .serp-actions .segmented-control button {
   color: var(--serp-panel-muted);
+  font-weight: 600;
 }
 
 .serp-actions .segmented-control button:hover,
@@ -1082,6 +1090,8 @@ button svg {
 .serp-toggle {
   min-height: 42px;
   color: var(--serp-panel-muted);
+  font-size: 0.9rem;
+  font-weight: 500;
 }
 
 .secondary-button {
@@ -1095,14 +1105,18 @@ button svg {
 }
 
 .serp-command-row {
-  display: grid;
-  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
-  gap: 12px;
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 10px;
 }
 
 .serp-command-row button {
-  width: 100%;
+  width: auto;
+  min-width: 168px;
   padding-inline: 18px;
+  font-weight: 600;
 }
 
 .serp-command-row .secondary-button {
@@ -1117,16 +1131,17 @@ button svg {
 
 .serp-copy-status {
   min-height: 18px;
-  margin: -4px 0 0;
+  margin: -6px 0 0;
   color: var(--serp-panel-muted);
   font-size: 0.85rem;
-  font-weight: 700;
-  text-align: right;
+  font-weight: 500;
+  text-align: left;
 }
 
 .serp-output-panel {
   --serp-panel-bg: #f8fafc;
   background: var(--serp-panel-bg);
+  gap: 16px;
 }
 
 .serp-search-bar {
@@ -1134,7 +1149,7 @@ button svg {
   grid-template-columns: 20px minmax(0, 1fr);
   align-items: center;
   gap: 10px;
-  min-height: 48px;
+  min-height: 50px;
   border: 1px solid #dadce0;
   border-radius: 999px;
   padding: 0 18px;
@@ -1158,19 +1173,19 @@ button svg {
   color: #3c4043;
   font-family: Arial, sans-serif;
   font-size: 0.95rem;
+  font-weight: 400;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
 .serp-preview {
   display: grid;
-  grid-template-columns: 32px minmax(0, 1fr);
-  gap: 12px;
+  gap: 10px;
   width: 100%;
   max-width: 652px;
   border: 1px solid #e5e7eb;
   border-radius: 8px;
-  padding: 20px;
+  padding: 18px 20px;
   background: #ffffff;
   color: #202124;
   color-scheme: light;
@@ -1188,6 +1203,13 @@ button svg {
   line-height: 1.55;
 }
 
+.serp-preview__topline {
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
+}
+
 .serp-preview__favicon {
   display: inline-flex;
   align-items: center;
@@ -1198,9 +1220,10 @@ button svg {
   color: #ffffff;
   background: #0f766e;
   font-size: 0.78rem;
-  font-weight: 700;
+  font-weight: 600;
 }
 
+.serp-preview__source,
 .serp-preview__body {
   min-width: 0;
 }
@@ -1208,6 +1231,7 @@ button svg {
 .serp-preview__site {
   color: #202124;
   font-size: 0.88rem;
+  font-weight: 400;
   line-height: 1.2;
 }
 
@@ -1215,6 +1239,7 @@ button svg {
   overflow: hidden;
   color: #4d5156;
   font-size: 0.78rem;
+  font-weight: 400;
   line-height: 1.35;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -1225,12 +1250,13 @@ button svg {
   overflow: hidden;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
-  margin: 6px 0 3px;
+  margin: 0 0 3px;
   color: #1a0dab;
   font-family: Arial, sans-serif;
   font-size: 1.25rem;
   font-weight: 400;
-  line-height: 1.25;
+  line-height: 1.28;
+  overflow-wrap: anywhere;
 }
 
 .serp-preview p {
@@ -1242,6 +1268,7 @@ button svg {
   color: #4d5156;
   font-family: Arial, sans-serif;
   font-size: 0.92rem;
+  font-weight: 400;
   line-height: 1.45;
 }
 
@@ -1261,15 +1288,16 @@ button svg {
 
 .serp-guidance-grid article {
   display: grid;
-  gap: 8px;
+  gap: 9px;
   border: 1px solid var(--serp-soft-border);
   border-radius: 8px;
-  padding: 16px;
+  padding: 16px 17px;
   background: var(--serp-soft-bg);
 }
 
 .serp-guidance-grid strong {
   color: var(--serp-panel-text);
+  font-weight: 500;
 }
 
 .serp-guidance-grid span {
@@ -1279,7 +1307,7 @@ button svg {
   color: var(--primary);
   background: var(--accent);
   font-size: 0.78rem;
-  font-weight: 800;
+  font-weight: 600;
 }
 
 .serp-guidance-grid p {
@@ -2407,13 +2435,22 @@ details p {
   .serp-actions {
     align-items: stretch;
     flex-direction: column;
+    justify-content: flex-start;
   }
 
   .serp-actions button,
-  .segmented-control,
-  .serp-command-row {
+  .serp-actions .segmented-control {
     width: 100%;
-    grid-template-columns: 1fr;
+  }
+
+  .serp-command-row {
+    align-items: flex-start;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .serp-command-row button {
+    width: min(100%, 210px);
   }
 
   .serp-toggle {
@@ -2425,7 +2462,6 @@ details p {
   }
 
   .serp-preview {
-    grid-template-columns: 28px minmax(0, 1fr);
     padding: 16px;
   }
 
