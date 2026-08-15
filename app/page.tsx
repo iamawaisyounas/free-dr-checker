@@ -5,7 +5,7 @@ import { absoluteUrl, breadcrumbSchema, faqSchema, softwareApplicationSchema } f
 
 const homeTitle = "Domain Rating Checker - Check Ahrefs DR for Free";
 const homeDescription =
-  "Check Ahrefs Domain Rating for free. Enter any domain to get a fast DR score from Ahrefs' Domain Rating API.";
+  "Check Ahrefs Domain Rating for free. Compare backlink strength, qualify websites faster, and decide which domains deserve deeper SEO review.";
 const homeOgImage = {
   url: "/opengraph-image",
   width: 1200,
@@ -97,19 +97,19 @@ export default function HomePage() {
               </svg>
               Use cases
             </p>
-            <h2>When to use this DR checker</h2>
+            <h2>When to use this free Domain Rating checker</h2>
             <div className="feature-grid">
               <article>
-                <h3>Competitor research</h3>
-                <p>Compare domains before you study their backlink profile, content strategy, or search visibility.</p>
+                <h3>Benchmark competitors</h3>
+                <p>Check your domain beside competitors before you spend time reviewing backlinks, rankings, or content gaps.</p>
               </article>
               <article>
-                <h3>Guest post checks</h3>
-                <p>Quickly screen websites before spending time on outreach, pricing, or partnership conversations.</p>
+                <h3>Screen guest post sites</h3>
+                <p>Use DR as a first-pass filter before negotiating price, writing a pitch, or reviewing placement quality.</p>
               </article>
               <article>
-                <h3>Website audits</h3>
-                <p>Use DR as a first signal when reviewing your own domain rating and link growth over time.</p>
+                <h3>Track authority growth</h3>
+                <p>Record the score monthly so changes in link strength are easier to explain in reports and planning.</p>
               </article>
             </div>
           </section>
@@ -123,13 +123,13 @@ export default function HomePage() {
                 </svg>
                 Benefits
               </p>
-              <h2>A cleaner way to read backlink strength</h2>
+              <h2>What this DR checker gives you</h2>
             </div>
             <ul className="check-list">
-              <li>One simple input for any domain or URL.</li>
-              <li>Instant DR score with an easy rating label.</li>
-              <li>Plain-English explanation so the number is useful.</li>
-              <li>Powered by Ahrefs&apos; Domain Rating API through a server-side APIv3 key.</li>
+              <li>One simple field for a full URL, root domain, or www version.</li>
+              <li>A live Ahrefs Domain Rating score on the familiar 0 to 100 scale.</li>
+              <li>A quick rating label so non-technical teammates can understand the result.</li>
+              <li>Clear limits: DR measures backlink strength, not guaranteed rankings or traffic.</li>
             </ul>
           </section>
 
@@ -140,22 +140,22 @@ export default function HomePage() {
               </svg>
               How it works
             </p>
-            <h2>From website URL to DR score</h2>
+            <h2>How the Domain Rating lookup works</h2>
             <div className="steps">
               <article>
                 <span>1</span>
-                <h3>Enter a site</h3>
-                <p>Paste a domain like example.com or a full URL.</p>
+                <h3>Paste any website</h3>
+                <p>Enter a domain such as example.com or paste a full page URL from your prospect list.</p>
               </article>
               <article>
                 <span>2</span>
-                <h3>Clean and validate</h3>
-                <p>The tool removes extra URL parts and checks the domain format.</p>
+                <h3>Normalize the domain</h3>
+                <p>DR Checker removes protocol, paths, query strings, and extra formatting before the API call.</p>
               </article>
               <article>
                 <span>3</span>
-                <h3>Get the result</h3>
-                <p>The backend calls Ahrefs with the configured API key and returns a DR score with context.</p>
+                <h3>Review the score</h3>
+                <p>The backend requests Ahrefs Domain Rating data and returns the score with practical interpretation.</p>
               </article>
             </div>
           </section>
@@ -169,13 +169,13 @@ export default function HomePage() {
                 </svg>
                 Tips
               </p>
-              <h2>Tips for improving domain rating</h2>
+              <h2>How to improve Domain Rating without chasing shortcuts</h2>
             </div>
             <div className="tip-list">
-              <p><svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="m9 12 2 2 4-4"></path></svg>Earn links from relevant websites in your niche instead of chasing random high-DR links.</p>
-              <p><svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="m9 12 2 2 4-4"></path></svg>Create link-worthy assets such as original research, statistics pages, tools, and practical guides.</p>
-              <p><svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="m9 12 2 2 4-4"></path></svg>Fix weak technical SEO so valuable pages can be crawled, indexed, and shared more easily.</p>
-              <p><svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="m9 12 2 2 4-4"></path></svg>Review toxic or irrelevant link patterns and focus on steady, natural link growth.</p>
+              <p><svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="m9 12 2 2 4-4"></path></svg>Earn links from relevant sites that already publish for the audience you want to reach.</p>
+              <p><svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="m9 12 2 2 4-4"></path></svg>Create assets people can cite, such as original data, calculators, templates, and detailed how-to guides.</p>
+              <p><svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="m9 12 2 2 4-4"></path></svg>Recover lost link value by fixing broken pages, redirect chains, and outdated linked content.</p>
+              <p><svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="m9 12 2 2 4-4"></path></svg>Avoid irrelevant paid links, expired-domain networks, and placements that only look good because of a high score.</p>
             </div>
           </section>
 
@@ -188,7 +188,7 @@ export default function HomePage() {
               Understanding domain rating
             </p>
             <h2>What Domain Rating really means</h2>
-            <p className="wide-copy">Domain Rating is an Ahrefs metric that estimates the strength of a website&apos;s backlink profile on a 0-100 scale. A higher DR usually means the domain has a stronger link rating, but it is not a Google ranking factor. Use it as a comparison metric together with relevance, organic traffic, content quality, and real audience signals.</p>
+            <p className="wide-copy">Domain Rating is an Ahrefs metric that estimates the strength of a website&apos;s backlink profile on a 0 to 100 scale. A higher DR usually means the domain has stronger links, but DR is not a Google ranking factor and it does not measure content quality. Use it with relevance, organic traffic, search intent, and manual review.</p>
           </section>
 
           <section className="copy-block faq-block" aria-labelledby="faq-title">

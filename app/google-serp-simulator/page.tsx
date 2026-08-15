@@ -5,7 +5,7 @@ import { absoluteUrl, breadcrumbSchema, faqSchema, softwareApplicationSchema } f
 
 const title = "Google SERP Simulator - Free Snippet Preview Tool";
 const description =
-  "Preview how your title tag, page URL, and meta description may appear in Google search results. Test desktop and mobile snippets before publishing.";
+  "Preview your Google search snippet before publishing. Test title tags, URLs, and meta descriptions on desktop and mobile.";
 
 export const metadata: Metadata = {
   title,
@@ -97,8 +97,8 @@ export default function GoogleSerpSimulatorPage() {
               </svg>
               Snippet preview
             </p>
-            <h2>Preview your Google search snippet</h2>
-            <p className="wide-copy">Use this Google SERP simulator to test how a page title, URL, and meta description may look in search results. It helps you spot overly long titles, weak descriptions, unclear URLs, and messaging that may not earn the click.</p>
+            <h2>Preview your Google search snippet before publishing</h2>
+            <p className="wide-copy">A Google SERP simulator shows how your title tag, display URL, and meta description may appear in search results. Use it before publishing to catch truncation, unclear promises, keyword stuffing, and descriptions that do not give searchers a reason to click.</p>
           </section>
 
           <section className="copy-block">
@@ -110,19 +110,19 @@ export default function GoogleSerpSimulatorPage() {
               </svg>
               SEO checks
             </p>
-            <h2>What to check before publishing</h2>
+            <h2>What to check before publishing a snippet</h2>
             <div className="feature-grid">
               <article>
                 <h3>Title clarity</h3>
-                <p>Put the main keyword and core promise near the start so searchers understand the page quickly.</p>
+                <p>Put the main topic and promise near the start so the result makes sense at a glance.</p>
               </article>
               <article>
                 <h3>Description fit</h3>
-                <p>Write a concise summary with a reason to click, then check that the important text appears before truncation.</p>
+                <p>Write a concise answer or benefit, then check that the strongest words appear before truncation.</p>
               </article>
               <article>
                 <h3>URL readability</h3>
-                <p>Keep slugs short and descriptive so the displayed URL supports the result instead of distracting from it.</p>
+                <p>Keep slugs short and descriptive so the displayed URL supports the page topic.</p>
               </article>
             </div>
           </section>
@@ -136,13 +136,13 @@ export default function GoogleSerpSimulatorPage() {
                 </svg>
                 Best practices
               </p>
-              <h2>How to write better snippets</h2>
+              <h2>How to write better title tags and meta descriptions</h2>
             </div>
             <ul className="check-list">
-              <li>Match the title and description to the real page content.</li>
-              <li>Use a clear benefit instead of repeating keywords mechanically.</li>
-              <li>Compare desktop and mobile previews because available space can vary.</li>
-              <li>Remember that Google may rewrite snippets based on the search query.</li>
+              <li>Match the title and description to the exact page content, not just the target keyword.</li>
+              <li>Use one clear benefit or answer instead of repeating the same phrase mechanically.</li>
+              <li>Preview desktop and mobile because visible space can change by device and query.</li>
+              <li>Expect Google to rewrite some snippets when it thinks another page excerpt fits the query better.</li>
             </ul>
           </section>
 

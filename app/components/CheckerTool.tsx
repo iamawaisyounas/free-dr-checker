@@ -43,10 +43,10 @@ function getStatus(score: number) {
 
 function getInsight(domain: string, score: number, status: string) {
   const insights: Record<string, string> = {
-    Poor: `${domain} has a DR of ${score}. Low rating - focus on earning relevant, high-quality backlinks.`,
-    Fair: `${domain} has a DR of ${score}. Moderate rating - the domain has some backlink strength but still has room to grow.`,
-    Good: `${domain} has a DR of ${score}. Strong rating - this domain can be competitive in many niches.`,
-    Excellent: `${domain} has a DR of ${score}. Top-tier rating - this suggests an outstanding backlink profile.`
+    Poor: `${domain} has a DR of ${score}. Treat it as an early-stage backlink profile and focus on earning relevant editorial links.`,
+    Fair: `${domain} has a DR of ${score}. The domain has some link strength, but it needs more quality referring domains to compete in tougher markets.`,
+    Good: `${domain} has a DR of ${score}. This is a useful backlink-strength signal, especially when relevance and content quality also look strong.`,
+    Excellent: `${domain} has a DR of ${score}. This suggests a very strong backlink profile, but still check relevance, traffic, and link quality before making SEO decisions.`
   };
 
   return insights[status]
@@ -136,7 +136,7 @@ export default function CheckerTool() {
       <section className="checker-shell" aria-labelledby="page-title">
         <div className="checker-intro">
           <h1 id="page-title">Domain Rating Checker</h1>
-          <p className="subtitle">Check the Domain Rating (DR) of any website instantly. See a clear visual score and find out where your domain stands.</p>
+          <p className="subtitle">Check Ahrefs Domain Rating for any website in seconds. Use the DR score to compare backlink strength, qualify guest post targets, and decide which domains deserve deeper SEO review.</p>
         </div>
 
         <form className="checker-form" onSubmit={handleSubmit} noValidate>
@@ -169,7 +169,7 @@ export default function CheckerTool() {
             </button>
           </div>
         </form>
-        <p className="form-helper" id="helperText">100% Free · No Sign-up Required</p>
+        <p className="form-helper" id="helperText">Free DR lookup. No signup. No Ahrefs login needed.</p>
         <p className="error" id="errorText" role="alert" aria-live="polite">{error}</p>
 
         {loading ? (
@@ -187,7 +187,7 @@ export default function CheckerTool() {
               <path d="m12 14 4-4"></path>
               <path d="M3.34 19a10 10 0 1 1 17.32 0"></path>
             </svg>
-            <span>Enter a domain above to see its Domain Rating visualized here.</span>
+            <span>Enter a domain above to see its Ahrefs Domain Rating and a plain-English interpretation.</span>
           </div>
         ) : (
           <div className="result-card">

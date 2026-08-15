@@ -4,11 +4,11 @@ import { absoluteUrl, breadcrumbSchema, faqSchema, softwareApplicationSchema } f
 
 export const metadata: Metadata = {
   title: "How We Calculate Domain Authority Score | DR Checker",
-  description: "How DR Checker calculates its 0-100 Domain Authority Score from OpenPageRank data.",
+  description: "See how DR Checker calculates its independent 0 to 100 Domain Authority Score from OpenPageRank data and how to use the result responsibly.",
   alternates: { canonical: "https://dr-checker.com/domain-authority-checker/how-we-calculate" },
   openGraph: {
     title: "How We Calculate Domain Authority Score | DR Checker",
-    description: "How DR Checker calculates its 0-100 Domain Authority Score from OpenPageRank data.",
+    description: "See how DR Checker calculates its independent 0 to 100 Domain Authority Score from OpenPageRank data and how to use the result responsibly.",
     url: "https://dr-checker.com/domain-authority-checker/how-we-calculate",
     siteName: "DR Checker",
     type: "website"
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary",
     title: "How We Calculate Domain Authority Score | DR Checker",
-    description: "How DR Checker calculates its 0-100 Domain Authority Score from OpenPageRank data."
+    description: "See how DR Checker calculates its independent 0 to 100 Domain Authority Score from OpenPageRank data and how to use the result responsibly."
   }
 };
 
@@ -72,15 +72,15 @@ export default function AuthorityScoreMethodPage() {
       <div className="standard-page__inner">
         <p className="page-kicker">Methodology</p>
         <h1>How We Calculate Domain Authority Score</h1>
-        <p className="lead">Our Domain Authority Score is a simple 0-100 rating derived from open link-graph data. It is not Moz Domain Authority and is not affiliated with Moz.</p>
+        <p className="lead">DR Checker&apos;s Domain Authority Score is an independent 0 to 100 rating derived from open link-graph data. It is not Moz Domain Authority, it is not affiliated with Moz, and it should be used as a comparison signal rather than a ranking promise.</p>
         <section>
           <h2>Formula</h2>
-          <p>We fetch OpenPageRank&apos;s current score for the normalized registered domain, then calculate:</p>
+          <p>We fetch OpenPageRank&apos;s current score for the normalized registered domain, then convert it to a familiar 0 to 100 display scale:</p>
           <p><strong>displayed score = Math.round(open_page_rank * 10)</strong></p>
         </section>
         <section>
           <h2>How To Use It</h2>
-          <p>Treat the score as a quick comparison signal. It is most useful when paired with referring domains, global rank, topical relevance, organic traffic, and a manual review of link quality.</p>
+          <p>Treat the score as a quick comparison signal. It is most useful when you pair it with referring domains, global rank, topical relevance, organic traffic, and a manual review of link quality.</p>
         </section>
         <section>
           <h2>Related Tools</h2>

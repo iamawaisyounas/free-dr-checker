@@ -6,12 +6,12 @@ import { absoluteUrl, breadcrumbSchema, faqSchema, softwareApplicationSchema } f
 export const metadata: Metadata = {
   title: "Free Domain Authority Checker Online | DR Checker",
   description:
-    "Check Domain Authority (DA) for any website with our free Domain Authority Checker. Compare websites, evaluate SEO strength, and track authority instantly without creating an account.",
+    "Check an authority-style score for any website with our free Domain Authority Checker. Compare domains, review link strength, and add context beside Ahrefs DR.",
   alternates: { canonical: "https://dr-checker.com/domain-authority-checker" },
   openGraph: {
     title: "Free Domain Authority Checker Online | DR Checker",
     description:
-      "Check Domain Authority (DA) for any website with our free Domain Authority Checker. Compare websites, evaluate SEO strength, and track authority instantly without creating an account.",
+      "Check an authority-style score for any website with our free Domain Authority Checker. Compare domains, review link strength, and add context beside Ahrefs DR.",
     url: "https://dr-checker.com/domain-authority-checker",
     siteName: "DR Checker",
     type: "website"
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     card: "summary",
     title: "Free Domain Authority Checker Online | DR Checker",
     description:
-      "Check Domain Authority (DA) for any website with our free Domain Authority Checker. Compare websites, evaluate SEO strength, and track authority instantly without creating an account."
+      "Check an authority-style score for any website with our free Domain Authority Checker. Compare domains, review link strength, and add context beside Ahrefs DR."
   }
 };
 
@@ -56,7 +56,7 @@ export default function AuthorityScorePage() {
     softwareApplicationSchema({
       name: "Domain Authority Checker",
       description:
-        "Check Domain Authority (DA) for any website with our free Domain Authority Checker. Compare websites, evaluate SEO strength, and track authority instantly without creating an account.",
+        "Check an authority-style score for any website with our free Domain Authority Checker. Compare domains, review link strength, and add context beside Ahrefs DR.",
       url: absoluteUrl("/domain-authority-checker"),
       features: [
         "Free authority-style score lookup",
@@ -94,8 +94,8 @@ export default function AuthorityScorePage() {
               </svg>
               Domain Authority
             </p>
-            <h2>What is Domain Authority</h2>
-            <p className="wide-copy">Domain Authority is a score that predicts how well a website is likely to rank in search results, based on the strength of its backlink profile. It runs on a 0 to 100 scale. The higher the number, the stronger the link profile behind that domain. This tool calculates an authority-style score using OpenPageRank&apos;s open link graph data rather than Moz&apos;s proprietary algorithm. Treat it as a comparable, independent measure, not an official Moz DA lookup.</p>
+            <h2>What this Domain Authority checker measures</h2>
+            <p className="wide-copy">This Domain Authority checker returns an independent authority-style score on a 0 to 100 scale. It uses OpenPageRank&apos;s open link graph data rather than Moz&apos;s proprietary Domain Authority algorithm, so treat it as a comparison signal, not an official Moz DA lookup or a Google ranking factor.</p>
           </section>
 
           <section className="copy-block">
@@ -107,7 +107,7 @@ export default function AuthorityScorePage() {
               </svg>
               Score Guide
             </p>
-            <h2>How to read your score</h2>
+            <h2>How to read your authority score</h2>
             <ul className="check-list score-guide-list">
               <li><strong>0 to 20:</strong> New or very low authority. Common for brand new sites or ones with very few backlinks.</li>
               <li><strong>21 to 40:</strong> Developing. The domain has started attracting links but isn&apos;t established yet.</li>
@@ -127,7 +127,7 @@ export default function AuthorityScorePage() {
               Compare Metrics
             </p>
             <h2>Domain Authority vs Domain Rating</h2>
-            <p className="wide-copy">These two get confused a lot. Domain Rating (DR) is Ahrefs&apos; 0 to 100 backlink strength metric, calculated from Ahrefs&apos; own crawl and link index. Authority scores like the one on this page estimate a similar idea using a different link graph. Neither number is used by Google directly, and since the two draw from different data sources, a domain can score differently on each one. Check a domain on both tools to get a fuller picture of how different link data providers see it.</p>
+            <p className="wide-copy">Domain Authority and Domain Rating both estimate website authority, but they come from different data sources. Domain Rating is Ahrefs&apos; backlink-strength metric. This page shows an OpenPageRank-based authority score. Neither score is used by Google directly, so compare each metric against itself and use both as context before deeper SEO review.</p>
           </section>
 
           <section className="copy-block split-block">
@@ -139,13 +139,13 @@ export default function AuthorityScorePage() {
                 </svg>
                 Ranking Signals
               </p>
-              <h2>What affects this score</h2>
+              <h2>What affects this authority score</h2>
             </div>
             <ul className="check-list">
-              <li>The number and quality of referring domains linking to the site.</li>
-              <li>How relevant those linking sites are to the topic.</li>
-              <li>Spam or low quality links dragging the profile down.</li>
-              <li>How long the site has been accumulating natural link growth.</li>
+              <li>The number and quality of referring domains found in the link graph.</li>
+              <li>The strength and relevance of sites linking to the checked domain.</li>
+              <li>Weak, spammy, or unrelated links that make an authority score less useful.</li>
+              <li>How consistently the domain has earned natural links over time.</li>
             </ul>
           </section>
 

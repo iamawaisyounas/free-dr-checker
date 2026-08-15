@@ -5,7 +5,7 @@ import { absoluteUrl, breadcrumbSchema, faqSchema, softwareApplicationSchema } f
 
 const title = "Bulk DR Checker - Check Ahrefs DR for Multiple Domains";
 const description =
-  "Check Ahrefs Domain Rating for up to 100 domains at once. Paste domains or URLs, remove duplicates, and export bulk DR results to CSV.";
+  "Check Ahrefs Domain Rating for up to 100 domains at once. Clean prospect lists, compare backlink strength, and export bulk DR results to CSV.";
 
 export const metadata: Metadata = {
   title,
@@ -96,8 +96,8 @@ export default function BulkDrCheckerPage() {
               </svg>
               Bulk DR lookup
             </p>
-            <h2>Check Domain Rating in bulk</h2>
-            <p className="wide-copy">Use this bulk DR checker when you need to compare backlink strength across a list of websites. Paste domains or full URLs, remove duplicates automatically, and get Ahrefs Domain Rating scores in a clean table you can export.</p>
+            <h2>Check Domain Rating in bulk without cleaning the list first</h2>
+            <p className="wide-copy">A bulk DR checker is useful when your prospect sheet has dozens of websites and you need a fast authority screen. Paste domains or full URLs, let the tool remove duplicates, and export Ahrefs Domain Rating scores you can add back to your outreach, audit, or competitor research workflow.</p>
           </section>
 
           <section className="copy-block">
@@ -109,19 +109,19 @@ export default function BulkDrCheckerPage() {
               </svg>
               Use cases
             </p>
-            <h2>When bulk DR checks help</h2>
+            <h2>When bulk DR checks save the most time</h2>
             <div className="feature-grid">
               <article>
                 <h3>Guest post prospecting</h3>
-                <p>Screen a list of websites before spending time on outreach, pricing, or editorial review.</p>
+                <p>Sort a long list before you spend time checking pricing, author quality, or placement rules.</p>
               </article>
               <article>
                 <h3>Competitor research</h3>
-                <p>Compare multiple competitor domains and spot which sites have stronger backlink profiles.</p>
+                <p>Compare competing domains on the same day so backlink-strength gaps are easier to explain.</p>
               </article>
               <article>
                 <h3>Agency reporting</h3>
-                <p>Export DR scores for client lists, prospect sheets, or quick SEO audits.</p>
+                <p>Export a clean CSV for client audits, link gap reviews, and campaign planning sheets.</p>
               </article>
             </div>
           </section>
@@ -138,10 +138,10 @@ export default function BulkDrCheckerPage() {
               <h2>How to use bulk DR responsibly</h2>
             </div>
             <ul className="check-list">
-              <li>Use DR as a first-pass backlink strength filter, not the only decision point.</li>
-              <li>Review topical relevance, traffic signals, and content quality before outreach.</li>
-              <li>Compare sites inside the same niche for a fairer benchmark.</li>
-              <li>Export results and add notes for relevance, pricing, and editorial quality.</li>
+              <li>Use the exported DR score as a first-pass filter, not an automatic yes or no.</li>
+              <li>Keep relevant mid-DR websites when they have real readers and editorial standards.</li>
+              <li>Remove high-DR sites that publish unrelated topics, thin posts, or unnatural outbound links.</li>
+              <li>Add manual notes for relevance, traffic, page quality, pricing, and outreach fit.</li>
             </ul>
           </section>
 

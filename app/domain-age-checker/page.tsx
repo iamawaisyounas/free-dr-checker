@@ -6,12 +6,12 @@ import { absoluteUrl, breadcrumbSchema, faqSchema, softwareApplicationSchema } f
 export const metadata: Metadata = {
   title: "Free Domain Age Checker - Check Domain Age Of any Website",
   description:
-    "Find the exact age of any domain in seconds. Use our free Domain Age Checker to view registration details, website age, and domain history for better SEO research.",
+    "Find the age of any domain in seconds. Check registration date, expiry date, and WHOIS/RDAP history for SEO research, outreach, and domain reviews.",
   alternates: { canonical: "https://dr-checker.com/domain-age-checker" },
   openGraph: {
     title: "Free Domain Age Checker - Check Domain Age Of any Website",
     description:
-      "Find the exact age of any domain in seconds. Use our free Domain Age Checker to view registration details, website age, and domain history for better SEO research.",
+      "Find the age of any domain in seconds. Check registration date, expiry date, and WHOIS/RDAP history for SEO research, outreach, and domain reviews.",
     url: "https://dr-checker.com/domain-age-checker",
     siteName: "DR Checker",
     type: "website"
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     card: "summary",
     title: "Free Domain Age Checker - Check Domain Age Of any Website",
     description:
-      "Find the exact age of any domain in seconds. Use our free Domain Age Checker to view registration details, website age, and domain history for better SEO research."
+      "Find the age of any domain in seconds. Check registration date, expiry date, and WHOIS/RDAP history for SEO research, outreach, and domain reviews."
   }
 };
 
@@ -56,7 +56,7 @@ export default function DomainAgePage() {
     softwareApplicationSchema({
       name: "Domain Age Checker",
       description:
-        "Find the exact age of any domain in seconds. Use our free Domain Age Checker to view registration details, website age, and domain history for better SEO research.",
+        "Find the age of any domain in seconds. Check registration date, expiry date, and WHOIS/RDAP history for SEO research, outreach, and domain reviews.",
       url: absoluteUrl("/domain-age-checker"),
       features: [
         "Domain registration date lookup",
@@ -94,8 +94,8 @@ export default function DomainAgePage() {
               </svg>
               Domain age
             </p>
-            <h2>What is domain age</h2>
-            <p className="wide-copy">Domain age is the length of time that has passed since a domain was first registered. It&apos;s calculated from the domain&apos;s creation date on record with its registry, found through WHOIS or the newer RDAP protocol. Renewing a domain extends its expiry date, but it doesn&apos;t reset the original registration date, so the age keeps counting from when the domain first went live.</p>
+            <h2>What domain age means</h2>
+            <p className="wide-copy">Domain age is the time that has passed since a domain was first registered. DR Checker reads the creation date from public WHOIS and RDAP registry records, then shows the age, registration date, expiry date, and registrar details when available. Renewing a domain extends the expiry date, but it does not reset the original registration date.</p>
           </section>
 
           <section className="copy-block">
@@ -108,7 +108,7 @@ export default function DomainAgePage() {
               SEO Context
             </p>
             <h2>Does domain age affect SEO rankings</h2>
-            <p className="wide-copy">Google has said publicly that domain age by itself isn&apos;t a significant ranking factor. A brand new domain can outrank an older one if the content and relevance are stronger. Where domain age is actually useful is as a trust and context signal rather than a ranking lever. Older domains often, though not always, have had more time to accumulate backlinks and a track record, and that&apos;s what tends to help them rank, not the age itself.</p>
+            <p className="wide-copy">Domain age by itself is not a meaningful SEO shortcut. A newer domain can outrank an older one when the content, links, and search intent match are stronger. Domain age is still useful as context because older domains often have more history to review, including backlinks, ownership changes, expired content, redirects, and reputation signals.</p>
           </section>
 
           <section className="copy-block">
@@ -124,15 +124,15 @@ export default function DomainAgePage() {
             <div className="feature-grid">
               <article>
                 <h3>Buying an aged or expired domain</h3>
-                <p>Confirm exactly how old a domain is and when it expires before you bid or buy.</p>
+                <p>Confirm the registration date and expiry date before you bid, buy, redirect, or rebuild.</p>
               </article>
               <article>
                 <h3>Vetting a guest post or link opportunity</h3>
-                <p>An established registration history is one more data point when deciding if a site is worth pursuing.</p>
+                <p>Add registration history beside DR, relevance, traffic, and editorial quality before outreach.</p>
               </article>
               <article>
                 <h3>Checking email sending domains</h3>
-                <p>Newly registered domains can trigger spam filters. Confirm a domain&apos;s age before running an outbound email campaign from it.</p>
+                <p>Very new domains can look risky in outreach systems. Check age before sending campaigns from them.</p>
               </article>
             </div>
           </section>

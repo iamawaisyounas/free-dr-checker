@@ -104,22 +104,22 @@ export default function SeoBulkTool({ tool }: Props) {
   const maxDomains = isDr ? 100 : isAuthority ? 1000 : 50;
   const title = isDr ? "Bulk DR Checker" : isAuthority ? "Domain Authority Checker" : "Domain Age Checker";
   const subtitle = isDr
-    ? "Check Ahrefs Domain Rating for multiple websites at once. Paste a list of domains or URLs, remove duplicates, and export the DR results to CSV."
+    ? "Check Ahrefs Domain Rating for up to 100 domains at once. Clean messy prospect lists, remove duplicates, and export the DR scores your team needs for outreach or competitor research."
     : isAuthority
-    ? "Check the Domain Authority score of any website from 0 to 100 along with referring domains and global rank. You can check a single domain or run a bulk list."
-    : "Check any domain's age for free. Enter a domain to see its registration date, exact age, and expiry date, pulled from live WHOIS and RDAP records.";
+    ? "Check an authority-style score for any website from 0 to 100, plus referring domains and global rank when available. Use it as a second opinion beside Ahrefs DR, not as an official Moz DA lookup."
+    : "Check when a domain was first registered, how old it is, and when it expires. The tool reads public WHOIS and RDAP records so you can add history context to SEO, outreach, and domain buying decisions.";
   const inputLabel = isDr || isAuthority ? "Domains or URLs" : "Website URL or domain";
   const buttonLabel = isDr ? "Check DR" : isAuthority ? "Check DA" : "Check Age";
   const trustLine = isDr
-    ? "100% Free. No Sign-up Required. Bulk check up to 100 domains."
+    ? "Free bulk DR lookup. No signup. Export up to 100 cleaned domains."
     : isAuthority
-    ? "100% Free. No Sign-up Required. Bulk check up to 1000 domains."
-    : "100% Free. No Sign-up Required.";
+    ? "Free authority checks. No signup. Bulk check up to 1000 domains."
+    : "Free domain age lookup. No signup. WHOIS and RDAP based.";
   const emptyState = isDr
-    ? "Paste domains above to see their Ahrefs Domain Rating scores here."
+    ? "Paste your prospect list above to see Ahrefs Domain Rating scores, status, and export-ready results."
     : isAuthority
-    ? "Paste a domain above to see its Domain Authority score here."
-    : "Enter a domain above to see its age and registration details here.";
+    ? "Paste a domain above to see its authority-style score, referring domains, and global rank."
+    : "Enter a domain above to see its registration date, age, expiry date, and registrar details.";
   const endpoint = isDr ? "/api/dr-checker" : isAuthority ? "/api/tools/authority-score" : "/api/tools/domain-age";
   const placeholder = "example.com\nsocialbu.com\n";
   const resultCount = isDr ? drResults.length : isAuthority ? authorityResults.length : ageResults.length;

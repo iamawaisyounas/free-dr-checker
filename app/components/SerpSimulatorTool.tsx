@@ -5,7 +5,7 @@ import { useMemo, useState } from "react";
 const defaultTitle = "Domain Rating Checker - Check Ahrefs DR for Free";
 const defaultUrl = "https://dr-checker.com/google-serp-simulator";
 const defaultDescription =
-  "Preview how your title tag, URL, and meta description may appear in Google search results before publishing a page.";
+  "Preview your Google search snippet, test desktop and mobile fit, and improve title tags and meta descriptions before publishing.";
 
 function normalizeUrl(value: string) {
   const trimmed = value.trim();
@@ -95,7 +95,7 @@ export default function SerpSimulatorTool() {
           </p>
           <h1 id="page-title">Google SERP Simulator</h1>
           <p className="subtitle">
-            Preview your Google snippet before publishing. Check title length, URL display, and meta description fit in desktop or mobile search results.
+            Preview your title tag, URL, and meta description before a page goes live. Use the simulator to catch truncation, tighten the search promise, and compare desktop and mobile snippets in one place.
           </p>
 
           <div className="serp-workbench" aria-label="SERP simulator editor and live preview">
@@ -185,7 +185,7 @@ export default function SerpSimulatorTool() {
                 </div>
               </div>
 
-              <p className="serp-preview-note">Google can rewrite snippets, but this preview helps catch truncation and weak messaging before publishing.</p>
+              <p className="serp-preview-note">Google can rewrite snippets, but this preview helps you catch weak messaging before a crawler or searcher sees the page.</p>
 
               <div className="serp-guidance-grid">
                 <article>
