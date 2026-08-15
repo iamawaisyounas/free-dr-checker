@@ -84,10 +84,37 @@ export default function HomePage() {
         />
       ))}
       <CheckerTool />
-      <DiscoverTools activeTool="dr" />
 
       <section className="content-section" aria-label="Domain Rating guide">
         <div className="content-wrap">
+          <section className="copy-block answer-block">
+            <p className="section-label">
+              <svg aria-hidden="true" viewBox="0 0 24 24">
+                <path d="M20 7 9 18l-5-5"></path>
+              </svg>
+              Quick answer
+            </p>
+            <h2>Use Domain Rating to screen backlink strength, then verify quality manually</h2>
+            <p className="wide-copy">A Domain Rating checker gives you a fast 0 to 100 backlink-strength signal for any domain. The score is useful for competitor research, guest post screening, and outreach prioritization, but it should be paired with relevance, traffic, editorial quality, and the page where a link would appear.</p>
+            <div className="answer-grid" aria-label="Domain Rating quick facts">
+              <article>
+                <span>Measures</span>
+                <strong>Backlink profile strength</strong>
+                <p>DR estimates domain-level link strength, not content quality or guaranteed ranking ability.</p>
+              </article>
+              <article>
+                <span>Best use</span>
+                <strong>Fast SEO triage</strong>
+                <p>Use it to decide which domains deserve deeper backlink, traffic, and relevance review.</p>
+              </article>
+              <article>
+                <span>Data source</span>
+                <strong>Ahrefs DR API</strong>
+                <p>The lookup uses Ahrefs Domain Rating data through DR Checker&apos;s server-side API key.</p>
+              </article>
+            </div>
+          </section>
+
           <section className="copy-block">
             <p className="section-label">
               <svg aria-hidden="true" viewBox="0 0 24 24">
@@ -111,6 +138,51 @@ export default function HomePage() {
                 <h3>Track authority growth</h3>
                 <p>Record the score monthly so changes in link strength are easier to explain in reports and planning.</p>
               </article>
+            </div>
+          </section>
+
+          <section className="copy-block">
+            <p className="section-label">
+              <svg aria-hidden="true" viewBox="0 0 24 24">
+                <path d="M4 5h16"></path>
+                <path d="M4 12h16"></path>
+                <path d="M4 19h16"></path>
+              </svg>
+              Decision guide
+            </p>
+            <h2>How to judge a DR score before acting on it</h2>
+            <div className="responsive-table decision-table">
+              <table>
+                <thead>
+                  <tr>
+                    <th>DR range</th>
+                    <th>What it usually means</th>
+                    <th>Best next step</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>0 to 29</td>
+                    <td>New, weak, or barely visible backlink profile.</td>
+                    <td>Review relevance first, then focus on earning a few real editorial links.</td>
+                  </tr>
+                  <tr>
+                    <td>30 to 49</td>
+                    <td>Some authority, often common for growing niche sites.</td>
+                    <td>Compare with direct competitors and inspect link quality before outreach.</td>
+                  </tr>
+                  <tr>
+                    <td>50 to 69</td>
+                    <td>Strong enough to compete in many markets.</td>
+                    <td>Check traffic, topic fit, and page quality before treating it as a strong opportunity.</td>
+                  </tr>
+                  <tr>
+                    <td>70 to 100</td>
+                    <td>Very strong backlink profile or major brand authority.</td>
+                    <td>Do not skip manual review. High DR still needs relevance and editorial trust.</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </section>
 
@@ -212,6 +284,7 @@ export default function HomePage() {
           </section>
         </div>
       </section>
+      <DiscoverTools activeTool="dr" />
     </main>
   );
 }

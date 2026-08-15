@@ -84,10 +84,38 @@ export default function BulkDrCheckerPage() {
         />
       ))}
       <SeoBulkTool tool="dr" />
-      <DiscoverTools activeTool="bulk-dr" />
 
       <section className="content-section" aria-label="Bulk Domain Rating guide">
         <div className="content-wrap">
+          <section className="copy-block answer-block">
+            <p className="section-label">
+              <svg aria-hidden="true" viewBox="0 0 24 24">
+                <path d="M8 6h13M8 12h13M8 18h13"></path>
+                <path d="M3 6h.01M3 12h.01M3 18h.01"></path>
+              </svg>
+              Quick answer
+            </p>
+            <h2>Use bulk DR checks to shrink messy prospect lists before manual review</h2>
+            <p className="wide-copy">A bulk DR checker helps you check many websites at once, clean duplicate entries, and export a working CSV. It is best for triage: remove obviously weak or irrelevant domains first, then manually review the sites that still look promising.</p>
+            <div className="answer-grid" aria-label="Bulk DR quick facts">
+              <article>
+                <span>Limit</span>
+                <strong>Up to 100 domains</strong>
+                <p>Paste one domain per line or mix full URLs, commas, and spaces.</p>
+              </article>
+              <article>
+                <span>Output</span>
+                <strong>CSV-ready DR scores</strong>
+                <p>Export Domain Rating, source, license, and status for your sheet.</p>
+              </article>
+              <article>
+                <span>Best use</span>
+                <strong>Outreach triage</strong>
+                <p>Prioritize the domains that deserve manual relevance and quality review.</p>
+              </article>
+            </div>
+          </section>
+
           <section className="copy-block">
             <p className="section-label">
               <svg aria-hidden="true" viewBox="0 0 24 24">
@@ -98,6 +126,51 @@ export default function BulkDrCheckerPage() {
             </p>
             <h2>Check Domain Rating in bulk without cleaning the list first</h2>
             <p className="wide-copy">A bulk DR checker is useful when your prospect sheet has dozens of websites and you need a fast authority screen. Paste domains or full URLs, let the tool remove duplicates, and export Ahrefs Domain Rating scores you can add back to your outreach, audit, or competitor research workflow.</p>
+          </section>
+
+          <section className="copy-block">
+            <p className="section-label">
+              <svg aria-hidden="true" viewBox="0 0 24 24">
+                <path d="M4 5h16"></path>
+                <path d="M4 12h16"></path>
+                <path d="M4 19h16"></path>
+              </svg>
+              Review matrix
+            </p>
+            <h2>What to do after exporting bulk DR results</h2>
+            <div className="responsive-table decision-table">
+              <table>
+                <thead>
+                  <tr>
+                    <th>List segment</th>
+                    <th>What to check next</th>
+                    <th>Decision rule</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>High DR, relevant niche</td>
+                    <td>Recent posts, author standards, outbound links, and traffic quality.</td>
+                    <td>Keep if the site would make sense even without the score.</td>
+                  </tr>
+                  <tr>
+                    <td>High DR, mixed topics</td>
+                    <td>Publication pattern, sponsored content volume, and link placement quality.</td>
+                    <td>Review carefully. High DR cannot fix a weak editorial environment.</td>
+                  </tr>
+                  <tr>
+                    <td>Mid DR, strong relevance</td>
+                    <td>Audience fit, ranking pages, and whether the editor covers your topic well.</td>
+                    <td>Often worth keeping for outreach because relevance can beat vanity metrics.</td>
+                  </tr>
+                  <tr>
+                    <td>Low DR, no topical fit</td>
+                    <td>Only check further if there is a strong relationship or brand reason.</td>
+                    <td>Usually remove from the active prospect list.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </section>
 
           <section className="copy-block">
@@ -166,6 +239,7 @@ export default function BulkDrCheckerPage() {
           </section>
         </div>
       </section>
+      <DiscoverTools activeTool="bulk-dr" />
     </main>
   );
 }

@@ -84,10 +84,39 @@ export default function GoogleSerpSimulatorPage() {
         />
       ))}
       <SerpSimulatorTool />
-      <DiscoverTools activeTool="serp" />
 
       <section className="content-section" aria-label="Google SERP simulator guide">
         <div className="content-wrap">
+          <section className="copy-block answer-block">
+            <p className="section-label">
+              <svg aria-hidden="true" viewBox="0 0 24 24">
+                <path d="M4 7h16"></path>
+                <path d="M4 12h10"></path>
+                <path d="M4 17h16"></path>
+              </svg>
+              Quick answer
+            </p>
+            <h2>Use the SERP simulator to test search-result clarity before a page goes live</h2>
+            <p className="wide-copy">A Google SERP simulator helps you preview title tags, URLs, and meta descriptions on desktop and mobile. It cannot force Google to show your exact snippet, but it helps you catch weak messaging, awkward truncation, and unclear page promises before publishing.</p>
+            <div className="answer-grid" aria-label="SERP simulator quick facts">
+              <article>
+                <span>Checks</span>
+                <strong>Title and description fit</strong>
+                <p>See whether the strongest part of your snippet is likely to remain visible.</p>
+              </article>
+              <article>
+                <span>Best use</span>
+                <strong>Pre-publish review</strong>
+                <p>Test important pages before launch, refreshes, and SEO copy updates.</p>
+              </article>
+              <article>
+                <span>Important limit</span>
+                <strong>Google may rewrite snippets</strong>
+                <p>The preview is a writing aid, not a guarantee of the final search result.</p>
+              </article>
+            </div>
+          </section>
+
           <section className="copy-block">
             <p className="section-label">
               <svg aria-hidden="true" viewBox="0 0 24 24">
@@ -99,6 +128,46 @@ export default function GoogleSerpSimulatorPage() {
             </p>
             <h2>Preview your Google search snippet before publishing</h2>
             <p className="wide-copy">A Google SERP simulator shows how your title tag, display URL, and meta description may appear in search results. Use it before publishing to catch truncation, unclear promises, keyword stuffing, and descriptions that do not give searchers a reason to click.</p>
+          </section>
+
+          <section className="copy-block">
+            <p className="section-label">
+              <svg aria-hidden="true" viewBox="0 0 24 24">
+                <path d="M4 5h16"></path>
+                <path d="M4 12h16"></path>
+                <path d="M4 19h16"></path>
+              </svg>
+              Snippet matrix
+            </p>
+            <h2>How to diagnose a weak search snippet</h2>
+            <div className="responsive-table decision-table">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Issue</th>
+                    <th>What it usually means</th>
+                    <th>Better fix</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Title is too vague</td>
+                    <td>The searcher cannot tell what the page solves.</td>
+                    <td>Put the topic and outcome near the start of the title.</td>
+                  </tr>
+                  <tr>
+                    <td>Description repeats keywords</td>
+                    <td>The snippet sounds mechanical and gives no reason to click.</td>
+                    <td>Answer the intent and include one concrete benefit or detail.</td>
+                  </tr>
+                  <tr>
+                    <td>URL is hard to read</td>
+                    <td>The displayed path weakens trust or distracts from the result.</td>
+                    <td>Use a short slug that describes the page topic clearly.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </section>
 
           <section className="copy-block">
@@ -167,6 +236,7 @@ export default function GoogleSerpSimulatorPage() {
           </section>
         </div>
       </section>
+      <DiscoverTools activeTool="serp" />
     </main>
   );
 }

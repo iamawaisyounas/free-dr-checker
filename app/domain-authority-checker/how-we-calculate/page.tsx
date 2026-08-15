@@ -73,10 +73,31 @@ export default function AuthorityScoreMethodPage() {
         <p className="page-kicker">Methodology</p>
         <h1>How We Calculate Domain Authority Score</h1>
         <p className="lead">DR Checker&apos;s Domain Authority Score is an independent 0 to 100 rating derived from open link-graph data. It is not Moz Domain Authority, it is not affiliated with Moz, and it should be used as a comparison signal rather than a ranking promise.</p>
+        <section className="method-summary">
+          <article>
+            <span>Source</span>
+            <strong>OpenPageRank</strong>
+            <p>We use open link-graph data for the normalized registered domain.</p>
+          </article>
+          <article>
+            <span>Scale</span>
+            <strong>0 to 100</strong>
+            <p>The source score is converted into a familiar authority-style display score.</p>
+          </article>
+          <article>
+            <span>Limit</span>
+            <strong>Not Moz DA</strong>
+            <p>The number is independent and should not be labeled as official Moz Domain Authority.</p>
+          </article>
+        </section>
         <section>
           <h2>Formula</h2>
           <p>We fetch OpenPageRank&apos;s current score for the normalized registered domain, then convert it to a familiar 0 to 100 display scale:</p>
           <p><strong>displayed score = Math.round(open_page_rank * 10)</strong></p>
+        </section>
+        <section>
+          <h2>Quality Controls</h2>
+          <p>The checker normalizes each submitted URL to the registered domain before requesting the score. Results may be cached to keep the tool fast and reliable when third-party API quotas are temporarily limited.</p>
         </section>
         <section>
           <h2>How To Use It</h2>

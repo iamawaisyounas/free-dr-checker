@@ -78,52 +78,59 @@ function buildSections(seed: BlogPostSeed): BlogSection[] {
 
   return [
     {
-      heading: `What ${seed.keyword} means for SEO decisions`,
+      heading: `The short answer on ${seed.keyword}`,
       body: [
-        `${seed.promise} The useful question is not whether the score looks impressive. The useful question is whether the score helps you decide what to inspect next.`,
-        `Run the site through the [free Domain Rating checker](/), record the score with the date, and compare it with sites that compete for the same audience. Domain Rating can point you toward stronger backlink profiles, but it cannot judge content quality, intent match, traffic value, or whether a link would make sense to a reader.`
+        `${seed.promise} Use it to decide where to look deeper, not to replace judgment about relevance, traffic, content quality, or the page where a link would appear.`,
+        `The practical workflow is simple: run the site through the [free Domain Rating checker](/), record the score with the date, and compare it with sites that serve the same audience. A score is most useful when it turns a messy list into a smaller review queue.`
       ]
     },
     {
-      heading: `Why ${seed.audience} should care about ${seed.keyword}`,
+      heading: `Why ${seed.audience} should care`,
       body: [
-        `${seed.keyword} saves time when a list is too large to inspect page by page. For ${seed.audience}, it works best as a triage layer: check the score first, then spend manual review time on the domains that still look relevant after the first filter.`,
-        `Consistency matters more than the absolute number. Check your site, direct competitors, and trusted publishers with the same tool on the same day. If you want a second authority-style view, use the [Domain Authority checker](/domain-authority-checker) separately and avoid blending DR and DA into one made-up score.`
+        `${seed.keyword} matters because SEO teams usually make decisions with incomplete information. A clean authority signal helps you prioritize which domains deserve a backlink audit, guest post review, competitor gap check, or client explanation first.`,
+        `Consistency matters more than the absolute number. Check your site, direct competitors, and trusted publishers with the same tool on the same day. If you want a second authority-style view, use the [Domain Authority checker](/domain-authority-checker) separately and avoid blending DR and DA into one made-up metric.`
       ]
     },
     {
       heading: `How to use ${seed.keyword} step by step`,
       body: [
-        `${seed.workflow} Put the result into a small review sheet with columns for DR, relevance, page quality, organic visibility, and the action you might take. ${firstRelated ? `The guide to [${firstRelated.label}](${firstRelated.href}) is a useful next read when you need more context before making the call.` : "That keeps the score connected to a real decision instead of turning it into a vanity metric."}`,
-        `Then label each domain as strong, possible, or weak. Strong domains have a useful score, topical fit, and editorial standards. Possible domains need a closer look. Weak domains fail on relevance, quality, or trust even if the score looks attractive.`
+        `${seed.workflow} Put the result into a simple review sheet with columns for score, topic fit, page quality, organic visibility, and the action you might take. ${firstRelated ? `The guide to [${firstRelated.label}](${firstRelated.href}) is a useful next read when you need more context before making the call.` : "That keeps the score connected to a real decision instead of turning it into a vanity metric."}`,
+        `Then label each domain as strong, possible, or weak. Strong domains have a useful score, topical fit, editorial standards, and pages real people would trust. Possible domains need a closer look. Weak domains fail on relevance, quality, or trust even if the score looks attractive.`
+      ]
+    },
+    {
+      heading: `What to check before you trust the score`,
+      body: [
+        `Before you act, open the domain and inspect a few current pages. Look for real authors, topical focus, useful outbound links, clear navigation, and evidence that the site serves an audience instead of only selling placements.`,
+        `Also check whether the page you care about is relevant to your goal. A high-scoring domain can still be a poor fit if the article is thin, the topic is unrelated, or the link would feel forced to the reader.`
       ]
     },
     {
       heading: `How to benchmark ${seed.keyword} without overreacting`,
       body: [
-        `A single score is a snapshot, not a strategy. DR can move because links are gained or lost, indexes refresh, redirects change, or stronger sites shift the wider link graph.`,
-        `${seed.benchmark} That benchmark is more useful than a generic target like "reach DR 70." ${secondRelated ? `If the score feels surprising, compare it with [${secondRelated.label}](${secondRelated.href}) so you can separate a real trend from a data limitation.` : "The better question is: what DR range is normal for the sites that rank, partner, and earn links in this market?"}`
+        `A single score is a snapshot, not a strategy. Scores can move because links are gained or lost, indexes refresh, redirects change, or stronger sites shift the wider link graph.`,
+        `${seed.benchmark} That benchmark is more useful than a generic target like "reach DR 70." ${secondRelated ? `If the score feels surprising, compare it with [${secondRelated.label}](${secondRelated.href}) so you can separate a real trend from a data limitation.` : "The better question is: what score range is normal for the sites that rank, partner, and earn links in this market?"}`
       ]
     },
     {
       heading: `The ${seed.keyword} mistake to avoid`,
       body: [
         `${seed.mistake} This usually shows up when a team accepts a site only because the number is high, rejects a relevant niche publisher because the number is modest, or buys links that look good in a spreadsheet but feel out of place in the article.`,
-        `Use one practical rule: if the opportunity would still look valuable without the DR score, keep reviewing it. If the opportunity only looks good because of the metric, inspect the content, outbound links, topic fit, and reader trust before you proceed.${fourthRelated ? ` When the decision still feels unclear, use [${fourthRelated.label}](${fourthRelated.href}) to ground the next step in a related SEO workflow.` : ""}`
+        `Use one practical rule: if the opportunity would still look valuable without the score, keep reviewing it. If the opportunity only looks good because of the metric, inspect the content, outbound links, topic fit, and reader trust before you proceed.${fourthRelated ? ` When the decision still feels unclear, use [${fourthRelated.label}](${fourthRelated.href}) to ground the next step in a related SEO workflow.` : ""}`
       ]
     },
     {
       heading: `A practical ${seed.keyword} example`,
       body: [
-        `${seed.example} That kind of real-world tradeoff is why Domain Rating should sit next to relevance and editorial review instead of replacing them.`,
+        `${seed.example} That kind of tradeoff is why authority metrics should sit next to relevance and editorial review instead of replacing them.`,
         `Before you send an outreach email, buy a sponsorship, accept a guest post offer, or report progress to a client, open recent pages and inspect the site manually. Look for real authors, clear topical focus, natural outbound links, and pages that would help the audience. ${thirdRelated ? `The related guide on [${thirdRelated.label}](${thirdRelated.href}) can help connect the metric to the next practical decision.` : ""}`
       ]
     },
     {
-      heading: `Use ${seed.keyword} as a starting point, not the final answer`,
+      heading: `Conclusion: use ${seed.keyword} as a starting point`,
       body: [
         `${seed.keyword} is most useful when it speeds up the first decision and leaves room for human judgment. Check the score, compare relevant alternatives, review topic fit, inspect content quality, and decide whether the opportunity still makes sense after the metric is removed.`,
-        `For the next step, run your domain and three competitors through Dr Checker today. Write down each score, note what the stronger sites do better, and use the [Domain Age checker](/domain-age-checker) when history or ownership context matters.`
+        `For the next step, run your domain and three competitors through DR Checker today. Write down each score, note what the stronger sites do better, and use the [Domain Age checker](/domain-age-checker) when history or ownership context matters.`
       ]
     }
   ];

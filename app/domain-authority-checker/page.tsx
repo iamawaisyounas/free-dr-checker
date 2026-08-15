@@ -82,9 +82,37 @@ export default function AuthorityScorePage() {
         />
       ))}
       <SeoBulkTool tool="authority" />
-      <DiscoverTools activeTool="authority" />
       <section className="content-section" aria-label="Domain Authority guide">
         <div className="content-wrap">
+          <section className="copy-block answer-block">
+            <p className="section-label">
+              <svg aria-hidden="true" viewBox="0 0 24 24">
+                <path d="M3.34 19a10 10 0 1 1 17.32 0"></path>
+                <path d="m12 14 4-4"></path>
+              </svg>
+              Quick answer
+            </p>
+            <h2>Use this Domain Authority checker as a second authority view, not a Moz replacement</h2>
+            <p className="wide-copy">DR Checker&apos;s Domain Authority tool gives an independent 0 to 100 authority-style score from OpenPageRank data. It helps you compare domains quickly, but it should be read beside Ahrefs DR, referring domains, topical relevance, and manual backlink review.</p>
+            <div className="answer-grid" aria-label="Domain Authority quick facts">
+              <article>
+                <span>Measures</span>
+                <strong>Authority-style link strength</strong>
+                <p>The score reflects open link graph signals, not Google&apos;s ranking system.</p>
+              </article>
+              <article>
+                <span>Use with</span>
+                <strong>Ahrefs DR</strong>
+                <p>Check both metrics separately to understand how different datasets see a domain.</p>
+              </article>
+              <article>
+                <span>Best for</span>
+                <strong>Comparison research</strong>
+                <p>Compare competitors, guest post targets, and domains before deeper review.</p>
+              </article>
+            </div>
+          </section>
+
           <section className="copy-block">
             <p className="section-label">
               <svg aria-hidden="true" viewBox="0 0 24 24">
@@ -96,6 +124,46 @@ export default function AuthorityScorePage() {
             </p>
             <h2>What this Domain Authority checker measures</h2>
             <p className="wide-copy">This Domain Authority checker returns an independent authority-style score on a 0 to 100 scale. It uses OpenPageRank&apos;s open link graph data rather than Moz&apos;s proprietary Domain Authority algorithm, so treat it as a comparison signal, not an official Moz DA lookup or a Google ranking factor.</p>
+          </section>
+
+          <section className="copy-block">
+            <p className="section-label">
+              <svg aria-hidden="true" viewBox="0 0 24 24">
+                <path d="M4 5h16"></path>
+                <path d="M4 12h16"></path>
+                <path d="M4 19h16"></path>
+              </svg>
+              Comparison guide
+            </p>
+            <h2>When to use DA, DR, or both</h2>
+            <div className="responsive-table decision-table">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Metric</th>
+                    <th>Best use</th>
+                    <th>Important limit</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Domain Authority score</td>
+                    <td>Independent authority comparison from OpenPageRank link data.</td>
+                    <td>It is not Moz Domain Authority and should not be presented as Moz DA.</td>
+                  </tr>
+                  <tr>
+                    <td>Ahrefs Domain Rating</td>
+                    <td>Backlink-strength checks in Ahrefs-based SEO workflows.</td>
+                    <td>DR is a third-party metric, not a direct Google ranking factor.</td>
+                  </tr>
+                  <tr>
+                    <td>Both together</td>
+                    <td>Cross-checking whether a domain looks strong across different link datasets.</td>
+                    <td>Do not average them. Keep each metric separate in reports.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </section>
 
           <section className="copy-block">
@@ -216,6 +284,7 @@ export default function AuthorityScorePage() {
           </section>
         </div>
       </section>
+      <DiscoverTools activeTool="authority" />
     </main>
   );
 }

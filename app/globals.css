@@ -979,6 +979,12 @@ button svg {
 }
 
 .serp-workbench {
+  --serp-panel-bg: #ffffff;
+  --serp-panel-text: #101828;
+  --serp-panel-muted: #667085;
+  --serp-panel-border: rgba(15, 23, 42, 0.12);
+  --serp-soft-bg: #eef6ff;
+  --serp-soft-border: #d7e7f8;
   display: grid;
   grid-template-columns: minmax(320px, 0.85fr) minmax(0, 1.15fr);
   gap: 18px;
@@ -996,11 +1002,11 @@ button svg {
   align-content: start;
   gap: 16px;
   min-width: 0;
-  border: 1px solid rgba(255, 255, 255, 0.42);
+  border: 1px solid var(--serp-panel-border);
   border-radius: 10px;
   padding: clamp(18px, 2.3vw, 26px);
-  background: rgba(255, 255, 255, 0.95);
-  color: var(--foreground);
+  background: var(--serp-panel-bg);
+  color: var(--serp-panel-text);
   box-shadow: 0 18px 42px -34px rgba(9, 17, 35, 0.68);
 }
 
@@ -1009,17 +1015,17 @@ button svg {
   align-items: flex-start;
   justify-content: space-between;
   gap: 16px;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid var(--serp-panel-border);
   padding-bottom: 14px;
 }
 
 .serp-panel-header strong {
-  color: var(--foreground);
+  color: var(--serp-panel-text);
   font-size: 1.05rem;
 }
 
 .serp-panel-header span {
-  color: var(--muted-foreground);
+  color: var(--serp-panel-muted);
   font-size: 0.84rem;
   font-weight: 700;
   line-height: 1.35;
@@ -1032,17 +1038,20 @@ button svg {
 }
 
 .serp-field label {
-  color: var(--foreground);
+  color: var(--serp-panel-text);
   font-size: 0.9rem;
   font-weight: 700;
 }
 
 .serp-field input {
+  border-color: var(--serp-panel-border);
   padding-left: 16px;
+  color: var(--serp-panel-text);
+  background: #ffffff;
 }
 
 .serp-field span {
-  color: var(--muted-foreground);
+  color: var(--serp-panel-muted);
   font-size: 0.82rem;
   font-weight: 700;
 }
@@ -1056,12 +1065,12 @@ button svg {
 }
 
 .serp-actions .segmented-control {
-  border-color: var(--border);
-  background: var(--stat-bg);
+  border-color: var(--serp-panel-border);
+  background: var(--serp-soft-bg);
 }
 
 .serp-actions .segmented-control button {
-  color: var(--muted-foreground);
+  color: var(--serp-panel-muted);
 }
 
 .serp-actions .segmented-control button:hover,
@@ -1072,7 +1081,7 @@ button svg {
 
 .serp-toggle {
   min-height: 42px;
-  color: var(--muted-foreground);
+  color: var(--serp-panel-muted);
 }
 
 .secondary-button {
@@ -1097,26 +1106,27 @@ button svg {
 }
 
 .serp-command-row .secondary-button {
-  color: var(--foreground);
-  background: var(--stat-bg);
+  color: var(--serp-panel-text);
+  background: var(--serp-soft-bg);
   box-shadow: none;
 }
 
 .serp-command-row .secondary-button:hover {
-  background: var(--secondary);
+  background: #ddeefa;
 }
 
 .serp-copy-status {
   min-height: 18px;
   margin: -4px 0 0;
-  color: var(--muted-foreground);
+  color: var(--serp-panel-muted);
   font-size: 0.85rem;
   font-weight: 700;
   text-align: right;
 }
 
 .serp-output-panel {
-  background: #f8fafc;
+  --serp-panel-bg: #f8fafc;
+  background: var(--serp-panel-bg);
 }
 
 .serp-search-bar {
@@ -1158,7 +1168,7 @@ button svg {
   gap: 12px;
   width: 100%;
   max-width: 652px;
-  border: 1px solid var(--border);
+  border: 1px solid #e5e7eb;
   border-radius: 8px;
   padding: 20px;
   background: #ffffff;
@@ -1172,7 +1182,7 @@ button svg {
 
 .serp-preview-note {
   margin: 0;
-  color: var(--muted-foreground);
+  color: var(--serp-panel-muted);
   font-size: 0.9rem;
   line-height: 1.55;
 }
@@ -1251,14 +1261,14 @@ button svg {
 .serp-guidance-grid article {
   display: grid;
   gap: 8px;
-  border: 1px solid var(--border);
+  border: 1px solid var(--serp-soft-border);
   border-radius: 8px;
   padding: 16px;
-  background: var(--stat-bg);
+  background: var(--serp-soft-bg);
 }
 
 .serp-guidance-grid strong {
-  color: var(--foreground);
+  color: var(--serp-panel-text);
 }
 
 .serp-guidance-grid span {
@@ -1273,7 +1283,7 @@ button svg {
 
 .serp-guidance-grid p {
   margin: 0;
-  color: var(--muted-foreground);
+  color: var(--serp-panel-muted);
   font-size: 0.9rem;
   line-height: 1.55;
 }
@@ -1832,6 +1842,72 @@ body.dark-mode .tip-list p:hover {
   max-width: 820px;
   margin: 0 auto;
   font-size: 1rem;
+}
+
+.answer-block {
+  padding-top: 64px;
+}
+
+.answer-block h2 {
+  max-width: 860px;
+  margin-inline: auto;
+}
+
+.answer-grid,
+.method-summary {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 28px;
+  text-align: left;
+}
+
+.answer-grid article,
+.method-summary article {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 20px;
+  background: var(--card);
+  box-shadow: var(--shadow-card);
+}
+
+.answer-grid span,
+.method-summary span {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--primary);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.answer-grid strong,
+.method-summary strong {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--foreground);
+  font-size: 1.05rem;
+  line-height: 1.35;
+}
+
+.answer-grid p,
+.method-summary p {
+  margin: 0;
+}
+
+.decision-table {
+  margin-top: 10px;
+  text-align: left;
+}
+
+.decision-table table {
+  min-width: 760px;
+}
+
+.decision-table th,
+.decision-table td {
+  vertical-align: top;
 }
 
 .faq-block {
