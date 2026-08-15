@@ -1199,7 +1199,7 @@ button svg {
 
 .serp-browser--desktop {
   justify-self: center;
-  width: min(calc(100% - 72px), 900px);
+  width: min(calc(100% - 72px), 780px);
 }
 
 .serp-browser--mobile {
@@ -2527,7 +2527,7 @@ details p {
 
   .serp-browser--desktop {
     margin-inline: auto;
-    width: min(calc(100% - 56px), 900px);
+    width: min(calc(100% - 56px), 780px);
   }
 }
 
