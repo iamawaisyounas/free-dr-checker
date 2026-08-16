@@ -6,7 +6,7 @@ const defaultTitle = "Domain Rating Checker - Check Ahrefs DR for Free | DR Chec
 const defaultUrl = "https://dr-checker.com";
 const defaultDescription =
   "Check the Domain Rating (DR) of any website instantly. See a clear visual score and find out where your domain stands. Get a free 0-100 authority score for any domain.";
-const defaultQuery = "dr checker com";
+const defaultQuery = "site:dr-checker.com";
 const serpCharacterLimits = {
   desktop: {
     title: 57,
