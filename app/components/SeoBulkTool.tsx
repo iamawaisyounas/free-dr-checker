@@ -124,7 +124,7 @@ export default function SeoBulkTool({ tool }: Props) {
   const endpoint = isDr ? "/api/dr-checker" : isAuthority ? "/api/tools/authority-score" : "/api/tools/domain-age";
   const placeholder = "example.com\nsocialbu.com\n";
   const resultCount = isDr ? drResults.length : isAuthority ? authorityResults.length : ageResults.length;
-  const turnstileSiteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || "";
+  const turnstileSiteKey = isDr ? "" : process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || "";
 
   useEffect(() => {
     const domain = new URLSearchParams(window.location.search).get("domain");
