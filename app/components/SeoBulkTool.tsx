@@ -94,6 +94,7 @@ export default function SeoBulkTool({ tool }: Props) {
   const [turnstileToken, setTurnstileToken] = useState("");
   const [turnstileResetKey, setTurnstileResetKey] = useState(0);
   const [pendingVerification, setPendingVerification] = useState(false);
+  const [turnstileUnavailable, setTurnstileUnavailable] = useState(false);
   const [drResults, setDrResults] = useState<DrResult[]>([]);
   const [authorityResults, setAuthorityResults] = useState<AuthorityResult[]>([]);
   const [ageResults, setAgeResults] = useState<DomainAgeResult[]>([]);
@@ -140,12 +141,14 @@ export default function SeoBulkTool({ tool }: Props) {
   const canSubmit = !loading && hasPreparedDomains;
 
   const handleTurnstileError = useCallback(() => {
-    setError("Bot protection could not load. Please refresh and try again.");
+    setTurnstileUnavailable(true);
+    setError("Bot protection could not load. Continuing with rate limiting.");
   }, []);
 
   const resetTurnstile = useCallback(() => {
     setTurnstileToken("");
     setPendingVerification(false);
+    setTurnstileUnavailable(false);
     setTurnstileResetKey((value) => value + 1);
   }, []);
 
@@ -160,14 +163,14 @@ export default function SeoBulkTool({ tool }: Props) {
     }
   }
 
-  const runCheck = useCallback(async (domains: string[], token: string) => {
+  const runCheck = useCallback(async (domains: string[], token: string, bypassUnavailableTurnstile = false) => {
     setLoading(true);
 
     try {
       const response = await fetch(endpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ domains, turnstileToken: token })
+        body: JSON.stringify({ domains, turnstileToken: token, turnstileUnavailable: bypassUnavailableTurnstile })
       });
       const data = await response.json();
 
@@ -175,6 +178,8 @@ export default function SeoBulkTool({ tool }: Props) {
         setError(data?.error || "Unable to check these domains right now.");
         return;
       }
+
+      setError("");
 
       if (isAuthority) {
         setAuthorityResults(data.results || []);
@@ -222,7 +227,12 @@ export default function SeoBulkTool({ tool }: Props) {
       setPendingVerification(false);
       void runCheck(preparedDomains.slice(0, maxDomains), turnstileToken);
     }
-  }, [loading, maxDomains, pendingVerification, preparedDomains, runCheck, turnstileToken]);
+
+    if (pendingVerification && turnstileUnavailable && !loading) {
+      setPendingVerification(false);
+      void runCheck(preparedDomains.slice(0, maxDomains), "", true);
+    }
+  }, [loading, maxDomains, pendingVerification, preparedDomains, runCheck, turnstileToken, turnstileUnavailable]);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -235,14 +245,14 @@ export default function SeoBulkTool({ tool }: Props) {
       return;
     }
 
-    if (turnstileSiteKey && !turnstileToken) {
+    if (turnstileSiteKey && !turnstileToken && !turnstileUnavailable) {
       setShowTurnstile(true);
       setPendingVerification(true);
       setError("Please complete the bot protection check.");
       return;
     }
 
-    await runCheck(domains, turnstileToken);
+    await runCheck(domains, turnstileToken, turnstileUnavailable);
   }
 
   function exportCsv() {

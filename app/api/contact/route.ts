@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { checkRateLimit, getClientIp } from "../../../lib/rate-limit";
 import { verifyTurnstileToken } from "../../../lib/turnstile";
 
 const CONTACT_TO_EMAIL = process.env.CONTACT_TO_EMAIL || "support@dr-checker.com";
@@ -14,6 +15,11 @@ function cleanText(value: unknown, maxLength: number) {
 }
 
 export async function POST(request: NextRequest) {
+  const rate = await checkRateLimit(`ratelimit:contact:${getClientIp(request)}`, 5, 60 * 60);
+  if (!rate.ok) {
+    return NextResponse.json({ error: "Too many messages. Please wait and try again." }, { status: 429 });
+  }
+
   let payload: Record<string, unknown>;
 
   try {
@@ -36,7 +42,9 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Please enter your name, subject, email, and message." }, { status: 400 });
   }
 
-  const turnstileError = await verifyTurnstileToken(request, payload.turnstileToken);
+  const turnstileError = await verifyTurnstileToken(request, payload.turnstileToken, {
+    allowUnavailableBypass: payload.turnstileUnavailable === true
+  });
   if (turnstileError) {
     return turnstileError;
   }

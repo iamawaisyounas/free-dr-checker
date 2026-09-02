@@ -22,7 +22,8 @@ async function readBody(request: NextRequest) {
     const body = await request.json().catch(() => ({}));
     return {
       input: body.domains ?? body.domain ?? [],
-      turnstileToken: body.turnstileToken
+      turnstileToken: body.turnstileToken,
+      turnstileUnavailable: body.turnstileUnavailable === true
     };
   }
 
@@ -30,7 +31,8 @@ async function readBody(request: NextRequest) {
     input: request.nextUrl.searchParams.get("domains")
       || request.nextUrl.searchParams.get("domain")
       || "",
-    turnstileToken: request.nextUrl.searchParams.get("turnstileToken")
+    turnstileToken: request.nextUrl.searchParams.get("turnstileToken"),
+    turnstileUnavailable: request.nextUrl.searchParams.get("turnstileUnavailable") === "true"
   };
 }
 
@@ -51,8 +53,10 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Too many requests. Please wait a minute and try again." }, { status: 429 });
   }
 
-  const { input, turnstileToken } = await readBody(request);
-  const turnstileError = await verifyTurnstileToken(request, turnstileToken);
+  const { input, turnstileToken, turnstileUnavailable } = await readBody(request);
+  const turnstileError = await verifyTurnstileToken(request, turnstileToken, {
+    allowUnavailableBypass: turnstileUnavailable
+  });
   if (turnstileError) {
     return turnstileError;
   }

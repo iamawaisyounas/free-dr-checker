@@ -29,12 +29,14 @@ export default function ContactForm() {
   const [turnstileToken, setTurnstileToken] = useState("");
   const [turnstileResetKey, setTurnstileResetKey] = useState(0);
   const [pendingVerification, setPendingVerification] = useState(false);
+  const [turnstileUnavailable, setTurnstileUnavailable] = useState(false);
 
   const turnstileSiteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || "";
 
   const resetTurnstile = useCallback(() => {
     setTurnstileToken("");
     setPendingVerification(false);
+    setTurnstileUnavailable(false);
     setTurnstileResetKey((key) => key + 1);
   }, []);
 
@@ -64,7 +66,7 @@ export default function ContactForm() {
     return "";
   }
 
-  const sendMessage = useCallback(async (token: string) => {
+  const sendMessage = useCallback(async (token: string, bypassUnavailableTurnstile = false) => {
     setStatus("sending");
     setMessage("");
 
@@ -78,7 +80,8 @@ export default function ContactForm() {
           email: fields.email,
           message: fields.help,
           website: fields.website,
-          turnstileToken: token
+          turnstileToken: token,
+          turnstileUnavailable: bypassUnavailableTurnstile
         })
       });
       const data = await response.json();
@@ -101,8 +104,9 @@ export default function ContactForm() {
   }, [fields, resetTurnstile]);
 
   const handleTurnstileError = useCallback(() => {
-    setStatus("error");
-    setMessage("Bot protection failed to load. Refresh the page and try again.");
+    setTurnstileUnavailable(true);
+    setStatus("idle");
+    setMessage("Bot protection could not load. Continuing with rate limiting.");
   }, []);
 
   const handleTurnstileTokenChange = useCallback((token: string) => {
@@ -114,7 +118,12 @@ export default function ContactForm() {
       setPendingVerification(false);
       void sendMessage(turnstileToken);
     }
-  }, [pendingVerification, sendMessage, status, turnstileToken]);
+
+    if (pendingVerification && turnstileUnavailable && status !== "sending") {
+      setPendingVerification(false);
+      void sendMessage("", true);
+    }
+  }, [pendingVerification, sendMessage, status, turnstileToken, turnstileUnavailable]);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -126,7 +135,7 @@ export default function ContactForm() {
       return;
     }
 
-    if (turnstileSiteKey && !turnstileToken) {
+    if (turnstileSiteKey && !turnstileToken && !turnstileUnavailable) {
       setShowTurnstile(true);
       setPendingVerification(true);
       setStatus("idle");
@@ -134,7 +143,7 @@ export default function ContactForm() {
       return;
     }
 
-    await sendMessage(turnstileToken);
+    await sendMessage(turnstileToken, turnstileUnavailable);
   }
 
   return (

@@ -13,12 +13,21 @@ function getTurnstileSecret() {
   return process.env.TURNSTILE_SECRET || process.env.TURNSTILE_SECRET_KEY;
 }
 
-export async function verifyTurnstileToken(request: NextRequest, token: unknown) {
+export async function verifyTurnstileToken(
+  request: NextRequest,
+  token: unknown,
+  options: { allowUnavailableBypass?: boolean } = {}
+) {
   if (!turnstileIsConfigured()) {
     return null;
   }
 
   if (typeof token !== "string" || !token.trim()) {
+    if (options.allowUnavailableBypass) {
+      console.warn("Turnstile unavailable bypass accepted after client widget failure");
+      return null;
+    }
+
     return NextResponse.json({ error: "Please complete the bot protection check." }, { status: 400 });
   }
 
