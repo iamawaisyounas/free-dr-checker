@@ -1,6 +1,8 @@
 import type { MetadataRoute } from "next";
 import { getBlogPosts } from "../lib/sanity/blog";
 
+export const revalidate = 60;
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const lastModified = new Date();
   const blogPosts = await getBlogPosts();
