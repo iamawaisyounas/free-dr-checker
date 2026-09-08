@@ -3,14 +3,14 @@ import CheckerTool from "./components/CheckerTool";
 import DiscoverTools from "./components/DiscoverTools";
 import { absoluteUrl, breadcrumbSchema, faqSchema, softwareApplicationSchema } from "../lib/schema";
 
-const homeTitle = "Domain Rating Checker - Free Ahrefs DR Checker";
+const homeTitle = "Free Domain Rating Checker | DR Checker";
 const homeDescription =
-  "Check Ahrefs Domain Rating for free. Compare backlink strength, qualify websites faster, and decide which domains deserve deeper SEO review.";
+  "Check Ahrefs Domain Rating for free, compare website authority, and qualify domains faster.";
 const homeOgImage = {
   url: "/opengraph-image",
   width: 1200,
   height: 630,
-  alt: "DR Checker domain rating score preview"
+  alt: "Free Domain Rating Checker preview"
 };
 
 export const metadata: Metadata = {

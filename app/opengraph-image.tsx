@@ -1,6 +1,7 @@
 import { ImageResponse } from "next/og";
+import { absoluteUrl } from "../lib/schema";
 
-export const alt = "DR Checker domain rating score preview";
+export const alt = "Free Domain Rating Checker preview";
 export const size = {
   width: 1200,
   height: 630
@@ -17,38 +18,35 @@ export default function Image() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          background: "#f7fafc",
+          background: "#f8fafc",
           color: "#102033",
           padding: 72,
           fontFamily: "Inter, Arial, sans-serif"
         }}
       >
-        <div style={{ display: "flex", alignItems: "center", gap: 18 }}>
-          <div
+        <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
+          <img
+            src={absoluteUrl("/icon-512.png")}
+            alt="DR Checker"
             style={{
               width: 72,
               height: 72,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
               borderRadius: 18,
-              background: "#1a7f64",
-              color: "#ffffff",
-              fontSize: 34,
-              fontWeight: 800
+              boxShadow: "0 14px 34px rgba(15, 23, 42, 0.14)"
             }}
-          >
-            DR
+          />
+          <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
+            <div style={{ fontSize: 36, fontWeight: 900 }}>DR Checker</div>
+            <div style={{ fontSize: 20, fontWeight: 700, color: "#2563eb" }}>by SocialBu</div>
           </div>
-          <div style={{ fontSize: 34, fontWeight: 800 }}>DR Checker</div>
         </div>
 
-        <div style={{ display: "flex", flexDirection: "column", gap: 22 }}>
-          <div style={{ fontSize: 72, lineHeight: 1.05, fontWeight: 900, maxWidth: 900 }}>
-            Free Ahrefs DR Checker
+        <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
+          <div style={{ fontSize: 70, lineHeight: 1.04, fontWeight: 900, maxWidth: 980 }}>
+            Free Domain Rating Checker
           </div>
-          <div style={{ fontSize: 32, lineHeight: 1.35, color: "#40546a", maxWidth: 880 }}>
-            Enter any domain to get a fast Domain Rating score from Ahrefs.
+          <div style={{ fontSize: 32, lineHeight: 1.32, color: "#40546a", maxWidth: 930 }}>
+            Check Ahrefs DR, compare backlink strength, and qualify domains faster.
           </div>
         </div>
 
@@ -72,9 +70,9 @@ export default function Image() {
               color: "#1a7f64"
             }}
           >
-            Domain Rating
+            Fast DR lookup
             <span style={{ color: "#a0acb8" }}>/</span>
-            Ahrefs API
+            No Ahrefs login
           </div>
         </div>
       </div>

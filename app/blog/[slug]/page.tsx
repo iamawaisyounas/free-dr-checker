@@ -81,7 +81,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       title: `${post.title} | DR Checker Blog`,
       description: metaDescription,
       url: `https://dr-checker.com/blog/${post.slug}`,
-      siteName: "Dr Checker",
+      siteName: "DR Checker",
       type: "article",
       images: [
         {
@@ -89,6 +89,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
           alt: post.featuredImageAlt
         }
       ]
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${post.title} | DR Checker Blog`,
+      description: metaDescription,
+      images: [absoluteUrl(post.featuredImage)]
     }
   };
 }

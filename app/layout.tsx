@@ -9,7 +9,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   metadataBase: new URL("https://dr-checker.com"),
   title: {
-    default: "Domain Rating Checker - Free Ahrefs DR Checker",
+    default: "Free Domain Rating Checker | DR Checker",
     template: "%s"
   },
   icons: {
