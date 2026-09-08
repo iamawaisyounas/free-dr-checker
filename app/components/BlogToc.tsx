@@ -51,16 +51,19 @@ export default function BlogToc({ items }: BlogTocProps) {
 
   return (
     <nav>
-      {items.map((item) => (
-        <a
-          className={item.id === activeId ? "is-active" : undefined}
-          href={`#${item.id}`}
-          key={item.id}
-          aria-current={item.id === activeId ? "true" : undefined}
-        >
-          {item.heading}
-        </a>
-      ))}
+      <ul>
+        {items.map((item) => (
+          <li key={item.id}>
+            <a
+              className={item.id === activeId ? "is-active" : undefined}
+              href={`#${item.id}`}
+              aria-current={item.id === activeId ? "true" : undefined}
+            >
+              {item.heading}
+            </a>
+          </li>
+        ))}
+      </ul>
     </nav>
   );
 }

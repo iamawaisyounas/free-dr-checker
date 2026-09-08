@@ -16,6 +16,8 @@ type PageProps = {
   params: Promise<{ slug: string }>;
 };
 
+type BlogPostResult = NonNullable<Awaited<ReturnType<typeof getBlogPostBySlug>>>;
+
 export async function generateStaticParams() {
   const slugs = await getBlogSlugs();
   return slugs.map((slug) => ({ slug }));
@@ -34,6 +36,31 @@ function formatPostDate(value: string) {
     day: "numeric",
     year: "numeric"
   }).format(new Date(`${value}T00:00:00Z`));
+}
+
+function tocItemsForPost(post: BlogPostResult, hasFaqs: boolean) {
+  const items = post.sections.map((section) => ({
+    id: headingId(section.heading),
+    heading: section.heading
+  }));
+
+  if (post.supportBlock) {
+    items.push({
+      id: headingId(post.supportBlock.heading),
+      heading: post.supportBlock.heading
+    });
+  }
+
+  if (hasFaqs) {
+    items.push({
+      id: "domain-rating-faqs",
+      heading: "Frequently asked questions"
+    });
+  }
+
+  return items.filter((item, index, allItems) => (
+    item.id && allItems.findIndex((candidate) => candidate.id === item.id) === index
+  ));
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
@@ -87,8 +114,6 @@ function renderLinkedText(text: string) {
 
   return parts.length ? parts : text;
 }
-
-type BlogPostResult = NonNullable<Awaited<ReturnType<typeof getBlogPostBySlug>>>;
 
 function SupportBlock({ block }: { block: BlogPostResult["supportBlock"] }) {
   if (!block) {
@@ -159,6 +184,7 @@ export default async function BlogPostPage({ params }: PageProps) {
   }
 
   const faqs = post.faqs.filter((faq) => faq.question && faq.answer);
+  const tocItems = tocItemsForPost(post, faqs.length > 0);
 
   const articleSchema = {
     "@context": "https://schema.org",
@@ -250,16 +276,15 @@ export default async function BlogPostPage({ params }: PageProps) {
       </section>
 
       <div className="blog-post-layout">
-        <aside className="blog-toc" aria-labelledby="blog-toc-title">
-          <p id="blog-toc-title">Contents</p>
-          <BlogToc items={post.sections.map((section) => ({
-            id: headingId(section.heading),
-            heading: section.heading
-          }))} />
-        </aside>
-
         <article className="blog-post">
           <p className="lead">{post.intro}</p>
+
+          {tocItems.length ? (
+            <section className="blog-post__toc" aria-labelledby="blog-toc-title">
+              <h2 id="blog-toc-title">Table of Contents</h2>
+              <BlogToc items={tocItems} />
+            </section>
+          ) : null}
 
           {post.takeaways.length ? (
             <section className="blog-post__takeaways" aria-labelledby="key-takeaways">
