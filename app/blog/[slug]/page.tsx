@@ -92,12 +92,20 @@ function parseKeyValueRow(value: string) {
 function transformTableLikeLists(body: PortableTextBlock[]) {
   const transformed: Array<PortableTextBlock | ComparisonTableBlock> = [];
   let index = 0;
+  let currentHeading = "";
 
   while (index < body.length) {
     const block = body[index] as PortableBlockLike;
-    const firstRow = block._type === "block" && block.listItem ? parseKeyValueRow(blockText(block)) : null;
+    const text = blockText(block);
 
-    if (!firstRow) {
+    if (block._type === "block" && typeof block.style === "string" && /^h[2-4]$/.test(block.style)) {
+      currentHeading = text;
+    }
+
+    const firstRow = block._type === "block" && block.listItem ? parseKeyValueRow(blockText(block)) : null;
+    const isConclusionList = /conclusion|frequently asked questions|faqs?/i.test(currentHeading);
+
+    if (!firstRow || isConclusionList) {
       transformed.push(body[index]);
       index += 1;
       continue;
@@ -157,10 +165,7 @@ function ComparisonTable({ value }: { value: ComparisonTableBlock }) {
 }
 
 function tocItemsForPost(post: BlogPostResult, hasFaqs: boolean) {
-  const items = post.sections.map((section) => ({
-    id: headingId(section.heading),
-    heading: section.heading
-  }));
+  const items: Array<{ id: string; heading: string }> = [];
 
   if (post.supportBlock) {
     items.push({
@@ -168,6 +173,11 @@ function tocItemsForPost(post: BlogPostResult, hasFaqs: boolean) {
       heading: post.supportBlock.heading
     });
   }
+
+  items.push(...post.sections.map((section) => ({
+    id: headingId(section.heading),
+    heading: section.heading
+  })));
 
   if (hasFaqs) {
     items.push({
@@ -423,6 +433,8 @@ export default async function BlogPostPage({ params }: PageProps) {
             </section>
           ) : null}
 
+          <SupportBlock block={post.supportBlock} />
+
           <div className="blog-post__body">
             {body.length ? (
               <PortableText
@@ -468,8 +480,6 @@ export default async function BlogPostPage({ params }: PageProps) {
               ))
             )}
           </div>
-
-          <SupportBlock block={post.supportBlock} />
 
           {faqs.length ? (
             <section className="blog-post__faqs" aria-labelledby="domain-rating-faqs">
