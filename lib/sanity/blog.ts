@@ -55,6 +55,18 @@ type SanityPost = {
   }>;
 };
 
+const latestReviewPostOverrides: Record<string, {
+  intro: string;
+  featuredImage: string;
+  featuredImageAlt: string;
+}> = {
+  "best-free-domain-rating-checkers": {
+    intro: "I reviewed 10 free Domain Rating checkers to find which ones are actually useful for quick SEO checks, outreach screening, and competitor research. Start with DR Checker for fast bulk Ahrefs DR checks, then use Ahrefs, Semrush, or Moz when you need a second authority signal.",
+    featuredImage: "/blog-images/best-free-domain-rating-checkers.svg",
+    featuredImageAlt: "Best free Domain Rating checker tools reviewed for SEO research in 2026"
+  }
+};
+
 function blockText(block: PortableBlock | PortableTextBlock) {
   const children = "children" in block ? block.children as PortableBlockChild[] | undefined : undefined;
   return children?.map((child) => child.text || "").join("").trim() || "";
@@ -125,6 +137,7 @@ function normalizeSanityPost(post: SanityPost): BlogPost | null {
     return null;
   }
 
+  const postOverride = latestReviewPostOverrides[post.slug];
   const staticPost = getBlogPost(post.slug);
   const sections = sectionsFromBody(post);
   const publishedAt = staticPost?.date || post.publishedAt || new Date().toISOString();
@@ -142,7 +155,7 @@ function normalizeSanityPost(post: SanityPost): BlogPost | null {
     category: post.category?.title || staticPost?.category || "SEO",
     date: publishedAt.split("T")[0],
     readTime: `${readingTime} min read`,
-    intro: post.intro || post.excerpt || staticPost?.intro || "",
+    intro: postOverride?.intro || post.intro || post.excerpt || staticPost?.intro || "",
     takeaways: staticPost?.takeaways || [],
     supportBlock: staticPost?.supportBlock || {
       heading: "Practical review checklist",
@@ -154,8 +167,8 @@ function normalizeSanityPost(post: SanityPost): BlogPost | null {
         "Choose the next action based on evidence, not one metric."
       ]
     },
-    featuredImage: imageUrl(post, post.slug),
-    featuredImageAlt: post.featuredImage?.alt || `${post.title} featured image`,
+    featuredImage: postOverride?.featuredImage || imageUrl(post, post.slug),
+    featuredImageAlt: postOverride?.featuredImageAlt || post.featuredImage?.alt || `${post.title} featured image`,
     author: {
       name: post.author?.name || staticPost?.author.name || "Awais Younas",
       bio: post.author?.bio || staticPost?.author.bio || "",

@@ -3956,16 +3956,32 @@ details p {
   display: grid;
   align-self: start;
   gap: 14px;
-  max-height: calc(100vh - 136px);
+  max-height: min(62vh, 440px);
   margin: 0;
   overflow-y: auto;
   overscroll-behavior: contain;
+  padding-right: 6px;
+  scrollbar-color: rgba(19, 104, 233, 0.35) transparent;
+  scrollbar-width: thin;
+}
+
+.blog-post-toc-sidebar::-webkit-scrollbar {
+  width: 5px;
+}
+
+.blog-post-toc-sidebar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.blog-post-toc-sidebar::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: rgba(19, 104, 233, 0.28);
 }
 
 .blog-post-after {
   width: min(100%, 760px);
   margin: 0 auto;
-  padding: 0 24px 54px;
+  padding: 0 24px 36px;
 }
 
 .blog-post-cta-wrap {
@@ -4102,8 +4118,10 @@ details p {
   display: grid;
   justify-items: center;
   gap: 16px;
-  margin: 6px 0 0;
-  padding: 22px 24px 0;
+  margin: 12px 0 0;
+  border-top: 1px solid var(--blog-border);
+  border-bottom: 1px solid var(--blog-border);
+  padding: 34px 24px;
   text-align: center;
 }
 
@@ -4257,7 +4275,7 @@ details p {
 
 .blog-post__body a {
   color: var(--blog-primary);
-  font-weight: 650;
+  font-weight: inherit;
   text-decoration: underline;
   text-decoration-thickness: 2px;
   text-underline-offset: 3px;
