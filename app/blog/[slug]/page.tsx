@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import type { PortableTextBlock } from "@portabletext/types";
 import type { ReactNode } from "react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -18,6 +19,23 @@ type PageProps = {
 
 type BlogPostResult = NonNullable<Awaited<ReturnType<typeof getBlogPostBySlug>>>;
 
+type ComparisonTableBlock = {
+  _type: "comparisonTable";
+  _key: string;
+  columns: string[];
+  rows: string[][];
+};
+
+type PortableBlockChild = {
+  text?: string;
+};
+
+type PortableBlockLike = PortableTextBlock & {
+  _key?: string;
+  listItem?: string;
+  children?: PortableBlockChild[];
+};
+
 export async function generateStaticParams() {
   const slugs = await getBlogSlugs();
   return slugs.map((slug) => ({ slug }));
@@ -36,6 +54,106 @@ function formatPostDate(value: string) {
     day: "numeric",
     year: "numeric"
   }).format(new Date(`${value}T00:00:00Z`));
+}
+
+function blockText(block: PortableBlockLike) {
+  return block.children?.map((child) => child.text || "").join("").trim() || "";
+}
+
+function parseKeyValueRow(value: string) {
+  const pairs = value.split(";").map((part) => part.trim()).filter(Boolean);
+
+  if (pairs.length < 3) {
+    return null;
+  }
+
+  const row = new Map<string, string>();
+
+  for (const pair of pairs) {
+    const separatorIndex = pair.indexOf(":");
+
+    if (separatorIndex < 1) {
+      return null;
+    }
+
+    const key = pair.slice(0, separatorIndex).trim();
+    const text = pair.slice(separatorIndex + 1).trim();
+
+    if (!key || !text) {
+      return null;
+    }
+
+    row.set(key, text);
+  }
+
+  return row.size >= 3 ? row : null;
+}
+
+function transformTableLikeLists(body: PortableTextBlock[]) {
+  const transformed: Array<PortableTextBlock | ComparisonTableBlock> = [];
+  let index = 0;
+
+  while (index < body.length) {
+    const block = body[index] as PortableBlockLike;
+    const firstRow = block._type === "block" && block.listItem ? parseKeyValueRow(blockText(block)) : null;
+
+    if (!firstRow) {
+      transformed.push(body[index]);
+      index += 1;
+      continue;
+    }
+
+    const columns = Array.from(firstRow.keys());
+    const rows: string[][] = [];
+    let cursor = index;
+
+    while (cursor < body.length) {
+      const rowBlock = body[cursor] as PortableBlockLike;
+      const row = rowBlock._type === "block" && rowBlock.listItem ? parseKeyValueRow(blockText(rowBlock)) : null;
+
+      if (!row || columns.some((column) => !row.has(column))) {
+        break;
+      }
+
+      rows.push(columns.map((column) => row.get(column) || ""));
+      cursor += 1;
+    }
+
+    if (rows.length >= 2) {
+      transformed.push({
+        _type: "comparisonTable",
+        _key: `comparison-table-${block._key || index}`,
+        columns,
+        rows
+      });
+      index = cursor;
+      continue;
+    }
+
+    transformed.push(body[index]);
+    index += 1;
+  }
+
+  return transformed;
+}
+
+function ComparisonTable({ value }: { value: ComparisonTableBlock }) {
+  return (
+    <table className="blog-comparison-table">
+      <thead>
+        <tr>
+          {value.columns.map((column) => <th key={column}>{column}</th>)}
+        </tr>
+      </thead>
+      <tbody>
+        {value.rows.map((row, rowIndex) => (
+          <tr key={`${value._key}-${rowIndex}`}>
+            {row.map((cell, cellIndex) => <td key={`${value._key}-${rowIndex}-${cellIndex}`}>{cell}</td>)}
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  );
 }
 
 function tocItemsForPost(post: BlogPostResult, hasFaqs: boolean) {
@@ -191,6 +309,7 @@ export default async function BlogPostPage({ params }: PageProps) {
 
   const faqs = post.faqs.filter((faq) => faq.question && faq.answer);
   const tocItems = tocItemsForPost(post, faqs.length > 0);
+  const body = post.body?.length ? transformTableLikeLists(post.body) : [];
 
   const articleSchema = {
     "@context": "https://schema.org",
@@ -306,9 +425,9 @@ export default async function BlogPostPage({ params }: PageProps) {
           ) : null}
 
           <div className="blog-post__body">
-            {post.body?.length ? (
+            {body.length ? (
               <PortableText
-                value={post.body}
+                value={body as PortableTextBlock[]}
                 components={{
                   block: {
                     h2: ({ children }) => <h2 id={headingId(String(children))}>{children}</h2>,
@@ -322,6 +441,7 @@ export default async function BlogPostPage({ params }: PageProps) {
                     }
                   },
                   types: {
+                    comparisonTable: ComparisonTable,
                     image: ({ value }) => {
                       const alt = typeof value?.alt === "string" ? value.alt : "";
                       return (
