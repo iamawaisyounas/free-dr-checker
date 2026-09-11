@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 type BlogTocItem = {
   id: string;
@@ -13,6 +13,7 @@ type BlogTocProps = {
 
 export default function BlogToc({ items }: BlogTocProps) {
   const [activeId, setActiveId] = useState(items[0]?.id ?? "");
+  const navRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const sectionIds = items.map((item) => item.id);
@@ -49,8 +50,32 @@ export default function BlogToc({ items }: BlogTocProps) {
     };
   }, [items]);
 
+  useEffect(() => {
+    if (!activeId) {
+      return;
+    }
+
+    const nav = navRef.current;
+    const activeLink = nav?.querySelector<HTMLAnchorElement>(`a[href="#${CSS.escape(activeId)}"]`);
+    const scrollContainer = nav?.closest<HTMLElement>(".blog-post-toc-sidebar");
+
+    if (!activeLink || !scrollContainer || scrollContainer.scrollHeight <= scrollContainer.clientHeight) {
+      return;
+    }
+
+    const containerRect = scrollContainer.getBoundingClientRect();
+    const linkRect = activeLink.getBoundingClientRect();
+    const padding = 12;
+
+    if (linkRect.top < containerRect.top + padding) {
+      scrollContainer.scrollTop -= containerRect.top + padding - linkRect.top;
+    } else if (linkRect.bottom > containerRect.bottom - padding) {
+      scrollContainer.scrollTop += linkRect.bottom - (containerRect.bottom - padding);
+    }
+  }, [activeId]);
+
   return (
-    <nav>
+    <nav ref={navRef}>
       <ul>
         {items.map((item) => (
           <li key={item.id}>

@@ -373,7 +373,6 @@ export default async function BlogPostPage({ params }: PageProps) {
       <section className="blog-post-hero" aria-labelledby="blog-post-title">
         <div className="blog-post-hero__inner">
           <div className="blog-post-hero__content">
-            <p className="blog-card__meta">{post.category}</p>
             <h1 id="blog-post-title">{post.title}</h1>
             <div className="blog-post__byline" aria-label="Article author, last reviewed date, and read time">
               <img src={post.author.photo || "/assets/awais-younas.jpg"} alt="" width="96" height="96" decoding="async" />

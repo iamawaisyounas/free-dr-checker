@@ -3268,6 +3268,7 @@ details p {
   margin: 0;
   color: var(--blog-text);
   font-size: clamp(2.2rem, 6vw, 4.8rem);
+  font-weight: 650;
   line-height: 1;
   text-align: left;
 }
@@ -3342,6 +3343,7 @@ details p {
 .blog-home-hero__feature,
 .blog-post-hero__image {
   display: grid;
+  box-sizing: border-box;
   overflow: hidden;
   border: 1px solid rgba(17, 24, 39, 0.08);
   border-radius: 8px;
@@ -3365,6 +3367,7 @@ details p {
 }
 
 .blog-post-hero__image img {
+  height: auto;
   object-fit: contain;
 }
 
@@ -3404,8 +3407,9 @@ details p {
 }
 
 .blog-post-hero__image {
-  aspect-ratio: 1200 / 628;
-  padding: 16px 16px 22px;
+  align-items: center;
+  aspect-ratio: auto;
+  padding: 16px 16px 24px;
 }
 
 .blog-featured {
@@ -4205,7 +4209,7 @@ details p {
   color: var(--blog-text);
   font-family: "Plus Jakarta Sans", "DM Sans", Arial, sans-serif;
   font-size: 2.05rem;
-  font-weight: 750;
+  font-weight: 650;
   letter-spacing: 0;
   line-height: 1.25;
   scroll-margin-top: 96px;
@@ -4216,7 +4220,7 @@ details p {
   color: var(--blog-text);
   font-family: "Plus Jakarta Sans", "DM Sans", Arial, sans-serif;
   font-size: 1.45rem;
-  font-weight: 750;
+  font-weight: 650;
   letter-spacing: 0;
   line-height: 1.25;
   scroll-margin-top: 96px;
@@ -4227,7 +4231,7 @@ details p {
   color: var(--blog-text);
   font-family: "Plus Jakarta Sans", "DM Sans", Arial, sans-serif;
   font-size: 1.15rem;
-  font-weight: 750;
+  font-weight: 650;
   letter-spacing: 0;
   line-height: 1.25;
   scroll-margin-top: 96px;
@@ -4350,12 +4354,12 @@ details p {
   width: 100%;
   min-width: 0;
   margin: 1.75em 0;
-  border: 1px solid #cddcf7;
+  border: 1px solid rgba(19, 104, 233, 0.18);
   border-collapse: collapse;
   border-radius: 8px;
   overflow: hidden;
   background: #ffffff;
-  box-shadow: 0 10px 30px rgba(5, 87, 240, 0.08);
+  box-shadow: 0 10px 30px rgba(19, 104, 233, 0.08);
   color: #334155;
   font-family: "DM Sans", Arial, sans-serif;
   font-size: 0.95rem;
@@ -4372,8 +4376,8 @@ details p {
 .blog-post__support th,
 .blog-post__support td {
   border: 0;
-  border-right: 1px solid #dbe7fb;
-  border-bottom: 1px solid #dbe7fb;
+  border-right: 1px solid rgba(19, 104, 233, 0.14);
+  border-bottom: 1px solid rgba(19, 104, 233, 0.14);
   padding: 15px 16px;
   color: #334155;
   line-height: 1.5;
@@ -4395,7 +4399,7 @@ details p {
 
 .blog-post__body thead th,
 .blog-post__support thead th {
-  background: #3b89fd;
+  background: var(--blog-primary);
   color: #ffffff;
   font-family: "Plus Jakarta Sans", "DM Sans", Arial, sans-serif;
   font-weight: 700;
@@ -4405,7 +4409,22 @@ details p {
 
 .blog-post__body tbody tr:nth-child(even) > td,
 .blog-post__support tbody tr:nth-child(even) > td {
-  background: #f7faff;
+  background: rgba(19, 104, 233, 0.035);
+}
+
+.blog-post__body tbody tr:hover,
+.blog-post__support tbody tr:hover {
+  background: transparent;
+}
+
+.blog-post__body tbody tr:hover > td,
+.blog-post__support tbody tr:hover > td {
+  background: inherit;
+}
+
+.blog-post__body tbody tr:nth-child(even):hover > td,
+.blog-post__support tbody tr:nth-child(even):hover > td {
+  background: rgba(19, 104, 233, 0.035);
 }
 
 .blog-post__body tbody td:first-child,
@@ -4611,7 +4630,7 @@ details p {
   }
 
   .blog-post-hero__image {
-    aspect-ratio: 16 / 9;
+    aspect-ratio: auto;
   }
 
   .blog-page__inner {
