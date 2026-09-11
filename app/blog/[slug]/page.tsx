@@ -282,15 +282,17 @@ export default async function BlogPostPage({ params }: PageProps) {
       </section>
 
       <div className="blog-post-layout">
+        {tocItems.length ? (
+          <aside className="blog-post-toc-sidebar" aria-labelledby="blog-toc-title">
+            <h2 id="blog-toc-title">Table of Contents</h2>
+            <BlogToc items={tocItems} />
+          </aside>
+        ) : (
+          <div aria-hidden="true" />
+        )}
+
         <article className="blog-post">
           <p className="lead">{post.intro}</p>
-
-          {tocItems.length ? (
-            <section className="blog-post__toc" aria-labelledby="blog-toc-title">
-              <h2 id="blog-toc-title">Table of Contents</h2>
-              <BlogToc items={tocItems} />
-            </section>
-          ) : null}
 
           {post.takeaways.length ? (
             <section className="blog-post__takeaways" aria-labelledby="key-takeaways">
@@ -309,7 +311,9 @@ export default async function BlogPostPage({ params }: PageProps) {
                 value={post.body}
                 components={{
                   block: {
-                    h2: ({ children }) => <h2 id={headingId(String(children))}>{children}</h2>
+                    h2: ({ children }) => <h2 id={headingId(String(children))}>{children}</h2>,
+                    h3: ({ children }) => <h3 id={headingId(String(children))}>{children}</h3>,
+                    h4: ({ children }) => <h4 id={headingId(String(children))}>{children}</h4>
                   },
                   marks: {
                     link: ({ children, value }) => {
@@ -328,7 +332,9 @@ export default async function BlogPostPage({ params }: PageProps) {
                           decoding="async"
                         />
                       );
-                    }
+                    },
+                    horizontalRule: () => null,
+                    divider: () => null
                   }
                 }}
               />
