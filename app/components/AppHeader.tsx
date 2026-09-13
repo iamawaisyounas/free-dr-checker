@@ -65,7 +65,6 @@ export default function AppHeader() {
           <Link href="/contact" onClick={() => setMenuOpen(false)}>Contact</Link>
         </nav>
         <div className="header-actions">
-          <Link className="header-cta" href="/#domainInput" onClick={() => setMenuOpen(false)}>Start free</Link>
           <button
             className="theme-toggle"
             type="button"
