@@ -448,33 +448,35 @@ body.dark-mode .standard-header-shell.is-scrolled {
   box-shadow: none;
 }
 
-.site-logo-dark {
-  display: none;
+.site-logo-dr,
+.site-logo-byline {
+  fill: #ffffff;
+  transition: fill 200ms ease;
 }
 
-body.dark-mode .site-logo-light {
-  display: block;
+.site-logo-checker {
+  fill: #07111f;
+  transition: fill 200ms ease;
 }
 
-body.dark-mode .site-logo-dark {
-  display: none;
+.standard-header-shell.is-scrolled .site-logo-dr {
+  fill: #091123;
 }
 
-.standard-header-shell.is-scrolled .site-logo-light {
-  display: none;
+.standard-header-shell.is-scrolled .site-logo-checker {
+  fill: #0067f7;
 }
 
-.standard-header-shell.is-scrolled .site-logo-dark {
-  display: block;
-  box-shadow: none;
+.standard-header-shell.is-scrolled .site-logo-byline {
+  fill: #40546a;
 }
 
-body.dark-mode .standard-header-shell.is-scrolled .site-logo-light {
-  display: block;
+body.dark-mode .standard-header-shell.is-scrolled .site-logo-dr {
+  fill: #ffffff;
 }
 
-body.dark-mode .standard-header-shell.is-scrolled .site-logo-dark {
-  display: none;
+body.dark-mode .standard-header-shell.is-scrolled .site-logo-byline {
+  fill: #b2cae6;
 }
 
 .brand-mark {
