@@ -40,19 +40,32 @@ export default function AppHeader() {
             <img className="site-logo site-logo-dark" src="/assets/da-checker-logo-dark.svg" alt="DR checker dark logo" width="320" height="82" />
           </Link>
         </div>
+        <nav
+          id="primary-navigation"
+          className={`site-nav${menuOpen ? " is-open" : ""}`}
+          aria-label="Primary navigation"
+        >
+          <details className="nav-dropdown">
+            <summary>
+              <span>Free SEO Tools</span>
+              <svg aria-hidden="true" viewBox="0 0 24 24">
+                <path d="m6 9 6 6 6-6"></path>
+              </svg>
+            </summary>
+            <div className="nav-dropdown-menu">
+              <Link href="/" onClick={() => setMenuOpen(false)}>DR Checker</Link>
+              <Link href="/bulk-dr-checker" onClick={() => setMenuOpen(false)}>Bulk DR Checker</Link>
+              <Link href="/domain-authority-checker" onClick={() => setMenuOpen(false)}>Domain Authority Checker</Link>
+              <Link href="/domain-age-checker" onClick={() => setMenuOpen(false)}>Domain Age Checker</Link>
+              <Link href="/google-serp-simulator" onClick={() => setMenuOpen(false)}>SERP Simulator</Link>
+            </div>
+          </details>
+          <Link href="/about" onClick={() => setMenuOpen(false)}>About</Link>
+          <Link href="/blog" onClick={() => setMenuOpen(false)}>Resources</Link>
+          <Link href="/contact" onClick={() => setMenuOpen(false)}>Contact</Link>
+        </nav>
         <div className="header-actions">
-          <nav
-            id="primary-navigation"
-            className={`site-nav${menuOpen ? " is-open" : ""}`}
-            aria-label="Primary navigation"
-          >
-            <Link href="/bulk-dr-checker" onClick={() => setMenuOpen(false)}>Free Bulk Domain Rating Checker</Link>
-            <Link href="/domain-authority-checker" onClick={() => setMenuOpen(false)}>Domain Authority Checker</Link>
-            <Link href="/domain-age-checker" onClick={() => setMenuOpen(false)}>Domain Age Checker</Link>
-            <Link href="/google-serp-simulator" onClick={() => setMenuOpen(false)}>SERP Simulator</Link>
-            <Link href="/blog" onClick={() => setMenuOpen(false)}>Blog</Link>
-            <Link href="/contact" onClick={() => setMenuOpen(false)}>Contact</Link>
-          </nav>
+          <Link className="header-cta" href="/#domainInput" onClick={() => setMenuOpen(false)}>Start free</Link>
           <button
             className="theme-toggle"
             type="button"
