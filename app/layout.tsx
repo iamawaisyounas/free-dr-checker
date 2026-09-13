@@ -91,6 +91,21 @@ function Footer() {
             <a className="footer-badge-link" href="https://firstlook.tools" target="_blank" aria-label="Featured on First Look">
               <img className="footer-badge" src="https://firstlook.tools/badge/badge_transparent.svg" alt="Featured on First Look" width="200" height="54" />
             </a>
+            <a
+              className="footer-badge-link"
+              href="https://tools.launchllama.co?utm_source=badge&utm_medium=referral"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="As seen on Launch Llama Newsletter"
+            >
+              <img
+                className="footer-badge"
+                src="https://tools.launchllama.co/featured-badge.png?v=2"
+                alt="As seen on Launch Llama Newsletter"
+                width="200"
+                height="52"
+              />
+            </a>
           </div>
         </nav>
       </div>
