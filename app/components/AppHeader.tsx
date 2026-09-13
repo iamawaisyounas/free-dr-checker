@@ -56,7 +56,6 @@ export default function AppHeader() {
               </svg>
             </summary>
             <div className="nav-dropdown-menu">
-              <Link href="/" onClick={() => setMenuOpen(false)}>DR Checker</Link>
               <Link href="/bulk-dr-checker" onClick={() => setMenuOpen(false)}>Bulk DR Checker</Link>
               <Link href="/domain-authority-checker" onClick={() => setMenuOpen(false)}>Domain Authority Checker</Link>
               <Link href="/domain-age-checker" onClick={() => setMenuOpen(false)}>Domain Age Checker</Link>
