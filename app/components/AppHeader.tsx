@@ -17,6 +17,7 @@ export default function AppHeader() {
   }, []);
 
   useEffect(() => {
+    document.documentElement.classList.toggle("dark-mode", theme === "dark");
     document.body.classList.toggle("dark-mode", theme === "dark");
     window.localStorage.setItem("dr-checker-theme", theme);
   }, [theme]);
@@ -37,11 +38,11 @@ export default function AppHeader() {
         <div className="brand-lockup">
           <Link className="brand" href="/" aria-label="Domain Rating Checker home">
             <span className="site-logo" role="img" aria-label="DR Checker by SocialBu">
-              <img className="site-logo-icon" src="/icon-512.png" alt="" width="44" height="44" />
-              <span className="site-logo-text">
+              <span className="site-logo-main">
+                <img className="site-logo-icon" src="/icon-512.png" alt="" width="30" height="30" />
                 <span className="site-logo-name">Checker</span>
-                <span className="site-logo-byline">by SocialBu</span>
               </span>
+              <span className="site-logo-byline">by SocialBu</span>
             </span>
           </Link>
         </div>
