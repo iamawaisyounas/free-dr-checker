@@ -469,50 +469,50 @@ body.dark-mode .standard-header-shell.is-scrolled {
 }
 
 .site-logo {
-  display: block;
-  width: 190px;
-  height: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  width: auto;
+  max-width: 100%;
   border-radius: 0;
   box-shadow: none;
 }
 
-.site-logo-dr,
+.site-logo-icon {
+  width: 44px;
+  height: 44px;
+  flex: 0 0 44px;
+  border-radius: 12px;
+  display: block;
+}
+
+.site-logo-text {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 3px;
+  min-width: 0;
+  color: #07111f;
+  white-space: nowrap;
+  transition: color 200ms ease;
+}
+
+.site-logo-name {
+  font-size: 1.72rem;
+  line-height: 1;
+  font-weight: 800;
+  letter-spacing: 0;
+}
+
 .site-logo-byline {
-  fill: #ffffff;
-  transition: fill 200ms ease;
+  font-size: 0.82rem;
+  line-height: 1.05;
+  font-weight: 700;
+  letter-spacing: 0;
 }
 
-.site-logo-checker {
-  fill: #07111f;
-  transition: fill 200ms ease;
-}
-
-body.dark-mode .site-logo-checker {
-  fill: #07111f;
-}
-
-.standard-header-shell.is-scrolled .site-logo-dr {
-  fill: #091123;
-}
-
-.standard-header-shell.is-scrolled .site-logo-checker {
-  fill: #0067f7;
-}
-
-body.dark-mode .standard-header-shell.is-scrolled .site-logo-checker {
-  fill: #0067f7;
-}
-
-.standard-header-shell.is-scrolled .site-logo-byline {
-  fill: #40546a;
-}
-
-body.dark-mode .standard-header-shell.is-scrolled .site-logo-dr {
-  fill: #ffffff;
-}
-
-body.dark-mode .standard-header-shell.is-scrolled .site-logo-byline {
-  fill: #b2cae6;
+body.dark-mode .site-logo-text {
+  color: #ffffff;
 }
 
 .brand-mark {
@@ -3001,8 +3001,23 @@ details p {
   }
 
   .site-logo {
-    width: 148px;
+    width: auto;
     max-width: 100%;
+  }
+
+  .site-logo-icon {
+    width: 38px;
+    height: 38px;
+    flex-basis: 38px;
+    border-radius: 10px;
+  }
+
+  .site-logo-name {
+    font-size: 1.36rem;
+  }
+
+  .site-logo-byline {
+    font-size: 0.68rem;
   }
 
   .header-actions {
@@ -3288,7 +3303,7 @@ details p {
 
 @media (max-width: 420px) {
   .site-logo {
-    width: 138px;
+    width: auto;
   }
 
   .brand {

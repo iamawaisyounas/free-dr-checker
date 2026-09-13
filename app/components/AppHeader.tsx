@@ -36,14 +36,13 @@ export default function AppHeader() {
       <header className="site-header standard-site-header" aria-label="Site header">
         <div className="brand-lockup">
           <Link className="brand" href="/" aria-label="Domain Rating Checker home">
-            <svg className="site-logo" width="320" height="82" viewBox="0 0 320 82" role="img" aria-labelledby="site-logo-title">
-              <title id="site-logo-title">DR checker by SocialBu</title>
-              <text x="270" y="46" textAnchor="end" fontFamily="system-ui, -apple-system, sans-serif" fontSize="48" fontWeight="700">
-                <tspan className="site-logo-dr" letterSpacing="-1.5">DR</tspan>
-                <tspan className="site-logo-checker" letterSpacing="-1">checker</tspan>
-              </text>
-              <text className="site-logo-byline" x="270" y="68" textAnchor="end" fontFamily="system-ui, -apple-system, sans-serif" fontSize="18" fontWeight="600">by SocialBu</text>
-            </svg>
+            <span className="site-logo" role="img" aria-label="DR Checker by SocialBu">
+              <img className="site-logo-icon" src="/icon-512.png" alt="" width="44" height="44" />
+              <span className="site-logo-text">
+                <span className="site-logo-name">Checker</span>
+                <span className="site-logo-byline">by SocialBu</span>
+              </span>
+            </span>
           </Link>
         </div>
         <nav
