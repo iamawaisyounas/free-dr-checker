@@ -38,7 +38,7 @@ export default function AppHeader() {
         <div className="brand-lockup">
           <Link className="brand" href="/" aria-label="Domain Rating Checker home">
             <span className="site-logo" role="img" aria-label="DR Checker">
-              <img className="site-logo-icon" src="/icon-512.png" alt="" width="32" height="32" />
+              <img className="site-logo-icon" src="/icon-512.png" alt="" width="28" height="28" />
               <span className="site-logo-name">Checker</span>
             </span>
           </Link>
