@@ -459,11 +459,19 @@ body.dark-mode .standard-header-shell.is-scrolled {
   transition: fill 200ms ease;
 }
 
+body.dark-mode .site-logo-checker {
+  fill: #07111f;
+}
+
 .standard-header-shell.is-scrolled .site-logo-dr {
   fill: #091123;
 }
 
 .standard-header-shell.is-scrolled .site-logo-checker {
+  fill: #0067f7;
+}
+
+body.dark-mode .standard-header-shell.is-scrolled .site-logo-checker {
   fill: #0067f7;
 }
 
