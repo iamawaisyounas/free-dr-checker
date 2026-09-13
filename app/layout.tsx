@@ -83,6 +83,15 @@ function Footer() {
           <h2>Support</h2>
           <Link href="/faq">Ask a Question</Link>
           <Link href="/contact">Submit Your Request</Link>
+          <div className="footer-featured-on" aria-label="Featured on">
+            <p>Featured on</p>
+            <a className="footer-badge-link" href="https://tooldirs.com" target="_blank" aria-label="Featured on ToolDirs">
+              <img className="footer-badge" src="https://tooldirs.com/badge/badge_transparent.svg" alt="Featured on ToolDirs" width="200" height="54" />
+            </a>
+            <a className="footer-badge-link" href="https://firstlook.tools" target="_blank" aria-label="Featured on First Look">
+              <img className="footer-badge" src="https://firstlook.tools/badge/badge_transparent.svg" alt="Featured on First Look" width="200" height="54" />
+            </a>
+          </div>
         </nav>
       </div>
       <div className="global-footer__bottom">

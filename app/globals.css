@@ -188,6 +188,33 @@ a {
   height: auto;
 }
 
+.footer-badge-link {
+  display: inline-flex;
+  width: 200px;
+  max-width: 100%;
+  padding: 0;
+}
+
+.footer-badge {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.footer-featured-on {
+  display: grid;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.footer-featured-on p {
+  margin: 0;
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 500;
+  line-height: 1.35;
+}
+
 .footer-logo-dark {
   display: none;
 }
