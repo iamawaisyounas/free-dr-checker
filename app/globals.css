@@ -38,9 +38,9 @@
   --placeholder-border: rgba(223, 229, 236, 0.58);
   --placeholder-shadow: 0 16px 44px -30px rgba(9, 17, 35, 0.24);
   --site-container: 1180px;
-  --site-header-container: 1360px;
   --site-gutter: 24px;
   --site-inner-pad: 2px;
+  --footer-content-offset: 30px;
   --radius: 14px;
 }
 
@@ -175,9 +175,9 @@ a {
   grid-template-columns: minmax(250px, 1.28fr) repeat(3, minmax(140px, 0.8fr));
   column-gap: clamp(18px, 1.8vw, 28px);
   row-gap: 28px;
-  width: min(100%, var(--site-header-container));
+  width: min(100%, var(--site-container));
   margin: 0 auto;
-  padding: 42px var(--site-inner-pad) 30px;
+  padding: 42px var(--site-inner-pad) 30px calc(var(--site-inner-pad) + var(--footer-content-offset));
 }
 
 .footer-brand-block,
@@ -325,9 +325,9 @@ body.dark-mode .footer-logo-dark {
   align-items: center;
   justify-content: space-between;
   gap: 24px;
-  width: min(100%, var(--site-header-container));
+  width: min(100%, var(--site-container));
   margin: 0 auto;
-  padding: 18px var(--site-inner-pad) 24px;
+  padding: 18px var(--site-inner-pad) 24px calc(var(--site-inner-pad) + var(--footer-content-offset));
 }
 
 .footer-column a:hover,
@@ -441,7 +441,7 @@ body.dark-mode .standard-header-shell.is-scrolled {
 }
 
 .site-header.standard-site-header {
-  width: min(100%, var(--site-header-container));
+  width: min(100%, var(--site-container));
   margin-bottom: 0;
 }
 
@@ -2941,6 +2941,7 @@ details p {
   :root {
     --site-gutter: 14px;
     --site-inner-pad: 0px;
+    --footer-content-offset: 0px;
   }
 
   .standard-header-shell {
@@ -4972,6 +4973,7 @@ details p {
   :root {
     --site-gutter: 14px;
     --site-inner-pad: 0px;
+    --footer-content-offset: 0px;
   }
 
   .global-footer {
