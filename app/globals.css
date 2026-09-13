@@ -100,44 +100,6 @@ body.dark-mode {
 html {
   scroll-behavior: smooth;
   overflow-x: clip;
-  overflow-y: scroll;
-  scrollbar-color: #0557f0 #f9fafc;
-  scrollbar-width: auto;
-  scrollbar-gutter: stable;
-}
-
-html::-webkit-scrollbar {
-  width: 12px;
-}
-
-html::-webkit-scrollbar-track {
-  background: #f9fafc;
-}
-
-html::-webkit-scrollbar-thumb {
-  border: 3px solid #f9fafc;
-  border-radius: 999px;
-  background: #0557f0;
-}
-
-html::-webkit-scrollbar-thumb:hover {
-  background: #033ca5;
-}
-
-html.dark-mode,
-body.dark-mode {
-  scrollbar-color: #0557f0 #040712;
-}
-
-html.dark-mode::-webkit-scrollbar-track,
-body.dark-mode::-webkit-scrollbar-track {
-  background: #040712;
-}
-
-html.dark-mode::-webkit-scrollbar-thumb,
-body.dark-mode::-webkit-scrollbar-thumb {
-  border-color: #040712;
-  background: #0557f0;
 }
 
 body {
