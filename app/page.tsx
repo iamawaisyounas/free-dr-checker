@@ -116,7 +116,7 @@ export default function HomePage() {
             </div>
           </section>
 
-          <section className="copy-block">
+          <section className="copy-block use-case-block">
             <p className="section-label">
               <svg aria-hidden="true" viewBox="0 0 24 24">
                 <circle cx="12" cy="12" r="10"></circle>
@@ -142,7 +142,7 @@ export default function HomePage() {
             </div>
           </section>
 
-          <section className="copy-block">
+          <section className="copy-block intent-block">
             <p className="section-label">
               <svg aria-hidden="true" viewBox="0 0 24 24">
                 <path d="M5 12h14"></path>
@@ -176,7 +176,7 @@ export default function HomePage() {
             </div>
           </section>
 
-          <section className="copy-block">
+          <section className="copy-block decision-block">
             <p className="section-label">
               <svg aria-hidden="true" viewBox="0 0 24 24">
                 <path d="M4 5h16"></path>
@@ -221,7 +221,7 @@ export default function HomePage() {
             </div>
           </section>
 
-          <section className="copy-block">
+          <section className="copy-block workflow-block">
             <p className="section-label">
               <svg aria-hidden="true" viewBox="0 0 24 24">
                 <path d="M9 11 12 14 22 4"></path>
@@ -254,7 +254,7 @@ export default function HomePage() {
             </div>
           </section>
 
-          <section className="copy-block split-block">
+          <section className="copy-block split-block benefits-block">
             <div>
               <p className="section-label">
                 <svg aria-hidden="true" viewBox="0 0 24 24">
@@ -273,7 +273,7 @@ export default function HomePage() {
             </ul>
           </section>
 
-          <section className="copy-block">
+          <section className="copy-block steps-block">
             <p className="section-label">
               <svg aria-hidden="true" viewBox="0 0 24 24">
                 <path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"></path>
@@ -300,7 +300,7 @@ export default function HomePage() {
             </div>
           </section>
 
-          <section className="copy-block split-block">
+          <section className="copy-block split-block tips-block">
             <div>
               <p className="section-label">
                 <svg aria-hidden="true" viewBox="0 0 24 24">
@@ -319,7 +319,7 @@ export default function HomePage() {
             </div>
           </section>
 
-          <section className="copy-block">
+          <section className="copy-block meaning-block">
             <p className="section-label">
               <svg aria-hidden="true" viewBox="0 0 24 24">
                 <path d="M12 7v14"></path>
