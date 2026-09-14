@@ -1101,6 +1101,8 @@ button svg {
   width: min(100%, 1024px);
   margin: -80px auto 0;
   padding: 0 24px;
+  background: #ffffff;
+  box-shadow: 0 0 0 100vmax #ffffff;
 }
 
 .tool-results-section {
@@ -1112,9 +1114,9 @@ button svg {
 }
 
 .discover-tools {
-  background: #eaf6ff;
-  border-top: 1px solid #cfe9ff;
-  border-bottom: 1px solid #cfe9ff;
+  background: #ffffff;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
 }
 
 body.dark-mode .discover-tools {
