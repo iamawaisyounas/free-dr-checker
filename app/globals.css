@@ -447,9 +447,11 @@ body.dark-mode .tool-shell::before {
 }
 
 body.dark-mode .standard-header-shell.is-scrolled {
-  color: #f7fbff;
-  border-bottom-color: rgba(178, 202, 230, 0.16);
-  background: rgba(7, 17, 31, 0.92);
+  color: #ffffff;
+  border-bottom-color: rgba(255, 255, 255, 0.16);
+  background: var(--hero-bg);
+  box-shadow: none;
+  backdrop-filter: none;
 }
 
 .site-header.standard-site-header {
@@ -522,6 +524,10 @@ body.dark-mode .standard-header-shell.is-scrolled {
 }
 
 body.dark-mode .site-logo {
+  color: #ffffff;
+}
+
+body.dark-mode .standard-header-shell.is-scrolled .site-logo {
   color: #ffffff;
 }
 
@@ -739,8 +745,13 @@ body.dark-mode .nav-dropdown-menu a:hover {
 
 body.dark-mode .standard-header-shell.is-scrolled .theme-toggle,
 body.dark-mode .standard-header-shell.is-scrolled .menu-toggle {
-  border-color: rgba(178, 202, 230, 0.18);
-  background: rgba(90, 163, 255, 0.12);
+  border-color: var(--hero-control-border);
+  background: var(--hero-control-bg);
+}
+
+body.dark-mode .standard-header-shell.is-scrolled .theme-toggle:hover,
+body.dark-mode .standard-header-shell.is-scrolled .menu-toggle:hover {
+  background: var(--hero-control-hover);
 }
 
 .menu-toggle {
@@ -3160,9 +3171,9 @@ details p {
   }
 
   body.dark-mode .standard-header-shell.is-scrolled .site-nav {
-    border-color: rgba(178, 202, 230, 0.16);
-    background: rgba(7, 17, 31, 0.96);
-    color: #f7fbff;
+    border-color: var(--hero-control-border);
+    background: rgba(9, 17, 35, 0.92);
+    color: #ffffff;
   }
 
   .site-nav.is-open {
