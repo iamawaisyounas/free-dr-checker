@@ -37,6 +37,7 @@
   --placeholder-bg: rgba(255, 255, 255, 0.64);
   --placeholder-border: rgba(223, 229, 236, 0.58);
   --placeholder-shadow: 0 16px 44px -30px rgba(9, 17, 35, 0.24);
+  --home-tools-bg: #eaf6ff;
   --palette-sky: #eef7ff;
   --palette-sky-border: #bfe2ff;
   --palette-sky-strong: #0b74de;
@@ -101,6 +102,7 @@ body.dark-mode {
   --placeholder-bg: rgba(14, 27, 45, 0.58);
   --placeholder-border: rgba(178, 202, 230, 0.2);
   --placeholder-shadow: 0 18px 54px -32px rgba(0, 0, 0, 0.9);
+  --home-tools-bg: rgba(37, 99, 235, 0.16);
   --palette-sky: rgba(37, 99, 235, 0.16);
   --palette-sky-border: rgba(90, 163, 255, 0.32);
   --palette-sky-strong: #86c4ff;
@@ -1101,8 +1103,8 @@ button svg {
   width: min(100%, 1024px);
   margin: -80px auto 0;
   padding: 0 24px;
-  background: #ffffff;
-  box-shadow: 0 0 0 100vmax #ffffff;
+  background: var(--home-tools-bg);
+  box-shadow: 0 0 0 100vmax var(--home-tools-bg);
 }
 
 .tool-results-section {
@@ -1114,7 +1116,7 @@ button svg {
 }
 
 .discover-tools {
-  background: #ffffff;
+  background: var(--home-tools-bg);
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
 }
