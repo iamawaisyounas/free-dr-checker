@@ -1098,13 +1098,29 @@ button svg {
 }
 
 .results-section {
+  --result-overlap: 80px;
   position: relative;
   z-index: 2;
+  isolation: isolate;
   width: min(100%, 1024px);
-  margin: -80px auto 0;
+  margin: calc(var(--result-overlap) * -1) auto 0;
   padding: 0 24px;
+}
+
+.results-section::before {
+  content: "";
+  position: absolute;
+  top: var(--result-overlap);
+  right: -100vmax;
+  bottom: 0;
+  left: -100vmax;
+  z-index: -1;
   background: var(--home-tools-bg);
-  box-shadow: 0 0 0 100vmax var(--home-tools-bg);
+}
+
+.results-section > * {
+  position: relative;
+  z-index: 1;
 }
 
 .tool-results-section {
@@ -3432,6 +3448,10 @@ details p {
     width: 100vw;
     margin-top: -70px;
     padding: 0 16px;
+  }
+
+  .results-section {
+    --result-overlap: 70px;
   }
 
   .result-placeholder {
