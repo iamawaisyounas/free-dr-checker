@@ -386,7 +386,7 @@ export default async function BlogPostPage({ params }: PageProps) {
             <h1 id="blog-post-title">{post.title}</h1>
             <div className="blog-post__byline" aria-label="Article author, last reviewed date, and read time">
               <img src={post.author.photo || "/assets/awais-younas.jpg"} alt="" width="96" height="96" decoding="async" />
-              <div>
+              <div className="blog-post__byline-copy">
                 <p>{post.author.name}</p>
                 <p className="blog-post__role">{post.author.role || "Founder of DR Checker"}</p>
                 <div className="blog-post__meta-line">

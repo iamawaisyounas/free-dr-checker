@@ -4050,6 +4050,7 @@ details p {
 .blog-post-hero__image {
   align-items: center;
   aspect-ratio: auto;
+  justify-self: stretch;
   padding: 16px 16px 24px;
 }
 
@@ -4519,9 +4520,10 @@ details p {
   object-fit: cover;
 }
 
-.blog-post__byline div {
+.blog-post__byline-copy {
   display: grid;
   gap: 5px;
+  min-width: 0;
 }
 
 .blog-post__byline p,
@@ -4557,8 +4559,14 @@ details p {
 }
 
 .blog-post__meta-line span::before {
+  display: inline-block;
+  width: 4px;
+  height: 4px;
   margin-right: 8px;
-  content: "•";
+  border-radius: 999px;
+  background: currentColor;
+  content: "";
+  vertical-align: middle;
 }
 
 .blog-post__read-time {
@@ -5384,7 +5392,63 @@ details p {
   .blog-home-hero__inner,
   .blog-post-hero__inner {
     gap: 24px;
-    padding: 112px 16px 42px;
+    padding: 106px 16px 40px;
+  }
+
+  .blog-post-hero__content {
+    gap: 16px;
+  }
+
+  .blog-post-hero__image {
+    width: 100%;
+    max-width: 560px;
+    justify-self: center;
+    padding: 8px;
+    box-shadow: 0 18px 44px -34px rgba(17, 24, 39, 0.7);
+  }
+
+  .blog-post-hero__image img {
+    aspect-ratio: 1200 / 628;
+    object-fit: cover;
+  }
+
+  .blog-post__byline {
+    align-items: flex-start;
+    gap: 10px;
+    width: 100%;
+    margin-top: 2px;
+  }
+
+  .blog-post__byline img {
+    width: 44px;
+    height: 44px;
+  }
+
+  .blog-post__byline-copy {
+    gap: 4px;
+    padding-top: 1px;
+  }
+
+  .blog-post__byline p {
+    font-size: 0.94rem;
+  }
+
+  .blog-post__byline .blog-post__role,
+  .blog-post__byline time,
+  .blog-post__byline span {
+    font-size: 0.82rem;
+    line-height: 1.35;
+  }
+
+  .blog-post__meta-line {
+    flex-wrap: wrap;
+    gap: 3px 8px;
+  }
+
+  .blog-post__meta-line span::before {
+    width: 3px;
+    height: 3px;
+    margin-right: 8px;
   }
 
   .blog-post-layout {
@@ -5464,7 +5528,8 @@ details p {
   .blog-home-hero h1,
   .blog-post-hero h1,
   .blog-post h1 {
-    font-size: 2.25rem;
+    font-size: 2.12rem;
+    line-height: 1.06;
   }
 
   .blog-card__footer {
@@ -5481,4 +5546,37 @@ details p {
 .blog-home-hero h1,
 .blog-post-hero h1 {
   font-size: clamp(2.2rem, 6vw, 3.5rem);
+}
+
+@media (max-width: 760px) {
+  .blog-home-hero h1,
+  .blog-post-hero h1 {
+    font-size: 2.12rem;
+    line-height: 1.06;
+  }
+}
+
+@media (max-width: 420px) {
+  .blog-home-hero__inner,
+  .blog-post-hero__inner {
+    padding-top: 98px;
+  }
+
+  .blog-post-hero h1 {
+    font-size: 1.95rem;
+  }
+
+  .blog-post__byline img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .blog-post__meta-line {
+    display: grid !important;
+    gap: 2px;
+  }
+
+  .blog-post__meta-line span::before {
+    display: none;
+  }
 }
