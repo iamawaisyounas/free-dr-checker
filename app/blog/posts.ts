@@ -60,9 +60,9 @@ type BlogPostSeed = Omit<BlogPost, "readTime" | "featuredImage" | "featuredImage
 
 export const blogAuthor: BlogAuthor = {
   name: "Awais Younas",
-  role: "Co-founder of DR Checker",
+  role: "Founder of DR Checker",
   linkedinUrl: "https://www.linkedin.com/in/awais-younas/",
-  bio: "Awais Younas, co-founder of DR Checker, writes about SEO, marketing, and also building socialbu.com. When not creating content, he enjoys video games and snooker."
+  bio: "Awais Younas, founder of DR Checker, writes about SEO, marketing, and also building socialbu.com. When not creating content, he enjoys video games and snooker."
 };
 
 function imageFor(slug: string) {

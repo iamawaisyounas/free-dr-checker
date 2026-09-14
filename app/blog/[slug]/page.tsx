@@ -333,7 +333,7 @@ export default async function BlogPostPage({ params }: PageProps) {
       "@type": "Person",
       name: post.author.name,
       description: post.author.bio,
-      jobTitle: post.author.role || "Co-founder of DR Checker",
+      jobTitle: post.author.role || "Founder of DR Checker",
       sameAs: post.author.linkedinUrl || "https://www.linkedin.com/in/awais-younas/"
     },
     publisher: {
@@ -388,7 +388,7 @@ export default async function BlogPostPage({ params }: PageProps) {
               <img src={post.author.photo || "/assets/awais-younas.jpg"} alt="" width="96" height="96" decoding="async" />
               <div>
                 <p>{post.author.name}</p>
-                <p className="blog-post__role">{post.author.role || "Co-founder of DR Checker"}</p>
+                <p className="blog-post__role">{post.author.role || "Founder of DR Checker"}</p>
                 <div className="blog-post__meta-line">
                   <time dateTime={post.date}>Last reviewed {formatPostDate(post.date)}</time>
                   <span>{post.readTime}</span>

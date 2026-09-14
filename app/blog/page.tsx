@@ -113,7 +113,7 @@ export default async function BlogPage() {
               <img src={featuredPost.author.photo || "/assets/awais-younas.jpg"} alt="" width="96" height="96" decoding="async" />
               <div>
                 <p>{featuredPost.author.name}</p>
-                <p className="blog-post__role">{featuredPost.author.role || "Co-founder of DR Checker"}</p>
+                <p className="blog-post__role">{featuredPost.author.role || "Founder of DR Checker"}</p>
                 <div className="blog-post__meta-line">
                   <time dateTime={featuredPost.date}>Last reviewed {formatPostDate(featuredPost.date)}</time>
                   <span>{featuredPost.readTime}</span>

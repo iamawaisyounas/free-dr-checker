@@ -137,7 +137,7 @@ async function main() {
     name: blogAuthor.name,
     slug: { _type: "slug", current: blogAuthor.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "") },
     bio: blogAuthor.bio,
-    role: "Co-founder",
+    role: "Founder of DR Checker",
     linkedinUrl: "https://www.linkedin.com/in/awais-younas/"
   });
 
