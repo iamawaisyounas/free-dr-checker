@@ -247,6 +247,18 @@ function takeawaysFor(seed: BlogPostSeed) {
 }
 
 const supportBlocks: Record<string, BlogSupportBlock> = {
+  "what-is-a-dr-checker": {
+    heading: "What DR Checker returns",
+    intro: "Use the result as a fast summary, then verify the domain and page context before making an SEO decision.",
+    type: "comparison",
+    columns: ["Output", "What it tells you", "What it does not prove"],
+    rows: [
+      ["Normalized domain", "The root domain that was checked.", "That every subdomain has the same profile."],
+      ["DR score", "Relative backlink strength from 0 to 100.", "Traffic, rankings, or content quality."],
+      ["Rating label", "DR Checker's plain-language score band.", "A universal good or bad threshold."],
+      ["Ahrefs attribution", "The source of the DR data.", "That Ahrefs endorses your SEO decision."]
+    ]
+  },
   "what-is-domain-rating": {
     heading: "Domain Rating decision checklist",
     intro: "Use this quick checklist when a DR score is about to influence content, outreach, or reporting.",
@@ -386,6 +398,30 @@ const supportBlocks: Record<string, BlogSupportBlock> = {
 };
 
 const seeds: BlogPostSeed[] = [
+  {
+    slug: "what-is-a-dr-checker",
+    title: "What Is a DR Checker?",
+    excerpt: "A DR checker retrieves Ahrefs Domain Rating for a website. Learn how the score works, when it helps, and what to verify before making SEO decisions.",
+    seoDescription: "A DR checker retrieves Ahrefs Domain Rating for a website. Learn how the score works, when it helps, and what to verify before making better SEO decisions.",
+    category: "Domain Rating",
+    date: "2026-09-14",
+    intro: "A DR checker is an SEO tool that looks up the Domain Rating of a website. It helps you compare backlink strength, screen outreach prospects, and decide which domains need closer review.",
+    keyword: "DR checker",
+    audience: "site owners, outreach teams, and SEO analysts",
+    promise: "A DR checker retrieves Domain Rating, an Ahrefs metric that compares domain-level backlink strength.",
+    workflow: "Enter a domain or URL, let the checker normalize the root domain, then review the returned Domain Rating with source attribution.",
+    example: "In a live input test, a full tracking URL was normalized to its root domain before returning the DR result.",
+    mistake: "The mistake is treating a DR checker result as a complete site grade or Google ranking signal.",
+    benchmark: "The best benchmark is a set of similar competitors, publishers, or prospects checked with the same provider on the same date.",
+    imageSlug: "what-is-domain-rating",
+    faqs: [
+      { question: "Is Domain Rating a Google ranking factor?", answer: "No. Domain Rating is an Ahrefs metric, not a Google metric. Use it as a backlink comparison signal, not as a direct ranking factor." },
+      { question: "What is a good DR score?", answer: "There is no universal good DR score. Compare a domain with relevant competitors or publishers in the same market." },
+      { question: "Can a low-DR website rank well?", answer: "Yes. A lower-DR site can rank when the page satisfies search intent, has useful content, earns relevant links, and meets technical requirements." },
+      { question: "Is DR the same as DA?", answer: "No. DR is Ahrefs' Domain Rating, while DA is Moz's Domain Authority. Compare trends within one provider instead of treating the scores as interchangeable." }
+    ],
+    related: ["what-is-domain-rating", "how-accurate-is-domain-rating", "competitor-domain-rating-analysis", "improve-domain-rating"]
+  },
   {
     slug: "what-is-domain-rating",
     title: "What Is Domain Rating and How Should You Use It?",
@@ -629,8 +665,83 @@ const seeds: BlogPostSeed[] = [
   }
 ];
 
+const customSections: Record<string, BlogSection[]> = {
+  "what-is-a-dr-checker": [
+    {
+      heading: "What does a DR checker measure",
+      body: [
+        "A DR checker measures the relative strength of a domain's backlink profile by retrieving its Ahrefs Domain Rating. Ahrefs describes DR as a proprietary, logarithmic metric from 0 to 100. The score applies to the domain as a whole, unlike URL Rating, which evaluates an individual page.",
+        "The [Ahrefs Domain Rating definition](https://ahrefs.com/seo/glossary/domain-rating) says referring domains, their DR, and the number of other sites they link to influence the score. Nofollow links do not pass DR. Search traffic, domain age, content quality, and technical SEO are outside the metric."
+      ]
+    },
+    {
+      heading: "How does a DR checker work",
+      body: [
+        "A DR checker accepts a domain or full URL, normalizes that input, sends the target to a data provider, and displays the returned Domain Rating. The [Ahrefs DR API documentation](https://docs.ahrefs.com/en/api/reference/public/get-domain-rating-free) confirms that the result is a floating-point value on a 100-point logarithmic scale.",
+        "DR Checker sends the normalized root domain through its server-side Ahrefs API key, so visitors do not need their own Ahrefs login. In a live test on September 14, 2026, a tracking URL was normalized to example.com before the tool returned DR 94 and Ahrefs attribution."
+      ]
+    },
+    {
+      heading: "How should you interpret a DR score",
+      body: [
+        "Interpret a DR score relative to websites that compete for the same audience, topics, and links. A DR of 40 may be strong in a specialized market and unremarkable among major publishers.",
+        "Ahrefs explains that the scale is logarithmic, so moving from DR 75 to 76 is harder than moving from DR 20 to 21. Review the actual linking page, topical fit, editorial quality, and organic visibility before treating a score as useful."
+      ]
+    },
+    {
+      heading: "When is a DR checker useful",
+      body: [
+        "A DR checker is useful when a fast domain-level comparison can reduce a larger research list. Common uses include benchmarking direct competitors, screening guest-post or digital PR prospects, prioritizing backlink audits, and tracking broad changes over time.",
+        "The [competitor DR analysis](/blog/competitor-domain-rating-analysis) guide can help organize peer comparisons, while the [bulk Domain Rating checker](/bulk-dr-checker) is better for initial list cleanup when you have many domains to screen."
+      ]
+    },
+    {
+      heading: "What should you review after checking DR",
+      body: [
+        "After checking DR, inspect the evidence behind the number and the context of your decision. Confirm the normalized root domain, compare the score with direct peers, open recent pages, inspect important backlinks, check audience signals, and review the exact page where a link or partnership would appear.",
+        "The [Domain Rating accuracy guide](/blog/how-accurate-is-domain-rating) explains why a DR result works best as directional evidence. A surprising score is a reason to inspect the backlink profile, redirects, and recent link changes."
+      ]
+    },
+    {
+      heading: "How is DR different from DA and Authority Score",
+      body: [
+        "DR, DA, and Authority Score are separate vendor metrics. Ahrefs owns Domain Rating, Moz owns Domain Authority, and Semrush publishes Authority Score. Their similar numerical ranges can make them look interchangeable, but each provider uses its own database, inputs, weighting, and update process.",
+        "Semrush describes Authority Score as a compound metric that includes link power, estimated organic traffic, and natural-profile checks. Ahrefs DR is link-based and excludes traffic and spam from its calculation."
+      ]
+    },
+    {
+      heading: "Why can DR change or differ between tools",
+      body: [
+        "DR can change when a site gains or loses followed referring domains, when linking domains change strength, or when the wider Ahrefs link graph shifts. Another tool may show a different authority score because it uses another crawler, database, formula, and refresh schedule.",
+        "Use the same provider when tracking a trend. Record the date beside every result, avoid reacting to one-point movement, and use the [what Domain Rating means](/blog/what-is-domain-rating) guide when you need more context on the metric itself."
+      ]
+    },
+    {
+      heading: "What are the limits of a DR checker",
+      body: [
+        "A DR checker cannot tell you whether a page satisfies search intent, whether a site has useful content, whether its traffic converts, or whether a proposed backlink is editorially appropriate. Google ranks pages through many systems and signals.",
+        "The [Google ranking systems guide](https://developers.google.com/search/docs/appearance/ranking-systems-guide) supports using DR as a diagnostic comparison, not presenting it as a Google score or direct ranking factor. Review DR Checker's privacy policy and terms before checking confidential, unreleased, or client-sensitive domains."
+      ]
+    },
+    {
+      heading: "How can you improve DR safely",
+      body: [
+        "Improving DR means earning followed links from additional referring domains. Relevance does not enter the DR formula, but it should guide the editorial and business value of every link you pursue. For a fuller workflow, read how to [improve Domain Rating safely](/blog/improve-domain-rating).",
+        "Avoid buying ranking links, automating link creation, or joining exchange schemes simply to move a score. A higher DR is not worth creating a search policy risk."
+      ]
+    },
+    {
+      heading: "Use a DR checker as a starting point",
+      body: [
+        "A DR checker makes backlink-strength comparisons faster, especially when you need to reduce a competitor or outreach list. Use the result to choose where deeper research begins.",
+        "Relevance, page quality, organic visibility, link placement, and business fit should still decide whether an SEO opportunity is worth pursuing."
+      ]
+    }
+  ]
+};
+
 export const blogPosts: BlogPost[] = seeds.map((seed) => {
-  const sections = buildSections(seed);
+  const sections = customSections[seed.slug] || buildSections(seed);
   const faqs = defaultFaqs(seed);
   const takeaways = takeawaysFor(seed);
   const supportBlock = supportBlocks[seed.slug] || {
