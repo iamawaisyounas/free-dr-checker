@@ -7,7 +7,7 @@ const homeTitle = "Free Domain Rating Checker | DR Checker";
 const homeDescription =
   "Check Ahrefs Domain Rating for free, compare website authority, and qualify domains faster.";
 const homeOgImage = {
-  url: "/opengraph-image?v=20260913",
+  url: "/opengraph-image?v=20260914",
   width: 1200,
   height: 630,
   alt: "Free Domain Rating Checker preview"

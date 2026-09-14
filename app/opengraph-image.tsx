@@ -17,9 +17,9 @@ export default function Image() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          background: "#07111f",
-          color: "#ffffff",
-          padding: "58px 68px",
+          background: "#f7fbff",
+          color: "#07111f",
+          padding: "56px 64px",
           fontFamily: "Inter, Arial, sans-serif"
         }}
       >
@@ -27,46 +27,100 @@ export default function Image() {
           style={{
             position: "absolute",
             inset: 0,
-            background: "linear-gradient(135deg, rgba(0,103,247,0.42), rgba(0,183,223,0.16) 45%, rgba(7,17,31,0) 72%)"
+            background: "linear-gradient(135deg, #eef6ff 0%, #ffffff 46%, #e9fff8 100%)"
           }}
         />
-        <div style={{ position: "relative", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-          <div style={{ display: "flex", alignItems: "baseline", gap: 0 }}>
-            <span style={{ fontSize: 48, fontWeight: 900, letterSpacing: 0, color: "#ffffff" }}>DR</span>
-            <span style={{ fontSize: 48, fontWeight: 900, letterSpacing: 0, color: "#0067f7" }}>checker</span>
-          </div>
-          <div style={{ fontSize: 24, fontWeight: 700, color: "#b2cae6" }}>by SocialBu</div>
-        </div>
+        <div
+          style={{
+            position: "absolute",
+            right: -140,
+            top: -160,
+            width: 440,
+            height: 440,
+            borderRadius: 440,
+            background: "rgba(0, 103, 247, 0.12)"
+          }}
+        />
+        <div
+          style={{
+            position: "absolute",
+            left: -110,
+            bottom: -150,
+            width: 360,
+            height: 360,
+            borderRadius: 360,
+            background: "rgba(32, 199, 168, 0.13)"
+          }}
+        />
 
-        <div style={{ position: "relative", display: "flex", alignItems: "center", gap: 42 }}>
-          <div style={{ display: "flex", flexDirection: "column", gap: 28, width: 700 }}>
-            <div style={{ fontSize: 82, lineHeight: 0.96, fontWeight: 950, letterSpacing: 0 }}>
-              Free Domain Rating Checker
-            </div>
-            <div style={{ fontSize: 34, lineHeight: 1.22, color: "#dcecff", fontWeight: 650 }}>
-              Check Ahrefs DR and compare backlink strength in seconds.
-            </div>
+        <div style={{ position: "relative", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
+            <img
+              src="https://dr-checker.com/icon-512.png"
+              width={64}
+              height={64}
+              alt=""
+              style={{ borderRadius: 16 }}
+            />
+            <span style={{ fontSize: 54, lineHeight: 1, fontWeight: 650, letterSpacing: 0, color: "#07111f" }}>
+              Checker
+            </span>
           </div>
           <div
             style={{
-              width: 300,
-              height: 300,
-              borderRadius: 36,
-              border: "2px solid rgba(178, 202, 230, 0.3)",
-              background: "rgba(255, 255, 255, 0.94)",
-              boxShadow: "0 30px 80px rgba(0, 0, 0, 0.34)",
-              color: "#07111f",
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              alignItems: "center",
-              gap: 10
+              fontSize: 26,
+              fontWeight: 800,
+              color: "#0067f7",
+              background: "#ffffff",
+              border: "2px solid #d7e8ff",
+              borderRadius: 999,
+              padding: "13px 24px"
             }}
           >
-            <div style={{ fontSize: 28, color: "#40546a", fontWeight: 800 }}>Domain Rating</div>
-            <div style={{ fontSize: 116, lineHeight: 0.9, color: "#0067f7", fontWeight: 950 }}>76</div>
-            <div style={{ fontSize: 24, color: "#1a7f64", fontWeight: 850 }}>Strong domain</div>
+            Free SEO Tool
           </div>
+        </div>
+
+        <div style={{ position: "relative", display: "flex", flexDirection: "column", gap: 30, maxWidth: 940 }}>
+          <div style={{ fontSize: 88, lineHeight: 0.98, fontWeight: 950, letterSpacing: 0 }}>
+            Free Domain Rating Checker
+          </div>
+          <div style={{ fontSize: 38, lineHeight: 1.22, color: "#263b52", fontWeight: 700 }}>
+            Check Ahrefs Domain Rating, compare website authority, and qualify domains faster.
+          </div>
+        </div>
+
+        <div
+          style={{
+            position: "relative",
+            display: "flex",
+            alignItems: "stretch",
+            gap: 18
+          }}
+        >
+          {[
+            ["Ahrefs DR data", "Backlink strength signal"],
+            ["Fast lookup", "No Ahrefs login needed"],
+            ["Clean SEO review", "Made for quick decisions"]
+          ].map(([label, detail]) => (
+            <div
+              key={label}
+              style={{
+                flex: 1,
+                display: "flex",
+                flexDirection: "column",
+                gap: 8,
+                background: "rgba(255, 255, 255, 0.9)",
+                border: "2px solid #dbeafe",
+                borderRadius: 22,
+                padding: "22px 24px",
+                boxShadow: "0 18px 44px rgba(7, 17, 31, 0.08)"
+              }}
+            >
+              <span style={{ fontSize: 28, lineHeight: 1.1, fontWeight: 900, color: "#07111f" }}>{label}</span>
+              <span style={{ fontSize: 22, lineHeight: 1.25, fontWeight: 700, color: "#456176" }}>{detail}</span>
+            </div>
+          ))}
         </div>
 
         <div
@@ -75,11 +129,11 @@ export default function Image() {
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
-            borderTop: "2px solid rgba(178, 202, 230, 0.22)",
-            paddingTop: 26
+            borderTop: "2px solid #d7e8ff",
+            paddingTop: 24
           }}
         >
-          <div style={{ fontSize: 30, color: "#ffffff", fontWeight: 800 }}>dr-checker.com</div>
+          <div style={{ fontSize: 30, color: "#07111f", fontWeight: 850 }}>dr-checker.com</div>
           <div
             style={{
               display: "flex",
@@ -87,12 +141,12 @@ export default function Image() {
               alignItems: "center",
               fontSize: 28,
               fontWeight: 800,
-              color: "#dcecff"
+              color: "#35506a"
             }}
           >
-            Fast DR lookup
-            <span style={{ color: "#5aa3ff" }}>/</span>
-            No Ahrefs login
+            Built by SocialBu
+            <span style={{ color: "#0067f7" }}>/</span>
+            Mobile friendly
           </div>
         </div>
       </div>
