@@ -1101,9 +1101,14 @@ button svg {
 }
 
 .discover-tools {
-  background: var(--palette-sky);
-  border-top: 1px solid var(--palette-sky-border);
-  border-bottom: 1px solid var(--palette-sky-border);
+  background: #eaf6ff;
+  border-top: 1px solid #cfe9ff;
+  border-bottom: 1px solid #cfe9ff;
+}
+
+body.dark-mode .discover-tools {
+  background: rgba(37, 99, 235, 0.16);
+  border-color: rgba(90, 163, 255, 0.32);
 }
 
 .discover-tools__inner {
