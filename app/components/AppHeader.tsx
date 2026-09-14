@@ -1,12 +1,14 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 
 export default function AppHeader() {
   const [theme, setTheme] = useState("light");
   const [menuOpen, setMenuOpen] = useState(false);
+  const [toolsOpen, setToolsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const toolsDropdownRef = useRef<HTMLDetailsElement>(null);
 
   useEffect(() => {
     const savedTheme = window.localStorage.getItem("dr-checker-theme");
@@ -32,6 +34,32 @@ export default function AppHeader() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    const handlePointerDown = (event: PointerEvent) => {
+      if (!toolsDropdownRef.current?.contains(event.target as Node)) {
+        setToolsOpen(false);
+      }
+    };
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setToolsOpen(false);
+      }
+    };
+
+    document.addEventListener("pointerdown", handlePointerDown);
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("pointerdown", handlePointerDown);
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
+
+  const closeNavigation = () => {
+    setMenuOpen(false);
+    setToolsOpen(false);
+  };
+
   return (
     <div className={`standard-header-shell${isScrolled ? " is-scrolled" : ""}`}>
       <header className="site-header standard-site-header" aria-label="Site header">
@@ -48,7 +76,12 @@ export default function AppHeader() {
           className={`site-nav${menuOpen ? " is-open" : ""}`}
           aria-label="Primary navigation"
         >
-          <details className="nav-dropdown">
+          <details
+            ref={toolsDropdownRef}
+            className="nav-dropdown"
+            open={toolsOpen}
+            onToggle={(event) => setToolsOpen(event.currentTarget.open)}
+          >
             <summary>
               <span>Free SEO Tools</span>
               <svg aria-hidden="true" viewBox="0 0 24 24">
@@ -56,15 +89,15 @@ export default function AppHeader() {
               </svg>
             </summary>
             <div className="nav-dropdown-menu">
-              <Link href="/bulk-dr-checker" onClick={() => setMenuOpen(false)}>Bulk DR Checker</Link>
-              <Link href="/domain-authority-checker" onClick={() => setMenuOpen(false)}>Domain Authority Checker</Link>
-              <Link href="/domain-age-checker" onClick={() => setMenuOpen(false)}>Domain Age Checker</Link>
-              <Link href="/google-serp-simulator" onClick={() => setMenuOpen(false)}>SERP Simulator</Link>
+              <Link href="/bulk-dr-checker" onClick={closeNavigation}>Bulk DR Checker</Link>
+              <Link href="/domain-authority-checker" onClick={closeNavigation}>Domain Authority Checker</Link>
+              <Link href="/domain-age-checker" onClick={closeNavigation}>Domain Age Checker</Link>
+              <Link href="/google-serp-simulator" onClick={closeNavigation}>SERP Simulator</Link>
             </div>
           </details>
-          <Link href="/about" onClick={() => setMenuOpen(false)}>About</Link>
-          <Link href="/blog" onClick={() => setMenuOpen(false)}>Resources</Link>
-          <Link href="/contact" onClick={() => setMenuOpen(false)}>Contact</Link>
+          <Link href="/about" onClick={closeNavigation}>About</Link>
+          <Link href="/blog" onClick={closeNavigation}>Resources</Link>
+          <Link href="/contact" onClick={closeNavigation}>Contact</Link>
         </nav>
         <div className="header-actions">
           <button
