@@ -156,6 +156,20 @@ a {
   color: inherit;
 }
 
+strong,
+b {
+  font-weight: 600;
+}
+
+h2 strong,
+h2 b,
+h3 strong,
+h3 b,
+h4 strong,
+h4 b {
+  font-weight: inherit;
+}
+
 .global-footer a,
 .standard-page a {
   text-decoration: none;
@@ -499,7 +513,7 @@ body.dark-mode .standard-header-shell.is-scrolled {
   height: 22px;
   font-size: 22px;
   line-height: 22px;
-  font-weight: 650;
+  font-weight: 600;
   letter-spacing: 0;
 }
 
@@ -656,7 +670,7 @@ body.dark-mode .nav-dropdown-menu a:hover {
   background: #ffffff;
   box-shadow: 0 12px 30px -22px rgba(9, 17, 35, 0.55);
   font-size: 14px;
-  font-weight: 700;
+  font-weight: 600;
   text-decoration: none;
   white-space: nowrap;
   transition: background-color 150ms ease, color 150ms ease, transform 150ms ease, box-shadow 150ms ease;
@@ -770,7 +784,7 @@ body.dark-mode .theme-toggle .moon-icon {
   color: #ffffff;
   background: rgba(255, 255, 255, 0.1);
   font-size: 0.78rem;
-  font-weight: 700;
+  font-weight: 600;
   line-height: 1;
   backdrop-filter: blur(12px);
   transition: color 150ms ease, background-color 150ms ease, border-color 150ms ease, box-shadow 150ms ease, transform 150ms ease;
@@ -797,7 +811,7 @@ h1 {
   margin: 0 auto;
   font-size: clamp(2.5rem, 6vw, 3.75rem);
   line-height: 1;
-  font-weight: 700;
+  font-weight: 600;
   text-align: center;
 }
 
@@ -848,7 +862,7 @@ h1 {
   gap: 12px;
   color: rgba(255, 255, 255, 0.84);
   font-size: 0.9rem;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .segmented-control {
@@ -991,7 +1005,7 @@ button {
   background: var(--button-bg);
   font: inherit;
   font-size: 1rem;
-  font-weight: 700;
+  font-weight: 600;
   white-space: nowrap;
   cursor: pointer;
   box-shadow: 0 1px 3px rgba(9, 17, 35, 0.1), 0 1px 2px rgba(9, 17, 35, 0.06);
@@ -1036,7 +1050,7 @@ button svg {
 
 .error {
   color: #ffffff;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .error:empty {
@@ -1048,7 +1062,7 @@ button svg {
   align-items: center;
   gap: 10px;
   margin-top: 16px;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .spinner {
@@ -2005,7 +2019,7 @@ tbody tr:hover {
 
 .result-card strong,
 .result-card b {
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .score-panel {
@@ -2086,7 +2100,7 @@ tbody tr:hover {
 
 .score-value strong {
   font-size: clamp(3rem, 8vw, 5rem);
-  font-weight: 700;
+  font-weight: 600;
   line-height: 1;
   color: var(--primary);
 }
@@ -2095,7 +2109,7 @@ tbody tr:hover {
   margin-top: 6px;
   color: var(--muted-foreground);
   font-size: 0.78rem;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
@@ -2120,7 +2134,7 @@ tbody tr:hover {
   margin-top: 6px;
   overflow-wrap: anywhere;
   font-size: clamp(1.5rem, 4vw, 1.9rem);
-  font-weight: 700;
+  font-weight: 600;
   line-height: 1.15;
 }
 
@@ -2150,7 +2164,7 @@ tbody tr:hover {
   color: var(--primary);
   background: rgba(19, 104, 233, 0.1);
   font-size: 0.86rem;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .status-poor {
@@ -2201,7 +2215,7 @@ tbody tr:hover {
   display: block;
   margin-top: 6px;
   font-size: 1.3rem;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .result-source {
@@ -2260,7 +2274,7 @@ tbody tr:hover {
 .score-ranges strong {
   color: var(--foreground);
   font-size: 0.9rem;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .score-ranges [data-range="poor"] {
@@ -2449,7 +2463,7 @@ body.dark-mode .tip-list p:hover {
   color: #ffffff;
   background: var(--section-accent);
   font-size: 0.9rem;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .steps-block .steps {
@@ -2620,7 +2634,7 @@ body.dark-mode .tip-list p:hover {
   margin-bottom: 8px;
   color: var(--section-accent);
   font-size: 0.78rem;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: 0;
   text-transform: uppercase;
 }
@@ -2772,7 +2786,7 @@ body.dark-mode .audit-card:hover {
   color: var(--section-accent);
   background: color-mix(in srgb, var(--section-surface) 48%, var(--card));
   font-size: 0.75rem;
-  font-weight: 700;
+  font-weight: 600;
   line-height: 1;
   text-transform: uppercase;
 }
@@ -2889,12 +2903,12 @@ body.dark-mode .audit-card:hover {
   color: var(--foreground);
   background: color-mix(in srgb, var(--section-surface) 46%, var(--card));
   border-bottom-color: color-mix(in srgb, var(--section-accent) 24%, var(--border));
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .decision-table td:first-child {
   color: var(--foreground);
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .decision-table tbody tr:hover {
@@ -2976,7 +2990,7 @@ summary {
   cursor: pointer;
   color: var(--foreground);
   font-size: 0.95rem;
-  font-weight: 650;
+  font-weight: 600;
   line-height: 1.35;
   text-align: left;
   transition: color 150ms ease, text-decoration-color 150ms ease;
@@ -3751,7 +3765,7 @@ details p {
 
 .standard-page a {
   color: var(--primary);
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .page-kicker {
@@ -3851,7 +3865,7 @@ details p {
   margin: 0;
   color: var(--blog-text);
   font-size: clamp(2.2rem, 6vw, 4.8rem);
-  font-weight: 650;
+  font-weight: 600;
   line-height: 1;
   text-align: left;
 }
@@ -3909,7 +3923,7 @@ details p {
   color: var(--blog-primary);
   background: rgba(19, 104, 233, 0.1);
   font-size: 0.78rem;
-  font-weight: 700;
+  font-weight: 600;
   line-height: 1.2;
   text-transform: uppercase;
 }
@@ -3967,7 +3981,7 @@ details p {
 .blog-home-hero__feature span {
   color: var(--blog-primary);
   font-size: 0.78rem;
-  font-weight: 700;
+  font-weight: 600;
   line-height: 1.2;
   text-transform: uppercase;
 }
@@ -4276,7 +4290,7 @@ details p {
   color: #ffffff !important;
   background: var(--primary);
   box-shadow: 0 16px 30px -18px rgba(19, 104, 233, 0.9);
-  font-weight: 700;
+  font-weight: 600;
   line-height: 1.2;
 }
 
@@ -4327,7 +4341,7 @@ details p {
 
 .blog-pagination a.is-active {
   color: var(--blog-text);
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .blog-pagination__last {
@@ -4391,7 +4405,7 @@ details p {
   margin: 0;
   color: var(--blog-primary) !important;
   font-size: 0.78rem !important;
-  font-weight: 700;
+  font-weight: 600;
   line-height: 1.2 !important;
   text-transform: uppercase;
 }
@@ -4688,7 +4702,7 @@ details p {
   color: #ffffff;
   background: var(--blog-primary);
   font: inherit;
-  font-weight: 700;
+  font-weight: 600;
   cursor: pointer;
 }
 
@@ -4723,7 +4737,7 @@ details p {
   color: #ffffff;
   background: var(--blog-primary);
   font-size: 0.88rem;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .blog-author__photo {
@@ -4736,7 +4750,7 @@ details p {
 .blog-author__label {
   color: var(--blog-primary) !important;
   font-size: 0.78rem !important;
-  font-weight: 700;
+  font-weight: 600;
   line-height: 1.2 !important;
   text-transform: uppercase;
 }
@@ -4763,7 +4777,7 @@ details p {
   height: 28px;
   color: #0a66c2;
   font-size: 1.45rem;
-  font-weight: 700;
+  font-weight: 600;
   line-height: 1;
 }
 
@@ -4994,7 +5008,7 @@ details p {
   background: var(--blog-primary);
   color: #ffffff;
   font-family: "Plus Jakarta Sans", "DM Sans", Arial, sans-serif;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: 0;
   vertical-align: middle;
 }
@@ -5022,7 +5036,7 @@ details p {
 .blog-post__body tbody td:first-child,
 .blog-post__support tbody td:first-child {
   color: var(--blog-text);
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .blog-post__support th,
@@ -5108,7 +5122,7 @@ details p {
 .related-posts span {
   color: var(--blog-primary);
   font-size: 0.74rem;
-  font-weight: 700;
+  font-weight: 600;
   text-transform: uppercase;
 }
 
@@ -5165,7 +5179,7 @@ details p {
   display: grid;
   gap: 8px;
   color: var(--foreground);
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .contact-form__trap {
