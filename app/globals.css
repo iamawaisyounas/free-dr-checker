@@ -491,7 +491,7 @@ body.dark-mode .standard-header-shell.is-scrolled {
   width: auto;
   max-width: 100%;
   border-radius: 0;
-  color: #07111f;
+  color: #ffffff;
   box-shadow: none;
   white-space: nowrap;
   transition: color 200ms ease;
@@ -515,6 +515,10 @@ body.dark-mode .standard-header-shell.is-scrolled {
   line-height: 22px;
   font-weight: 600;
   letter-spacing: 0;
+}
+
+.standard-header-shell.is-scrolled .site-logo {
+  color: #07111f;
 }
 
 body.dark-mode .site-logo {

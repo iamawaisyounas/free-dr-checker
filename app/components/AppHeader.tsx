@@ -14,7 +14,7 @@ export default function AppHeader() {
     const savedTheme = window.localStorage.getItem("dr-checker-theme");
     const initialTheme = savedTheme === "dark" || savedTheme === "light"
       ? savedTheme
-      : window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      : "light";
     setTheme(initialTheme);
   }, []);
 
