@@ -1,7 +1,11 @@
 import { groq } from "next-sanity";
 
 export const postsListQuery = groq`
-  *[_type == "post" && !(_id in path("drafts.**"))] | order(publishedAt desc) {
+  *[
+    _type == "post"
+    && !(_id in path("drafts.**"))
+    && (!defined(publishedAt) || dateTime(publishedAt) <= dateTime(now()))
+  ] | order(publishedAt desc) {
     title,
     "slug": slug.current,
     excerpt,
@@ -18,7 +22,12 @@ export const postsListQuery = groq`
 `;
 
 export const postBySlugQuery = groq`
-  *[_type == "post" && !(_id in path("drafts.**")) && slug.current == $slug][0] {
+  *[
+    _type == "post"
+    && !(_id in path("drafts.**"))
+    && slug.current == $slug
+    && (!defined(publishedAt) || dateTime(publishedAt) <= dateTime(now()))
+  ][0] {
     title,
     "slug": slug.current,
     excerpt,
@@ -39,4 +48,10 @@ export const postBySlugQuery = groq`
   }
 `;
 
-export const allSlugsQuery = groq`*[_type == "post" && !(_id in path("drafts.**"))]{"slug": slug.current}`;
+export const allSlugsQuery = groq`
+  *[
+    _type == "post"
+    && !(_id in path("drafts.**"))
+    && (!defined(publishedAt) || dateTime(publishedAt) <= dateTime(now()))
+  ]{"slug": slug.current}
+`;
