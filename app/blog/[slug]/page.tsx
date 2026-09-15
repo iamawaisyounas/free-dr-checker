@@ -60,6 +60,18 @@ function blockText(block: PortableBlockLike) {
   return block.children?.map((child) => child.text || "").join("").trim() || "";
 }
 
+function nodeText(node: ReactNode): string {
+  if (typeof node === "string" || typeof node === "number") {
+    return String(node);
+  }
+
+  if (Array.isArray(node)) {
+    return node.map(nodeText).join("");
+  }
+
+  return "";
+}
+
 function parseKeyValueRow(value: string) {
   const pairs = value.split(";").map((part) => part.trim()).filter(Boolean);
 
@@ -166,6 +178,21 @@ function ComparisonTable({ value }: { value: ComparisonTableBlock }) {
 
 function tocItemsForPost(post: BlogPostResult, hasFaqs: boolean) {
   const items: Array<{ id: string; heading: string }> = [];
+  const bodyHeadingItems = post.body?.length
+    ? post.body.flatMap((block) => {
+      const portableBlock = block as PortableBlockLike;
+      const heading = blockText(portableBlock);
+
+      if (portableBlock._type !== "block" || portableBlock.style !== "h2" || !heading) {
+        return [];
+      }
+
+      return [{
+        id: headingId(heading),
+        heading
+      }];
+    })
+    : [];
 
   if (post.supportBlock) {
     items.push({
@@ -174,10 +201,10 @@ function tocItemsForPost(post: BlogPostResult, hasFaqs: boolean) {
     });
   }
 
-  items.push(...post.sections.map((section) => ({
+  items.push(...(bodyHeadingItems.length ? bodyHeadingItems : post.sections.map((section) => ({
     id: headingId(section.heading),
     heading: section.heading
-  })));
+  }))));
 
   if (hasFaqs) {
     items.push({
@@ -189,6 +216,20 @@ function tocItemsForPost(post: BlogPostResult, hasFaqs: boolean) {
   return items.filter((item, index, allItems) => (
     item.id && allItems.findIndex((candidate) => candidate.id === item.id) === index
   ));
+}
+
+function PortableHeading({
+  as: HeadingTag,
+  children,
+  value
+}: {
+  as: "h2" | "h3" | "h4";
+  children?: ReactNode;
+  value?: PortableBlockLike;
+}) {
+  const heading = value ? blockText(value) : nodeText(children);
+
+  return <HeadingTag id={headingId(heading)}>{children}</HeadingTag>;
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
@@ -441,9 +482,9 @@ export default async function BlogPostPage({ params }: PageProps) {
                 value={body as PortableTextBlock[]}
                 components={{
                   block: {
-                    h2: ({ children }) => <h2 id={headingId(String(children))}>{children}</h2>,
-                    h3: ({ children }) => <h3 id={headingId(String(children))}>{children}</h3>,
-                    h4: ({ children }) => <h4 id={headingId(String(children))}>{children}</h4>
+                    h2: ({ children, value }) => <PortableHeading as="h2" value={value as PortableBlockLike}>{children}</PortableHeading>,
+                    h3: ({ children, value }) => <PortableHeading as="h3" value={value as PortableBlockLike}>{children}</PortableHeading>,
+                    h4: ({ children, value }) => <PortableHeading as="h4" value={value as PortableBlockLike}>{children}</PortableHeading>
                   },
                   marks: {
                     link: ({ children, value }) => {
