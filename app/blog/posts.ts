@@ -34,7 +34,7 @@ export type BlogPost = {
   readTime: string;
   intro: string;
   takeaways: string[];
-  supportBlock: BlogSupportBlock;
+  supportBlock?: BlogSupportBlock;
   featuredImage: string;
   featuredImageAlt: string;
   author: BlogAuthor;
@@ -184,7 +184,7 @@ function wordCount(text: string) {
   return text.trim().split(/\s+/).filter(Boolean).length;
 }
 
-function estimateReadTime(seed: BlogPostSeed & Pick<BlogPost, "takeaways" | "supportBlock">, sections: BlogSection[]) {
+function estimateReadTime(seed: BlogPostSeed & Pick<BlogPost, "takeaways"> & { supportBlock: BlogSupportBlock }, sections: BlogSection[]) {
   const words = [
     seed.title,
     seed.excerpt,
