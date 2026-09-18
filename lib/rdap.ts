@@ -1,4 +1,5 @@
-const RDAP_BOOTSTRAP = "https://rdap.org/domain/";
+const RDAP_BOOTSTRAP = "https://data.iana.org/rdap/dns.json";
+const RDAP_FALLBACK = "https://rdap.org/domain/";
 
 type RdapEvent = {
   eventAction?: string;
@@ -9,6 +10,43 @@ type RdapEntity = {
   roles?: string[];
   vcardArray?: [string, unknown[]];
 };
+
+type RdapBootstrap = {
+  services?: Array<[string[], string[]]>;
+};
+
+let bootstrapCache: RdapBootstrap | null = null;
+
+async function fetchBootstrap() {
+  if (bootstrapCache) {
+    return bootstrapCache;
+  }
+
+  const res = await fetch(RDAP_BOOTSTRAP, {
+    headers: { Accept: "application/json" },
+    next: { revalidate: 86400 }
+  });
+
+  if (!res.ok) {
+    return null;
+  }
+
+  bootstrapCache = await res.json() as RdapBootstrap;
+  return bootstrapCache;
+}
+
+async function rdapUrlForDomain(domain: string) {
+  const tld = domain.toLowerCase().split(".").pop();
+  const bootstrap = tld ? await fetchBootstrap().catch(() => null) : null;
+  const service = bootstrap?.services?.find(([tlds]) => tlds.some((item) => item.toLowerCase() === tld));
+  const baseUrl = service?.[1]?.[0];
+
+  if (!baseUrl) {
+    return `${RDAP_FALLBACK}${encodeURIComponent(domain)}`;
+  }
+
+  return `${baseUrl.replace(/\/+$/, "")}/domain/${encodeURIComponent(domain)}`;
+}
 
 function findVcardValue(entity: RdapEntity | undefined, key: string) {
   const rows = entity?.vcardArray?.[1];
@@ -21,7 +59,8 @@ function findVcardValue(entity: RdapEntity | undefined, key: string) {
 }
 
 export async function fetchDomainAge(domain: string) {
-  const res = await fetch(`${RDAP_BOOTSTRAP}${encodeURIComponent(domain)}`, {
+  const url = await rdapUrlForDomain(domain);
+  const res = await fetch(url, {
     headers: { Accept: "application/rdap+json" },
     cache: "no-store"
   });
