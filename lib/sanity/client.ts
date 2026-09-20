@@ -16,3 +16,10 @@ export const client = createClient({
   useCdn: !sanityReadToken,
   token: sanityReadToken
 });
+
+export const publicClient = createClient({
+  projectId: sanityProjectId || "replace-with-sanity-project-id",
+  dataset: sanityDataset,
+  apiVersion: sanityApiVersion,
+  useCdn: true
+});

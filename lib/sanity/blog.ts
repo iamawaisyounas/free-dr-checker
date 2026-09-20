@@ -1,7 +1,7 @@
 import type { BlogPost, BlogSection } from "../../app/blog/posts";
 import type { PortableTextBlock } from "@portabletext/types";
 import { blogPosts, getBlogPost } from "../../app/blog/posts";
-import { client, sanityIsConfigured } from "./client";
+import { client, publicClient, sanityIsConfigured } from "./client";
 import { urlFor } from "./image";
 import { allSlugsQuery, postBySlugQuery, postsListQuery } from "./queries";
 
@@ -199,8 +199,12 @@ async function fetchSanity<T>(query: string, params?: Record<string, string>) {
     return params ? await client.fetch<T>(query, params) : await client.fetch<T>(query);
   } catch (error) {
     if (isSanityAuthError(error)) {
-      sanityReadUnavailable = true;
-      return null;
+      try {
+        return params ? await publicClient.fetch<T>(query, params) : await publicClient.fetch<T>(query);
+      } catch {
+        sanityReadUnavailable = true;
+        return null;
+      }
     }
 
     console.warn("Sanity read failed, using static blog content.", error instanceof Error ? error.message : error);
