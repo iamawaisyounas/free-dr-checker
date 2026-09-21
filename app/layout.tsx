@@ -62,21 +62,12 @@ function Footer() {
           <Link href="/terms">Terms</Link>
         </nav>
 
-        <nav className="footer-column" aria-label="Free SEO tools">
-          <h2>Free SEO Tools</h2>
-          <Link href="/">DR Checker</Link>
-          <Link href="/bulk-dr-checker">Free Bulk Domain Rating Checker</Link>
+        <nav className="footer-column" aria-label="SEO tools">
+          <h2>SEO Tools</h2>
+          <Link href="/bulk-dr-checker">Bulk Domain Rating Checker</Link>
           <Link href="/domain-authority-checker">Domain Authority Checker</Link>
           <Link href="/domain-age-checker">Domain Age Checker</Link>
           <Link href="/google-serp-simulator">Google SERP Simulator</Link>
-          <span className="footer-coming-soon">
-            <span>Domain Backlinks Checker</span>
-            <small>Coming Soon</small>
-          </span>
-          <span className="footer-coming-soon">
-            <span>Broken Links Checker</span>
-            <small>Coming Soon</small>
-          </span>
         </nav>
 
         <nav className="footer-column" aria-label="Support links">
@@ -85,11 +76,15 @@ function Footer() {
           <Link href="/contact">Submit Your Request</Link>
           <div className="footer-featured-on" aria-label="Featured on">
             <p>Featured on</p>
-            <a className="footer-badge-link" href="https://tooldirs.com" target="_blank" aria-label="Featured on ToolDirs">
-              <img className="footer-badge" src="https://tooldirs.com/badge/badge_transparent.svg" alt="Featured on ToolDirs" width="200" height="54" />
-            </a>
-            <a className="footer-badge-link" href="https://firstlook.tools" target="_blank" aria-label="Featured on First Look">
-              <img className="footer-badge" src="https://firstlook.tools/badge/badge_transparent.svg" alt="Featured on First Look" width="200" height="54" />
+            <a
+              className="footer-badge-link footer-product-hunt-badge"
+              href="https://www.producthunt.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Featured on Product Hunt"
+            >
+              <span className="footer-product-hunt-badge__mark" aria-hidden="true">P</span>
+              <span className="footer-product-hunt-badge__text">Featured on Product Hunt</span>
             </a>
             <a
               className="footer-badge-link"
