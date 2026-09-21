@@ -77,14 +77,19 @@ function Footer() {
           <div className="footer-featured-on" aria-label="Featured on">
             <p>Featured on</p>
             <a
-              className="footer-badge-link footer-product-hunt-badge"
-              href="https://www.producthunt.com/"
+              className="footer-badge-link footer-product-hunt-widget"
+              href="https://www.producthunt.com/products/socialbu/launches/socialbu-2?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-socialbu-2"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Featured on Product Hunt"
+              aria-label="SocialBu on Product Hunt"
             >
-              <span className="footer-product-hunt-badge__mark" aria-hidden="true">P</span>
-              <span className="footer-product-hunt-badge__text">Featured on Product Hunt</span>
+              <img
+                className="footer-badge footer-product-hunt-widget__image"
+                alt="SocialBu - AI-powered complete social media management tool | Product Hunt"
+                width="250"
+                height="54"
+                src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=376667&theme=light&t=1790030733569"
+              />
             </a>
             <a
               className="footer-badge-link"
