@@ -5,6 +5,8 @@ const AHREFS_API_KEY =
   process.env.AHREFS_API_KEY
   || process.env.AHREFS_API_TOKEN
   || process.env.AHREFS_API_V3_KEY;
+const AHREFS_REQUEST_TIMEOUT_MS = 8000;
+const BULK_CONCURRENCY = 8;
 
 type DrStatus = "ok" | "not_found" | "unavailable" | "auth_required";
 
@@ -27,46 +29,81 @@ async function fetchDomainRating(domain: string) {
     return { domain, dr: null, status: "auth_required" as const };
   }
 
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), AHREFS_REQUEST_TIMEOUT_MS);
   const apiUrl = new URL("https://api.ahrefs.com/v3/public/domain-rating-free");
   apiUrl.searchParams.set("target", domain);
   apiUrl.searchParams.set("output", "json");
 
-  const response = await fetch(apiUrl, {
-    headers: {
-      accept: "application/json",
-      authorization: `Bearer ${AHREFS_API_KEY}`,
-      "user-agent": "FreeDRChecker/1.0"
-    },
-    cache: "no-store"
-  });
+  try {
+    const response = await fetch(apiUrl, {
+      headers: {
+        accept: "application/json",
+        authorization: `Bearer ${AHREFS_API_KEY}`,
+        "user-agent": "FreeDRChecker/1.0"
+      },
+      cache: "no-store",
+      signal: controller.signal
+    });
 
-  if (!response.ok) {
-    if (response.status === 401 || response.status === 403) {
-      return { domain, dr: null, status: "auth_required" as const };
+    if (!response.ok) {
+      if (response.status === 401 || response.status === 403) {
+        return { domain, dr: null, status: "auth_required" as const };
+      }
+
+      return {
+        domain,
+        dr: null,
+        status: response.status === 404 ? "not_found" : "unavailable" as DrStatus
+      };
+    }
+
+    const data = await response.json();
+    const parsed = parseAhrefsDomainRating(data);
+
+    if (parsed.dr === null) {
+      return { domain, dr: null, status: "unavailable" as const };
     }
 
     return {
       domain,
-      dr: null,
-      status: response.status === 404 ? "not_found" : "unavailable" as DrStatus
+      dr: parsed.dr,
+      status: "ok" as const,
+      source: "Ahrefs Domain Rating API",
+      license: parsed.license,
+      checked_at: new Date().toISOString()
     };
-  }
-
-  const data = await response.json();
-  const parsed = parseAhrefsDomainRating(data);
-
-  if (parsed.dr === null) {
+  } catch {
     return { domain, dr: null, status: "unavailable" as const };
+  } finally {
+    clearTimeout(timeout);
+  }
+}
+
+async function mapWithConcurrency<T, R>(
+  items: T[],
+  concurrency: number,
+  callback: (item: T) => Promise<R>
+) {
+  const results = new Array<R>(items.length);
+  let nextIndex = 0;
+
+  async function worker() {
+    while (nextIndex < items.length) {
+      const currentIndex = nextIndex;
+      nextIndex += 1;
+      results[currentIndex] = await callback(items[currentIndex]);
+    }
   }
 
-  return {
-    domain,
-    dr: parsed.dr,
-    status: "ok" as const,
-    source: "Ahrefs Domain Rating API",
-    license: parsed.license,
-    checked_at: new Date().toISOString()
-  };
+  await Promise.all(
+    Array.from(
+      { length: Math.min(concurrency, items.length) },
+      () => worker()
+    )
+  );
+
+  return results;
 }
 
 function domainRatingError(status: DrStatus) {
@@ -126,11 +163,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const results = [];
-
-    for (const domain of parsed.domains) {
-      results.push(await fetchDomainRating(domain));
-    }
+    const results = await mapWithConcurrency(parsed.domains, BULK_CONCURRENCY, fetchDomainRating);
 
     if (results.some((result) => result.status === "auth_required")) {
       const error = domainRatingError("auth_required");
