@@ -27,6 +27,7 @@ export type BlogSupportBlock = {
 export type BlogPost = {
   slug: string;
   title: string;
+  seoTitle?: string;
   excerpt: string;
   seoDescription?: string;
   category: string;
