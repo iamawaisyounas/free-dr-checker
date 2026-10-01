@@ -17,7 +17,7 @@ const tools: ToolCard[] = [
     href: "/",
     title: "Domain Rating Checker",
     description: "Check the Domain Rating of any website instantly using real Ahrefs data.",
-    cta: "Try DR Checker Now",
+    cta: "Try DR Checker",
     icon: "gauge"
   },
   {
@@ -25,7 +25,7 @@ const tools: ToolCard[] = [
     href: "/bulk-dr-checker",
     title: "Free Bulk Domain Rating Checker",
     description: "Check Ahrefs Domain Rating for up to 100 domains at once and export CSV results.",
-    cta: "Try Free Bulk Domain Rating Checker Now",
+    cta: "Try Free Bulk Domain Rating Checker",
     icon: "list"
   },
   {
@@ -33,7 +33,7 @@ const tools: ToolCard[] = [
     href: "/domain-authority-checker",
     title: "Domain Authority Checker",
     description: "Get a free 0-100 authority score for any domain, with referring domains and global rank.",
-    cta: "Try Domain Authority Checker Now",
+    cta: "Try Domain Authority Checker",
     icon: "link"
   },
   {
@@ -41,7 +41,7 @@ const tools: ToolCard[] = [
     href: "/domain-age-checker",
     title: "Domain Age Checker",
     description: "See how old any domain is, pulled live from WHOIS and RDAP registry data.",
-    cta: "Try Domain Age Checker Now",
+    cta: "Try Domain Age Checker",
     icon: "calendar"
   },
   {
@@ -49,7 +49,7 @@ const tools: ToolCard[] = [
     href: "/google-serp-simulator",
     title: "Google SERP Simulator",
     description: "Preview title tags, URLs, and meta descriptions before publishing a page.",
-    cta: "Try SERP Simulator Now",
+    cta: "Try SERP Simulator",
     icon: "search"
   }
 ];
