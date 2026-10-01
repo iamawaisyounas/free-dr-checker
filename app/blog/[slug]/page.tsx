@@ -243,7 +243,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const metaDescription = post.seoDescription || post.excerpt;
 
   return {
-    title: `${post.title} | DR Checker Blog`,
+    title: post.seoTitle || `${post.title} | DR Checker Blog`,
     description: metaDescription,
     alternates: { canonical: `https://dr-checker.com/blog/${post.slug}` },
     openGraph: {
