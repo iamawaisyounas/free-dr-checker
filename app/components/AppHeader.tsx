@@ -2,13 +2,20 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function AppHeader() {
+  const pathname = usePathname();
   const [theme, setTheme] = useState("light");
+  const [announcementDismissed, setAnnouncementDismissed] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [toolsOpen, setToolsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const toolsDropdownRef = useRef<HTMLDetailsElement>(null);
+
+  useEffect(() => {
+    setAnnouncementDismissed(window.sessionStorage.getItem("dr-checker-product-hunt-dismissed") === "true");
+  }, []);
 
   useEffect(() => {
     const savedTheme = window.localStorage.getItem("dr-checker-theme");
@@ -60,8 +67,32 @@ export default function AppHeader() {
     setToolsOpen(false);
   };
 
+  const showAnnouncement = pathname === "/" && !announcementDismissed;
+
   return (
-    <div className={`standard-header-shell${isScrolled ? " is-scrolled" : ""}`}>
+    <div className={`standard-header-shell${isScrolled ? " is-scrolled" : ""}${showAnnouncement ? " has-announcement" : ""}`}>
+      {showAnnouncement && (
+        <div className="product-hunt-announcement" role="region" aria-label="Product Hunt launch announcement">
+          <div className="product-hunt-announcement__content">
+            <span aria-hidden="true">🚀</span>
+            <span>DR Checker is live on Product Hunt!</span>
+            <a href="https://www.producthunt.com/products/dr-checker-2?launch=dr-checker-2" target="_blank" rel="noopener noreferrer">
+              Support us on Product Hunt <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+          <button
+            className="product-hunt-announcement__dismiss"
+            type="button"
+            aria-label="Dismiss Product Hunt announcement"
+            onClick={() => {
+              window.sessionStorage.setItem("dr-checker-product-hunt-dismissed", "true");
+              setAnnouncementDismissed(true);
+            }}
+          >
+            ×
+          </button>
+        </div>
+      )}
       <header className="site-header standard-site-header" aria-label="Site header">
         <div className="brand-lockup">
           <Link className="brand" href="/" aria-label="Domain Rating Checker home">
