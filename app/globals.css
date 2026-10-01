@@ -5674,7 +5674,7 @@ details p {
     display: grid;
     box-sizing: border-box;
     grid-auto-flow: column;
-    grid-auto-columns: minmax(0, min(82vw, 320px));
+    grid-auto-columns: min(82vw, 320px);
     grid-template-columns: none;
     overflow-x: auto;
     overscroll-behavior-inline: contain;
