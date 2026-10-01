@@ -470,7 +470,7 @@ body.dark-mode .tool-shell::before {
 
 .product-hunt-announcement a {
   color: inherit;
-  font-weight: 800;
+  font-weight: 600;
   text-decoration: underline;
   text-underline-offset: 3px;
 }
