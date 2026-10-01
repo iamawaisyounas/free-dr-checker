@@ -78,17 +78,17 @@ function Footer() {
             <p>Featured on</p>
             <a
               className="footer-badge-link footer-product-hunt-widget"
-              href="https://www.producthunt.com/products/socialbu/launches/socialbu-2?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-socialbu-2"
+              href="https://www.producthunt.com/products/dr-checker-2?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-dr-checker-2"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="SocialBu on Product Hunt"
+              aria-label="DR Checker on Product Hunt"
             >
               <img
                 className="footer-badge footer-product-hunt-widget__image"
-                alt="SocialBu - AI-powered complete social media management tool | Product Hunt"
+                alt="DR Checker - Check any site's Ahrefs Domain Rating for free | Product Hunt"
                 width="250"
                 height="54"
-                src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=376667&theme=light&t=1790030733569"
+                src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1267039&theme=light"
               />
             </a>
             <a
