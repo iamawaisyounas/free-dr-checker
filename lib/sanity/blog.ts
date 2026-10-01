@@ -1,6 +1,7 @@
 import type { BlogPost, BlogSection } from "../../app/blog/posts";
 import type { PortableTextBlock } from "@portabletext/types";
 import { blogPosts, getBlogPost } from "../../app/blog/posts";
+import { filmy4wapCompetitorsPost } from "../../app/blog/filmy4wap-competitors";
 import { client, publicClient, sanityIsConfigured } from "./client";
 import { urlFor } from "./image";
 import { allSlugsQuery, postBySlugQuery, postsListQuery } from "./queries";
@@ -150,6 +151,7 @@ function normalizeSanityPost(post: SanityPost): BlogPost | null {
   return {
     slug: post.slug,
     title: post.title,
+    seoTitle: post.seoTitle,
     excerpt: post.excerpt || staticPost?.excerpt || "",
     seoDescription: staticPost?.seoDescription || post.seoDescription,
     category: post.category?.title || staticPost?.category || "SEO",
@@ -216,10 +218,14 @@ export async function getBlogPosts() {
   const posts = await fetchSanity<SanityPost[]>(postsListQuery);
 
   const normalized = posts?.map(normalizeSanityPost).filter((post): post is BlogPost => Boolean(post)) || [];
-  return normalized.length ? normalized : blogPosts;
+  const availablePosts = normalized.length ? normalized : blogPosts;
+  return [filmy4wapCompetitorsPost, ...availablePosts.filter((post) => post.slug !== filmy4wapCompetitorsPost.slug)];
 }
 
 export async function getBlogPostBySlug(slug: string) {
+  if (slug === filmy4wapCompetitorsPost.slug) {
+    return filmy4wapCompetitorsPost;
+  }
   const post = await fetchSanity<SanityPost | null>(postBySlugQuery, { slug });
 
   return post ? normalizeSanityPost(post) : getBlogPost(slug) || null;
@@ -229,5 +235,6 @@ export async function getBlogSlugs() {
   const slugs = await fetchSanity<Array<{ slug?: string }>>(allSlugsQuery);
 
   const sanitySlugs = slugs?.map((item) => item.slug).filter((slug): slug is string => Boolean(slug)) || [];
-  return sanitySlugs.length ? sanitySlugs : blogPosts.map((post) => post.slug);
+  const availableSlugs = sanitySlugs.length ? sanitySlugs : blogPosts.map((post) => post.slug);
+  return [filmy4wapCompetitorsPost.slug, ...availableSlugs.filter((slug) => slug !== filmy4wapCompetitorsPost.slug)];
 }
