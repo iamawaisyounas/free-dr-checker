@@ -5580,3 +5580,8 @@ details p {
     display: none;
   }
 }
+
+#blog-post-title {
+  font-size: 2.4rem;
+  line-height: 1.2;
+}
