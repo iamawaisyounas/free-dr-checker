@@ -115,8 +115,10 @@ function sectionsFromBody(post: SanityPost): BlogSection[] {
 }
 
 function imageUrl(post: SanityPost, fallbackSlug: string) {
-  if (!post.featuredImage) {
-    return `/blog-images/${fallbackSlug}.svg`;
+  if (!post.featuredImage?.asset?.url) {
+    return fallbackSlug === filmy4wapCompetitorsPost.slug
+      ? filmy4wapCompetitorsPost.featuredImage
+      : getBlogPost(fallbackSlug)?.featuredImage || `/blog-images/${fallbackSlug}.svg`;
   }
 
   const asset = post.featuredImage.asset;
