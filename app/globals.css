@@ -5655,3 +5655,38 @@ details p {
   font-size: 2.4rem;
   line-height: 1.2;
 }
+
+
+.discover-tools__hint {
+  display: none;
+}
+
+@media (max-width: 760px) {
+  .discover-tools__hint {
+    display: block;
+    margin: -8px 0 18px;
+    color: var(--muted-foreground);
+    font-size: 0.9rem;
+    text-align: center;
+  }
+
+  .discover-tools__grid {
+    display: grid;
+    box-sizing: border-box;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(0, min(82vw, 320px));
+    grid-template-columns: none;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 2px;
+    scrollbar-width: thin;
+    padding: 2px 2px 14px;
+  }
+
+  .discover-card {
+    min-width: 0;
+    scroll-snap-align: start;
+    grid-template-rows: 44px auto 1fr auto;
+  }
+}
