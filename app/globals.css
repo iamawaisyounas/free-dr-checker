@@ -5690,3 +5690,22 @@ details p {
     grid-template-rows: 44px auto 1fr auto;
   }
 }
+
+
+@media (max-width: 760px) {
+  .decision-table::before {
+    display: block;
+    padding: 9px 12px;
+    color: var(--muted-foreground);
+    background: var(--card);
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-align: left;
+    content: "Swipe sideways to see every column →";
+  }
+
+  .decision-table {
+    overscroll-behavior-inline: contain;
+    scrollbar-width: thin;
+  }
+}
