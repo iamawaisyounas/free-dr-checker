@@ -32,8 +32,8 @@ export const filmy4wapCompetitorsPost: BlogPost = {
       ["YouTube Movies", "Renting one known film", "Rental or purchase varies", "Not a unified subscription catalog"]
     ]
   },
-  featuredImage: "/blog-images/filmy4wap-alternatives-2026.webp?v=2",
-  featuredImageAlt: "Seven movie service cards in DR Checker blue and navy",
+  featuredImage: "/blog-images/filmy4wap-alternatives-2026.svg",
+  featuredImageAlt: "Movie screen and viewing cards in DR Checker blue and teal",
   author: blogAuthor,
   sections: [
     {
