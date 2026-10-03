@@ -299,7 +299,7 @@ function SupportBlock({ block }: { block: BlogPostResult["supportBlock"] }) {
     return (
       <section className={`blog-post__support blog-post__support--${block.type}`} aria-labelledby={headingId(block.heading)}>
         <h2 id={headingId(block.heading)}>{block.heading}</h2>
-        <p>{block.intro}</p>
+        <p>{renderLinkedText(block.intro)}</p>
         <ol>
           {(block.items || []).map((item) => (
             <li key={item}>{item}</li>
@@ -313,7 +313,7 @@ function SupportBlock({ block }: { block: BlogPostResult["supportBlock"] }) {
     return (
       <section className="blog-post__support blog-post__support--pros-cons" aria-labelledby={headingId(block.heading)}>
         <h2 id={headingId(block.heading)}>{block.heading}</h2>
-        <p>{block.intro}</p>
+        <p>{renderLinkedText(block.intro)}</p>
         <div className="blog-post__pros-cons">
           <div>
             <h3>Worth doing</h3>
@@ -331,7 +331,7 @@ function SupportBlock({ block }: { block: BlogPostResult["supportBlock"] }) {
   return (
     <section className={`blog-post__support blog-post__support--${block.type}`} aria-labelledby={headingId(block.heading)}>
       <h2 id={headingId(block.heading)}>{block.heading}</h2>
-      <p>{block.intro}</p>
+      <p>{renderLinkedText(block.intro)}</p>
       <div className="responsive-table">
         <table>
           <thead>

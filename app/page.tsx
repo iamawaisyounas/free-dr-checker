@@ -329,17 +329,6 @@ export default function HomePage() {
             </p>
             <h2>What Domain Rating means</h2>
             <p className="wide-copy">Domain Rating is an Ahrefs metric that estimates the strength of a website&apos;s backlink profile on a 0 to 100 scale. A higher DR usually means the domain has stronger links, but DR is not a Google ranking factor and it does not measure content quality. Use it with relevance, organic traffic, search intent, and manual review.</p>
-            <div className="callout-panel">
-              <div>
-                <h3>Keyword targets</h3>
-                <p>These phrases match the user jobs behind a free DR checker page, so the copy covers both the tool action and the follow-up decision.</p>
-              </div>
-              <ul className="mini-metric-list">
-                <li><strong>domain rating checker</strong><span>Primary tool query for checking a single domain&apos;s Ahrefs DR.</span></li>
-                <li><strong>dr checker</strong><span>Short-form query from users who already know the metric.</span></li>
-                <li><strong>check domain rating</strong><span>Action-led query that needs quick input, result interpretation, and next steps.</span></li>
-              </ul>
-            </div>
           </section>
 
           <section className="copy-block faq-block" aria-labelledby="faq-title">
