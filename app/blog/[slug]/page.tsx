@@ -268,7 +268,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   };
 }
 
-function renderLinkedText(text: string) {
+function renderLinkedText(text: string, nofollowExternal = false) {
   const parts: ReactNode[] = [];
   const linkPattern = /\[([^\]]+)\]\(([^)]+)\)/g;
   let lastIndex = 0;
@@ -279,7 +279,7 @@ function renderLinkedText(text: string) {
     if (match.index > lastIndex) {
       parts.push(text.slice(lastIndex, match.index));
     }
-    parts.push(<Link key={`${href}-${match.index}`} href={href}>{label}</Link>);
+    parts.push(<Link key={`${href}-${match.index}`} href={href} rel={nofollowExternal && /^https?:\/\//.test(href) ? "nofollow noopener noreferrer" : undefined} target={nofollowExternal && /^https?:\/\//.test(href) ? "_blank" : undefined}>{label}</Link>);
     lastIndex = match.index + fullMatch.length;
   }
 
@@ -515,7 +515,7 @@ export default async function BlogPostPage({ params }: PageProps) {
                 <section id={headingId(section.heading)} key={section.heading}>
                   <h2>{section.heading}</h2>
                   {section.body.map((paragraph) => (
-                    <p key={paragraph}>{renderLinkedText(paragraph)}</p>
+                    <p key={paragraph}>{renderLinkedText(paragraph, post.slug === "filmy4wap.gen.in-competitors-and-alternatives")}</p>
                   ))}
                 </section>
               ))
