@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="628" viewBox="0 0 1200 628" role="img" aria-labelledby="title desc">
+<title id="title">Movie streaming alternatives</title>
+<desc id="desc">A movie screen with a play symbol and three viewing cards, illustrated in DR Checker blue and teal.</desc>
+<defs><filter id="shadow" x="-20%" y="-20%" width="140%" height="160%"><feDropShadow dx="0" dy="18" stdDeviation="16" flood-color="#18324A" flood-opacity=".14"/></filter></defs>
+<rect width="1200" height="628" fill="#F8F9FB"/>
+<circle cx="152" cy="113" r="108" fill="#EAF4FF" opacity=".8"/>
+<circle cx="1068" cy="519" r="140" fill="#DDF9F4" opacity=".7"/>
+<ellipse cx="600" cy="550" rx="338" ry="28" fill="#18324A" opacity=".08"/>
+<g filter="url(#shadow)">
+  <rect x="284" y="108" width="632" height="374" rx="30" fill="#fff" stroke="#DCEBFF" stroke-width="6"/>
+  <rect x="310" y="134" width="580" height="280" rx="18" fill="#EAF4FF"/>
+  <rect x="334" y="158" width="532" height="232" rx="14" fill="#1368E9"/>
+  <path d="M334 328c116-94 223-63 320-128 72-48 137-20 212 21v169H334z" fill="#0C4DAE" opacity=".56"/>
+  <circle cx="600" cy="273" r="83" fill="#fff" opacity=".94"/>
+  <path d="M579 228l74 45-74 45z" fill="#1368E9"/>
+  <rect x="332" y="435" width="106" height="18" rx="9" fill="#DCEBFF"/>
+  <rect x="452" y="435" width="106" height="18" rx="9" fill="#20C7A8"/>
+  <rect x="572" y="435" width="106" height="18" rx="9" fill="#DCEBFF"/>
+  <rect x="692" y="435" width="106" height="18" rx="9" fill="#DCEBFF"/>
+  <rect x="812" y="435" width="50" height="18" rx="9" fill="#DCEBFF"/>
+</g>
+<g filter="url(#shadow)">
+  <rect x="205" y="357" width="176" height="132" rx="20" fill="#fff" stroke="#DCEBFF" stroke-width="5"/>
+  <rect x="225" y="378" width="136" height="62" rx="11" fill="#DDF9F4"/>
+  <path d="M282 392l34 18-34 18z" fill="#20C7A8"/>
+  <rect x="235" y="454" width="82" height="10" rx="5" fill="#DCEBFF"/>
+  <rect x="327" y="454" width="26" height="10" rx="5" fill="#DCEBFF"/>
+  <rect x="819" y="357" width="176" height="132" rx="20" fill="#fff" stroke="#DCEBFF" stroke-width="5"/>
+  <rect x="839" y="378" width="136" height="62" rx="11" fill="#EAF4FF"/>
+  <path d="M896 392l34 18-34 18z" fill="#1368E9"/>
+  <rect x="849" y="454" width="82" height="10" rx="5" fill="#DCEBFF"/>
+  <rect x="941" y="454" width="26" height="10" rx="5" fill="#DCEBFF"/>
+</g>
+</svg>
