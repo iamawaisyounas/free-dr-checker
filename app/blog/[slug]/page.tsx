@@ -538,9 +538,11 @@ export default async function BlogPostPage({ params }: PageProps) {
 
         </article>
 
+        {post.slug !== "filmy4wap.gen.in-competitors-and-alternatives" ? (
         <aside className="blog-post-sidebar" aria-label="Domain Rating checker">
           <BlogDrCard />
         </aside>
+        ) : null}
       </div>
 
       <div className="blog-post-after">
@@ -561,9 +563,11 @@ export default async function BlogPostPage({ params }: PageProps) {
           <p className="blog-author__bio">{post.author.bio}</p>
         </section>
       </div>
+      {post.slug !== "filmy4wap.gen.in-competitors-and-alternatives" ? (
       <div className="blog-post-cta-wrap">
         <BlogCtaSection />
       </div>
+      ) : null}
     </main>
   );
 }
