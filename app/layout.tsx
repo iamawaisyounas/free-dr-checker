@@ -27,6 +27,7 @@ export const metadata: Metadata = {
 
 const googleTagManagerId = "GTM-PN765D4C";
 const googleAnalyticsId = "G-FKY1D8N8WY";
+const googleAdSenseClientId = "ca-pub-6606245338486202";
 const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
@@ -121,6 +122,11 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en">
       <head>
+        <script
+          async
+          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${googleAdSenseClientId}`}
+          crossOrigin="anonymous"
+        />
         <script
           id="gtm-script"
           dangerouslySetInnerHTML={{
