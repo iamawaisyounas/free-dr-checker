@@ -27,7 +27,7 @@ export const metadata: Metadata = {
 
 const googleTagManagerId = "GTM-PN765D4C";
 const googleAnalyticsId = "G-FKY1D8N8WY";
-const googleAdSenseClientId = "ca-pub-6606245338486202";
+const googleAdSenseClientId = "ca-pub-7356756024031215";
 const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
